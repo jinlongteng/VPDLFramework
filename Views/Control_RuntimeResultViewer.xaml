@@ -1,0 +1,166 @@
+﻿<UserControl
+    x:Class="VPDLFramework.Views.Control_RuntimeResultViewer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cognex="clr-namespace:Cognex.VisionPro3D;assembly=Cognex.VisionPro3D.Display.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:VPDLFramework.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+    d:DesignHeight="450"
+    d:DesignWidth="600"
+    Unloaded="UserControl_Unloaded"
+    Background="{DynamicResource Color_DarkBackground}"
+    Foreground="White"
+    mc:Ignorable="d">
+    <Grid Margin="2">
+        <Border BorderBrush="Gray" BorderThickness="0.5" />
+        <Grid Margin="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition />
+                <RowDefinition Height="32" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Border
+                        Margin="0"
+                        HorizontalAlignment="Left"
+                        Background="{StaticResource Color_EditWorkModuleTitleBackgroud}"
+                        CornerRadius="0">
+                        <TextBlock
+                            Margin="3"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Foreground="Black"
+                            Text="{Binding StreamOrGroupName}" />
+                    </Border>
+                    <StackPanel Margin="10,0" Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontFamily="{StaticResource Font_Ico}"
+                            FontSize="16"
+                            Text="&#xe867;"
+                            ToolTip="{DynamicResource Lan.Control_RuntimeResultViewer.TextBufferQueue}" />
+                        <TextBlock
+                            Margin="2,0"
+                            VerticalAlignment="Center"
+                            Text=":" />
+                        <TextBlock VerticalAlignment="Center" Text="{Binding BufferedImagesCount}" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+                    <ToggleButton
+                        x:Name="togBtnLiveMode"
+                        Width="30"
+                        Margin="2,0"
+                        Command="{Binding RelativeSource={RelativeSource AncestorType=local:Control_WorkRuntime}, Path=DataContext.CmdLiveMode}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:Control_RuntimeResultViewer}, Path=DataContext.StreamOrGroupName}"
+                        Content="&#xe96a;"
+                        FontFamily="{StaticResource Font_Ico}"
+                        FontSize="16"
+                        IsChecked="{Binding IsLiveMode, Mode=OneWay}"
+                        IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=local:Control_WorkRuntime}, Path=DataContext.IsSystemOnline, Converter={StaticResource BoolInverseCvt}}"
+                        ToolTip="{DynamicResource Lan.Control_RuntimeResultViewer.BtnLiveMode}" />
+                    <Button
+                        Width="30"
+                        Command="{Binding RelativeSource={RelativeSource AncestorType=local:Control_WorkRuntime}, Path=DataContext.CmdRunWorkStream}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:Control_RuntimeResultViewer}, Path=DataContext.StreamOrGroupName}"
+                        Content="&#xe8c5;"
+                        FontFamily="{StaticResource Font_Ico}"
+                        FontSize="16"
+                        IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=local:Control_WorkRuntime}, Path=DataContext.IsSystemOnline, Converter={StaticResource BoolInverseCvt}}"
+                        MouseDoubleClick="Button_MouseDoubleClick"
+                        PreviewMouseDoubleClick="Button_PreviewMouseDoubleClick"
+                        Style="{StaticResource Style_Button_Ico}"
+                        ToolTip="{DynamicResource Lan.Control_RuntimeResultViewer.BtnManualTrigger}"
+                        Visibility="{Binding IsWrokStreamType, Converter={StaticResource BoolToVisiblityDefaultVisibleCvt}}" />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Border BorderBrush="Gray" BorderThickness="0,0.5" />
+                <wfi:WindowsFormsHost
+                    x:Name="host"
+                    Margin="0,2"
+                    Visibility="{Binding IsDisplay3D, Converter={StaticResource BoolToVisiblityDefaultHiddenCvt}}" />
+                <cognex:Cog3DDisplayV2
+                    x:Name="display3D"
+                    Margin="0,2"
+                    Visibility="{Binding IsDisplay3D, Converter={StaticResource BoolToVisiblityDefaultVisibleCvt}}" />
+            </Grid>
+            <Grid Grid.Row="2">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Padding="3"
+                        VerticalAlignment="Center"
+                        Text="{DynamicResource Lan.Control_RuntimeResultViewer.TextResult}"
+                        ToolTip="{Binding TriggerTime}" />
+                    <TextBlock
+                        x:Name="textResult"
+                        Padding="3"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontSize="13"
+                        Text="{Binding ResultForDisplay}" />
+                </StackPanel>
+                <StackPanel
+                    Margin="2"
+                    HorizontalAlignment="Right"
+                    Orientation="Vertical">
+                    <Border
+                        Width="40"
+                        Height="15"
+                        Margin="0,1,0,1"
+                        HorizontalAlignment="Right"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        CornerRadius="0">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ResultStatus}" Value="True">
+                                        <Setter Property="Background" Value="Green" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ResultStatus}" Value="False">
+                                        <Setter Property="Background" Value="{StaticResource Color_Red}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+                    <StackPanel
+                        Margin="5,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            x:Name="tbTime"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            FontSize="10"
+                            Text="{Binding ElapsedTime}" />
+                        <TextBlock VerticalAlignment="Bottom" FontSize="10">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbTime, Path=Text, Converter={StaticResource StringIsNullCvt}}" Value="False">
+                                            <Setter Property="Text" Value=" ms" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

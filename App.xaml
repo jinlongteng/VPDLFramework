@@ -1,0 +1,24 @@
+<Application
+    x:Class="VPDLFramework.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonisUi="clr-namespace:AdonisUI;assembly=AdonisUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:VPDLFramework"
+    xmlns:vm="clr-namespace:VPDLFramework.ViewModels"
+    
+    d1p1:Ignorable="d"
+    StartupUri="Views/Window_StartupPage.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/VPDLFramework;component/Styles/StyleDictionary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/VPDLFramework;component/Styles/GlobalVariableDictionary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/VPDLFramework;component/Styles/ValueConverterDictionary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/VPDLFramework;component/Languages/SimplifiedChinese.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

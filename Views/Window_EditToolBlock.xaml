@@ -1,0 +1,16 @@
+﻿<Window
+    x:Class="VPDLFramework.Views.Window_EditToolBlock"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:VPDLFramework.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+    Title="{DynamicResource Lan.Window_EditToolBlock.TitleEditTB}"
+    Width="1200"
+    Height="800"
+    mc:Ignorable="d">
+    <Grid>
+        <wfi:WindowsFormsHost Name="host" />
+    </Grid>
+</Window>

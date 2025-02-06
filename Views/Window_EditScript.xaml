@@ -1,0 +1,138 @@
+﻿<Window
+    x:Class="VPDLFramework.Views.Window_EditScript"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:avalon="http://icsharpcode.net/sharpdevelop/avalonedit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:VPDLFramework.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{DynamicResource Lan.Window_EditScript.TitleCommScript}"
+    Width="900"
+    Height="600"
+    Background="{DynamicResource Color_DarkBackground}"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid>
+        <Border BorderBrush="LightGray" BorderThickness="1">
+            <TabControl>
+                <TabControl.ItemContainerStyle>
+                    <Style TargetType="{x:Type TabItem}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Style>
+                </TabControl.ItemContainerStyle>
+                <TabItem Header="{DynamicResource Lan.Window_EditScript.HeaderInputScript}">
+                    <Grid Margin="-2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24" />
+                            <RowDefinition />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+                        <Grid Background="{StaticResource Color_EditWorkModuleTitleBackgroud}">
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <ToggleButton
+                                    x:Name="btnShowAssembly"
+                                    Width="20"
+                                    Height="20"
+                                    Margin="2"
+                                    Content="&#xe7f1;"
+                                    FontFamily="{StaticResource Font_Ico}"
+                                    FontSize="16"
+                                    ToolTip="{DynamicResource Lan.Window_EditScript.BtnShowReference}" />
+                                <Button
+                                    x:Name="BtnAddReference"
+                                    Width="20"
+                                    Height="20"
+                                    Margin="2"
+                                    Click="BtnAddReference_Click"
+                                    Content="&#xe6be;"
+                                    FontFamily="{StaticResource Font_Ico}"
+                                    FontSize="16"
+                                    ToolTip="{DynamicResource Lan.Window_EditScript.BtnAddReference}" />
+                                <Button
+                                    x:Name="BtnCompileScript"
+                                    Width="20"
+                                    Height="20"
+                                    Margin="2"
+                                    Click="BtnCompileScript_Click"
+                                    Content="&#xe6ea;"
+                                    FontFamily="{StaticResource Font_Ico}"
+                                    FontSize="16"
+                                    ToolTip="{DynamicResource Lan.Window_EditScript.BtnCompile}" />
+                                <CheckBox
+                                    Margin="5,0"
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Content="DEBUG"
+                                    IsChecked="{Binding IsDebugMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition>
+                                    <ColumnDefinition.Style>
+                                        <Style TargetType="ColumnDefinition">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=btnShowAssembly, Path=IsChecked}" Value="false">
+                                                    <Setter Property="Width" Value="0" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ColumnDefinition.Style>
+                                </ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid x:Name="inputScriptGrid" />
+                            <ListView Grid.Column="1" ItemsSource="{Binding ScriptAssembly}" />
+                        </Grid>
+                        <Border Grid.Row="2" Background="{DynamicResource Color_DarkBackground}">
+                            <StackPanel Margin="2,0" Orientation="Horizontal">
+                                <Border
+                                    Width="12"
+                                    Height="12"
+                                    CornerRadius="10">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsScriptCompiledSucceed}" Value="true">
+                                                    <Setter Property="Background" Value="LimeGreen" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsScriptCompiledSucceed}" Value="false">
+                                                    <Setter Property="Background" Value="{StaticResource Color_Red}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
+                                <TextBlock
+                                    Margin="2,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="White">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsScriptCompiledSucceed}" Value="true">
+                                                    <Setter Property="Text" Value="{DynamicResource Lan.Window_EditScript.TextSucceed}" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsScriptCompiledSucceed}" Value="false">
+                                                    <Setter Property="Text" Value="{DynamicResource Lan.Window_EditScript.TextFailed}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+                        <ListView
+                            Grid.Row="3"
+                            Background="{DynamicResource Color_DarkBackground}"
+                            BorderBrush="Gray"
+                            BorderThickness="0.5"
+                            Foreground="White"
+                            ItemsSource="{Binding ScriptCompiledResult}" />
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Border>
+    </Grid>
+</Window>

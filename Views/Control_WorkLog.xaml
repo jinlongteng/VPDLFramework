@@ -1,0 +1,144 @@
+﻿<UserControl
+    x:Class="VPDLFramework.Views.Control_WorkLog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:VPDLFramework.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="{DynamicResource Color_DarkBackground}"
+    Foreground="White"
+    mc:Ignorable="d">
+    <Grid>
+        <Border
+            Margin="1,1,1,0"
+            BorderBrush="Gray"
+            BorderThickness="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="5,0" Orientation="Horizontal">
+                        <TextBlock
+                            Padding="3"
+                            VerticalAlignment="Center"
+                            Text="{DynamicResource Lan.Control_ProductionData.TextStartDate}" />
+                        <TextBlock
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Text="{Binding StartDate, StringFormat={}{0:yyyy-MM-dd}}" />
+                        <TextBlock
+                            Padding="3"
+                            VerticalAlignment="Center"
+                            Text="{DynamicResource Lan.Control_ProductionData.TextEndDate}" />
+                        <TextBlock
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Text="{Binding EndDate, StringFormat={}{0:yyyy-MM-dd}}" />
+                    </StackPanel>
+                    <StackPanel
+                        Grid.Column="1"
+                        Margin="5,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                        <DatePicker VerticalAlignment="Center" SelectedDate="{Binding SelectedDate, Mode=TwoWay}" />
+                        <Button
+                            Margin="20,0,0,0"
+                            Padding="2"
+                            VerticalAlignment="Center"
+                            Command="{Binding CmdQueryByDate}"
+                            Content="{DynamicResource Lan.Control_ProductionData.BtnQuery}" />
+                        <Button
+                            Margin="2,0"
+                            Padding="2"
+                            VerticalAlignment="Center"
+                            Command="{Binding CmdQueryAll}"
+                            Content="{DynamicResource Lan.Control_ProductionData.BtnQueryToday}" />
+                        <!--<Button
+                        Width="30"
+                        Height="30"
+                        VerticalAlignment="Center"
+                        Command="{Binding CmdClearAll}"
+                        Content="&#xe6a7;"
+                        FontFamily="{StaticResource Font_Ico}"
+                        FontSize="16"
+                        Style="{StaticResource Style_Button_Ico}"
+                        ToolTip="清空全部" />-->
+                    </StackPanel>
+                </Grid>
+                <DataGrid
+                    Grid.Row="2"
+                    Margin="1,0,1,1"
+                    BorderBrush="Gray"
+                    BorderThickness="0.5,0,0.5,0.5"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding Data}"
+                    Style="{StaticResource Style_DataGrid}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="200" Header="{DynamicResource Lan.Control_WorkLog.TextMessageTime}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        Padding="2"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding Time}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="100" Header="{DynamicResource Lan.Control_WorkLog.TextMessageType}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border>
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding LogType}" Value="Stream">
+                                                        <Setter Property="Background" Value="#714e72b8" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding LogType}" Value="Group">
+                                                        <Setter Property="Background" Value="#a1bed742" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding LogType}" Value="TCP">
+                                                        <Setter Property="Background" Value="#a173b9a2" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding LogType}" Value="IO">
+                                                        <Setter Property="Background" Value="#a1ffce7b" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding LogType}" Value="FFP">
+                                                        <Setter Property="Background" Value="#a1aafeff" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding LogType}" Value="Script">
+                                                        <Setter Property="Background" Value="#a1223eff" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                        <TextBlock Padding="2" Text="{Binding LogType}" />
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="*" Header="{DynamicResource Lan.Control_WorkLog.TextMessageContent}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        Margin="5,0"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding LogContent}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

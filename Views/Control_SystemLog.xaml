@@ -1,0 +1,110 @@
+﻿<UserControl
+    x:Class="VPDLFramework.Views.Control_SystemLog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:VPDLFramework.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="200"
+    d:DesignWidth="800"
+    Background="{StaticResource Color_DarkBackground}"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Log}"
+    mc:Ignorable="d">
+    <Grid>
+        <Button
+            Width="25"
+            Height="25"
+            Margin="3"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Panel.ZIndex="1"
+            Command="{Binding CmdClear}"
+            Content="&#xe6c5;"
+            FontFamily="{StaticResource Font_Ico}"
+            Style="{StaticResource Style_Button_Ico}" />
+        <DataGrid
+            BorderBrush="Gray"
+            BorderThickness="2"
+            ItemsSource="{Binding LogItems}"
+            Style="{StaticResource Style_DataGrid}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="200" Header="{DynamicResource Lan.Control_SystemLog.TextTime}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                Padding="3"
+                                VerticalAlignment="Center"
+                                Text="{Binding Time}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="100" Header="{DynamicResource Lan.Control_SystemLog.TextLevel}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox
+                                VerticalAlignment="Center"
+                                Foreground="White"
+                                Text="{Binding Level}">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="TextBox">
+                                                    <StackPanel Margin="2,0" Orientation="Horizontal">
+                                                        <TextBlock
+                                                            Margin="2,0"
+                                                            VerticalAlignment="Center"
+                                                            FontFamily="{StaticResource Font_Ico}"
+                                                            FontSize="14">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding ElementName=tbLogLevel, Path=Text}" Value="Error">
+                                                                            <Setter Property="Text" Value="&#xe681;" />
+                                                                            <Setter Property="Foreground" Value="{StaticResource Color_Red}" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding ElementName=tbLogLevel, Path=Text}" Value="Trace">
+                                                                            <Setter Property="Text" Value="&#xe72a;" />
+                                                                            <Setter Property="Foreground" Value="#009ad6" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding ElementName=tbLogLevel, Path=Text}" Value="Warn">
+                                                                            <Setter Property="Text" Value="&#xe67c;" />
+                                                                            <Setter Property="Foreground" Value="#ffe600" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding ElementName=tbLogLevel, Path=Text}" Value="Debug">
+                                                                            <Setter Property="Text" Value="&#xe71d;" />
+                                                                            <Setter Property="Foreground" Value="#1d953f" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <TextBlock
+                                                            x:Name="tbLogLevel"
+                                                            VerticalAlignment="Center"
+                                                            Text="{TemplateBinding Text}" />
+                                                    </StackPanel>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" Header="{DynamicResource Lan.Control_SystemLog.TextMessage}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                Padding="3"
+                                VerticalAlignment="Center"
+                                Text="{Binding Message}"
+                                TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

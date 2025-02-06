@@ -1,0 +1,580 @@
+﻿<UserControl
+    x:Class="VPDLFramework.Views.Control_WorkRuntime"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:VPDLFramework.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="{DynamicResource Color_DarkBackground}"
+    DataContext="{Binding Source={StaticResource Locator}, Path=WorkRuntime}"
+    mc:Ignorable="d">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <TabControl
+            x:Name="tab"
+            Background="Transparent"
+            BorderThickness="0"
+            TabStripPlacement="Bottom">
+            <TabControl.Style>
+                <Style TargetType="TabControl">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=btn_Image, Path=IsChecked}" Value="True">
+                            <Setter Property="SelectedIndex" Value="0" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=btn_Data, Path=IsChecked}" Value="True">
+                            <Setter Property="SelectedIndex" Value="1" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=btn_Log, Path=IsChecked}" Value="True">
+                            <Setter Property="SelectedIndex" Value="2" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=btn_Recipes, Path=IsChecked}" Value="True">
+                            <Setter Property="SelectedIndex" Value="3" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=btn_ToolBlocks, Path=IsChecked}" Value="True">
+                            <Setter Property="SelectedIndex" Value="4" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=btn_Cameras, Path=IsChecked}" Value="True">
+                            <Setter Property="SelectedIndex" Value="5" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=btn_Parameters, Path=IsChecked}" Value="True">
+                            <Setter Property="SelectedIndex" Value="6" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TabControl.Style>
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Style>
+            </TabControl.Resources>
+            <TabItem>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition>
+                            <ColumnDefinition.Style>
+                                <Style TargetType="ColumnDefinition">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tgBtnShowChart, Path=IsChecked}" Value="False">
+                                            <Setter Property="Width" Value="0" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ColumnDefinition.Style>
+                        </ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="Gray" BorderThickness="2">
+                        <Grid>
+                            <ListView
+                                Margin="0,0,0,23"
+                                Background="{StaticResource Color_DarkBackground}"
+                                BorderThickness="0"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <ListView.Style>
+                                    <Style TargetType="ListView">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsZooming}" Value="True">
+                                                <Setter Property="ItemsSource" Value="{Binding ZoomResults}" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsZooming}" Value="False">
+                                                <Setter Property="ItemsSource" Value="{Binding Results}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ListView.Style>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseDoubleClick">
+                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=local:Control_WorkRuntime}, Path=DataContext.CmdZoomResultItem}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=SelectedItem}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="{Binding RelativeSource={RelativeSource AncestorType=local:Control_WorkRuntime}, Path=DataContext.LayoutInfo.DisplayColumns, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Rows="{Binding RelativeSource={RelativeSource AncestorType=local:Control_WorkRuntime}, Path=DataContext.LayoutInfo.DisplayRows, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="VerticalAlignment" Value="Stretch" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <local:Control_RuntimeResultViewer
+                                                        DataContext="{Binding}"
+                                                        DisplayRecord="{Binding ResultRecord}"
+                                                        RangeImage="{Binding RangeImage}" />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <StackPanel
+                                Margin="2"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                IsEnabled="{Binding IsZooming, Converter={StaticResource BoolInverseCvt}}"
+                                Orientation="Horizontal">
+                                <CheckBox
+                                    x:Name="tgBtnShowChart"
+                                    Margin="10,0"
+                                    VerticalContentAlignment="Center"
+                                    Content="{DynamicResource Lan.Control_WorkRuntime.TextShowChart}"
+                                    Foreground="White"
+                                    IsChecked="{Binding LayoutInfo.IsChartVisible, Mode=TwoWay}" />
+                                <TextBlock
+                                    Margin="2,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="White"
+                                    Text="{DynamicResource Lan.Control_WorkRuntime.TextRow}" />
+                                <xceed:IntegerUpDown
+                                    Maximum="10"
+                                    Minimum="1"
+                                    Value="{Binding LayoutInfo.DisplayRows, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="ValueChanged">
+                                            <i:InvokeCommandAction Command="{Binding CmdChangeRows}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=xceed:IntegerUpDown}, Path=Value}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </xceed:IntegerUpDown>
+                                <TextBlock
+                                    Margin="2,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="White"
+                                    Text="{DynamicResource Lan.Control_WorkRuntime.TextCol}" />
+                                <xceed:IntegerUpDown
+                                    Maximum="10"
+                                    Minimum="1"
+                                    Value="{Binding LayoutInfo.DisplayColumns, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="ValueChanged">
+                                            <i:InvokeCommandAction Command="{Binding CmdChangeColumns}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=xceed:IntegerUpDown}, Path=Value}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </xceed:IntegerUpDown>
+                                <Button
+                                    Width="20"
+                                    Margin="5,0"
+                                    Command="{Binding CmdSaveLayoutConfig}"
+                                    Content="&#xe616;"
+                                    FontFamily="{StaticResource Font_Ico}"
+                                    FontSize="16"
+                                    ToolTip="{DynamicResource Lan.Control_WorkRuntime.BtnSaveConfig}" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <ListView
+                        Grid.Column="1"
+                        Margin="2,0,0,0"
+                        Background="{DynamicResource Color_DarkBackground}"
+                        BorderBrush="Gray"
+                        BorderThickness="2"
+                        ItemsSource="{Binding ResultsChart}"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <local:Control_RuntimeResultChart />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <local:Control_ProductionData DataContext="{Binding ProductDataViewModel}" />
+            </TabItem>
+            <TabItem DataContext="{Binding WorkLogViewModel}">
+                <local:Control_WorkLog />
+            </TabItem>
+            <TabItem>
+                <TabControl
+                    Background="Transparent"
+                    BorderThickness="2"
+                    ItemsSource="{Binding WorkStreamsRecipe}"
+                    SelectedIndex="0">
+                    <TabControl.Resources>
+                        <Style TargetType="TabItem">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </Style>
+                    </TabControl.Resources>
+                    <TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Bold" Text="{Binding WorkStream.WorkStreamInfo.StreamName}" />
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                    <TabControl.ContentTemplate>
+                        <DataTemplate>
+                            <local:Control_WorkStreamRecipes />
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                </TabControl>
+            </TabItem>
+            <TabItem>
+                <TabControl>
+                    <TabControl.Resources>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </Style>
+                    </TabControl.Resources>
+                    <TabItem Header="{DynamicResource Lan.Control_WorkEdit.HeaderWorkStream}">
+                        <TabControl
+                            Background="Transparent"
+                            BorderThickness="2"
+                            ItemsSource="{Binding WorkStreams}"
+                            SelectedIndex="0">
+                            <TabControl.Resources>
+                                <Style TargetType="TabItem">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </Style>
+                            </TabControl.Resources>
+                            <TabControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontWeight="Bold" Text="{Binding WorkStreamInfo.StreamName}" />
+                                </DataTemplate>
+                            </TabControl.ItemTemplate>
+                            <TabControl.ContentTemplate>
+                                <DataTemplate>
+                                    <local:Control_RuntimeWorkStreamTBEdit ToolBlock="{Binding DLOutputTB}" />
+                                </DataTemplate>
+                            </TabControl.ContentTemplate>
+                        </TabControl>
+                    </TabItem>
+                    <TabItem Header="{DynamicResource Lan.Control_WorkEdit.HeaderGroup}">
+                        <TabControl
+                            Background="Transparent"
+                            BorderThickness="2"
+                            ItemsSource="{Binding WorkGroups}"
+                            SelectedIndex="0">
+                            <TabControl.Resources>
+                                <Style TargetType="TabItem">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </Style>
+                            </TabControl.Resources>
+                            <TabControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontWeight="Bold" Text="{Binding GroupInfo.GroupName}" />
+                                </DataTemplate>
+                            </TabControl.ItemTemplate>
+                            <TabControl.ContentTemplate>
+                                <DataTemplate>
+                                    <local:Control_RuntimeWorkGroupTBEdit GroupToolBlock="{Binding ToolBlock}" />
+                                </DataTemplate>
+                            </TabControl.ContentTemplate>
+                        </TabControl>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+            <TabItem>
+                <TabControl
+                    Background="Transparent"
+                    BorderThickness="2"
+                    ItemsSource="{Binding WorkImageSources}"
+                    SelectedIndex="0">
+                    <TabControl.Resources>
+                        <Style TargetType="TabItem">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </Style>
+                    </TabControl.Resources>
+                    <TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Bold" Text="{Binding ImageSourceInfo.ImageSourceName}" />
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                    <TabControl.ContentTemplate>
+                        <DataTemplate>
+                            <local:Control_RuntimeImageSourceTBEdit ToolBlock="{Binding ToolBlock}" />
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                </TabControl>
+            </TabItem>
+            <TabItem>
+                <TabControl
+                    Background="Transparent"
+                    BorderThickness="2"
+                    ItemsSource="{Binding WorkStreams}"
+                    SelectedIndex="0">
+                    <TabControl.Resources>
+                        <Style TargetType="TabItem">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </Style>
+                    </TabControl.Resources>
+                    <TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Bold" Text="{Binding WorkStreamInfo.StreamName}" />
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                    <TabControl.ContentTemplate>
+                        <DataTemplate>
+                            <local:Control_RuntimeParameters />
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                </TabControl>
+            </TabItem>
+        </TabControl>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <RadioButton
+                x:Name="btn_Image"
+                Margin="5"
+                GroupName="tabControl">
+                <RadioButton.Style>
+                    <Style BasedOn="{StaticResource Style_RadioButton_TabControl}" TargetType="RadioButton">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="0">
+                                <Setter Property="IsChecked" Value="True" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Margin="2"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Font_Ico}"
+                        FontSize="16"
+                        Text="&#xe9c3;" />
+                    <TextBlock
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="{DynamicResource Lan.Control_WorkRuntime.BtnRuntimeImage}" />
+                </Grid>
+            </RadioButton>
+            <RadioButton
+                x:Name="btn_Data"
+                Margin="5"
+                Command="{Binding CmdShowProductData}"
+                GroupName="tabControl">
+                <RadioButton.Style>
+                    <Style BasedOn="{StaticResource Style_RadioButton_TabControl}" TargetType="RadioButton">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="1">
+                                <Setter Property="IsChecked" Value="True" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Margin="2"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Font_Ico}"
+                        FontSize="16"
+                        Text="&#xe941;" />
+                    <TextBlock
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="{DynamicResource Lan.Control_WorkRuntime.BtnRuntimeData}" />
+                </Grid>
+            </RadioButton>
+            <RadioButton
+                x:Name="btn_Log"
+                Margin="5"
+                Command="{Binding CmdShowWorkLog}"
+                GroupName="tabControl">
+                <RadioButton.Style>
+                    <Style BasedOn="{StaticResource Style_RadioButton_TabControl}" TargetType="RadioButton">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="2">
+                                <Setter Property="IsChecked" Value="True" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Margin="2"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Font_Ico}"
+                        FontSize="16"
+                        Text="&#xe69d;" />
+                    <TextBlock
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="{DynamicResource Lan.Control_WorkRuntime.BtnRuntimeLog}" />
+                </Grid>
+            </RadioButton>
+            <RadioButton
+                x:Name="btn_Recipes"
+                Margin="5"
+                GroupName="tabControl"
+                IsEnabled="{Binding IsSystemOnline, Converter={StaticResource BoolInverseCvt}}">
+                <RadioButton.Style>
+                    <Style BasedOn="{StaticResource Style_RadioButton_TabControl}" TargetType="RadioButton">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="3">
+                                <Setter Property="IsChecked" Value="True" />
+                            </DataTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="Gray" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Margin="2"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Font_Ico}"
+                        FontSize="16"
+                        Text="&#xe674;" />
+                    <TextBlock
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="{DynamicResource Lan.Control_WorkRuntime.BtnRecipesManage}" />
+                </Grid>
+            </RadioButton>
+            <RadioButton
+                x:Name="btn_ToolBlocks"
+                Margin="5"
+                GroupName="tabControl"
+                IsEnabled="{Binding IsSystemOnline, Converter={StaticResource BoolInverseCvt}}"
+                Visibility="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow}, Path=DataContext.IsLogin, Converter={StaticResource BoolToVisiblityDefaultVisibleCvt}}">
+                <RadioButton.Style>
+                    <Style BasedOn="{StaticResource Style_RadioButton_TabControl}" TargetType="RadioButton">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="4">
+                                <Setter Property="IsChecked" Value="True" />
+                            </DataTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="Gray" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Margin="2"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Font_Ico}"
+                        FontSize="16"
+                        Text="&#xe6a9;" />
+                    <TextBlock
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="{DynamicResource Lan.Control_WorkRuntime.BtnAlgorithmManage}" />
+                </Grid>
+            </RadioButton>
+            <RadioButton
+                x:Name="btn_Cameras"
+                Margin="5"
+                GroupName="tabControl"
+                IsEnabled="{Binding IsSystemOnline, Converter={StaticResource BoolInverseCvt}}"
+                Visibility="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow}, Path=DataContext.IsLogin, Converter={StaticResource BoolToVisiblityDefaultVisibleCvt}}">
+                <RadioButton.Style>
+                    <Style BasedOn="{StaticResource Style_RadioButton_TabControl}" TargetType="RadioButton">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="5">
+                                <Setter Property="IsChecked" Value="True" />
+                            </DataTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="Gray" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Margin="2"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Font_Ico}"
+                        FontSize="16"
+                        Text="&#xe869;" />
+                    <TextBlock
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="{DynamicResource Lan.Control_WorkRuntime.BtnCameraManage}" />
+                </Grid>
+            </RadioButton>
+            <RadioButton
+                x:Name="btn_Parameters"
+                Margin="5"
+                GroupName="tabControl"
+                IsEnabled="{Binding IsSystemOnline, Converter={StaticResource BoolInverseCvt}}"
+                Visibility="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow}, Path=DataContext.IsLogin, Converter={StaticResource BoolToVisiblityDefaultVisibleCvt}}">
+                <RadioButton.Style>
+                    <Style BasedOn="{StaticResource Style_RadioButton_TabControl}" TargetType="RadioButton">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="6">
+                                <Setter Property="IsChecked" Value="True" />
+                            </DataTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="Gray" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Margin="2"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Font_Ico}"
+                        FontSize="16"
+                        Text="&#xe8b8;" />
+                    <TextBlock
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="{DynamicResource Lan.Control_WorkRuntime.BtnParaManage}" />
+                </Grid>
+            </RadioButton>
+        </StackPanel>
+    </Grid>
+</UserControl>

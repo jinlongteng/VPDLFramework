@@ -1,0 +1,231 @@
+﻿<UserControl
+    x:Class="VPDLFramework.Views.Control_ProductionData"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:VPDLFramework.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="{DynamicResource Color_DarkBackground}"
+    mc:Ignorable="d">
+    <Grid>
+        <TabControl
+            x:Name="tb2"
+            Background="Transparent"
+            Foreground="White"
+            ItemsSource="{Binding ProductionData}"
+            BorderThickness="2"
+            SelectedIndex="0">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Style>
+            </TabControl.Resources>
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock FontWeight="Bold" Text="{Binding StreamOrGroupName}" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <Border
+                        Margin="2"
+                        BorderBrush="Gray"
+                        BorderThickness="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Border>
+                                <TextBlock
+                                    Margin="2"
+                                    Padding="2"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    FontWeight="Bold"
+                                    Text="{Binding StreamOrGroupName}" />
+                            </Border>
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Orientation="Vertical">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock
+                                                    Padding="3"
+                                                    VerticalAlignment="Center"
+                                                    Text="{DynamicResource Lan.Control_ProductionData.TextStartDate}" />
+                                                <TextBlock
+                                                    Padding="3"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    Text="{Binding StartDate, StringFormat={}{0:yyyy-MM-dd}}" />
+                                                <TextBlock
+                                                    Padding="3"
+                                                    VerticalAlignment="Center"
+                                                    Text="{DynamicResource Lan.Control_ProductionData.TextEndDate}" />
+                                                <TextBlock
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"
+                                                    Text="{Binding EndDate, StringFormat={}{0:yyyy-MM-dd}}" />
+                                            </StackPanel>
+                                            <StackPanel Margin="3" Orientation="Horizontal">
+                                                <DatePicker
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    SelectedDate="{Binding SelectedDate, Mode=TwoWay}" />
+                                                <Button
+                                                    Margin="4,0"
+                                                    Padding="2"
+                                                    VerticalAlignment="Center"
+                                                    Command="{Binding CmdQueryByDate}"
+                                                    Content="{DynamicResource Lan.Control_ProductionData.BtnQuery}"
+                                                    Style="{StaticResource Style_Button_Ico}" />
+                                                <!--<Button
+                                                Padding="2"
+                                                VerticalAlignment="Center"
+                                                Command="{Binding CmdClearAll}"
+                                                Content="清空"
+                                                Style="{StaticResource Style_Button_Ico}"
+                                                ToolTip="清空" />-->
+                                                <Button
+                                                    Margin="2,0"
+                                                    Padding="2"
+                                                    VerticalAlignment="Center"
+                                                    Command="{Binding CmdQueryAll}"
+                                                    Content="{DynamicResource Lan.Control_ProductionData.BtnQueryToday}"
+                                                    Style="{StaticResource Style_Button_Ico}" />
+                                                <Button
+                                                    Margin="2,0"
+                                                    Padding="2"
+                                                    VerticalAlignment="Center"
+                                                    Command="{Binding CmdExportDatabaseToCSV}"
+                                                    Content="{DynamicResource Lan.Control_ProductionData.BtnExportCSV}"
+                                                    Style="{StaticResource Style_Button_Ico}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                            <TextBlock
+                                                Padding="3"
+                                                VerticalAlignment="Center"
+                                                FontWeight="Bold"
+                                                Text="{DynamicResource Lan.Control_ProductionData.TextRate}" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock
+                                                    Margin="10,0"
+                                                    VerticalAlignment="Center"
+                                                    Text="OK/" />
+                                                <TextBlock
+                                                    Margin="10,0"
+                                                    VerticalAlignment="Center"
+                                                    Text="{DynamicResource Lan.Control_ProductionData.TextTotal}" />
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock
+                                                    Margin="3,0"
+                                                    VerticalAlignment="Center"
+                                                    Text="{Binding GoodNum}" />
+                                                <TextBlock
+                                                    Margin="3,0"
+                                                    VerticalAlignment="Center"
+                                                    Text="/" />
+                                                <TextBlock
+                                                    Margin="3,0"
+                                                    VerticalAlignment="Center"
+                                                    Text="{Binding TotalNum}" />
+                                            </StackPanel>
+                                            <TextBlock
+                                                Margin="10,0"
+                                                VerticalAlignment="Center"
+                                                FontWeight="Bold"
+                                                Text="{Binding OKRateStr}" />
+                                        </StackPanel>
+
+
+                                    </Grid>
+                                </Grid>
+                                <DataGrid
+                                    Grid.Row="1"
+                                    Margin="0.5"
+                                    BorderThickness="0.5"
+                                    ItemsSource="{Binding Data}"
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                    Style="{StaticResource Style_DataGrid}">
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Width="160" Header="{DynamicResource Lan.Control_ProductionData.TextTriggerTime}">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock
+                                                        Padding="2"
+                                                        VerticalAlignment="Center"
+                                                        Text="{Binding Time}"
+                                                        ToolTip="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Width="80" Header="{DynamicResource Lan.Control_ProductionData.TextTriggerIndex}">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock
+                                                        HorizontalAlignment="Center"
+                                                        Text="{Binding TriggerIndex}"
+                                                        ToolTip="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Width="*" Header="{DynamicResource Lan.Control_ProductionData.TextResultDisplay}">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock
+                                                        Padding="2"
+                                                        VerticalAlignment="Center"
+                                                        Text="{Binding ResultForDisplay}"
+                                                        ToolTip="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Width="*" Header="{DynamicResource Lan.Control_ProductionData.TextResultSend}">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock
+                                                        Padding="2"
+                                                        VerticalAlignment="Center"
+                                                        Text="{Binding ResultForSend}"
+                                                        ToolTip="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Width="80" Header="{DynamicResource Lan.Control_ProductionData.TextResultStatus}">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Border
+                                                        Margin="2"
+                                                        Background="{Binding ResultStatus, Converter={StaticResource NumToColorGreenRed}}"
+                                                        Opacity="0.5" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+</UserControl>

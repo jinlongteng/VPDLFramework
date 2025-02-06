@@ -1,0 +1,319 @@
+﻿<UserControl
+    x:Class="VPDLFramework.Views.Control_WorkList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:VPDLFramework.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="workListControl"
+    d:DesignHeight="600"
+    d:DesignWidth="400"
+    Background="#3D3D4C"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ContextMenu
+            x:Key="cm"
+            Background="{StaticResource Color_DarkBackground}"
+            Foreground="White"
+            IsEnabled="{Binding Source={x:Reference Name=workListControl}, Path=DataContext.IsWorkLoaded, Converter={StaticResource BoolInverseCvt}}"
+            Style="{StaticResource ContextMenuStyle}">
+            <MenuItem
+                Command="{Binding Source={x:Reference Name=workListControl}, Path=DataContext.CmdCopyWork}"
+                CommandParameter="{Binding Source={x:Reference Name=workList}, Path=SelectedItem}"
+                Header="{DynamicResource Lan.Control_WorkList.ContextMenu.BtnCopy}"
+                IsEnabled="{Binding Source={x:Reference Name=workListControl}, Path=DataContext.IsLogin}"
+                Tag="&#xe6ce;" />
+            <MenuItem
+                Command="{Binding Source={x:Reference Name=workListControl}, Path=DataContext.CmdExportWork}"
+                CommandParameter="{Binding Source={x:Reference Name=workList}, Path=SelectedItem}"
+                Header="{DynamicResource Lan.Control_WorkList.ContextMenu.BtnExport}"
+                IsEnabled="{Binding Source={x:Reference Name=workListControl}, Path=DataContext.IsLogin}"
+                Tag="&#xe6fe;" />
+            <MenuItem
+                Command="{Binding Source={x:Reference Name=workListControl}, Path=DataContext.CmdDeleteWork}"
+                CommandParameter="{Binding Source={x:Reference Name=workList}, Path=SelectedItem}"
+                Header="{DynamicResource Lan.Control_WorkList.ContextMenu.BtnDelete}"
+                IsEnabled="{Binding Source={x:Reference Name=workListControl}, Path=DataContext.IsLogin}"
+                Tag="&#xe63b;" />
+        </ContextMenu>
+    </UserControl.Resources>
+    <Grid>
+        <Grid x:Name="g" Margin="0,2">
+            <Border BorderBrush="Gray" BorderThickness="2" />
+            <Grid Margin="0.5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Border
+                    Grid.Row="1"
+                    BorderBrush="Gray"
+                    BorderThickness="0,0.5,0,0" />
+                <StackPanel
+                    Margin="4,0"
+                    HorizontalAlignment="Left"
+                    Orientation="Horizontal">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="IsEnabled">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource MultiBindingConverter_LoginAndWorkLoadedCvt}">
+                                        <Binding Path="IsLogin" />
+                                        <Binding Path="IsWorkLoaded" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </StackPanel.Style>
+                    <Button
+                        Width="30"
+                        Height="30"
+                        Margin="2"
+                        Command="{Binding CmdRefreshWorkList}"
+                        Content="&#xe677;"
+                        FontFamily="{StaticResource Font_Ico}"
+                        FontSize="16"
+                        Style="{StaticResource Style_Button_Ico}"
+                        ToolTip="{DynamicResource Lan.Control_WorkList.MenuBar.BtnRefresh}" />
+                    <Button
+                        Width="30"
+                        Height="30"
+                        Margin="2"
+                        Command="{Binding CmdCreateNewWork}"
+                        Content="&#xe6c0;"
+                        FontFamily="{StaticResource Font_Ico}"
+                        FontSize="16"
+                        Style="{StaticResource Style_Button_Ico}"
+                        ToolTip="{DynamicResource Lan.Control_WorkList.MenuBar.BtnAdd}" />
+                    <Button
+                        Width="30"
+                        Height="30"
+                        Margin="2"
+                        Command="{Binding CmdImportWork}"
+                        CommandParameter="{Binding ElementName=workList, Path=SelectedItem}"
+                        Content="&#xe700;"
+                        FontFamily="{StaticResource Font_Ico}"
+                        FontSize="16"
+                        Style="{StaticResource Style_Button_Ico}"
+                        ToolTip="{DynamicResource Lan.Control_WorkList.MenuBar.BtnImport}" />
+                </StackPanel>
+                <StackPanel
+                    Margin="4,0"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="IsEnabled">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource MultiBindingConverter_LoginAndWorkLoadedCvt}">
+                                        <Binding Path="IsLogin" />
+                                        <Binding Path="IsWorkLoaded" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </StackPanel.Style>
+                    <Button
+                        Width="30"
+                        Height="30"
+                        Margin="2"
+                        Command="{Binding CmdSelectWork}"
+                        CommandParameter="{Binding ElementName=workList, Path=SelectedValue}"
+                        Content="&#xe63b;"
+                        FontFamily="{StaticResource Font_Ico}"
+                        FontSize="16"
+                        Style="{StaticResource Style_Button_Ico}"
+                        ToolTip="{DynamicResource Lan.Control_WorkList.MenuBar.BtnEdit}" />
+                </StackPanel>
+                <ListBox
+                    x:Name="workList"
+                    Grid.Row="1"
+                    Margin="5"
+                    BorderThickness="0"
+                    ItemsSource="{Binding WorkList}"
+                    ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ListBox.Style>
+                        <Style TargetType="ListBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsWorkLoaded}" Value="True">
+                                    <Setter Property="Background" Value="Transparent" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsWorkLoaded}" Value="False">
+                                    <Setter Property="Background" Value="Transparent" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.Style>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=ActualWidth}" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="Margin" Value="0,2" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="ContextMenu" Value="{DynamicResource cm}" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <Grid>
+                                            <Border
+                                                Background="{TemplateBinding Background}"
+                                                BorderBrush="DarkGray"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                CornerRadius="0"
+                                                SnapsToDevicePixels="True" />
+                                            <Grid Margin="1">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Margin="2"
+                                                        Padding="3"
+                                                        VerticalAlignment="Center"
+                                                        FontFamily="{StaticResource Font_Ico}"
+                                                        FontSize="16"
+                                                        FontWeight="Bold"
+                                                        Text="&#xe623;">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsEdit}" Value="True">
+                                                                        <Setter Property="Foreground" Value="Orange" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding IsEdit}" Value="False">
+                                                                        <Setter Property="Foreground" Value="Gray" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="30" />
+                                                            <ColumnDefinition />
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock
+                                                            Margin="5,0"
+                                                            HorizontalAlignment="Left"
+                                                            VerticalAlignment="Center"
+                                                            Foreground="White"
+                                                            Text="{Binding WorkInfo.WorkID}" />
+                                                        <TextBlock
+                                                            x:Name="tbName"
+                                                            Grid.Column="1"
+                                                            HorizontalAlignment="Left"
+                                                            VerticalAlignment="Center"
+                                                            FontWeight="Bold"
+                                                            Foreground="White"
+                                                            Text="{Binding WorkInfo.WorkName}"
+                                                            ToolTip="{Binding WorkInfo.WorkName}" />
+                                                    </Grid>
+                                                </StackPanel>
+                                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                                    <Button
+                                                        Width="20"
+                                                        Height="20"
+                                                        Margin="2,0"
+                                                        Command="{Binding CmdSaveWork}"
+                                                        CommandParameter="{Binding ElementName=workList, Path=SelectedItem}"
+                                                        Content="&#xe64a;"
+                                                        FontFamily="{StaticResource Font_Ico}"
+                                                        FontSize="16"
+                                                        Style="{StaticResource Style_Button_Ico}"
+                                                        ToolTip="{DynamicResource Lan.Control_WorkList.BtnSave}"
+                                                        Visibility="{Binding IsEdit, Converter={StaticResource BoolToVisiblityDefaultVisibleCvt}}" />
+                                                    <Button
+                                                        Width="20"
+                                                        Height="20"
+                                                        Margin="2,0"
+                                                        Command="{Binding CmdCloseWork}"
+                                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=DataContext}"
+                                                        Content="&#xe60a;"
+                                                        FontFamily="{StaticResource Font_Ico}"
+                                                        FontSize="16"
+                                                        Style="{StaticResource Style_Button_Ico}"
+                                                        ToolTip="{DynamicResource Lan.Control_WorkList.BtnClose}"
+                                                        Visibility="{Binding IsEdit, Converter={StaticResource BoolToVisiblityDefaultVisibleCvt}}" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource Color_Selected}" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderThickness" Value="1" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow}, Path=DataContext.CmdSelectWork}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=SelectedItem}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ListBox>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        Margin="2"
+                        Command="{Binding CmdLoadWork}"
+                        CommandParameter="{Binding ElementName=workList, Path=SelectedValue}"
+                        IsEnabled="{Binding IsWorkLoaded, Converter={StaticResource BoolInverseCvt}}"
+                        Style="{StaticResource Style_Button_Ico}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Margin="2"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontFamily="{StaticResource Font_Ico}"
+                                FontSize="12"
+                                Text="&#xe693;" />
+                            <TextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="{DynamicResource Lan.Control_WorkList.MenuBar.BtnLoadWork}" />
+                        </Grid>
+                    </Button>
+                    <Button
+                        Grid.Column="1"
+                        Margin="2"
+                        Command="{Binding CmdUnLoadWork}"
+                        IsEnabled="{Binding IsWorkLoaded}"
+                        Style="{StaticResource Style_Button_Ico}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Margin="2"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontFamily="{StaticResource Font_Ico}"
+                                FontSize="12"
+                                Text="&#xe68f;" />
+                            <TextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="{DynamicResource Lan.Control_WorkList.MenuBar.BtnUnloadWork}" />
+                        </Grid>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
