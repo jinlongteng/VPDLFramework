@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\projects\\volvo\\VisionPro Framework Source Code\\VisionPro Framework Source Code\\VPDLFramework\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3FD58F66-D680-4BCE-8445-B692A3313DAA}|VPDLFramework.csproj|d:\\projects\\volvo\\visionpro framework source code\\visionpro framework source code\\vpdlframework\\models\\ecadvancedtoolinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD58F66-D680-4BCE-8445-B692A3313DAA}|VPDLFramework.csproj|solutionrelative:models\\ecadvancedtoolinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FD58F66-D680-4BCE-8445-B692A3313DAA}|VPDLFramework.csproj|d:\\projects\\volvo\\visionpro framework source code\\visionpro framework source code\\vpdlframework\\models\\ecfileconstantsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD58F66-D680-4BCE-8445-B692A3313DAA}|VPDLFramework.csproj|solutionrelative:models\\ecfileconstantsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FD58F66-D680-4BCE-8445-B692A3313DAA}|VPDLFramework.csproj|D:\\projects\\volvo\\VisionPro Framework Source Code\\VisionPro Framework Source Code\\VPDLFramework\\Models\\ECBufferQueue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD58F66-D680-4BCE-8445-B692A3313DAA}|VPDLFramework.csproj|solutionrelative:Models\\ECBufferQueue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FD58F66-D680-4BCE-8445-B692A3313DAA}|VPDLFramework.csproj|d:\\projects\\volvo\\visionpro framework source code\\visionpro framework source code\\vpdlframework\\models\\ecstartupsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD58F66-D680-4BCE-8445-B692A3313DAA}|VPDLFramework.csproj|solutionrelative:models\\ecstartupsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,27 +31,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ECAdvancedToolInfo.cs",
-              "DocumentMoniker": "D:\\projects\\volvo\\VisionPro Framework Source Code\\VisionPro Framework Source Code\\VPDLFramework\\Models\\ECAdvancedToolInfo.cs",
-              "RelativeDocumentMoniker": "Models\\ECAdvancedToolInfo.cs",
-              "ToolTip": "D:\\projects\\volvo\\VisionPro Framework Source Code\\VisionPro Framework Source Code\\VPDLFramework\\Models\\ECAdvancedToolInfo.cs",
-              "RelativeToolTip": "Models\\ECAdvancedToolInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
+              "Title": "ECFileConstantsManager.cs",
+              "DocumentMoniker": "D:\\projects\\volvo\\VisionPro Framework Source Code\\VisionPro Framework Source Code\\VPDLFramework\\Models\\ECFileConstantsManager.cs",
+              "RelativeDocumentMoniker": "Models\\ECFileConstantsManager.cs",
+              "ToolTip": "D:\\projects\\volvo\\VisionPro Framework Source Code\\VisionPro Framework Source Code\\VPDLFramework\\Models\\ECFileConstantsManager.cs*",
+              "RelativeToolTip": "Models\\ECFileConstantsManager.cs*",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAjwFcAAABgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T02:09:18.548Z",
+              "WhenOpened": "2025-04-19T07:03:42.133Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ECBufferQueue.cs",
-              "DocumentMoniker": "D:\\projects\\volvo\\VisionPro Framework Source Code\\VisionPro Framework Source Code\\VPDLFramework\\Models\\ECBufferQueue.cs",
-              "RelativeDocumentMoniker": "Models\\ECBufferQueue.cs",
-              "ToolTip": "D:\\projects\\volvo\\VisionPro Framework Source Code\\VisionPro Framework Source Code\\VPDLFramework\\Models\\ECBufferQueue.cs",
-              "RelativeToolTip": "Models\\ECBufferQueue.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "ECStartupSettings.cs",
+              "DocumentMoniker": "D:\\projects\\volvo\\VisionPro Framework Source Code\\VisionPro Framework Source Code\\VPDLFramework\\Models\\ECStartupSettings.cs",
+              "RelativeDocumentMoniker": "Models\\ECStartupSettings.cs",
+              "ToolTip": "D:\\projects\\volvo\\VisionPro Framework Source Code\\VisionPro Framework Source Code\\VPDLFramework\\Models\\ECStartupSettings.cs",
+              "RelativeToolTip": "Models\\ECStartupSettings.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAiwGUAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T02:09:11.178Z"
+              "WhenOpened": "2025-04-19T07:03:25.801Z",
+              "EditorCaption": ""
             }
           ]
         }

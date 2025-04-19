@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\VisionPro Framework Source Code\VPDLFramework\obj\Debug\
+D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\obj\Debug\
 VPDLFramework
 none
 false
 DEBUG;TRACE
-D:\VisionPro Framework Source Code\VPDLFramework\App.xaml
+D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\App.xaml
 33-1343688160
 1-183687082
 117-741587690
-257473008648
+253296763093
 Languages\English.xaml;Languages\SimplifiedChinese.xaml;Styles\GlobalVariableDictionary.xaml;Styles\StyleDictionary.xaml;Styles\ValueConverterDictionary.xaml;Views\Control_Filmstrip.xaml;Views\Control_RuntimeImageSourceTBEdit.xaml;Views\Control_RuntimeParameters.xaml;Views\Control_RuntimeResultChart.xaml;Views\Control_RuntimeWorkGroupTBEdit.xaml;Views\Control_RuntimeWorkStreamTBEdit.xaml;Views\Control_WorkEditResultViewer.xaml;Views\Control_RuntimeResultViewer.xaml;Views\Control_SystemLog.xaml;Views\Control_UserLogin.xaml;Views\Control_WorkEdit.xaml;Views\Control_WorkList.xaml;Views\Control_ProductionData.xaml;Views\Control_WorkLog.xaml;Views\Control_WorkStreamRecipes.xaml;Views\Control_WorkRuntime.xaml;Views\Window_CommCard.xaml;Views\Window_EditAdvancedDLModel.xaml;Views\Window_EditScript.xaml;Views\Window_EditToolBlock.xaml;Views\MainWindow.xaml;Views\Window_ExpandWorkStream.xaml;Views\Window_SystemSetup.xaml;Views\Window_StartupPage.xaml;Views\Window_UserInput.xaml;Views\Window_VersionInfo.xaml;Views\Window_Waiting.xaml;Views\Window_FileManager.xaml;
 
-True
+False
 

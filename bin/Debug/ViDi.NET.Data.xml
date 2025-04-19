@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ViDi.NET.Data</name>
+    </assembly>
+    <members>
+        <member name="T:Proto.ListReflection">
+            <summary>Holder for reflection information generated from list.proto</summary>
+        </member>
+        <member name="P:Proto.ListReflection.Descriptor">
+            <summary>File descriptor for list.proto</summary>
+        </member>
+        <member name="F:Proto.list_string.VersionFieldNumber">
+            <summary>Field number for the "version" field.</summary>
+        </member>
+        <member name="F:Proto.list_string.ListFieldNumber">
+            <summary>Field number for the "list" field.</summary>
+        </member>
+        <member name="F:Proto.list_float.VersionFieldNumber">
+            <summary>Field number for the "version" field.</summary>
+        </member>
+        <member name="F:Proto.list_float.ListFieldNumber">
+            <summary>Field number for the "list" field.</summary>
+        </member>
+        <member name="T:Proto.MapReflection">
+            <summary>Holder for reflection information generated from map.proto</summary>
+        </member>
+        <member name="P:Proto.MapReflection.Descriptor">
+            <summary>File descriptor for map.proto</summary>
+        </member>
+        <member name="F:Proto.map_string_string.VersionFieldNumber">
+            <summary>Field number for the "version" field.</summary>
+        </member>
+        <member name="F:Proto.map_string_string.MapFieldNumber">
+            <summary>Field number for the "map" field.</summary>
+        </member>
+        <member name="F:Proto.map_string_float.VersionFieldNumber">
+            <summary>Field number for the "version" field.</summary>
+        </member>
+        <member name="F:Proto.map_string_float.MapFieldNumber">
+            <summary>Field number for the "map" field.</summary>
+        </member>
+    </members>
+</doc>

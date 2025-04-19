@@ -1,0 +1,386 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--  MainWindow  -->
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnOnLine">Online/Offline</sys:String>
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnWorkList">Work List</sys:String>
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnSystemLog">System Log</sys:String>
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnSystemSetup">System Setup</sys:String>
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnFileManager">File Management</sys:String>
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnVersionInfo">Version Info</sys:String>
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnUserLogin">User Login</sys:String>
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnHelp">Help</sys:String>
+    <sys:String x:Key="Lan.MainWin.StatusBar.TextStatusMonitor">Status Monitor</sys:String>
+    <sys:String x:Key="Lan.MainWin.StatusBar.TextCamera">Camera:</sys:String>
+    <sys:String x:Key="Lan.MainWin.StatusBar.TextHDD">HDD:</sys:String>
+
+    <!--  Control_WorkList  -->
+    <sys:String x:Key="Lan.Control_WorkList.MenuBar.BtnRefresh">Refresh</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.MenuBar.BtnAdd">Add</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.MenuBar.BtnImport">Import</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.MenuBar.BtnEdit">Edit</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.MenuBar.BtnLoadWork">Load</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.MenuBar.BtnUnloadWork">Unload</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.ContextMenu.BtnCopy">Copy</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.ContextMenu.BtnExport">Export</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.ContextMenu.BtnDelete">Delete</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.BtnSave">Save</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.BtnClose">Close</sys:String>
+
+    <!--  Control_Filmstrip  -->
+    <sys:String x:Key="Lan.Control_Filmstrip.MenuBar.BtnImportImage">Import Image</sys:String>
+    <sys:String x:Key="Lan.Control_Filmstrip.MenuBar.BtnFirstImage">First Image</sys:String>
+    <sys:String x:Key="Lan.Control_Filmstrip.MenuBar.BtnNextImage">Next Image</sys:String>
+    <sys:String x:Key="Lan.Control_Filmstrip.MenuBar.BtnPreviousImage">Previous Image</sys:String>
+    <sys:String x:Key="Lan.Control_Filmstrip.MenuBar.BtnLastImage">Last Image</sys:String>
+
+    <!--  Control_ProductionData  -->
+    <sys:String x:Key="Lan.Control_ProductionData.TextStartDate">Start Date:</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextEndDate">End Date:</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.BtnQuery">Query</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.BtnQueryToday">Query Today</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.BtnExportCSV">Export CSV</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextRate">Passed Rate</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextTotal">Total</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextTriggerTime">Trigger Time</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextTriggerIndex">Trigger Index</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextResultDisplay">Result Display</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextResultSend">Result Send</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextResultStatus">Result Status</sys:String>
+
+    <!--  Control_RuntimeResultViewer  -->
+    <sys:String x:Key="Lan.Control_RuntimeResultViewer.TextBufferQueue">Buffer Queue</sys:String>
+    <sys:String x:Key="Lan.Control_RuntimeResultViewer.BtnManualTrigger">Manual Trigger</sys:String>
+    <sys:String x:Key="Lan.Control_RuntimeResultViewer.BtnLiveMode">Live Display</sys:String>
+    <sys:String x:Key="Lan.Control_RuntimeResultViewer.TextResult">Result:</sys:String>
+
+    <!--  Control_SystemLog  -->
+    <sys:String x:Key="Lan.Control_SystemLog.TextTime">Time</sys:String>
+    <sys:String x:Key="Lan.Control_SystemLog.TextLevel">Level</sys:String>
+    <sys:String x:Key="Lan.Control_SystemLog.TextMessage">Message</sys:String>
+
+    <!--  Control_UserLogin  -->
+    <sys:String x:Key="Lan.Control_UserLogin.TextUserLogin">User Login</sys:String>
+    <sys:String x:Key="Lan.Control_UserLogin.TextUserName">User Name:</sys:String>
+    <sys:String x:Key="Lan.Control_UserLogin.TextPassword">Password:</sys:String>
+    <sys:String x:Key="Lan.Control_UserLogin.BtnLogin">Login</sys:String>
+    <sys:String x:Key="Lan.Control_UserLogin.BtnLogout">Logout</sys:String>
+    <sys:String x:Key="Lan.Control_UserLogin.BtnChangePassword">Change Password</sys:String>
+
+    <!--  Control_WorkEdit  -->
+    <sys:String x:Key="Lan.Control_WorkEdit.HeaderImageSource">Image Source</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.HeaderDLModel">VPDL Model</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.HeaderTCPIP">TCP/IP</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.HeaderCommCard">Comm Card</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.HeaderGroup">Group</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.HeaderWorkStream">Work Stream</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnAdd">Add</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnRemove">Remove</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextName">Name</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextCameraMode">Camera Mode</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextMode">Mode</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextFolderPath">Image Path</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextOperator">Operator</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextLightControl">Light Control</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnEditCam">Edit Camera</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnSelectPath">Select Path</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnResetImageSequence">Reset Image Sequence</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnRunOnce">Run Once</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnViewImage">View Image</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextEnable">Enable</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextController">Controller</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextLightOnCmd">On Cmd</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextLightOffCmd">Off Cmd</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextLightProtocol">Protocal</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextHex">Hex</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextWorkspace">Workspace</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextStreamList">Stream List</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextType">Type</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextAddressPort">IP:Port</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextOpen">Open</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextClose">Close</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextReceived">Received:</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextFFP">FFP:</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextScript">Script:</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnEditScript">Edit Script</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnResetScript">Reset Script</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnCommTest">Comm Test</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextInput">Input</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextOutput">Output</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextLineNum">Line Number</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextPulseWidth">Pulse Width</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextStreamCollection">Work Stream Collection</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextSetup">Setup</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextValidity">Validity</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextAlgorithmTB">Algorithm TB</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextResultGraphic">Result Graphic</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextDisplayOption">Display Option</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextChartSeries">Chart Series</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextResultSend">Result Send</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnDetail">Detail</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextTCPSend">TCP Send</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextValidityTip">The number of workflows cannot be less than 2</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextVisibleInRuntime">Runtime Visible</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnRecipes">Recipes</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnCopy">Copy</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnUp">Up</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnDown">Down</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextInternalTrigger">Internal Trigger</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextAutoStart">Auto Start</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextAsyncMode">Async Mode</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextOnlyVPro">Only VisionPro</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextInputTB">Input TB</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextOutputTB">Output TB</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextAdvancedMode">Advanced Mode</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextGPU">GPU</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextImageRecord">Image Record</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextCondition">Condition</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextTrigger">Trigger</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextDisable">Disable</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnImageReplay">Image Replay</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextMultiThread">Multi Thread</sys:String>
+
+    <!--  Control_WorkLog  -->
+    <sys:String x:Key="Lan.Control_WorkLog.TextMessageTime">Message Time</sys:String>
+    <sys:String x:Key="Lan.Control_WorkLog.TextMessageType">Message Type</sys:String>
+    <sys:String x:Key="Lan.Control_WorkLog.TextMessageContent">Message Content</sys:String>
+
+    <!--  Control_WorkRuntime  -->
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnRuntimeImage">Runtime Image</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnRuntimeData">Runtime Data</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnRuntimeLog">Runtime Log</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnRecipesManage">Recipes Management</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnAlgorithmManage">Algorithm Management</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnCameraManage">Camera Management</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnParaManage">Parameters Management</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.TextShowChart">Show Chart</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.TextRow">Row:</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.TextCol">Col:</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnSaveConfig">Save Config</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnScriptManage">Script Management</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnEditScript">Edit Script</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnReloadScript">Reload Script</sys:String>
+
+    <!--  Control_WorkStreamRecipes  -->
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.BtnImportRecipe">Import Recipe</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.BtnSaveRecipe">Save Recipe</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.BtnAddRecipe">Add Recipe</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.BtnRemoveRecipe">Remove Recipe</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextParaList">Parameters List</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextValue">Value</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextDescriptionLabel">Discription Label</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextDisableChangingDescriptionLabel">Disable Changing Description Label</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextSaveCurrentTBToRecipe">Save Current ToolBlock To Recipe</sys:String>
+
+    <!--  Window_CommCard  -->
+    <sys:String x:Key="Lan.Window_CommCard.TitleCommTest">Comm Test</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextWriteFFP">Write FFP</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextReadFFP">Read FFP</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextOffset">Offset:</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextData">Data：</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextEnableScript">Enable Script</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.BtnWriteInpsectedResult">Write Inpsected Result</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.BtnWriteStatus">Write Status</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextByteSize">Byte Size:</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.BtnReadUserData">Read User Data</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextInput">Input:</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextOutput">Output:</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.BtnForceOutput">Force Output</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextMessageList">Message List</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.BtnWriteInpsectResultTip">If the script is not enabled, each char of the input string will be converted according to the 16-bit Word type, and the script will be converted according to the custom method</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.BtnReadUserDataTip">If the script is not enabled, the read byte[] converts each byte according to the short type, and when the script is enabled, it will be converted according to the custom method</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.BtnForceOutputTip">The output pin that is forced to be selected high lasts for 1s</sys:String>
+
+    <!--  Window_EditAdvancedDLMode  -->
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.TitleEditAdvancedDLMode">Edit DL Advanced Mode</sys:String>
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.BtnAddStep">Add Step</sys:String>
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.BtnAddTool">Add Tool</sys:String>
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.BtnRefreshPara">Refresh Parameters</sys:String>
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.TextInputParaList">Input Parameters</sys:String>
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.TextOutputParaList">Output Parameters</sys:String>
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.TextToolList">Tool List</sys:String>
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.BtnTransferPara">Transfer Parameters</sys:String>
+
+    <!--  Window_EditScript  -->
+    <sys:String x:Key="Lan.Window_EditScript.TitleCommScript">Comm Script</sys:String>
+    <sys:String x:Key="Lan.Window_EditScript.HeaderInputScript">Input Script</sys:String>
+    <sys:String x:Key="Lan.Window_EditScript.HeaderOutputScript">Output Script</sys:String>
+    <sys:String x:Key="Lan.Window_EditScript.BtnShowReference">Show Reference</sys:String>
+    <sys:String x:Key="Lan.Window_EditScript.BtnAddReference">Add Reference</sys:String>
+    <sys:String x:Key="Lan.Window_EditScript.BtnCompile">Compile</sys:String>
+    <sys:String x:Key="Lan.Window_EditScript.TextSucceed">Succeed</sys:String>
+    <sys:String x:Key="Lan.Window_EditScript.TextFailed">Failed</sys:String>
+
+    <!--  Window_EditToolBlock  -->
+    <sys:String x:Key="Lan.Window_EditToolBlock.TitleEditTB">Edit ToolBlock</sys:String>
+
+    <!--  Window_FileManager  -->
+    <sys:String x:Key="Lan.Window_FileManager.TitleFileManager">File Management</sys:String>
+    <sys:String x:Key="Lan.Window_FileManager.TextWorkStreamName">Work Stream Name</sys:String>
+    <sys:String x:Key="Lan.Window_FileManager.TextProductionData">Production Data</sys:String>
+    <sys:String x:Key="Lan.Window_FileManager.TextImage">Image</sys:String>
+    <sys:String x:Key="Lan.Window_FileManager.BtnExport">Export</sys:String>
+    <sys:String x:Key="Lan.Window_FileManager.BtnClear">Clear</sys:String>
+    <sys:String x:Key="Lan.Window_FileManager.BtnWorkLogBatchExportToCSV">Batch Export WorkLog To CSV</sys:String>
+    <sys:String x:Key="Lan.Window_FileManager.BtnProductDataBatchExportToCSV">Batch Export ProductData To CSV</sys:String>
+
+    <!--  Window_SystemSetup  -->
+    <sys:String x:Key="Lan.Window_SystemSetup.TitleSystemSteup">System Setup</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.HeaderWorkSteup">Work Setup</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.HeaderCameraOrder">Camera Order</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.HeaderSystemServer">System Server</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.HeaderFFP">FFP</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.HeaderDiskManage">Disk Management</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.HeaderLanguage">Language</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextWorkName">Work Name</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextWorkTitle">Work Title</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextDefault">Default</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextSN">SN</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextCamName">Camera Name</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.BtnRefreshCam">Refresh Camera</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.BtnClearConfig">Clear Config</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextCommCard">CommCard:</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextProtocalType">Protocal:</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextProjectDisk">Project Disk</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextImageDisk">Image Disk</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextImageStorage">Image Storage</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextDataStorage">Data Storage</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextLanSelected">Selected Language</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextStartupOnline">Startup Online</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.BtnSave">Save</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextDay">Day</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.BtnExportLanguageFile">Export Language File</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.BtnImportLanguageFile">Import Language File</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextEnableOtherCard">Enable Other Card</sys:String>
+
+    <!--  Window_UserInput  -->
+    <sys:String x:Key="Lan.Window_UserInput.TitleUserInput">User Input</sys:String>
+
+    <!--  Window_VersionInfo  -->
+    <sys:String x:Key="Lan.Window_VersionInfo.TitleVersionInfo">Version Info</sys:String>
+    <sys:String x:Key="Lan.Window_VersionInfo.TextVersion">Version:</sys:String>
+    <sys:String x:Key="Lan.Window_VersionInfo.TextSoftwareEnvironment">Software Environment:</sys:String>
+
+    <!--  描述标签  -->
+    <sys:String x:Key="LabelConstants.ProgramStart">Program start</sys:String>
+    <sys:String x:Key="LabelConstants.ProgramStartFinished">Program start finished</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingSystemStartupSetup">Loading system startup setup</sys:String>
+    <sys:String x:Key="LabelConstants.SystemStartupSetupLoaded">System startup setup load finished</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingVisionModule">Loading vision module</sys:String>
+    <sys:String x:Key="LabelConstants.VisionModuleLoaded">Vision module load finished</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingWindowsMonitor">Loading Windows monitor module</sys:String>
+    <sys:String x:Key="LabelConstants.WindowsMonitorLoaded">Windows monitor module load finished</sys:String>
+    <sys:String x:Key="LabelConstants.VPDLVersion">VPDL version</sys:String>
+    <sys:String x:Key="LabelConstants.VPDLLoadFinished">VPDL module load finished</sys:String>
+    <sys:String x:Key="LabelConstants.VPDLLoadFailed">VPDL module load fasiled</sys:String>
+    <sys:String x:Key="LabelConstants.ProgramExit">Program exit</sys:String>
+    <sys:String x:Key="LabelConstants.EditWork">Edit work</sys:String>
+    <sys:String x:Key="LabelConstants.CloseEdit">Close edit</sys:String>
+    <sys:String x:Key="LabelConstants.LoadWork">Load work</sys:String>
+    <sys:String x:Key="LabelConstants.UnloadWork">Unload work</sys:String>
+    <sys:String x:Key="LabelConstants.ConfirmRemove">Confirm delete</sys:String>
+    <sys:String x:Key="LabelConstants.PleaseInputName">Please input name</sys:String>
+    <sys:String x:Key="LabelConstants.DuplicateName">Duplicate name</sys:String>
+    <sys:String x:Key="LabelConstants.InvalidName">Invalid name</sys:String>
+    <sys:String x:Key="LabelConstants.SaveFinished">Save finished</sys:String>
+    <sys:String x:Key="LabelConstants.SaveFailed">Save failed</sys:String>
+    <sys:String x:Key="LabelConstants.ExportFinished">Export finished</sys:String>
+    <sys:String x:Key="LabelConstants.ExportFailed">Export failed</sys:String>
+    <sys:String x:Key="LabelConstants.ImportFinished">Import finished</sys:String>
+    <sys:String x:Key="LabelConstants.ImportFailed">Import failed</sys:String>
+    <sys:String x:Key="LabelConstants.ErrorOccured">Error occured</sys:String>
+    <sys:String x:Key="LabelConstants.Loading">Loading</sys:String>
+    <sys:String x:Key="LabelConstants.Closing">Closing</sys:String>
+    <sys:String x:Key="LabelConstants.Creating">Creating</sys:String>
+    <sys:String x:Key="LabelConstants.PleaseWait">Please wait</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingImageSourceSetup">Loading image source steup</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingVPDLSetup">Loading VPDL setup</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingTCPIPSetup">Loading TCP/IP setup</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingWorkStreamSetup">Loading work stream setup</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingWorkGroupSetup">Loading work group setup</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingCommCardSetup">Loading commcard setup</sys:String>
+    <sys:String x:Key="LabelConstants.ImageSource">Image Source</sys:String>
+    <sys:String x:Key="LabelConstants.DeepLearning">Deep Learning</sys:String>
+    <sys:String x:Key="LabelConstants.TCPIP">TCP/IP</sys:String>
+    <sys:String x:Key="LabelConstants.WorkStream">Work Stream</sys:String>
+    <sys:String x:Key="LabelConstants.WorkGroup">Group</sys:String>
+    <sys:String x:Key="LabelConstants.CommCard">Comm Card</sys:String>
+    <sys:String x:Key="LabelConstants.NativeModeCommand">Native mode command</sys:String>
+    <sys:String x:Key="LabelConstants.Trigger">Trigger</sys:String>
+    <sys:String x:Key="LabelConstants.ExposureTime">Exposure time</sys:String>
+    <sys:String x:Key="LabelConstants.UserData">User data</sys:String>
+    <sys:String x:Key="LabelConstants.Recipe">Recipe</sys:String>
+    <sys:String x:Key="LabelConstants.OverrideExist">Override exist file</sys:String>
+    <sys:String x:Key="LabelConstants.CloseEditingWorkFirstly">Please close editing work</sys:String>
+    <sys:String x:Key="LabelConstants.DeleteFinished">Delete finished</sys:String>
+    <sys:String x:Key="LabelConstants.DeleteWithError">Error occurred while deleting</sys:String>
+    <sys:String x:Key="LabelConstants.Import">Import</sys:String>
+    <sys:String x:Key="LabelConstants.CheckFailed">Check failed</sys:String>
+    <sys:String x:Key="LabelConstants.Exporting">Exporting</sys:String>
+    <sys:String x:Key="LabelConstants.AdminLogin">Admin login</sys:String>
+    <sys:String x:Key="LabelConstants.AdminLogout">Admin logout</sys:String>
+    <sys:String x:Key="LabelConstants.NewPassword">New password</sys:String>
+    <sys:String x:Key="LabelConstants.InvalidPassword">Invalid password</sys:String>
+    <sys:String x:Key="LabelConstants.PleaseInputPassword">Please input password</sys:String>
+    <sys:String x:Key="LabelConstants.IncorrectUserOrPassword">Incorrect user or password</sys:String>
+    <sys:String x:Key="LabelConstants.Importing">Importing</sys:String>
+    <sys:String x:Key="LabelConstants.NoCC24CommCard">No CC24 commcard</sys:String>
+    <sys:String x:Key="LabelConstants.Saving">Saving</sys:String>
+    <sys:String x:Key="LabelConstants.SavingImageSourceWithError">Error occurred while saving image source</sys:String>
+    <sys:String x:Key="LabelConstants.SavingDeepLearningWithError">Error occurred while saving deep learning</sys:String>
+    <sys:String x:Key="LabelConstants.SavingTCPIPWithError">Error occurred while saving TCP/IP</sys:String>
+    <sys:String x:Key="LabelConstants.SavingCommCardWithError">Error occurred while saving commcard</sys:String>
+    <sys:String x:Key="LabelConstants.SavingWorkGroupWithError">Error occurred while saving group</sys:String>
+    <sys:String x:Key="LabelConstants.SavingWorkStreamWithError">Error occurred while saving work stream</sys:String>
+    <sys:String x:Key="LabelConstants.LoadFinished">Load finished</sys:String>
+    <sys:String x:Key="LabelConstants.LoadFailed">Load failed</sys:String>
+    <sys:String x:Key="LabelConstants.TriggerOverflow">Trigger overflow</sys:String>
+    <sys:String x:Key="LabelConstants.StartRunning">Start running</sys:String>
+    <sys:String x:Key="LabelConstants.RunComplete">Run complete</sys:String>
+    <sys:String x:Key="LabelConstants.CannotFind">Can't find</sys:String>
+    <sys:String x:Key="LabelConstants.ImageIsNull">Image is null</sys:String>
+    <sys:String x:Key="LabelConstants.ReceivedMessage">Received message</sys:String>
+    <sys:String x:Key="LabelConstants.SendMessage">Send message</sys:String>
+    <sys:String x:Key="LabelConstants.IO">IO</sys:String>
+    <sys:String x:Key="LabelConstants.IOInput">IO input</sys:String>
+    <sys:String x:Key="LabelConstants.IOOutput">IO output</sys:String>
+    <sys:String x:Key="LabelConstants.Event">Event</sys:String>
+    <sys:String x:Key="LabelConstants.FFP">FFP</sys:String>
+    <sys:String x:Key="LabelConstants.SendFailed">Send failed</sys:String>
+    <sys:String x:Key="LabelConstants.NoValidFile">No valid file</sys:String>
+    <sys:String x:Key="LabelConstants.ClearFinished">Clear finished</sys:String>
+    <sys:String x:Key="LabelConstants.ClearFailed">Clear failed</sys:String>
+    <sys:String x:Key="LabelConstants.SavingTipOfSystemSetup">The camera sequence, system server, disk management, and language will take effect after the program is restarted</sys:String>
+    <sys:String x:Key="LabelConstants.CheckWorkStreamUpdate">Check for work stream updates</sys:String>
+    <sys:String x:Key="LabelConstants.DuplicateNameIsNotAllowed">Duplicate names are not allowed</sys:String>
+    <sys:String x:Key="LabelConstants.FileChooseYesFolderChooseNo">File : Yes , Folder : No</sys:String>
+    <sys:String x:Key="LabelConstants.PleaseSelect">Please select</sys:String>
+    <sys:String x:Key="LabelConstants.PleaseRemoveLatterStep">Please delete the next step first</sys:String>
+    <sys:String x:Key="LabelConstants.ResultsOfDLToolAddedToOutputTB">The deep learning results have been added to the output toolblock</sys:String>
+    <sys:String x:Key="LabelConstants.ValidType">Valid type</sys:String>
+    <sys:String x:Key="LabelConstants.SystemServerStart">The system server starts</sys:String>
+    <sys:String x:Key="LabelConstants.InvalidVProLicense">Invalid VisionPro license</sys:String>
+    <sys:String x:Key="LabelConstants.IncompatibleMode">The design mode does not match the current mode</sys:String>
+    <sys:String x:Key="LabelConstants.DLEnabled">The program is currently in deep learning mode</sys:String>
+    <sys:String x:Key="LabelConstants.FFPType">FFP type</sys:String>
+    <sys:String x:Key="LabelConstants.Message">Message</sys:String>
+    <sys:String x:Key="LabelConstants.Verify">Verify</sys:String>
+    <sys:String x:Key="LabelConstants.Unloading">Unloading</sys:String>
+    <sys:String x:Key="LabelConstants.Clearing">Clearing</sys:String>
+    <sys:String x:Key="LabelConstants.Querying">Querying</sys:String>
+    <sys:String x:Key="LabelConstants.RefreshListAfterCloseEdit">Please refresh the list after closing editing</sys:String>
+    <sys:String x:Key="LabelConstants.VerifyOffline">Confirm go offline</sys:String>
+    <sys:String x:Key="LabelConstants.VerifyOnline">Confirm go online</sys:String>
+    <sys:String x:Key="LabelConstants.StartupWithOnlineMode">Startup online</sys:String>
+    <sys:String x:Key="LabelConstants.Login">Login</sys:String>
+    <sys:String x:Key="LabelConstants.Logout">Logout</sys:String>
+    <sys:String x:Key="LabelConstants.InvalidLicenseFile">Invalid license file,please provide the License.json file for authorization</sys:String>
+    <sys:String x:Key="LabelConstants.ClientConnected">Client Connected</sys:String>
+    <sys:String x:Key="LabelConstants.ClientDisconnected">Client Disconnected</sys:String>
+    <sys:String x:Key="LabelConstants.BufferQueueOverflow">Buffer Queue Overflow</sys:String>
+    <sys:String x:Key="LabelConstants.OccupancyTooHigh">Occupancy rate of more than 99%</sys:String>
+    <sys:String x:Key="LabelConstants.CatchException">catch an exception at</sys:String>
+    <sys:String x:Key="LabelConstants.ImageSourceIsNullOrNoImages">Image Source is null or no images</sys:String>
+    <sys:String x:Key="LabelConstants.ChangesWillLoseWhenCompileFailed">Changes will not be preserved when compiling failed</sys:String>
+</ResourceDictionary>

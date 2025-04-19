@@ -1,0 +1,391 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ViDi.NET.Common</name>
+    </assembly>
+    <members>
+        <member name="M:ViDi2.Common.Aws.IS3ClientManager.AddClient(System.String,Amazon.S3.AmazonS3Config)">
+            <summary>
+            Adding client for a specific bucket with a provided S3 config
+            </summary>
+            <param name="bucketName"></param>
+            <param name="config"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ViDi2.Common.Aws.IS3ClientManager.AddClient(System.String)">
+            <summary>
+            Adding client for a specific bucket with default config
+            </summary>
+            <param name="bucketName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ViDi2.Common.Aws.IS3ClientManager.GetBucketRegion(System.String)">
+            <summary>
+            retrieves the region where the bucket is located
+            </summary>
+            <param name="bucketName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ViDi2.Common.Aws.IS3ClientManager.GetClient(System.String)">
+            <summary>
+            gets an amazon S3 client given a bucket name
+            if no client exists for this bucket, a new one is created using
+            default configuration
+            </summary>
+            <param name="bucketName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ViDi2.Common.Aws.IS3ClientManager.GetClientFromPath(System.String)">
+            <summary>
+            gets an amazon s3 client given a file or directory path
+            first the bucket is extracted, and then the behavior
+            is identical to GetClient(string bucketName)
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ViDi2.Common.Aws.S3WorkspaceManager">
+            <summary>
+            Manages workspaces stored in an S3 bucket on AWS.
+            </summary>
+        </member>
+        <member name="F:ViDi2.Common.Aws.S3WorkspaceManager._delimiter">
+            <summary>
+            The delimiter used to separate S3 object keys into hierarchical levels. 
+            </summary>
+        </member>
+        <member name="F:ViDi2.Common.Aws.S3WorkspaceManager._keysPerRequest">
+            <summary>
+            S3 requests (such as ListObjectsV2 and DeleteObjects) support up to 1000 keys per request.
+            </summary>
+        </member>
+        <member name="F:ViDi2.Common.Aws.S3WorkspaceManager._maxErrorsToLog">
+            <summary>
+            The maximum number of errors to log when we fail to do an operation involving many objects.
+            
+            For example, if we fail to copy or delete a workspace, we may only want to log the first few
+            objects we failed to copy/delete to reduce noise.
+            </summary>
+        </member>
+        <member name="F:ViDi2.Common.Aws.S3WorkspaceManager._s3ClientManager">
+            <summary>
+            The client used to make requests to S3.
+            </summary>
+        </member>
+        <member name="F:ViDi2.Common.Aws.S3WorkspaceManager._bucketName">
+            <summary>
+            The name of the S3 bucket containing workspaces.
+            </summary>
+        </member>
+        <member name="F:ViDi2.Common.Aws.S3WorkspaceManager._versionPrefix">
+            <summary>
+            The version that ties the workspaces managed by this
+            object to a particular ViDi server.
+            </summary>
+            <remarks>
+            This is used to prefix the workspace name, such that
+            there may be two different servers with a workspace named "MyWorkspace";
+            the resulting keys could be "3.4.0-release/MyWorkspace/" and
+            "4.0.0-release/MyWorkspace/" where "3.4.0-release" and "4.0.0-release"
+            are each a version prefix.
+            </remarks>
+        </member>
+        <member name="M:ViDi2.Common.Aws.S3WorkspaceManager.#ctor(ViDi2.Common.Aws.IS3ClientManager,System.String,System.String)">
+             <summary>
+             Constructs an object capable of managing training workspaces that live in S3.
+             </summary>
+             <param name="s3ClientManager">
+             The client Manager capable of sending request to S3.
+             
+             This client must have valid credentials, and must represent a profile with sufficient
+             permissions to list and delete objects in the desired S3 bucket.
+            
+             The client must also target the region in which the desired bucket lives.
+             </param>
+             <param name="bucketName">
+             The name of the bucket containing the training workspaces to manage.
+            
+             Objects in this bucket should have the following structure:
+             "{ViDiServerVersion}/{WorkspaceName}/..."
+            
+             The given <see cref="!:s3ClientManager"/> must have a client targeting the same
+             region that the target bucket lives in.
+             </param>
+             <param name="version">
+             The name of the ViDi server (e.g. "3.4.0-release") for which this object
+             should manage workspaces, as many servers may store their workspaces in the
+             same bucket due to limits on the max number of S3 buckets an account can have.
+             </param>
+        </member>
+        <member name="P:ViDi2.Common.Aws.S3WorkspaceManager.Workspaces">
+             <summary>
+             Finds each workspace living in the current bucket (and belonging to
+             the current version). Associates each of those workspaces with the
+             root prefix at which all of the workspace's files can be found.
+             </summary>
+             <remarks>
+             For example, given a version "3.4.0-release" and one workspace named
+             "MyWorkspace", then Workspaces["MyWorkspace"] == "3.4.0-release/MyWorkspace/".
+            
+             If the workspace manager fails to reach AWS, this will throw an <see cref="T:System.IO.IOException"/>.
+             </remarks>
+        </member>
+        <member name="P:ViDi2.Common.Aws.S3WorkspaceManager.ShouldCalculateWorkspaceSize">
+            <summary>
+            Whether or not the manager should calculate the workspace's
+            size when it enumerates the existing workspaces.
+            ViDi is not yet supporting this for S3 Workspaces.
+            </summary>
+        </member>
+        <member name="M:ViDi2.Common.Aws.S3WorkspaceManager.GetWorkspaceSize(System.String,System.String)">
+            <returns> Returns -1, as ViDi is not yet supporting size calculation for S3 Workspaces. </returns>
+        </member>
+        <member name="M:ViDi2.Common.Aws.S3WorkspaceManager.NewWorkspacePath(System.String)">
+            <summary>
+            Given the name of a workspace that does not exist,
+            returns the S3 prefix that should be appended to the
+            workspace's files when the workspace is uploaded.
+            </summary>
+            <param name="workspace"> The name of the new workspace. </param>
+            <returns>T
+            The S3 prefix that should be appended to the
+            workspace's files when the workspace is uploaded.
+            </returns>
+        </member>
+        <member name="M:ViDi2.Common.Aws.S3WorkspaceManager.DeleteWorkspace(System.String)">
+             <summary>
+             Given a workspace that should exist in the current
+             bucket/for the current version, deletes all S3 objects
+             associated with that workspace.
+             </summary>
+             <remarks>
+             This should not be called without first ensuring the caller
+             has permission to delete the given workspace.
+             
+             If the workspace does not exist (in the current bucket/for
+             the current version), this will throw a <see cref="T:System.IO.FileNotFoundException"/>.
+            
+             If the workspace manager fails to reach AWS, or fails to delete
+             the workspace, this will throw an <see cref="T:System.IO.IOException"/>.
+             </remarks>
+             <param name="workspaceName"> The name of the workspace to delete. </param>
+        </member>
+        <member name="M:ViDi2.Common.Aws.S3WorkspaceManager.HasAutoSave(System.String)">
+             <summary>
+             Given a workspace that should exist in the current
+             bucket/for the current version, returns whether or
+             not that workspace has an autosave (i.e. .vws~) file.
+             </summary>
+             <remarks>
+             If the workspace does not exist (in the current bucket/for
+             the current version), this will throw a <see cref="T:System.IO.FileNotFoundException"/>.
+            
+             If the workspace manager fails to reach AWS, this will throw an <see cref="T:System.IO.IOException"/>.
+             </remarks>
+             <param name="workspaceName"> The name of the workspace to search for an autosave. </param>
+             <returns> Whether or not the workspace has an autosave. </returns>
+        </member>
+        <member name="M:ViDi2.Common.Aws.S3WorkspaceManager.CutWorkspace(System.String,System.String)">
+            <summary>
+            Renames all objects prefixed with <see cref="!:workspaceID"/> such that they're instead
+            prefixed with <see cref="!:copiedWorkspaceID"/>.
+            </summary>
+            <remarks>
+            This is done by copying each object from the original workspace to the renamed workspace.
+            
+            If each file is copied successfully, this method will attempt to delete the original workspace;
+            Otherwise, this method will attempt to delete any files that were copied successfully, and will not
+            delete the original workspace.
+            </remarks>
+            <param name="workspaceID"> The unique identifier of the workspace to copy. </param>
+            <param name="copiedWorkspaceID"> The unique identifier of the copied workspace. </param>
+        </member>
+        <member name="M:ViDi2.Common.Aws.S3WorkspaceManager.FetchKeys(Amazon.S3.Model.ListObjectsV2Request)">
+            <summary>
+            Allows you to iterate over the S3 keys that correspond to
+            the given prefix and delimiter.
+            </summary>
+            <remarks>
+            Some keys may represent common prefixes (i.e. subdirectories),
+            even though there may not actually be a file in S3 with that key.
+            
+            One ListObjectsV2Request must be sent to S3 per <see cref="F:ViDi2.Common.Aws.S3WorkspaceManager._keysPerRequest"/> keys.
+            In a case where you're requesting more keys than that, this method handles
+            sending the additional requests.
+            </remarks>
+            <param name="listObjectsRequest"> The request containing the bucket name, prefix, etc. </param>
+            <returns> An iterator over the desired keys. </returns>
+        </member>
+        <member name="M:ViDi2.Common.Aws.S3WorkspaceManager.LogIssueAndWrapException(System.Exception,System.String)">
+            <summary>
+            Logs an exception thrown by the S3 SDK and instead throws
+            an IOException with a generic message. This exception message
+            contains an ID that is included in the log, so that the IOException
+            can be traced back to the S3 exception.
+            </summary>
+            <remarks>
+            The intent of this method is to hide S3 implementation details from the client
+            (particularly because the client can't do anything to resolve these issues), while
+            still providing some feedback and a way to investigate the issue.
+            </remarks>
+            <param name="s3ExceptionToWrap"> The S3 exception to log. </param>
+            <param name="issueMessageToLog"> Additional information to log, such as the S3 exception's message. </param>
+            <returns> A generic-sounding IOException with an ID matching that of the logged exception. </returns>
+        </member>
+        <member name="T:ViDi2.Common.CommandLine.CommandLineOptionsBase">
+            <summary>
+            A base class for ViDi command line argument value storage which can be used directy. 
+            </summary>
+        </member>
+        <member name="M:ViDi2.Common.CommandLine.CommandLineOptionsBase.EvaluateOptions">
+            <summary>
+            If you override this, make sure to call base.EvaluateOptions() if you still want to do the base level cleanup.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Common.CommandLine.CommandLineOptionsBase.HelpText">
+            <summary>
+            Note that this is manually maintained, not generated from comments made on the properties.
+            </summary>
+        </member>
+        <member name="T:ViDi2.Common.CommandLine.Property">
+            <summary>
+            Base type parameter used by the IPropertyCollection interface
+            </summary>
+        </member>
+        <member name="T:ViDi2.Common.CommandLine.Property`1">
+            <summary>
+            Simple subclass of Property which add a templated value property, set by the user
+            when they define the delegate for the Modifier.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:ViDi2.Common.CommandLineParser.Parse``1(System.String[],ViDi2.Common.IPropertyContainer,System.Boolean)">
+            <summary>
+            Use this method to pass in a string array of command line arguments and an existing object reference
+            which contains one or more property of type ViDi2.Common.Property.
+            </summary>
+            <param name="args">String array, arbitrary format</param>
+            <param name="propertyContainer">Object reference which implements an IEnumerable of type ViDi2.Common.Property.</param>
+            <param name="throwOnInvalidArgument">Throw ViDi2.InvalidArgumentException if any argument is invalid.</param>
+        </member>
+        <member name="M:ViDi2.Common.CommandLineParser.Parse(System.String[],ViDi2.Common.IPropertyContainer,System.Boolean)">
+            <summary>
+            Use this method to pass in a string array of command line arguments and an existing object reference
+            which contains one or more property of type ViDi2.Common.Property.
+            </summary>
+            <param name="args">String array, arbitrary format</param>
+            <param name="propertyContainer">Object reference which implements an IEnumerable of type ViDi2.Common.Property.</param>
+            <param name="throwOnInvalidArgument">Throw ViDi2.InvalidArgumentException if any argument is invalid.</param>
+        </member>
+        <member name="T:ViDi2.Common.IPropertyContainer">
+            <summary>
+            Parameter type required by the CommandLineParser.Parse static method
+            An implementation of this should either define a collection or list of
+            properties directly, or use the IEnumerable to reference properties
+            of type Property of T defined as normal properties.
+            </summary>
+        </member>
+        <member name="T:ViDi2.Common.PropertyContainerBase">
+            <summary>
+            Simple implementation of IPropertyContainer which when inherited, allows the 
+            user to define properties of type Property of T normally which are then
+            automatically referenced by the interface implementation and therefore also
+            by the Parser. Note these properties must be public for this implementation
+            of property lookup by reflection to work, though they may have protected/private 
+            set methods. 
+            </summary>
+        </member>
+        <member name="F:ViDi2.Common.Dongle.LanProductCodes">
+            <summary>
+            list of product codes for which a network license is allowed
+            </summary>
+        </member>
+        <member name="M:ViDi2.Common.DongleInternal.GetLocalDongleWithProductCode(ViDi2.Common.Dongle.ProductCode)">
+            <returns>
+            Access to (and the serial number of) the first local(lan) dongle that has the
+            ViDi firmcode and the given ProductCode, or null if no such
+            dongle could be found. 
+            </returns>
+        </member>
+        <member name="M:ViDi2.Common.DongleInternal.GetLocalDongleWithFirmAndProductCode(System.UInt32,System.UInt32)">
+            <returns>
+            Access to (and the serial number of) the first local(lan) dongle that has the
+            given firmcode and product code, or null if no such
+            dongle could be found. 
+            </returns>
+        </member>
+        <member name="M:ViDi2.Common.DongleInternal.ParseSerialNumber(System.String,System.UInt16@,System.UInt32@)">
+            <summary>
+            Tries to parse a string representing a dongle's full serial number
+            into its box mask and serial number parts.
+            </summary>
+            <param name="serialString"> A string representing a dongle's serial number (ex: "3-1234567")</param>
+            <param name="boxMask"> The single digit before the "-" in the serial string. </param>
+            <param name="serialNumber"> The remaining digits after the "-" in the serial string. </param>
+            <returns> True if the serial string was parsed into its components, false otherwise. </returns>
+        </member>
+        <member name="T:ViDi2.Common.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Common.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Common.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Common.Properties.Resources.AnIssueWasEncounteredWhileHandlingYourRequest">
+            <summary>
+              Looks up a localized string similar to An issue was encountered while handling your request. Error ID: {0}.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Common.Properties.Resources.Error_EmptyString">
+            <summary>
+              Looks up a localized string similar to The use of an empty string is not permitted..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Common.Properties.Resources.Error_WorkspaceAlreadyExist">
+            <summary>
+              Looks up a localized string similar to A Workspace with name &apos;{0}&apos; already exists..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Common.Properties.Resources.Error_WorkspaceDoesNotExist">
+            <summary>
+              Looks up a localized string similar to Workspace &apos;{0}&apos; does not exist..
+            </summary>
+        </member>
+        <member name="T:ViDi2.Common.Utilities.IBusyService">
+            <summary>
+            Defines an interface for a service that could be notified prior
+            to long-running, blocking operations. With this information,
+            an implementation could display a "please wait" dialog, for example.
+            </summary>
+        </member>
+        <member name="M:ViDi2.Common.Utilities.IBusyService.PrepareForLongRunningOperation(System.Boolean,System.Nullable{System.TimeSpan})">
+            <summary>
+            Notifies the service that a long-running, blocking operation
+            is about to begin so that the service can react before that work begins.
+            </summary>
+            <param name="shouldHandleSignificantDelays">
+            Whether or not the service should do something about operations that
+            take too long (as defined by the given threshold), such as displaying
+            a waiting dialog or disabling the GUI.
+            </param>
+            <param name="significantDelayThreshold">
+            The amount of time the service should wait before considering an operation to be
+            taking too long (and doing something about it if <see cref="!:shouldHandleSignificantDelays"/> is true).
+            </param>
+        </member>
+        <member name="T:ViDi2.Common.Utilities.ServiceLocator">
+            <summary>
+            IoC Container class which can be used as an instance or as a singleton
+            </summary>
+        </member>
+    </members>
+</doc>

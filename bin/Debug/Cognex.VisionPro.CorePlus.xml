@@ -1,0 +1,4435 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "Cognex.VisionPro.CorePlus"
+    </assembly>
+    <members>
+        <member name="P:Cognex.VisionPro.Implementation.Internal.CogInternalBoolList.default(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="P:Cognex.VisionPro.Implementation.Internal.CogInternalBoolList.Count">
+            <summary>
+Gets the number of items in this List.
+</summary>
+            <value>
+The number of items in this List.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro.Implementation.Internal.CogInternalBoolList.GetEnumerator">
+            <summary>
+Gets an enumerator for this List.
+</summary>
+            <returns>
+A reference to an IEnumerable suitable for this List type.
+</returns>
+            <remarks>
+See <see cref="T:System.Collections.IEnumerable" /> and <see cref="T:System.Collections.IEnumerator" /> for
+more details on the behavior of .NET enumerators.
+</remarks>
+        </member>
+        <member name="M:Cognex.VisionPro.Implementation.Internal.CogInternalBoolList.GetRangeList">
+            <inheritdoc />
+        </member>
+        <member name="M:Cognex.VisionPro.Implementation.Internal.CogInternalBoolList.SetRange(System.Int32,System.Int32,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:Cognex.VisionPro.Implementation.Internal.CogInternalBoolList.Detach">
+            <summary>
+Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.Implementation.Internal.CogInternalBoolList.#ctor(System.IntPtr)">
+            <summary>
+Cognex internal use only.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Implementation.Internal.CogInternalBoolList.SfNextSf">
+            <summary>
+Next state flag to be used in derived classes.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Implementation.Internal.CogInternalBoolList.SfGetRangeList">
+            <summary>
+State flag for the GetRangeList method.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Implementation.Internal.CogInternalBoolList.SfItem">
+            <summary>
+State flag for the Item (indexer) property.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Implementation.Internal.CogInternalBoolList">
+            <summary>
+This class represents a fixed-size list of boolean values.  The
+individual true/false values can be accessed individually, or returned as
+a read-only list of ranges.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogReadOnlyBoolRangeList.default(System.Int32)">
+            <summary>
+Gets the <see cref="T:Cognex.VisionPro.CogReadOnlyBoolRange" /> at
+the specified index. It describes a contiguous inclusive range of indices
+(from an <see cref="T:Cognex.VisionPro.ICogBoolList" />)
+that all have the same Boolean value.
+</summary>
+            <param name="index">
+The zero based index of the item of interest.
+</param>
+            <value>
+The item at the specified index.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied index is not valid (less than zero, equal to or greater than
+<see cref="P:Cognex.VisionPro.CogReadOnlyBoolRangeList.Count" />).
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.CogReadOnlyBoolRangeList.Count">
+            <summary>
+Gets the number of items in this List.
+</summary>
+            <value>
+The number of items in this List.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro.CogReadOnlyBoolRangeList.GetEnumerator">
+            <summary>
+Gets an enumerator for this List.
+</summary>
+            <returns>
+A reference to an IEnumerable suitable for this List type.
+</returns>
+            <remarks>
+See <see cref="T:System.Collections.IEnumerable" /> and <see cref="T:System.Collections.IEnumerator" /> for
+more details on the behavior of .NET enumerators.
+</remarks>
+        </member>
+        <member name="M:Cognex.VisionPro.CogReadOnlyBoolRangeList.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogReadOnlyBoolRangeList object.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogReadOnlyBoolRangeList.#ctor(Cognex.VisionPro.CogReadOnlyBoolRangeList)">
+            <summary>
+Constructs a deep copy of the supplied CogReadOnlyBoolRangeList object.
+</summary>
+            <param name="other">
+The CogReadOnlyBoolRangeList to copy.  Must not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="other" /> is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogReadOnlyBoolRangeList.#ctor(System.Collections.Generic.List`1{Cognex.VisionPro.CogReadOnlyBoolRange})">
+            <summary>
+Constructs a read-only boolean inclusive range list from the given non-read-only
+boolean inclusive range list.
+</summary>
+            <param name="inputList">
+A non-read-only boolean inclusive range list to wrap as read-only. Must not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="inputList" /> is null.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.CogReadOnlyBoolRangeList">
+            <summary>
+Class that represents a list of booleans as a list of read-only inclusive ranges.
+Each element in this list describes a contiguous range of indices (from
+the original list) that have the same boolean value. This typically
+provides a simpler, more compact representation of the original list.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogReadOnlyBoolRange.Value">
+            <summary>
+Gets the boolean value represented by this CogReadOnlyBoolRange.
+</summary>
+            <value> The boolean value represented by this CogReadOnlyBoolRange.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.CogReadOnlyBoolRange.LastIndex">
+            <summary>
+Gets the ending index of the inclusive range represented by this CogReadOnlyBoolRange.
+</summary>
+            <value> The last index of the range. Will always be greater than or equal to FirstIndex.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.CogReadOnlyBoolRange.FirstIndex">
+            <summary>
+Gets the starting index of the inclusive range represented by this CogReadOnlyBoolRange.
+</summary>
+            <value> The first index of the range. Will always be greater than or equal to zero and less than or equal to LastIndex.</value>
+        </member>
+        <member name="M:Cognex.VisionPro.CogReadOnlyBoolRange.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogReadOnlyBoolRange object.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogReadOnlyBoolRange.#ctor(Cognex.VisionPro.CogReadOnlyBoolRange)">
+            <summary>
+Constructs a deep copy of the supplied CogReadOnlyBoolRange object.
+</summary>
+            <param name="other">
+The CogReadOnlyBoolRange to copy.  Must not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="other" /> is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogReadOnlyBoolRange.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+Constructs an initialized inclusive, read-only range of indices and
+the boolean value each of the indices within the range contains.
+</summary>
+            <param name="firstIndex">
+The starting index of the inclusive range represented by the constructed CogReadOnlyBoolRange.
+Must be greater than or equal to zero and less than or equal to <paramref name="lastIndex" />.
+</param>
+            <param name="lastIndex">
+The ending index of the inclusive range represented by the constructed CogReadOnlyBoolRange.
+Must be greater than or equal to <paramref name="firstIndex" />.
+</param>
+            <param name="value">
+The boolean value represented by the constructed CogReadOnlyBoolRange.
+</param>
+            <exception cref="T:System.IndexOutOfRangeException">
+                <paramref name="firstIndex" /> is less than zero or greater than <paramref name="lastIndex" />.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.CogReadOnlyBoolRange">
+            <summary>
+This class describes a read-only inclusive range of indices (from an
+<see cref="T:Cognex.VisionPro.ICogBoolList" />) that all have the same
+boolean value (either true or false).  The indices immediately outside of
+this range refer to booleans of the opposite value, or are illegal indices.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ICogBoolList.default(System.Int32)">
+            <summary>
+Gets or sets the Boolean value at the specified index.
+</summary>
+            <param name="index">
+The zero based index of the item of interest.
+</param>
+            <param name="value">
+The boolean value to be set at the specified index.
+</param>
+            <value>
+The item at the specified index.
+</value>
+            <exception cref="T:System::IndexOutOfRangeException">  If the
+supplied index is not valid (less than zero, equal to or greater than
+<see cref="P:Cognex.VisionPro.CogInternalBoolList.Count" />).
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ICogBoolList.GetRangeList">
+            <summary>
+Gets an alternate, read-only representation of the entire boolean list.
+The returned representation is a list of inclusive boolean ranges.  This
+representation is usually much more compact than the full list.
+</summary>
+            <returns>
+The read-only representation of the boolean list as inclusive boolean ranges.
+</returns>
+            <remarks>
+                <para>
+The list of boolean ranges returned by this method represent the underlying list of
+booleans at the specific time this method was called. Changes to the boolean values
+of the underlying list will not be reflected in a previously obtained lists of ranges.
+This method must be called again to obtain an up-to-date representation of the list.
+</para>
+            </remarks>
+        </member>
+        <member name="M:Cognex.VisionPro.ICogBoolList.SetRange(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+Sets the given inclusive range of list elements to the given boolean value.
+</summary>
+            <param name="firstIndex">
+The starting index of the inclusive range to set to a single boolean value.
+Must be greater than or equal to zero and less than or equal to <paramref name="lastIndex" />.
+</param>
+            <param name="lastIndex">
+The ending index of the inclusive range to set to a single boolean value.
+Must be greater than or equal to <paramref name="firstIndex" /> and less than
+<see cref="P:System.Collections.Generic.IReadOnlyList{System.Boolean}.Count" />.
+</param>
+            <param name="value">
+The boolean value to set the specificed inclusive range of list elements to.
+</param>
+            <exception cref="T:System.IndexOutOfRangeException">
+                <paramref name="firstIndex" /> is less than zero or greater than <paramref name="lastIndex" />;
+or <paramref name="lastIndex" /> is less than <paramref name="firstIndex" /> or greater than or
+equal to <see cref="P:System.Collections.Generic.IReadOnlyList{System.Boolean}.Count" />.
+</exception>
+            <remarks>
+                <para>
+A range may include list elements that are already of the specified boolean value.
+In this circumstance, those values remain unchanged.
+</para>
+                <para>
+Changing the value of any list element will invalidate the returned list from the
+<see cref="M:Cognex.VisionPro.ICogBoolList.GetRangeList" />
+method. The method must be called again to obtain an accurate set of ranges.
+</para>
+            </remarks>
+        </member>
+        <member name="T:Cognex.VisionPro.ICogBoolList">
+            <summary>
+The ICogBoolList interface is a
+<see cref="T:System.Collections.Generic.IReadOnlyList{System.Boolean}" /> 
+which can also describe the list as a collection of boolean ranges.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Implementation.Cog3DVisionDataUtils.GetSelectedSpaceName3D(Cognex.VisionPro.ICogVisionData)">
+            <summary>
+Get the selected 3D space name 
+from the supplied ICogVisionData object. 
+</summary>
+            <param name="data">
+The ICogVisionData object.
+</param>
+            <returns> 
+A reference to the vision data's Selected space name 3D, 
+or null if the input argument does not reference valid 3D vision data.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Implementation.Cog3DVisionDataUtils.GetCoordinateSpaceTree3D(Cognex.VisionPro.ICogVisionData)">
+            <summary>
+Get a
+<see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" /> 
+from the supplied ICogVisionData object. 
+</summary>
+            <param name="data">
+The ICogVisionData object.
+</param>
+            <returns> 
+A reference to the vision data's <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />, 
+or null if the input argument does not reference valid 3D vision data.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Implementation.Cog3DVisionDataUtils.Is3DInputVisionData(Cognex.VisionPro.ICogVisionData)">
+            <summary>
+Check if the supplied ICogVisionData object is used 
+for 3D vision tools. If the ICogVisionData object
+contains a valid <see cref="T:Cognex.VisionPro.CogImage16Range" /> type or
+a valid <see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMesh" /> type,
+this function returns true, otherwise it returns false.
+</summary>
+            <param name="data">
+The ICogVisionData object.
+</param>
+            <returns> 
+true if it is a valid 3D vision data, false otherwise. 
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Implementation.Cog3DVisionDataUtils.Get3DInputVisionData(Cognex.VisionPro.ICogVisionData,Cognex.VisionPro.ICogVisionData@)">
+            <summary>
+Get the
+<see cref="T:Cognex.VisionPro3D.Cog3DVisionDataTypes" /> from the
+supplied ICogVisionData object. 
+</summary>
+            <param name="data">
+The ICogVisionData object.
+</param>
+            <param name="dataOut">
+The concrete 3D vision data object.
+</param>
+            <returns> 
+A value to the vision data's <see cref="T:Cognex.VisionPro3D.Cog3DVisionDataTypes" />, 
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Implementation.Cog3DVisionDataUtils.GetRangeImageFromVisionData(Cognex.VisionPro.ICogVisionData)">
+            <summary>
+Get a
+<see cref="T:Cognex.VisionPro.CogImage16Range" /> from the
+supplied ICogVisionData object. If the ICogVisionData object
+is a <see cref="T:Cognex.VisionPro.CogImage16Range" /> type or
+a valid <see cref="T:Cognex.VisionPro.CogVisionDataContainer" /> type,
+this function returns a valid <see cref="T:Cognex.VisionPro.CogImage16Range" />
+object, otherwise a null pointer is returned.
+</summary>
+            <param name="data">
+The ICogVisionData object.
+</param>
+            <returns> 
+A reference to the vision data's <see cref="T:Cognex.VisionPro.CogImage16Range" />, 
+or null if the input argument does not reference a range image.
+</returns>
+        </member>
+        <member name="T:Cognex.VisionPro3D.Implementation.Cog3DInputVisionDataTypes">
+            <summary>
+Enumeration of 3d vision data types which indicate what
+is the concrete type given a ICogVisionData object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro3D.Implementation.Cog3DInputVisionDataTypes.PointCloudMesh">
+            <summary>
+A point cloud.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro3D.Implementation.Cog3DInputVisionDataTypes.RangeImage">
+            <summary>
+A range image.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro3D.Implementation.Cog3DInputVisionDataTypes.None">
+            <summary>
+Not a valid 3D vision data. It is a valid 3D vision data
+if it is a range image, or a vision data container which 
+contains a range image and a grey image, or a point cloud.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for the
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMesh" />
+class.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.GetProperties(System.Attribute[])">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.GetInternal">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.MaxSpanZ">
+            <summary>
+If
+<see cref="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.CheckSpanZ" />
+is true, limit triangles to those whose Z coordinate span is less than
+or equal to this value.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.CheckSpanZ">
+            <summary>
+If true, triangles are limited to those
+whose Z coordinate span is less than
+or equal to
+<see cref="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.MaxSpanZ" />.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.MaxSpanY">
+            <summary>
+If
+<see cref="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.CheckSpanY" />
+is true, limit triangles to those whose Y coordinate span is less than
+or equal to this value.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.CheckSpanY">
+            <summary>
+If true, triangles are limited to those
+whose Y coordinate span is less than
+or equal to
+<see cref="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.MaxSpanY" />.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.MaxSpanX">
+            <summary>
+If
+<see cref="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.CheckSpanX" />
+is true, limit triangles to those whose X coordinate span is less than
+or equal to this value.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.CheckSpanX">
+            <summary>
+If true, triangles are limited to those
+whose X coordinate span is less than
+or equal to
+<see cref="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.MaxSpanX" />.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.HonorPositionValidity">
+            <summary>
+If true, only valid points are considered in
+evaluating triangles. If false, all points
+are considered.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.SpaceName">
+            <summary>
+The point cloud coordinate space name, as
+specified when this accessor was created.
+This is the space in which triangles will
+be reported, and the space in which any
+span constraints will be interpreted.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.Reset">
+            <summary>
+Set this accessor to the initial position, which
+is before the first element in the point cloud.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.Current">
+            <summary>
+The triangle in the point cloud at the current
+position of the accessor.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.MoveNext">
+            <summary>
+Advance this accessor to the next triangle of the point cloud,
+spanning all roots in order.
+</summary>
+            <returns>
+True if the accessor was successfully advanced to the next triangle;
+false if the accessor has passed the end of the collection.
+</returns>
+            <remarks>
+Note that an individual triangle never spans multiple roots.
+</remarks>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.Finalize">
+            <summary>
+Finalize this triangle accessor.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.Dispose">
+            <summary>
+Destruct this triangle accessor.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.#ctor(Cognex.VisionPro3D.Cog3DPointCloudMesh,System.String)">
+            <summary>
+Construct a triangle accessor for the supplied cloud instance,
+with attributes reported in the specified space.
+</summary>
+            <param name="cloud">
+The mesh point cloud to be processed.
+</param>
+            <param name="spaceName">
+The name of the space in which to report attributes.
+This space must exist in the cloud's coordinate
+space tree.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="cloud" /> is null.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="spaceName" /> is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If <paramref name="spaceName" /> is an empty string.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the number of roots in the supplied point cloud
+is less than one.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.#ctor(Cognex.VisionPro3D.Cog3DPointCloudMesh)">
+            <summary>
+Construct a triangle accessor for the supplied cloud instance.
+</summary>
+            <param name="cloud">
+The mesh point cloud to be processed.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="cloud" /> is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the number of roots in the supplied point cloud
+is less than one.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro3D.Cog3DPointCloudMesh.PositionAccessor">
+            <inheritdoc />
+            <summary>
+This class provides both ordered and random access
+to the position attributes in this point cloud.
+</summary>
+            <remarks>
+An instance of this class is returned by the
+<see cref="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.GetPositionEnumerator">
+GetPositionEnumerator</see> method.
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.Accessor3F.NumPoints">
+            <summary>
+The total number of points in this point cloud.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.Accessor3F.default(System.Int32)">
+            <summary>
+The attribute in the point cloud at the specified
+index.
+</summary>
+            <param name="index">
+A zero -based index into the point cloud attributes.
+This is an aggregate index - it treats the set of
+roots as a single entity. So if there are two roots
+and each root has ten points, then an index of ten
+would refer to the initial point in the second root.
+</param>
+            <exception cref="T:System.ArgumentOutOfRange">
+If <paramref name="index" /> is less than zero or
+not less than the total number of points.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.Accessor3F.Reset">
+            <summary>
+Set this accessor to the initial position, which is
+before the first element in the point cloud.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.Accessor3F.Current">
+            <summary>
+The attribute in the point cloud at the current
+position of the accessor.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.Accessor3F.MoveNext">
+            <summary>
+Advance this accessor to the next element of the point cloud,
+spanning all roots in order.
+</summary>
+            <returns>
+True if the accessor was successfully advanced to the next element;
+false if the accessor has passed the end of the collection.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.Accessor3F.Dispose">
+            <summary>
+Destruct this accessor.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.Accessor3F.#ctor(Cognex.VisionPro3D.Cog3DPointCloudMesh,System.String)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro3D.Cog3DPointCloudMesh.Accessor3F">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.SetStorageFromRootTransform(System.Int32,Cognex.VisionPro3D.ICog3DTransform)">
+            <summary>
+Replace the existing storage-from-root transform
+at the specified index with the supplied
+value.
+</summary>
+            <param name="index">
+The zero -based index at which to replace the
+root and transform.
+</param>
+            <param name="storageFromRoot">
+The transform to be assigned.
+</param>
+            <exception cref="T:System.ArgumentOutOfRange">
+If <paramref name="index" /> is less than zero
+or not less than
+<see cref="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.NumRoots" />.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="storageFromRoot" /> is null.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this method changes the internal state of this object.
+<para>
+The following state flags may be affected:
+</para><list type="bullet"><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfGetStorageFromRootTransform" /></item></list></event>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.GetStorageFromRootTransform(System.Int32)">
+            <summary>
+Return the reference to the storage-from-root
+transform at the specified index.
+</summary>
+            <param name="index">
+The zero -based index of the desired
+storage-from-root transform.
+</param>
+            <exception cref="T:System.ArgumentOutOfRange">
+If <paramref name="index" /> is less than zero
+or not less than
+<see cref="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.NumRoots" />.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.SetRoot(System.Int32,Cognex.VisionPro3D.Cog3DPointCloudMeshRoot)">
+            <summary>
+Replace the existing root at the specified
+index with the supplied value.
+</summary>
+            <param name="index">
+The zero -based index at which to replace the
+root.
+</param>
+            <param name="root">
+The root object to be assigned.
+</param>
+            <exception cref="T:System.ArgumentOutOfRange">
+If <paramref name="index" /> is less than zero
+or not less than
+<see cref="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.NumRoots" />.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="root" /> is null.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this method changes the internal state of this object.
+<para>
+The following state flags may be affected:
+</para><list type="bullet"><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfGetRoot" /></item></list></event>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.GetRoot(System.Int32)">
+            <summary>
+Return the reference to the root object
+at the specified index.
+</summary>
+            <param name="index">
+The zero -based index of the desired
+root object.
+</param>
+            <exception cref="T:System.ArgumentOutOfRange">
+If <paramref name="index" /> is less than zero
+or not less than
+<see cref="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.NumRoots" />.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.ClearRootsAndTransforms">
+            <summary>
+Remove any and all existing roots and storage-from-root
+transforms from this point cloud.
+</summary>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this method changes the internal state of this object.
+<para>
+The following state flags may be affected:
+</para><list type="bullet"><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfNumRoots" /></item><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfGetRoot" /></item><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfGetStorageFromRootTransform" /></item></list></event>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.RemoveRootAndTransform(System.Int32)">
+            <summary>
+Remove the existing root and storage-from-root
+transform at specified index.
+</summary>
+            <param name="index">
+The zero -based index at which to remove the
+root and transform.
+</param>
+            <exception cref="T:System.ArgumentOutOfRange">
+If <paramref name="index" /> is less than zero
+or not less than
+<see cref="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.NumRoots" />.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this method changes the internal state of this object.
+<para>
+The following state flags may be affected:
+</para><list type="bullet"><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfNumRoots" /></item><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfGetRoot" /></item><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfGetStorageFromRootTransform" /></item></list></event>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.AddRootAndTransform(Cognex.VisionPro3D.Cog3DPointCloudMeshRoot,Cognex.VisionPro3D.ICog3DTransform)">
+            <summary>
+Append the supplied root and storage-from-root
+transform to this point cloud.
+</summary>
+            <param name="root">
+The root object to be appended.
+</param>
+            <param name="storageFromRoot">
+The transform to be appended.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If either <paramref name="root" /> or
+<paramref name="storageFromRoot" /> is null.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this method changes the internal state of this object.
+<para>
+The following state flags may be affected:
+</para><list type="bullet"><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfNumRoots" /></item><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfGetRoot" /></item><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfGetStorageFromRootTransform" /></item></list></event>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.InsertRootAndTransform(System.Int32,Cognex.VisionPro3D.Cog3DPointCloudMeshRoot,Cognex.VisionPro3D.ICog3DTransform)">
+            <summary>
+Insert the supplied root and storage-from-root
+transform at the specified index.
+</summary>
+            <param name="index">
+The zero -based index at which to insert the
+supplied root and transform.
+</param>
+            <param name="root">
+The root object to be inserted.
+</param>
+            <param name="storageFromRoot">
+A transform that describes the mapping
+from the base ("root") of the coordinate space tree
+to the storage space of the supplied root.
+object.
+</param>
+            <exception cref="T:System.ArgumentOutOfRange">
+If <paramref name="index" /> is less than zero
+or greater than
+<see cref="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.NumRoots" />.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If either <paramref name="root" /> or
+<paramref name="storageFromRoot" /> is null.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this method changes the internal state of this object.
+<para>
+The following state flags may be affected:
+</para><list type="bullet"><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfNumRoots" /></item><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfGetRoot" /></item><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfGetStorageFromRootTransform" /></item></list></event>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.NumRoots">
+            <summary>
+Get the number of roots in this mesh point cloud.
+May be zero.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.GetTriangleEnumerator">
+            <summary>
+Gets a triangle enumerator for this point cloud.
+Note that in the case of multiple roots, this
+enumerator will step through the contents of
+each root in order. The number of triangles will
+not equal the number of points in this point cloud.
+</summary>
+            <returns>
+A reference to a
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor" />.
+</returns>
+            <exception cref="T:System.InvalidOperationException">
+If there is less than one root in this point cloud.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.GetNormalEnumerator">
+            <summary>
+      Returns an interator that will step through the Normal attributes of
+      every point in this point cloud. If no Normal data is available this
+      method returns a null.
+    </summary>
+            <remarks>
+If this point cloud has multiple roots, then this iterator will
+step through every point in every root.
+</remarks>
+            <returns>
+A reference to a
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMesh.NormalAccessor" />.
+</returns>
+            <exception cref="T:System.InvalidOperationException">
+If there is less than one root in this point cloud.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.GetPositionEnumerator">
+            <summary>
+      Returns an iterator that will step through the positions of every
+      point in this point cloud.
+    </summary>
+            <remarks>
+If this point cloud has multiple roots, then this iterator will
+step through every point in every root.
+</remarks>
+            <returns>
+A reference to a
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMesh.PositionAccessor" />.
+</returns>
+            <exception cref="T:System.InvalidOperationException">
+If there is less than one root in this point cloud.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.CoordinateSpaceTree3D">
+            <!-- path resulted in empty nodelist -->
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+  Fires when this property changes.
+  The following state flags may be affected:
+  <list type="bullet"><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfCoordinateSpaceTree3D" /></item></list></event>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMesh.SelectedSpaceName3D">
+            <summary>
+      Gets or sets the name of the three dimensional coordinate
+      space to be used by tools which process this point cloud.
+    </summary>
+            <value>
+      The 3D selected space name for this point cloud.
+      The default value is "@".
+    </value>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSpaceTreeInvalidNameSyntaxException">
+      If the supplied space name is not syntactically valid.
+    </exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+  Fires when this property changes.
+  The following state flags may be affected:
+  <list type="bullet"><item><see cref="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfSelectedSpaceName3D" /></item></list></event>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.Clone">
+            <summary>
+Returns a deep copy of this class instance. Derived classes that
+implement Clone should override this method. Other clients
+who wish to clone this instance should call ICloneable::Clone.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.Finalize">
+            <summary>
+Finalize this
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMesh" />.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.Dispose">
+            <summary>
+Destruct this
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMesh" />.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.#ctor(System.IntPtr)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.#ctor(Cognex.VisionPro.CogImage16Range)">
+            <summary>
+                <para>
+Construct a
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMesh" /> from the
+supplied range image.
+</para>
+                <para>
+                    <list type="bullet">
+                        <item>
+The range image height data is mapped into the storage space
+specified by the SelectedSpaceName3D of the input range image.
+</item>
+                        <item>
+The SelectedSpaceName3D is set to the SelectedSpaceName3D
+of the input range image.
+argument.
+</item>
+                        <item>
+The CoordinateSpaceTree3D is shared with the input range image.
+</item>
+                        <item>
+The StorageFromRootTransform is computed so that the mapping between
+storage space ("#") and the SelectedSpaceName3D is effectively
+an identity transform.
+</item>
+                    </list>
+                </para>
+            </summary>
+            <param name="rangeImage">
+The range image from which to generate the contents
+of this mesh point cloud.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="rangeImage" /> is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If <paramref name="rangeImage" /> is not allocated.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.#ctor(Cognex.VisionPro.CogImage16Range,System.String)">
+            <summary>
+                <para>
+Construct a
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMesh" /> from the
+supplied range image.
+</para>
+                <para>
+                    <list type="bullet">
+                        <item>
+The range image height data is mapped into storage space
+as specified by the desiredStorageSpaceName argument.
+</item>
+                        <item>
+The SelectedSpaceName3D is set to the desiredStorageSpaceName
+argument.
+</item>
+                        <item>
+The CoordinateSpaceTree3D is shared with the input range image.
+</item>
+                        <item>
+The StorageFromRootTransform is computed so that the mapping between
+storage space ("#") and the SelectedSpaceName3D (the
+desiredStorageSpaceName argument) is effectively an identity
+transform.
+</item>
+                    </list>
+                </para>
+            </summary>
+            <param name="rangeImage">
+The range image from which to generate the contents
+of this mesh point cloud.
+</param>
+            <param name="desiredStorageSpaceName">
+The name of the coordinate space in the supplied range
+image's 3D coordinate space tree that defines the desired
+storage space for this point cloud.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="rangeImage" /> is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If <paramref name="rangeImage" /> is not allocated.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="desiredStorageSpaceName" /> is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.#ctor(Cognex.VisionPro3D.Cog3DPointCloudMesh)">
+            <summary>
+Copy construct a
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMesh" /> from the
+supplied instance.
+</summary>
+            <param name="other">
+The mesh point cloud to be copied.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="other" /> is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMesh.#ctor">
+            <summary>
+Default construct a
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMesh" />.
+This mesh will have an empty coordinate space tree,
+an empty list of roots, and an empty list of storage
+from root transforms.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfGetStorageFromRootTransform">
+            <summary>
+This bit wil be set in the EventArgs of a Changed event
+ever time the value returned by GetStorageFromRootTransform
+may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfGetRoot">
+            <summary>
+This bit wil be set in the EventArgs of a Changed event
+ever time the value returned by GetRoot
+may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfNumRoots">
+            <summary>
+This bit wil be set in the EventArgs of a Changed event
+ever time the value returned by NumRoots
+may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfCoordinateSpaceTree3D">
+            <summary>
+This bit wil be set in the EventArgs of a Changed event
+ever time the value returned by CoordinateSpaceTree3D
+may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro3D.Cog3DPointCloudMesh.SfSelectedSpaceName3D">
+            <summary>
+This bit wil be set in the EventArgs of a Changed event
+ever time the value returned by SelectedSpaceName3D
+may have changed.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for the
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot" />
+class.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.GetGreyMask">
+            <summary>
+Get the greyscale mask associated with
+the greyscale image associated with this
+root.
+</summary>
+            <returns>
+Will be null if there is no grey mask.
+That can happen if there is no grey
+image. That can also happen if there
+is a grey image, and all pixels are
+valid/visible.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.GetGreyImage">
+            <summary>
+Get the greyscale image associated with
+this root.
+</summary>
+            <returns>
+Will be null if there is no grey data
+available.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.CopyNormalValidityTo(System.Byte[],System.Int32)">
+            <summary>
+      Copy the normal validity values to the supplied,
+      previously allocated array of byte.
+    </summary>
+            <param name="dest">
+      The destination array of type byte.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins.
+    </param>
+            <exception cref="T:System.InvalidOperationException">
+      If HasNormal is false.
+    </exception>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.CopyNormalTo(System.Single[],System.Int32)">
+            <summary>
+      Copy the normal X, Y, Z coordinates to the supplied,
+      previously allocated array of float.
+    </summary>
+            <param name="dest">
+      The destination array of type float.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins. Note that since we are writing three floats per point,
+      the destStartIndex parameter should be a multiple of three,
+      e.g. 0, 3, 6, and so on.
+    </param>
+            <exception cref="T:System.InvalidOperationException">
+      If HasNormal is false.
+    </exception>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.CopyNormalTo(Cognex.VisionPro3D.Cog3DVect3F[],System.Int32)">
+            <summary>
+      Copy the normal X, Y, Z coordinates to the supplied,
+      previously allocated array of Cog3DVect3F. Writing
+      starts at the specified element of the destination array.
+    </summary>
+            <param name="dest">
+      The destination array of type Cog3DVect3F.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins.
+    </param>
+            <exception cref="T:System.InvalidOperationException">
+      If HasNormal is false.
+    </exception>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.CopyNormalAndValidityTo(Cognex.VisionPro3D.Cog3DPointCloudAttribute3F[],System.Int32)">
+            <summary>
+      Copy the normal attribute data (X, Y, Z coordinates and
+      normal validity values) to the supplied, previously allocated
+      array of Cog3DPointCloudAttribute3F. Writing starts at the
+      specified element of the destination array.
+    </summary>
+            <param name="dest">
+      The destination array of type Cog3DPointCloudAttribute3F.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins.
+    </param>
+            <exception cref="T:System.InvalidOperationException">
+      If HasNormal is false.
+    </exception>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.HasNormal">
+            <summary>
+      Does this root object have normal data?
+    </summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.CopyPositionValidityTo(System.Byte[],System.Int32)">
+            <summary>
+      Copy the position validity values to the supplied,
+      previously allocated array of byte.
+    </summary>
+            <param name="dest">
+      The destination array of type byte.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins.
+    </param>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.CopyPositionTo(System.Single[],System.Int32)">
+            <summary>
+      Copy the position X, Y, Z coordinates to the supplied,
+      previously allocated array of float.
+    </summary>
+            <param name="dest">
+      The destination array of type float.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins. Note that since we are writing three floats per point,
+      the destStartIndex parameter should be a multiple of three,
+      e.g. 0, 3, 6, and so on.
+    </param>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.CopyPositionTo(Cognex.VisionPro3D.Cog3DVect3F[],System.Int32)">
+            <summary>
+      Copy the position X, Y, Z coordinates to the supplied,
+      previously allocated array of Cog3DVect3F. Writing
+      starts at the specified element of the destination array.
+    </summary>
+            <param name="dest">
+      The destination array of type Cog3DVect3F.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins.
+    </param>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.CopyPositionAndValidityTo(Cognex.VisionPro3D.Cog3DPointCloudAttribute3F[],System.Int32)">
+            <summary>
+      Copy the position attribute data (X, Y, Z coordinates and
+      position validity values) to the supplied, previously allocated
+      array of Cog3DPointCloudAttribute3F. Writing starts at the
+      specified element of the destination array.
+    </summary>
+            <param name="dest">
+      The destination array of type Cog3DPointCloudAttribute3F.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins.
+    </param>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.ReconstructionEndTime">
+            <summary>
+Some sensors include the timestamps of events such as the end of
+the reconstruction process, while other sensors do not. The
+reconstruction process is whatever algorithm processes and
+interprets the raw acquired data, and produces a point cloud
+root. If available, this property represents the time at which
+reconstruction was completed for this
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot" />,
+expressed as the number of milliseconds since January 1, 1970 UTC.
+If this information is not available, the return value will be -1.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.AcquisitionBeginTime">
+            <summary>
+Some sensors include the timestamps of events such as the beginning of
+the acquisition process, while other sensors do not. If available,
+this property represents the time at which acquisiton of this
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot" />
+began, expressed as the number of milliseconds since January 1, 1970 UTC.
+If this information is not available, the return value will be -1.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.NumPoints">
+            <summary>
+      The number of points in this point cloud root. Some
+      of these points may not be "valid".
+    </summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.Height">
+            <summary>
+The number of rows of surface points in this
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot" />.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.Width">
+            <summary>
+The number of columns of surface points in this
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot" />.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.Clone">
+            <summary>
+Returns a deep copy of this class instance. Derived classes that
+implement Clone should override this method. Other clients
+who wish to clone this instance should call ICloneable::Clone.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.GetInternal">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.Dispose">
+            <summary>
+Destruct this
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot" />.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.#ctor(System.IntPtr)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.#ctor(Cognex.VisionPro3D.Cog3DPointCloudMeshRoot)">
+            <summary>
+Construct this
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot">mesh
+root</see> from the supplied mesh root.
+</summary>
+            <param name="other">
+The mesh root to be copied.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="other" /> is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.#ctor(System.Int32,Cognex.VisionPro3D.Cog3DPointCloudAttribute3F[])">
+            <summary>
+Construct this
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot">mesh
+root</see> from the supplied position data.
+</summary>
+            <param name="width">
+The number of columns in this mesh root. Must be
+greater than zero.
+</param>
+            <param name="positions">
+A one dimensional array of
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudAttribute3F">points
+</see> that each specify the X,Y,Z coordinates of a single
+surface point in storage space along with a validity byte. This array
+is assumed to be in row-major format where each row holds
+<paramref name="width" />
+many points. This parameter may not be null.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If <paramref name="width" /> is less than one.
+</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the number of points is not an even multiple of
+<paramref name="width" />.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="positions" /> is null.
+</exception>
+            <exception cref="T:System.OutOfMemoryException">
+If sufficient storage cannot be allocated.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.#ctor(System.Int32,Cognex.VisionPro3D.Cog3DPointCloudAttribute3F[],Cognex.VisionPro3D.Cog3DPointCloudAttribute3F[],Cognex.VisionPro.ICogImage,Cognex.VisionPro.CogImage8Grey)">
+            <summary>
+Construct this
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot">mesh
+root</see> from the supplied position data as well
+as the optional surface normal and/or grey image data.
+</summary>
+            <param name="width">
+The number of columns in this mesh root. Must be
+greater than zero.
+</param>
+            <param name="positions">
+A one dimensional array of
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudAttribute3F">points
+</see> that each specify the X,Y,Z coordinates of a single
+surface point in storage space along with a validity byte. This array
+is assumed to be in row-major format where each row holds
+<paramref name="width" />
+many points. This parameter may not be null.
+</param>
+            <param name="normals">
+An optional array of
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudAttribute3F">surface
+normals</see> that each specify the X,Y,Z components of
+a surface normal vector in storage space along with a validity
+byte. This array is assumed to be in row-major format where
+each row holds <paramref name="width" /> many points.
+If non-null, this must have the same number of elements as the
+<paramref name="positions" /> parameter.
+</param>
+            <param name="greyImage">
+Optional grey image. This does not necessarily correspond
+to the number of points in this point cloud mesh root.
+</param>
+            <param name="greyMask">
+Option grey mask. This must have the same width and height
+as the <paramref name="greyImage" /> parameter.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If <paramref name="width" /> is less than one.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="positions" /> is null.
+</exception>
+            <exception cref="T:System.OutOfMemoryException">
+If sufficient storage cannot be allocated.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot">
+            <summary>
+This class holds per-point data associated with a
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMesh">mesh
+point cloud</see>. This will always include position data, and may
+include other attributes (such as surface normals). In addition,
+this class may hold an optional greyscale image and a related mask. A
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudMesh">mesh
+point cloud</see> may have more than one of these root objects.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.ICog3DPointCloud.GetNormalEnumerator">
+            <summary>
+      Returns an interator that will step through the Normal attributes of
+      every point in this point cloud. If no Normal data is available this
+      method returns a null.
+    </summary>
+            <remarks>
+If this point cloud has multiple roots, then this iterator will
+step through every point in every root.
+</remarks>
+        </member>
+        <member name="M:Cognex.VisionPro3D.ICog3DPointCloud.GetPositionEnumerator">
+            <summary>
+      Returns an iterator that will step through the positions of every
+      point in this point cloud.
+    </summary>
+            <remarks>
+If this point cloud has multiple roots, then this iterator will
+step through every point in every root.
+</remarks>
+        </member>
+        <member name="M:Cognex.VisionPro3D.ICog3DPointCloud.GetTransform3D(System.String,System.String)">
+            <summary>
+      Returns a transform that maps three dimensional points
+      from the 'From' space to the 'To' space.
+      The special string "." is accepted as an alias
+      for the SelectedSpaceName3D of this point cloud.
+    </summary>
+            <param name="ToSpaceName">
+      The name of the three dimensional coordinate
+      space to transform the point to. The special string "." is
+      accepted as an alias for the SelectedSpaceName3D of this point cloud.
+    </param>
+            <param name="FromSpaceName">
+      The name of the three dimensional coordinate
+      space to transform the point from. The special string "." is
+      accepted as an alias for the SelectedSpaceName3D of this point cloud.
+    </param>
+            <exception cref="T:System.ArgumentNullException">
+      If ToSpaceName is null.
+    </exception>
+            <exception cref="T:System.ArgumentNullException">
+      If FromSpaceName is null.
+    </exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSpaceTreeNameNotInTreeException">
+      If either space name is not found in the CoordinateSpaceTree3D.
+    </exception>
+            <remarks>
+In VisionPro point clouds, '#' is shorthand for the
+coordinate space in which points are stored. This is analagous to the
+way it is used to refer to pixel space coordinates in a VisionPro
+image.  Some point clouds support multiple roots and some do not. For
+those that do, we honor the notation "#n", in which n can
+have values 0, 1, 2, and so on. So coordinates in the storage space of
+the third root in a point cloud could be referenced as "#2".
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro3D.ICog3DPointCloud.CoordinateSpaceTree3D">
+            <!-- path resulted in empty nodelist -->
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+  Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro3D.ICog3DPointCloud.SelectedSpaceName3D">
+            <summary>
+      Gets or sets the name of the three dimensional coordinate
+      space to be used by tools which process this point cloud.
+    </summary>
+            <value>
+      The 3D selected space name for this point cloud.
+      The default value is "@".
+    </value>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSpaceTreeInvalidNameSyntaxException">
+      If the supplied space name is not syntactically valid.
+    </exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+  Fires when this property changes.
+</event>
+        </member>
+        <member name="T:Cognex.VisionPro3D.ICog3DPointCloud">
+            <summary>
+The ICog3DPointCloud class defines a common interface for  
+point clouds.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.ICog3DPointCloudRoot.CopyNormalValidityTo(System.Byte[],System.Int32)">
+            <summary>
+      Copy the normal validity values to the supplied,
+      previously allocated array of byte.
+    </summary>
+            <param name="dest">
+      The destination array of type byte.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins.
+    </param>
+            <exception cref="T:System.InvalidOperationException">
+      If HasNormal is false.
+    </exception>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.ICog3DPointCloudRoot.CopyNormalTo(System.Single[],System.Int32)">
+            <summary>
+      Copy the normal X, Y, Z coordinates to the supplied,
+      previously allocated array of float.
+    </summary>
+            <param name="dest">
+      The destination array of type float.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins. Note that since we are writing three floats per point,
+      the destStartIndex parameter should be a multiple of three,
+      e.g. 0, 3, 6, and so on.
+    </param>
+            <exception cref="T:System.InvalidOperationException">
+      If HasNormal is false.
+    </exception>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.ICog3DPointCloudRoot.CopyNormalTo(Cognex.VisionPro3D.Cog3DVect3F[],System.Int32)">
+            <summary>
+      Copy the normal X, Y, Z coordinates to the supplied,
+      previously allocated array of Cog3DVect3F. Writing
+      starts at the specified element of the destination array.
+    </summary>
+            <param name="dest">
+      The destination array of type Cog3DVect3F.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins.
+    </param>
+            <exception cref="T:System.InvalidOperationException">
+      If HasNormal is false.
+    </exception>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.ICog3DPointCloudRoot.CopyNormalAndValidityTo(Cognex.VisionPro3D.Cog3DPointCloudAttribute3F[],System.Int32)">
+            <summary>
+      Copy the normal attribute data (X, Y, Z coordinates and
+      normal validity values) to the supplied, previously allocated
+      array of Cog3DPointCloudAttribute3F. Writing starts at the
+      specified element of the destination array.
+    </summary>
+            <param name="dest">
+      The destination array of type Cog3DPointCloudAttribute3F.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins.
+    </param>
+            <exception cref="T:System.InvalidOperationException">
+      If HasNormal is false.
+    </exception>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="P:Cognex.VisionPro3D.ICog3DPointCloudRoot.HasNormal">
+            <summary>
+      Does this root object have normal data?
+    </summary>
+        </member>
+        <member name="M:Cognex.VisionPro3D.ICog3DPointCloudRoot.CopyPositionValidityTo(System.Byte[],System.Int32)">
+            <summary>
+      Copy the position validity values to the supplied,
+      previously allocated array of byte.
+    </summary>
+            <param name="dest">
+      The destination array of type byte.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins.
+    </param>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.ICog3DPointCloudRoot.CopyPositionTo(System.Single[],System.Int32)">
+            <summary>
+      Copy the position X, Y, Z coordinates to the supplied,
+      previously allocated array of float.
+    </summary>
+            <param name="dest">
+      The destination array of type float.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins. Note that since we are writing three floats per point,
+      the destStartIndex parameter should be a multiple of three,
+      e.g. 0, 3, 6, and so on.
+    </param>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.ICog3DPointCloudRoot.CopyPositionTo(Cognex.VisionPro3D.Cog3DVect3F[],System.Int32)">
+            <summary>
+      Copy the position X, Y, Z coordinates to the supplied,
+      previously allocated array of Cog3DVect3F. Writing
+      starts at the specified element of the destination array.
+    </summary>
+            <param name="dest">
+      The destination array of type Cog3DVect3F.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins.
+    </param>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="M:Cognex.VisionPro3D.ICog3DPointCloudRoot.CopyPositionAndValidityTo(Cognex.VisionPro3D.Cog3DPointCloudAttribute3F[],System.Int32)">
+            <summary>
+      Copy the position attribute data (X, Y, Z coordinates and
+      position validity values) to the supplied, previously allocated
+      array of Cog3DPointCloudAttribute3F. Writing starts at the
+      specified element of the destination array.
+    </summary>
+            <param name="dest">
+      The destination array of type Cog3DPointCloudAttribute3F.
+      May not be null.
+    </param>
+            <param name="destStartIndex">
+      A zero based index into the destination array at which copying
+      begins.
+    </param>
+            <exception cref="T:System.ArgumentNullException">
+      If <paramref name="dest" /> is null.
+    </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+      If <paramref name="destStartIndex" /> is not valid.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> is not of rank 1.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If <paramref name="dest" /> does not have zero based indexing.
+    </exception>
+            <exception cref="T:System.ArgumentException">
+      If the requested data will not fit into the destination
+      array starting at the specified index.
+    </exception>
+        </member>
+        <member name="P:Cognex.VisionPro3D.ICog3DPointCloudRoot.NumPoints">
+            <summary>
+      The number of points in this point cloud root. Some
+      of these points may not be "valid".
+    </summary>
+        </member>
+        <member name="T:Cognex.VisionPro3D.ICog3DPointCloudRoot">
+            <summary>
+The ICog3DPointCloudRoot class defines a common interface for  
+point cloud roots.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudTriangle.PositionZ3">
+            <summary>
+Gets the third point's Z value.
+</summary>
+            <value>
+The third point's Z value.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudTriangle.PositionY3">
+            <summary>
+Gets the third point's Y value.
+</summary>
+            <value>
+The third point's Y value.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudTriangle.PositionX3">
+            <summary>
+Gets the third point's X value.
+</summary>
+            <value>
+The third point's X value.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudTriangle.PositionZ2">
+            <summary>
+Gets the second point's Z value.
+</summary>
+            <value>
+The second point's Z value.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudTriangle.PositionY2">
+            <summary>
+Gets the second point's Y value.
+</summary>
+            <value>
+The second point's Y value.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudTriangle.PositionX2">
+            <summary>
+Gets the second point's X value.
+</summary>
+            <value>
+The second point's X value.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudTriangle.PositionZ1">
+            <summary>
+Gets the first point's Z value.
+</summary>
+            <value>
+The first point's Z value.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudTriangle.PositionY1">
+            <summary>
+Gets the first point's Y value.
+</summary>
+            <value>
+The first point's Y value.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudTriangle.PositionX1">
+            <summary>
+Gets the first point's X value.
+</summary>
+            <value>
+The first point's X value.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudTriangle.PointIndex3">
+            <summary>
+Gets the zero based the third point index.
+</summary>
+            <value>
+The third point index.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudTriangle.PointIndex2">
+            <summary>
+Gets the zero based the second point index.
+</summary>
+            <value>
+The second point index.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudTriangle.PointIndex1">
+            <summary>
+Gets the zero based the first point index.
+</summary>
+            <value>
+The first point index.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudTriangle.RootIndex">
+            <summary>
+Gets the zero based root index.
+</summary>
+            <value>
+The root index.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudTriangle.TriangleIndex">
+            <summary>
+Gets the zero based triangle index.
+</summary>
+            <value>
+The triangle index in the point cloud.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudTriangle.#ctor(System.Int32,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Int32,System.Single,System.Single,System.Single,System.Int32,System.Single,System.Single,System.Single)">
+            <summary>
+Construct
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudTriangle" /> from supplied values.
+</summary>
+            <param name="triangleIndex">
+The initial triangle index.
+</param>
+            <param name="rootIndex">
+The initial root index.
+</param>
+            <param name="pointIndex1">
+The initial first point index.
+</param>
+            <param name="positionX1">
+The initial first point's X value.
+</param>
+            <param name="positionY1">
+The initial first point's Y value.
+</param>
+            <param name="positionZ1">
+The initial first point's Z value.
+</param>
+            <param name="pointIndex2">
+The initial second point index.
+</param>
+            <param name="positionX2">
+The initial second point's X value.
+</param>
+            <param name="positionY2">
+The initial second point's Y value.
+</param>
+            <param name="positionZ2">
+The initial second point's Z value.
+</param>
+            <param name="pointIndex3">
+The initial third point index.
+</param>
+            <param name="positionX3">
+The initial third point's X value.
+</param>
+            <param name="positionY3">
+The initial third point's Y value.
+</param>
+            <param name="positionZ3">
+The initial third point's Z value.
+</param>
+            <exception cref="T:System.ArgumentException">
+If the first point index is less than zero or the second point index is less than zero
+or the third point index is less than zero.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro3D.Cog3DPointCloudTriangle">
+            <summary>
+Object that describes a triangle.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudAttribute3F.Validity">
+            <summary>
+Gets the Validity value.
+</summary>
+            <value>
+The Validity value.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudAttribute3F.Z">
+            <summary>
+Gets the Z coordinate value.
+</summary>
+            <value>
+The Z coordinate value.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudAttribute3F.Y">
+            <summary>
+Gets the Y coordinate value.
+</summary>
+            <value>
+The Y coordinate value.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro3D.Cog3DPointCloudAttribute3F.X">
+            <summary>
+Gets the X coordinate value.
+</summary>
+            <value>
+The X coordinate value.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro3D.Cog3DPointCloudAttribute3F.#ctor(System.Byte,System.Single,System.Single,System.Single)">
+            <summary>
+Construct 
+<see cref="T:Cognex.VisionPro3D.Cog3DPointCloudAttribute3F" />
+with the supplied X,Y,Z and Validity values.
+</summary>
+            <param name="initialValidity">
+The initial Validity value.
+</param>
+            <param name="initialX">
+The initial X value.
+</param>
+            <param name="initialY">
+The initial Y value.
+</param>
+            <param name="initialZ">
+The initial Z value.
+</param>
+        </member>
+        <member name="T:Cognex.VisionPro3D.Cog3DPointCloudAttribute3F">
+            <summary>
+                <para>
+Object describes an attribute with three floating values
+and a byte value to indicate if the attribute is valid.
+</para>
+            </summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.Add(System.String,System.IntPtr)">
+            <summary>    
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.GetRangeGreyImagePairs(Cognex.VisionPro.CogImage16Range[]@,Cognex.VisionPro.CogImage16Grey[]@,System.String[]@)">
+            <summary>
+This method steps through the top level elements in the
+container. For every element that is itself a container
+holding exactly one CogImage16Range and exactly one
+CogImage16Grey (and possibly some other objects), copy a
+reference to that range image into the output array of
+CogImage16Range references. And copy a reference to the
+grey image into the output array of CogImage16Grey. And
+copy the associated top level dictionary key string into
+the output array of string references. The output arrays
+may be empty. This method ignores top level elements that
+are not of type CogVisionDataContainer. This method ignores
+top level elements that contain more than one CogImage16Range
+or more than one CogImage16Grey.
+</summary>
+            <param name="rangeImages">
+The output array of CogImage16Range references. This output
+array is always allocated by this method, but the resultant
+array may be empty.
+</param>
+            <param name="greyImages">
+The output array of CogImage16Grey references. This output
+array is always allocated by this method, but the resultant
+array may be empty.
+</param>
+            <param name="identifiers">
+The output array of string references. This output array
+is always allocated by this method, but the resultant
+array may be empty.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.GetRangeImages(Cognex.VisionPro.CogImage16Range[]@,System.String[]@)">
+            <summary>
+This method steps through the top level elements in this
+container and copies a reference to every CogImage16Range
+that it finds into an output array of CogImage16Range references.
+For every range image so identified, the associated dictionary
+key string is copied into an output array of string references.
+The resultant output arrays may be empty. This method ignores
+top level elements that are not of type CogImage16Range.
+</summary>
+            <param name="rangeImages">
+The output array of CogImage16Range references. This output
+array is always allocated by this method, but the resultant
+array may be empty.
+</param>
+            <param name="identifiers">
+The output array of string references. This output array
+is always allocated by this method, but the resultant
+array may be empty.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.CogVisionDataContainer.IsRangeGreyImagePair">
+            <summary>
+Returns true if this object is a Range/Grey image pair.  Otherwise,
+returns false.  A CogVisionDataContainer is a Range/Grey image pair
+if contains exactly one CogImage16Range and one CogImage16Grey,
+nothing else.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogVisionDataContainer.ContainsRangeGreyImagePairsOnly">
+            <summary>
+Returns true only if this collection is non-empty and all of its
+contained elements are Range/Grey image pairs.  Otherwise, returns
+false.  An element is a Range/Grey image pair if it is itself a
+CogVisionDataContainer that contains exactly one CogImage16Range and
+one CogImage16Grey, nothing else.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogVisionDataContainer.ContainsRangeImagesOnly">
+            <summary>
+Returns true if:
+<list type="bullet"><item>
+The collection contains at least one element that is
+a CogImage16Range, and
+</item><item>
+The collection contains no elements that are not
+a CogImage16Range.
+</item></list>
+Otherwise, returns false.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.TryGetValue(System.String,Cognex.VisionPro.ICogVisionData@)">
+            <summary>
+If this container holds the specified key,
+output the associated ICogVisionData value.
+Return true if the key was found, otherwise
+return false.
+</summary>
+            <param name="key">
+Search for this key.
+</param>
+            <param name="value">
+The found ICogVisionData value.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.ContainsValue(Cognex.VisionPro.ICogVisionData)">
+            <summary>
+Returns true if the specified value is found in this container,
+otherwise returns false.
+</summary>
+            <param name="value">
+The ICogVisionData value of interest.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.ContainsKey(System.String)">
+            <summary>
+Returns true if the specified key is found in this container,
+otherwise returns false.
+</summary>
+            <param name="key">
+The key of interest.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.CogVisionDataContainer.Values">
+            <summary>
+Gets a collection of all ICogVisionData values in this container.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogVisionDataContainer.Keys">
+            <summary>
+Gets a collection of all key strings in this container.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.Move(System.Int32,System.Int32)">
+            <summary>
+Moves a key value pair from one position to another.
+</summary>
+            <param name="fromIndex">The pair's original index.</param>
+            <param name="toIndex">The pair's new index.</param>
+            <exception cref="System.ArgumentOutOfRangeException">
+If fromIndex is less than zero or fromIndex is greater than
+or equal to Count.
+</exception>
+            <exception cref="System.ArgumentOutOfRangeException">
+If toIndex is less than zero or toIndex is greater than
+or equal to Count.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.Insert(System.Int32,System.String,Cognex.VisionPro.ICogVisionData)">
+            <summary>
+Inserts a key value pair with the supplied
+string key and ICogVisionData value at the
+specified index.
+</summary>
+            <param name="index">The zero-based index at which
+to insert the specified key value pair.
+</param>
+            <param name="key">The string key to use for this
+new item. May not be null, and may not be an empty
+string.
+</param>
+            <param name="value">The ICogVisionData value to use
+for this new item.
+</param>
+            <exception cref="System.ArgumentOutOfRangeException">
+If index is less than zero or index is greater than
+Count.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.Insert(System.Int32,System.Collections.Generic.KeyValuePair`2{System.String,Cognex.VisionPro.ICogVisionData})">
+            <summary>
+Inserts the supplied key value pair at the specified index.
+</summary>
+            <param name="index">The zero-based index at which
+to insert the supplied key value pair.
+</param>
+            <exception cref="System.ArgumentOutOfRangeException">
+If index is less than zero or index is greater than
+Count.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.RemoveAt(System.Int32)">
+            <summary>
+Removes the key value pair at the specified index.
+</summary>
+            <param name="index">The zero-based index of the
+key value pair to remove.
+</param>
+            <exception cref="System.ArgumentOutOfRangeException">
+If index is less than zero or index is greater than or equal
+to Count.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.Remove(Cognex.VisionPro.ICogVisionData)">
+            <summary>
+Removes from this container the key value pair with the
+specified value. Does nothing if this value is not found.
+</summary>
+            <param name="value">Remove the key value pair with this value,
+if found.
+</param>
+            <returns>True if the specified key value pair was
+removed, False otherwise.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.Remove(System.String)">
+            <summary>
+Removes from this container the key value pair with the
+specified key. Does nothing if this key is not found.
+</summary>
+            <param name="key">Remove the key value pair with this key,
+if found.
+</param>
+            <returns>True if the specified key value pair was
+removed, False otherwise.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.Remove(System.Collections.Generic.KeyValuePair`2{System.String,Cognex.VisionPro.ICogVisionData})">
+            <summary>
+Removes the supplied key value pair from this container.
+Does nothing if the supplied key value pair is not found.
+</summary>
+            <param name="pair">Remove this key value pair if found.
+</param>
+            <returns>True if the specified key value pair was
+removed, False otherwise.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.CopyTo(System.Collections.Generic.KeyValuePair`2{System.String,Cognex.VisionPro.ICogVisionData}[],System.Int32)">
+            <summary>
+Copies the entire collection to a one-dimensional array
+of key value pairs, starting at the specified
+index of the target array.
+</summary>
+            <param name="arr">The one-dimensional array that is the
+destination of the elements copied from this container.
+The array must have zero-based indexing.
+</param>
+            <param name="index">The zero-based index in the target
+array at which copying begins.
+</param>
+            <exception cref="System.ArgumentNullException">arr is null.
+</exception>
+            <exception cref="System.ArgumentOutOfRangeException">index
+is less than 0.
+</exception>
+            <exception cref="System.ArgumentException">The number of
+elements in this container is greater than the available
+space from index to the end of the destination array.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.Contains(Cognex.VisionPro.ICogVisionData)">
+            <summary>
+Returns true if the supplied value is found,
+otherwise returns false.
+</summary>
+            <param name="value">
+Search for this value.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.Contains(System.String)">
+            <summary>
+Returns true if the supplied key is found,
+otherwise returns false.
+</summary>
+            <param name="key">
+Search for this key.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.Contains(System.Collections.Generic.KeyValuePair`2{System.String,Cognex.VisionPro.ICogVisionData})">
+            <summary>
+Returns true if the supplied key value pair is found,
+otherwise returns false.
+</summary>
+            <param name="pair">
+Search for this key value pair.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.GetKey(System.Int32)">
+            <summary>
+Returns the key string associated with the
+specified index.
+</summary>
+            <param name="index">The zero-based index of the
+key to get.</param>
+            <exception cref="System.ArgumentOutOfRangeException">
+If index is less than zero, or not less than Count.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.IndexOf(Cognex.VisionPro.ICogVisionData)">
+            <summary>
+Searches the container for the key value pair with the
+specified value and returns its zero-based index.
+</summary>
+            <param name="value">The value to locate.</param>
+            <returns>The zero based index of the key value pair
+with the specified ICogVisionData value, if found;
+otherwise, -1 is returned.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.IndexOf(System.String)">
+            <summary>
+Searches the container for the key value pair with the
+specified key and returns its zero-based index.
+</summary>
+            <param name="key">The key to locate.</param>
+            <returns>The zero based index of the key value pair
+with the specified key, if found; otherwise, -1 is
+returned.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.IndexOf(System.Collections.Generic.KeyValuePair`2{System.String,Cognex.VisionPro.ICogVisionData})">
+            <summary>
+Searches the container for the specified key value pair and
+returns the zero-based index of the first occurrence.
+</summary>
+            <param name="pair">The key value pair to locate.</param>
+            <returns>The zero based index of the first occurrence of
+pair within the container, if found; otherwise, -1
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.Clear">
+            <summary>
+Removes all key value pairs from the container.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.Add(System.String,Cognex.VisionPro.ICogVisionData)">
+            <summary>
+Adds to the end of the container a key value pair
+using the supplied key string and ICogVisionData value.
+</summary>
+            <param name="key">The key string to be used.</param>
+            <param name="value">The ICogVisionData value reference
+to be used.</param>
+            <exception cref="System.ArgumentNullException">
+If the supplied key is null.
+</exception>
+            <exception cref="System.ArgumentException">
+If the supplied key is an empty string.
+</exception>
+            <exception cref="System.ArgumentException">
+If the supplied key already exists within the container.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.Add(System.Collections.Generic.KeyValuePair`2{System.String,Cognex.VisionPro.ICogVisionData})">
+            <summary>
+Adds the supplied key value pair to the end of the container.
+</summary>
+            <param name="pair">The key value pair to add.</param>
+            <exception cref="System.ArgumentNullException">
+If the supplied key is null.
+</exception>
+            <exception cref="System.ArgumentException">
+If the supplied key is an empty string.
+</exception>
+            <exception cref="System.ArgumentException">
+If the supplied key already exists within the container.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.CogVisionDataContainer.IsReadOnly">
+            <summary>
+Returns true if this collection is ReadOnly
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogVisionDataContainer.Count">
+            <summary>
+Gets the number of elements in this container.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.GetEnumerator">
+            <summary>
+Get an enumerator for this conllection of
+key value pairs.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogVisionDataContainer.PairIndexer(System.Int32)">
+            <summary>
+Gets or sets the key value pair at the specified index.
+The key is a string and the value is an
+ICogVisionData reference.
+</summary>
+            <param name="index">The zero-based index of the
+key value pair to get.</param>
+            <returns>
+The key value pair at the specified index.
+</returns>
+            <exception cref="System.ArgumentOutOfRangeException">
+If index is less than zero, or not less than Count.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.CogVisionDataContainer.default(System.String)">
+            <summary>
+Gets or sets the ICogVisionData reference associated with
+the specified key string. When setting a the
+ICogVisionData reference for a key that does not yet
+exist within the container, a new container entry
+is created.
+</summary>
+            <param name="key">The key associated with the
+ICogVisionData reference.</param>
+            <returns>
+The ICogVisionData reference associated with the
+specified key.
+</returns>
+            <exception cref="System.ArgumentNullException">
+If key is null.
+</exception>
+            <exception cref="System.ArgumentException">
+If key is an empty string.
+</exception>
+            <exception cref="System.Collections.Generic.KeyNotFoundException">
+If the key is not found when reading.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.CogVisionDataContainer.default(System.Int32)">
+            <summary>
+Gets or sets the ICogVisionData reference at the specified index.
+</summary>
+            <param name="index">The zero-based index of the
+ICogVisionData reference to get.</param>
+            <returns>
+The ICogVisionData reference at the specified index.
+</returns>
+            <exception cref="System.ArgumentOutOfRangeException">
+If index is less than zero, or not less than Count.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.OnDeserialization(System.Object)">
+            <summary>
+Perform post-deserialization tasks.
+</summary>
+            <param name="sender">
+The CogVisionDataContainer.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.#ctor(Cognex.VisionPro.CogVisionDataContainer)">
+            <summary>
+Copy construct a CogVisionDataContainer from the
+supplied container. This is a shallow copy: the values are
+copied not cloned.
+</summary>
+            <param name="Other">
+The CogVisionDataContainer to be copied.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.#ctor">
+            <summary>
+Default construct a CogVisionDataContainer.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.OnMovedItem(System.Int32,System.Int32)">
+            <summary>
+Raises the MovedItem event and the Changed event.
+</summary>
+            <param name="fromIndex">Source index of item moved.</param>
+            <param name="toIndex">New index of item moved.</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.OnMovingItem(System.Int32,System.Int32)">
+            <summary>
+Raises the MovingItem event.
+</summary>
+            <param name="fromIndex">Index of item being moved.</param>
+            <param name="toIndex">Destination index of item being moved.</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.OnReplacedItem(System.Int32,System.Object,System.Object)">
+            <summary>
+Raises the ReplacedItem event and the Changed event.
+</summary>
+            <param name="index">Index of item replaced.</param>
+            <param name="oldValue">Value of item replaced.</param>
+            <param name="newValue">Value of item that replaced oldValue.</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.OnReplacingItem(System.Int32,System.Object,System.Object)">
+            <summary>
+Raises the ReplacingItem event.
+</summary>
+            <param name="index">Index of item being replaced.</param>
+            <param name="oldValue">Value of item being replaced.</param>
+            <param name="newValue">Value of item replacing oldValue.</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.OnRemovedItem(System.Int32,System.Object)">
+            <summary>
+Raises the RemovedItem event and the Changed event.
+</summary>
+            <param name="index">Index of item removed.</param>
+            <param name="value">Value of item removed.</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.OnRemovingItem(System.Int32,System.Object)">
+            <summary>
+Raises the RemovingItem event.
+</summary>
+            <param name="index">Index of item being removed.</param>
+            <param name="value">Value of item being removed.</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.OnInsertedItem(System.Int32,System.Object)">
+            <summary>
+Raises the InsertedItem event and the Changed event.
+</summary>
+            <param name="index">Index at which item was inserted.</param>
+            <param name="value">Value of item inserted.</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.OnInsertingItem(System.Int32,System.Object)">
+            <summary>
+Raises the InsertingItem event.
+</summary>
+            <param name="index">Index to insert item being inserted.</param>
+            <param name="value">Value of item being inserted.</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.OnCleared">
+            <summary>
+Raises the Cleared event and the Changed event.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.OnClearing">
+            <summary>
+Raises the Clearing event.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogVisionDataContainer.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization construct a CogVisionDataContainer.
+</summary>
+            <param name="Info">
+The standard SerializationInfo parameter.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext parameter.
+</param>
+        </member>
+        <member name="E:Cognex.VisionPro.CogVisionDataContainer.MovedItem">
+            <summary>
+Raised after an item is moved to a new index.
+</summary>
+        </member>
+        <member name="E:Cognex.VisionPro.CogVisionDataContainer.MovingItem">
+            <summary>
+Raised before an item is moved to a new index.
+</summary>
+        </member>
+        <member name="E:Cognex.VisionPro.CogVisionDataContainer.ReplacedItem">
+            <summary>
+Raised after an item is replaced.
+</summary>
+        </member>
+        <member name="E:Cognex.VisionPro.CogVisionDataContainer.ReplacingItem">
+            <summary>
+Raised before an item is replaced.
+</summary>
+        </member>
+        <member name="E:Cognex.VisionPro.CogVisionDataContainer.RemovedItem">
+            <summary>
+Raised after an item is removed.
+</summary>
+        </member>
+        <member name="E:Cognex.VisionPro.CogVisionDataContainer.RemovingItem">
+            <summary>
+Raised before an item is removed.
+</summary>
+        </member>
+        <member name="E:Cognex.VisionPro.CogVisionDataContainer.InsertedItem">
+            <summary>
+Raised after an item is inserted.
+</summary>
+        </member>
+        <member name="E:Cognex.VisionPro.CogVisionDataContainer.InsertingItem">
+            <summary>
+Raised before an item is inserted.
+</summary>
+        </member>
+        <member name="E:Cognex.VisionPro.CogVisionDataContainer.Cleared">
+            <summary>
+Raised after the container is cleared.
+</summary>
+        </member>
+        <member name="E:Cognex.VisionPro.CogVisionDataContainer.Clearing">
+            <summary>
+Raised before the container is cleared.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogVisionDataContainer.SfNextSf">
+            <summary>
+Next state flag to be used in derived classes.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogVisionDataContainer.SfCount">
+            <summary>
+State flag for the Count property.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogVisionDataContainer.SfItem">
+            <summary>
+State flag for the Item (indexer) property.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.CogVisionDataContainer">
+            <summary>
+This class is a general purpose container of vision data.  Each
+element in this container has both a string key and a value of type
+ICogVisionData. This container maintains an ordered list of these key
+value pairs. A particular ICogVisionData value may be referenced by
+integer index as in a list, or by string key as in a dictionary. The
+keys must all be unique, non-null, non-empty strings. In addition,
+this class implements the ICogVisionData interface.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogCenterPointsToLines.Execute">
+            <summary>
+Perform point to line centering.
+</summary>
+            <returns>
+A CogCenterPointsToLinesResult object describing the mapping
+of points to lines.
+</returns>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogTransformSingularException">
+If the solution is singular.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogTimeoutExpiredException">
+If TimeoutEnabled is true and this method does not complete
+within Timeout milliseconds.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If any of the following is true:
+<list type="bullet"><item><see cref="P:Cognex.VisionPro.CogCenterPointsToLines.Mode" /> is set to
+<see cref="T:Cognex.VisionPro.CogCenterPointsToLinesModeConstants">
+Single</see> and
+<see cref="P:Cognex.VisionPro.CogCenterPointsToLines.Count" /> is
+less than 4.
+</item><item><see cref="P:Cognex.VisionPro.CogCenterPointsToLines.Mode" /> is set to
+<see cref="T:Cognex.VisionPro.CogCenterPointsToLinesModeConstants">
+Pair</see> and
+<see cref="P:Cognex.VisionPro.CogCenterPointsToLines.Count" /> is
+less than 3.
+</item></list></exception>
+            <exception cref="T:System.ArgumentException">
+If any of the parameters is invalid.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLines.NormalDirectionInferenceMethod">
+            <summary>
+How this class will infer the normal direction of the
+line segments.
+</summary>
+            <value>
+The default value is InferFromConvexity.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+            <exception cref="T:System.ArgumentException">
+The supplied value is not a member of the
+<see cref="T:Cognex.VisionPro.CogCenterPointsToLinesNormalDirectionInferenceMethodConstants" />
+enumeration.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLines.Timeout">
+            <summary>
+The maximum number of milliseconds that may elapse while running
+the Execute method. This is only enforced if TimeoutEnabled is
+true.
+</summary>
+            <value>
+The default value is 120000.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than zero.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLines.TimeoutEnabled">
+            <summary>
+Whether the Execute method should be stopped after Timeout
+milliseconds.
+</summary>
+            <value>
+The default value is False.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLines.SearchAngleMax">
+            <summary>
+The upper bound of the search angle range, in radians. This
+parameter limits the rotation angle of the result transform.
+</summary>
+            <remarks>
+Note that setting this property to a value less than
+SearchAngleMin will cause SearchAngleMin to be set to
+the new SearchAngleMax value.
+</remarks>
+            <value>
+The default value is equal to 5 degrees.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLines.SearchAngleMin">
+            <summary>
+The lower bound of the search angle range, in radians. This
+parameter limits the rotation angle of the result transform.
+</summary>
+            <remarks>
+Note that setting this property to a value greater than
+SearchAngleMax will cause SearchAngleMax to be set to
+the new SearchAngleMin value.
+</remarks>
+            <value>
+The default value is equal to -5 degrees.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLines.Mode">
+            <summary>
+How this class will perform fitting. May be either point to line
+fit ("Single"), or point pair to line pair fit ("Pair").
+</summary>
+            <value>
+The default value is Single.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+            <exception cref="T:System.ArgumentException">
+The supplied value is not a member of the
+<see cref="T:Cognex.VisionPro.CogCenterPointsToLinesModeConstants" />
+enumeration.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogCenterPointsToLines.#ctor(Cognex.VisionPro.CogCenterPointsToLines)">
+            <summary>
+Copy constructs a CogCenterPointsToLines object. This
+is a deep copy.
+</summary>
+            <param name="Other">
+The CogCenterPointsToLines object to be copied.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If Other is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogCenterPointsToLines.#ctor">
+            <summary>
+Default construct a CogCenterPointsToLines.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogCenterPointsToLines.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization construct a CogCenterPointsToLines object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLines.SfTimeout">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by Timeout
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLines.SfTimeoutEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by TimeoutEnabled
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLines.SfSearchAngleMax">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by SearchAngleMax
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLines.SfSearchAngleMin">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by SearchAngleMin
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLines.SfNormalDirectionInferenceMethod">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by NormalDirectionInferenceMethod
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLines.SfMode">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by Mode
+may have been changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.CogCenterPointsToLines">
+            <summary>
+This class finds a 2D linear transform between points and
+lines, centering the lines with respect to the points.
+</summary>
+            <remarks>
+                <para>
+This class supports two modes of fitting:
+<list type="bullet"><item>
+Point to line fit ("Single").
+The feature correspondences are between individual points and lines.
+The class will minimize the variance in the point to line
+signed distance across all point to line correspondences.
+The class tries to make all of the point to line distances the
+same.
+</item><item>
+Point pair to line pair fit ("Pair").
+The feature correspondences are between point pairs and line
+pairs. The class will minimize the variation in the point to line
+signed distance differences, across all point pair line
+pair correspondences. The point to line distance difference for
+a given point pair line pair correspondence is the difference
+between the point to line distance for the first point and the
+point to line distance for the second point in the point pair.
+The class tries to make the two point to line signed distances
+in each point pair line pair correspondence the same. Signed
+distances are measured in the direction of the normal to the
+line.
+</item></list></para>
+                <para>
+This class uses line segments to specify lines, but the centering
+is performed between points and lines (or point-pairs and
+line-pairs). In other words, the point to line distances are not
+affected by the end points of the line segments.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.LineSegmentBEndY">
+            <summary>
+The Y coordinate of the "B" line segment's end point.
+</summary>
+            <value>
+The default value is zero.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.LineSegmentBEndX">
+            <summary>
+The X coordinate of the "B" line segment's end point.
+</summary>
+            <value>
+The default value is zero.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.LineSegmentBStartY">
+            <summary>
+The Y coordinate of the "B" line segment's start point.
+</summary>
+            <value>
+The default value is zero.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.LineSegmentBStartX">
+            <summary>
+The X coordinate of the "B" line segment's start point.
+</summary>
+            <value>
+The default value is zero.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.LineSegmentAEndY">
+            <summary>
+The Y coordinate of the "A" line segment's end point.
+</summary>
+            <value>
+The default value is zero.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.LineSegmentAEndX">
+            <summary>
+The X coordinate of the "A" line segment's end point.
+</summary>
+            <value>
+The default value is zero.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.LineSegmentAStartY">
+            <summary>
+The Y coorinate of the "A" line segment's start point.
+</summary>
+            <value>
+The default value is zero.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.LineSegmentAStartX">
+            <summary>
+The X coorinate of the "A" line segment's start point.
+</summary>
+            <value>
+The default value is zero.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.PointBY">
+            <summary>
+The Y coordinate of the "B" point.
+</summary>
+            <value>
+The default value is zero.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.PointBX">
+            <summary>
+The X coordinate of the "B" point.
+</summary>
+            <value>
+The default value is zero.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.PointAY">
+            <summary>
+The Y coordinate of the "A" point.
+</summary>
+            <value>
+The default value is zero.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.PointAX">
+            <summary>
+The X coordinate of the "A" point.
+</summary>
+            <value>
+The default value is zero.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the value of this property changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.Finalize">
+            <summary>
+Finalize this CogCenterPointsToLinesCorrespondence.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.Dispose">
+            <summary>
+Destruct this CogCenterPointsToLinesCorrespondence.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.#ctor(Cognex.VisionPro.CogCenterPointsToLinesCorrespondence)">
+            <summary>
+Copy constructs a CogCenterPointsToLinesCorrespondence
+ object. This is a deep copy.
+</summary>
+            <param name="Other">
+The CogCenterPointsToLinesCorrespondence object to be
+copied.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If Other is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.#ctor">
+            <summary>
+Default construct a CogCenterPointsToLinesCorrespondence.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization construct a CogCenterPointsToLinesCorrespondence object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.SfLineSegmentBEndY">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by LineSegmentBEndY
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.SfLineSegmentBEndX">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by LineSegmentBEndX
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.SfLineSegmentBStartY">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by LineSegmentBStartY
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.SfLineSegmentBStartX">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by LineSegmentBStartX
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.SfLineSegmentAEndY">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by LineSegmentAEndY
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.SfLineSegmentAEndX">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by LineSegmentAEndX
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.SfLineSegmentAStartY">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by LineSegmentAStartY
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.SfLineSegmentAStartX">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by LineSegmentAStartX
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.SfPointBY">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by PointBY
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.SfPointBX">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by PointBX
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.SfPointAY">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by PointAY
+may have been changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence.SfPointAX">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by PointAX
+may have been changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.CogCenterPointsToLinesCorrespondence">
+            <summary>
+This class holds a corresponded point and line segment,
+or a corresponded point pair and line segment pair.
+</summary>
+            <remarks>
+This class has properties whose name includes either "A" or
+"B". When used in the context of
+<see cref="T:Cognex.VisionPro.CogCenterPointsToLinesModeConstants">
+Single</see> mode, only the "A" properties are meaningful.
+When used in the context of
+<see cref="T:Cognex.VisionPro.CogCenterPointsToLinesModeConstants">
+Pair</see> mode, both the "A" and "B" properties are meaningful.
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesResult.SignedDistanceAbsoluteDifferenceStatistics">
+            <summary>
+The statistics of the absolute difference between the signed distances
+of each point and line in a point pair, across all point-pair
+line-pair correspondences. This property is null if Mode is
+Single.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesResult.SignedDistanceStatistics">
+            <summary>
+The statistics of the signed distances between each point and its
+corresponding line.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesResult.SignedDistancesB">
+            <summary>
+The signed distances from each ("B") point to its corresponding ("B")
+line, measured along the normal to the line.
+If Mode is Single then this property is null.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesResult.SignedDistancesA">
+            <summary>
+The signed distances from each ("A") point to its corresponding ("A")
+line, measured along the normal to the line.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesResult.LinesFromPointsTransform">
+            <summary>
+The best fit linear transform that maps from points to lines.
+If Mode was Single, this transform minimizes the variation in the
+signed distance between the ("A") points and the the ("A") lines.
+If Mode was Pair, then this transform minimizes the
+variation in the point to line signed distance differences
+across all point-pair line-pair correspondences.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogCenterPointsToLinesResult.Mode">
+            <summary>
+How the centering process was performed. May be either "Single" or
+"Pair". If Mode was "Single", then both the SignedDistancesB property
+and the SignedDistanceAbsoluteDifferenceStatistics property will be
+null.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogCenterPointsToLinesResult.Finalize">
+            <summary>
+Finalize this CogCenterPointsToLinesResult.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogCenterPointsToLinesResult.Dispose">
+            <summary>
+Destruct this CogCenterPointsToLinesResult.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogCenterPointsToLinesResult.#ctor(Cognex.VisionPro.CogCenterPointsToLinesResult)">
+            <summary>
+Copy constructs a CogCenterPointsToLinesResult object. This is a
+deep copy.
+</summary>
+            <param name="Other">
+The result object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogCenterPointsToLinesResult.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization construct a CogCenterPointsToLinesResult object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="T:Cognex.VisionPro.CogCenterPointsToLinesResult">
+            <summary>
+The CogCenterPointsToLinesResult class describes the successful
+result of a call to the CogCenterPointsToLines Execute(...)
+method. This result class represents an immutable object - its content
+is set at construction and cannot be changed.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImageCollectionMCamerasNPoses.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization construct a CogImageCollectionMCamerasNPoses object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImageCollectionMCamerasNPoses.#ctor(Cognex.VisionPro.CogImageCollectionMCamerasNPoses)">
+            <summary>
+Copy constructs a CogImageCollectionMCamerasNPoses object. This is a shallow
+copy for the images.
+</summary>
+            <param name="other">
+The CogImageCollectionMCamerasNPoses object to be copied.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="other" />  is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImageCollectionMCamerasNPoses.#ctor">
+            <summary>
+Constructs a default (empty) CogImageCollectionMCamerasNPoses.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.CogImageCollectionMCamerasNPoses">
+            <summary>
+This class holds image collections of multiple cameras at multiple poses.
+<para>
+CogImageCollectionMCamerasNPoses[poseIndex][cameraIndex] is the <see cref="T:Cognex.VisionPro.ICogImage" /> 
+for camera "cameraIndex" at  pose "poseIndex".
+</para></summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImageCollection.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization construct a CogImageCollection object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImageCollection.#ctor(Cognex.VisionPro.CogImageCollection)">
+            <summary>
+Copy constructs a CogImageCollection object. This is a shallow
+copy for the images.
+</summary>
+            <param name="Other">
+The CogImageCollection object to be copied.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="Other" />  is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImageCollection.#ctor">
+            <summary>
+Constructs a default (empty) CogImageCollection.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.CogImageCollection">
+            <summary>
+This class holds a collection of <see cref="T:Cognex.VisionPro.ICogImage" />.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.SetInternal(System.IntPtr)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetInternal(System.IntPtr@)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.ResetCoordinateSpaceTree3D">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.Add3DSpace(System.String,System.String,System.IntPtr,System.Int32)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.CreateScaledImage(System.Int32,System.Int32,System.IntPtr@)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.Make3DTreeImageAlignedOnly(System.Double,System.String)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.CopyMergeTree3D(System.IntPtr,System.Int32,System.String,System.IntPtr)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.Rename3DSpace(System.String,System.String)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.SetTree3DBinary(System.IntPtr)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetTree3DBinary(System.IntPtr@)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.CopyTrees(System.IntPtr)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetTransform3D(System.String,System.String,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.Clone(System.IntPtr@)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.InitForDisplay(System.IntPtr,System.IntPtr,System.IntPtr)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetPel(System.Int32,System.Int32,System.Boolean@,System.Int32@)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.SetSelectedSpaceName3D(System.String)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetSelectedSpaceName3D">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.SetPixelFromRoot3D(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetPixelFromRoot3D(System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.SetRootFromSensor3D(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetRootFromSensor3D(System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.SetRoots(System.IntPtr,System.IntPtr)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetRoots(System.IntPtr@,System.IntPtr@)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.InteropPixelFromRootTransform">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.InteropCoordinateSpaceTree">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.InteropSelectedSpaceName">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.InteropWidth">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.InteropHeight">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.InteropAllocated">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.InteropGetTransform(System.String,System.String)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.InteropCopyBase(Cognex.VisionPro.Interop.CogImageCopyModeConstants)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.InteropAllocate(System.Int32,System.Int32)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.ICloneableClone">
+            <summary>
+Return a deep copy of this CogImage16Range via the ICloneable interface.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Populates the provided SerializationInfo with the data
+needed to serialize the object.
+</summary>
+            <param name="Info">
+The SerializationInfo to with serialization data
+must be added.
+</param>
+            <param name="Ctxt">
+The StreamingContext that indicates the intent
+of the current serialization operation.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogImage16Range object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.SetInternalData(System.IntPtr)">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetInternalData">
+            <summary>
+For Cognex internal use only.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.CoordinateSpaceTree3D">
+            <summary>
+Get or set the tree of all named three dimensional
+coordinate spaces for this image. The tree provides advanced
+functions for managing three dimensional coordinate spaces.
+</summary>
+            <exception cref="T:System.ArgumentNullException">
+If NewVal is null.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.SelectedSpaceName3D">
+            <summary>
+Gets or sets the name of the three dimensional
+coordinate space to be used by tools which process this image.
+</summary>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.PixelFromRootTransform3D">
+            <summary>
+Get or set the transform that maps from
+three dimensional root space to pixel space.
+</summary>
+            <exception cref="T:System.ArgumentNullException">
+If NewVal is null.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.PixelFromRootTransform">
+            <summary>
+Gets a copy of the transform that maps from
+pixel space ("#") to two dimensional root space
+("@"). Due to the unique nature of the CogImage16Range,
+setting PixelFromRootTransform is not allowed. Attempts to set
+PixelFromRootTransform will cause an InvalidOperationException
+to be thrown.
+</summary>
+            <remarks>
+When the
+<see ref="P:Cognex.VisionPro.CogImage16Range.PixelFromRootTransform3D" />
+happens to define a three dimensional root space ("@")
+whose Z axis is NOT aligned with (parallel to) the image Z axis,
+a two dimensional identity transform will be returned as the
+PixelFromRootTransform.
+</remarks>
+            <exception cref="T:System.InvalidOperationException">
+If you attempt to set this property.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.CoordinateSpaceTree">
+            <summary>
+Get or set the tree of all named two dimensional
+coordinate spaces for this image. The tree provides advanced
+functions for managing two dimensional coordinate spaces.
+</summary>
+            <exception cref="T:System.ArgumentNullException">
+If NewVal is null.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.SelectedSpaceName">
+            <summary>
+Get or set the name of the two dimensional coordinate
+space to be used by tools that process this image.
+</summary>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.Width">
+            <summary>
+The number of columns of pixels in this image.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.Height">
+            <summary>
+The number of rows of pixels in this image.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16Range.Allocated">
+            <summary>
+Whether there is pixel data associated with this image.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetIsImageZAlignedSpace(System.String)">
+            <summary>
+Determine if the specified 3D space's Z axis is aligned with (parallel
+to) the image Z axis within 0.0000001 degrees. Return true
+if it is, return false otherwise.
+</summary>
+            <param name="SpaceName">
+The name of the 3D space to be evaluated.
+</param>
+            <returns>
+True if the specified space's Z axis is aligned with (parallel to) the
+image Z axis within 0.0000001 degrees. Otherwise returns
+false.
+</returns>
+            <exception cref="T:System.ArgumentNullException">
+If the SpaceName argument is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoTreeException">
+If CoordinateSpaceTree3D is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSpaceTreeNameNotInTreeException">
+If the specified space name is not found in the
+<see ref="P:Cognex.VisionPro.CogImage16Range.CoordinateSpaceTree3D" /></exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetMaskData">
+            <summary>
+Returns a CogImage8Grey that represents the mask
+data of this image. This data is commonly referred
+to as the "visible pixel mask" and is provided
+as an indication of which pixel values were
+visible to the camera during acquisition. Any
+range image pixel that was not visible has an undefined
+pixel value. The visible pixel mask represents
+a visible pixel at a given row and column
+with an 8 bit grey value of 255,
+and a non-visible pixel with an 8 bit grey value
+of zero. The CogImage8Root and the two
+dimensional coordinate space tree of this
+CogImage8Grey visible pixel mask representation
+are shared with this range image. Note that
+the value returned by this method may be null,
+in which case all pixel values are considered
+visible.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetPixelData">
+            <summary>
+Returns a CogImage16Grey that represents the range or
+height data of this image. The root and two dimensional coordinate
+space tree are shared with this range image.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.MapPoints3DFrom2D(System.String,System.String,Cognex.VisionPro3D.Cog3DVect2Collection,System.Boolean[]@,Cognex.VisionPro3D.Cog3DVect3Collection@)">
+            <summary>
+Maps the supplied collection of two dimensional
+points into the specified three dimensional
+space. This is accomplished by first mapping
+an input two dimensional point into pixel
+space. If the range image's visible pixel
+mask indicates that this pixel was not visible,
+then the corresponding element in the output
+Visible array is set to false and the corresponding
+element in the output DstPoints3D collection
+is set to a default (0,0,0) value. Otherwise,
+the pixel value is read. This range image
+pixel value is incremented by 0.5 to place it
+at a "middle" height within the subject voxel.
+The resulting pixel space coordinate triple is
+mapped into the requested three dimensional
+space.
+</summary>
+            <param name="DstPoint3DSpaceName">
+The destination three dimensional space name.
+</param>
+            <param name="SrcPoint2DSpaceName">
+The source two dimensional space name.
+</param>
+            <param name="SrcPoints2D">
+The source two dimensional point collection.
+</param>
+            <param name="Visible">
+An output array of boolean values indicating which
+input points were visible. The number of elements
+in this array will equal the number of input points.
+</param>
+            <param name="DstPoints3D">
+The resulting mapped three dimensional points. Any
+element corresponding to an input point that was
+not visible will have the value 0,0,0. This
+collection will have the same size as the input
+point collection.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If DstPoint3DSpaceName is null.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If SrcPoint2DSpaceName is null.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If SrcPoints2D is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException">
+If Allocated is false.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.MapPoint3DFrom2D(System.String,System.String,Cognex.VisionPro3D.Cog3DVect2,System.Boolean@,Cognex.VisionPro3D.Cog3DVect3@)">
+            <summary>
+Maps the supplied two dimensional point into the
+specified three dimensional space. This is
+accomplished by first mapping the input two
+dimensional point to pixel space. If the
+range image's visible pixel mask indicates
+that this pixel was not visible, then the
+Visible output argument is set to false and
+no further processing is performed. Otherwise,
+the pixel value is read. This range
+image pixel value is incremented by 0.5
+to place it at a "middle" height within
+the subject voxel. The resulting pixel space
+coordinate triple is mapped into the
+requested three dimensional space.
+</summary>
+            <param name="DstPoint3DSpaceName">
+The destination three dimensional space name.
+</param>
+            <param name="SrcPoint2DSpaceName">
+The source two dimensional space name.
+</param>
+            <param name="SrcPoint2D">
+The source two dimensional point.
+</param>
+            <param name="Visible">
+True if the source two dimensional point was visible.
+</param>
+            <param name="DstPoint3D">
+The resulting mapped three dimensional point. This will
+be 0,0,0 if Visible is false.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If DstPoint3DSpaceName is null.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If SrcPoint2DSpaceName is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException">
+If Allocated is false.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.MapPoints2DFrom3D(System.String,System.String,Cognex.VisionPro3D.Cog3DVect3Collection,Cognex.VisionPro3D.Cog3DVect2Collection@)">
+            <summary>
+Maps the supplied collection of three dimensional
+points into the specified two dimensional space.
+This is accomplished by first mapping an input three
+dimensional point to root space. The X and Y coodinates
+of this root space point are then mapped to the specified
+two dimensional space to produce that output two
+dimensional point.
+</summary>
+            <param name="DstPoint2DSpaceName">
+The destination two dimensional space name.
+</param>
+            <param name="SrcPoint3DSpaceName">
+The source three dimensional space name.
+</param>
+            <param name="SrcPoints3D">
+The source three dimensional point collection.
+</param>
+            <param name="DstPoints2D">
+The resulting collection of mapped two dimensional points.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If DstPoint2DSpaceName is null.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If SrcPoint3DSpaceName is null.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If SrcPoints3D is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.MapPoint2DFrom3D(System.String,System.String,Cognex.VisionPro3D.Cog3DVect3,Cognex.VisionPro3D.Cog3DVect2@)">
+            <summary>
+Maps the supplied three dimensional point into the
+specified two dimensional space. This is accomplished
+by first mapping the input three dimensional point to
+root space. The X and Y coodinates of this root space
+point are then mapped to the specified two dimensional
+space to produce the output two dimensional point.
+</summary>
+            <param name="DstPoint2DSpaceName">
+The destination two dimensional space name.
+</param>
+            <param name="SrcPoint3DSpaceName">
+The source three dimensional space name.
+</param>
+            <param name="SrcPoint3D">
+The source three dimensional point.
+</param>
+            <param name="DstPoint2D">
+The resulting mapped two dimensional point.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If DstPoint2DSpaceName is null.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If SrcPoint3DSpaceName is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetTransform3D(System.String,System.String)">
+            <summary>
+Returns a transform that maps three dimensional points
+from the 'From' space to the 'To' space.
+The special string "." is accepted as an alias
+for the SelectedSpaceName3D of this image.
+</summary>
+            <param name="ToSpaceName">
+The name of the three dimensional coordinate
+space to transform the point to. The special string "." is
+accepted as an alias for the SelectedSpaceName3D of this image.
+</param>
+            <param name="FromSpaceName">
+The name of the three dimensional coordinate
+space to transform the point from. The special string "." is
+accepted as an alias for the SelectedSpaceName3D of this image.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If ToSpaceName is null.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If FromSpaceName is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoTreeException">
+If CoordinateSpaceTree3D is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSpaceTreeNameNotInTreeException">
+If either space name is not found in the
+<see ref="P:Cognex.VisionPro.CogImage16Range.CoordinateSpaceTree3D" /></exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.ScaleImage(System.Int32,System.Int32)">
+            <summary>
+Creates a scaled version of this image. The dimensions
+of the returned image (in pixels) are specified by the DesiredWidth
+and DesiredHeight arguments. The scaling is performed using bilinear
+interpolation.
+</summary>
+            <param name="DesiredWidth">
+The width in pixels of the desired output image.
+</param>
+            <param name="DesiredHeight">
+ The height in pixels of the desired output image.
+</param>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException">
+If Allocated is false.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.ToBitmap">
+            <summary>
+Creates a 24-bit RGB Windows bitmap from this image.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetTransform(System.String,System.String)">
+            <summary>
+Returns a transform that maps two dimensional points
+from the 'From' space to the 'To' space.
+The special string "." is accepted as an alias
+for the SelectedSpaceName of this image.
+</summary>
+            <param name="ToSpaceName">
+The name of the two dimensional coordinate
+space to transform the point to. The special string "." is
+accepted as an alias for the SelectedSpaceName of this image.
+</param>
+            <param name="FromSpaceName">
+The name of the two dimensional coordinate
+space to transform the point from. The special string "." is
+accepted as an alias for the SelectedSpaceName of this image.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If ToSpaceName is null.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If FromSpaceName is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoTreeException">
+If CoordinateSpaceTree is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSpaceTreeNameNotInTreeException">
+If either space name is not found in the
+<see ref="P:Cognex.VisionPro.CogImage16Range.CoordinateSpaceTree" /></exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.SetPixel(System.Int32,System.Int32,System.Boolean,System.UInt16)">
+            <summary>
+Set the pixel and mask values at a given pixel space
+location. Note that setting VisibleValue to false
+on a CogImage16Range whose root currently has a null
+mask root will cause an appropriately sized and populated
+mask root to be created. The opposite is not true:
+setting the sole non-visible mask value to visible
+will not cause the mask root to be set to null.
+</summary>
+            <param name="X">
+The pixel space X coordinate of interest.
+</param>
+            <param name="Y">
+The pixel space Y coordinate of interest.
+</param>
+            <param name="VisibleValue">
+True if this pixel is visible.
+</param>
+            <param name="PixelValue">
+The raw pixel value at this location.
+</param>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException">
+If Allocated is false.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadCoordException">
+If X is less than zero or not less than Width, or if Y is
+less than zero or not less than Height.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetPixel(System.Int32,System.Int32,System.Boolean@,System.UInt16@)">
+            <summary>
+Gets the mask (visible) and pixel value at the specified
+pixel space coordinates.
+</summary>
+            <param name="X">
+The pixel space X coordinate of interest.
+</param>
+            <param name="Y">
+The pixel space Y coordinate of interest.
+</param>
+            <param name="VisibleValue">
+True if this pixel was visible.
+</param>
+            <param name="PixelValue">
+The raw pixel value at this location. This
+is undefined if VisibleValue is false.
+</param>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException">
+If Allocated is false.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.SetRoot(Cognex.VisionPro.CogImage16RangeRoot)">
+            <summary>
+Sets the range image root.
+</summary>
+            <param name="Root">
+The range image root.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.GetRoot(Cognex.VisionPro.CogImage16RangeRoot@)">
+            <summary>
+Returns the range image root object that contains
+the underlying pixel and mask roots.
+</summary>
+            <param name="Root">
+The range image root.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.CopyBase(Cognex.VisionPro.CogImageCopyModeConstants)">
+            <summary>
+Create a copy of this image. Pixel and mask data
+may be shared between images by specifying CopyMode to be
+CogImageCopyModeConstants.SharePixels.
+</summary>
+            <param name="CopyMode">
+How to copy. May be SharePixels, CopyPixels,
+or NoPixels.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.Copy">
+            <summary>
+Create a copy of this image. Pixel and mask data
+are copied.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.Copy(Cognex.VisionPro.CogImageCopyModeConstants)">
+            <summary>
+Create a copy of this image. Pixel and mask data
+may be shared between images by specifying CopyMode to be
+CogImageCopyModeConstants.SharePixels.
+</summary>
+            <param name="CopyMode">
+How to copy. May be SharePixels, CopyPixels, or NoPixels.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.Clone">
+            <summary>
+Return a deep copy of this CogImage16Range.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.Allocate(System.Int32,System.Int32)">
+            <summary>
+Initialize the image with (undefined) pixel and mask
+data of the given width and height. This method may not be
+called more than once.
+</summary>
+            <param name="DesiredWidth">
+The desired width of the image in pixels.
+</param>
+            <param name="DesiredHeight">
+The desired height of the image in pixels.
+</param>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageAllocateSizeException">
+If the image is already allocated to a different size.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.Finalize">
+            <summary>
+Finalize this CogImage16Range.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.Dispose">
+            <summary>
+Destruct this CogImage16Range.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.#ctor(System.Drawing.Bitmap)">
+            <summary>
+Construct a new instance of this class using the supplied
+bitmap to specify pixel data. Note that this produces
+an image with an assumed identity mapping from "Sensor3D"
+space to root space.
+</summary>
+            <param name="Bmp">
+The Windows Bitmap to use as the definition of pixel data.
+</param>
+            <exception cref="System.ArgumentNullException">
+If Bmp is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.#ctor(Cognex.VisionPro.CogImage16Grey,System.Int32,Cognex.VisionPro3D.ICog3DTransform)">
+            <summary>
+Construct a new instance of this class using the supplied
+pixel data, missing pixel value, and RootFromSensor3D transform.
+Mask data is automatically computed by identifying any pixel
+in the PixelData argument whose value matches the
+MissingPixelValue as not visible while all other pixels are
+set to visible. If no missing pixels are found then the
+mask root is set to null.
+</summary>
+            <param name="PixelData">
+Use the pixels in this CogImage16Grey as the height or
+range data for this image.
+</param>
+            <param name="MissingPixelValue">
+Pixels in the PixelData argument that have this value
+are set to not visible, and all other pixels are
+set to visible.
+</param>
+            <param name="RootFromSensor3D">
+An ICog3DTransform that specifies the mapping from
+"Sensor3D" space to root space. May not be null.
+</param>
+            <exception cref="System.ArgumentNullException">
+If PixelData is null.
+</exception>
+            <exception cref="System.ArgumentOutOfRangeException">
+If MissingPixelValue is less than zero.
+</exception>
+            <exception cref="System.ArgumentNullException">
+If RootFromSensor3D is null.
+</exception>
+            <exception cref="System.ArgumentException">
+If PixelData is not allocated.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.#ctor(Cognex.VisionPro.CogImage16Grey,Cognex.VisionPro.CogImage8Grey,Cognex.VisionPro3D.ICog3DTransform)">
+            <summary>
+Construct a new instance of this class using the supplied
+pixel data, mask data, and RootFromSensor3D transform.
+</summary>
+            <param name="PixelData">
+Use the pixels in this CogImage16Grey as the height or
+range data for this image. This argument may not be null.
+</param>
+            <param name="MaskData">
+Use the pixels in this CogImage8Grey as the mask data
+for this image. Defined pixel values are zero (not
+visible) and 255 (visible). If this argument is null
+then all pixels are presumed to be visible.
+</param>
+            <param name="RootFromSensor3D">
+An ICog3DTransform that specifies the mapping from
+"Sensor3D" space to root space. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If PixelData is null.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If RootFromSensor3D is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If PixelData is not allocated.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If MaskData is not null and is not allocated.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If MaskData and PixelData do not have the same width.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If MaskData and PixelData do not have the same height.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.#ctor(System.Int32,System.Int32,Cognex.VisionPro3D.ICog3DTransform)">
+            <summary>
+Construct a new instance of this class using the supplied
+RootFromSensor3D transform and allocating storage for
+the specified image size.
+</summary>
+            <param name="Width">
+Width of this image in pixels. Must be greater than zero.
+</param>
+            <param name="Height">
+Height of this image in pixels. Must be greate than zero.
+</param>
+            <param name="RootFromSensor3D">
+An ICog3DTransform that specifies the mapping from
+"Sensor3D" space to root space. May not be null.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If Width is less than 1.
+</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If Height is less than 1.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If RootFromSensor3D is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.#ctor(Cognex.VisionPro3D.ICog3DTransform)">
+            <summary>
+Construct a new instance of this class using the supplied
+RootFromSensor3D transform.
+</summary>
+            <param name="RootFromSensor3D">
+An ICog3DTransform that specifies the mapping from
+"Sensor3D" space to root space. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.#ctor(Cognex.VisionPro.CogImage16Range)">
+            <summary>
+Construct a new instance of this class as a shallow copy of the
+given instance.
+</summary>
+            <param name="Other">
+The CogImage16Range object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16Range.#ctor">
+            <summary>
+Construct a new instance of this class.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogImage16Range.SfCoordinateSpaceTree3D">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by CoordinateSpaceTree3D
+may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogImage16Range.SfPixelFromRootTransform3D">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by PixelFromRootTransform3D
+may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogImage16Range.SfSelectedSpaceName3D">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by SelectedSpaceName3D
+may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogImage16Range.SfPixelFromRootTransform">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by PixelFromRootTransform
+may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogImage16Range.SfCoordinateSpaceTree">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by CoordinateSpaceTree
+may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogImage16Range.SfSelectedSpaceName">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by SelectedSpaceName
+may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.CogImage16Range">
+            <summary>
+Object that describes a range image. A range image describes three
+dimensional surfaces. A CogImage16Range contains three dimensional
+height data, a "visible pixel mask" to identify which pixels are
+valid, three dimensional transform information, and two dimensional
+transform information.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16RangeRoot.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogImage16RangeRoot object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16RangeRoot.OnDeserialization(System.Object)">
+            <summary>
+Perform post-deserialization setup for this CogImage16RangeRoot.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16RangeRoot.SetMaskRoot(Cognex.VisionPro.ICogImage8Root)">
+            <summary>
+Set the MaskRoot to a new value. In much
+the same way that one can set a pixel value
+in an image without causing a Changed event
+to fire, one may set the MaskRoot to a new value
+and no Changed event is fired.
+</summary>
+            <exception cref="System.ArgumentException">
+If the supplied mask root's width or height do not
+match those of the pixel root.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16RangeRoot.GetMaskRoot">
+            <summary>
+Get the ICogImage8Root that corresponds to mask data.
+Note that this value may be null if there
+are no missing pixels.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16RangeRoot.GetPixelRoot">
+            <summary>
+Get the ICogImage16Root that corresponds to pixel data.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16RangeRoot.Width">
+            <summary>
+Width of the image in pixels.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogImage16RangeRoot.Height">
+            <summary>
+Height of the image in pixels.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16RangeRoot.Finalize">
+            <summary>
+Finalize this CogImage16RangeRoot.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16RangeRoot.Dispose">
+            <summary>
+Destruct this CogImage16RangeRoot.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16RangeRoot.#ctor(Cognex.VisionPro.CogImage16RangeRoot)">
+            <summary>
+Constructs a new instance of this class as a deep copy of the
+given instance.
+</summary>
+            <param name="Other">
+The CogImage16Root object to be copied. May not be null.
+</param>
+            <exception cref="System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.CogImage16RangeRoot.#ctor(Cognex.VisionPro.ICogImage16Root,Cognex.VisionPro.ICogImage8Root)">
+            <summary>
+Constructs a new instance of this class from the supplied
+parameters.
+</summary>
+            <param name="PixelRoot">
+The pixel root.
+</param>
+            <param name="MaskRoot">
+The mask root.
+</param>
+            <exception cref="System.ArgumentNullException">
+If PixelRoot is null.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.CogImage16RangeRoot">
+            <summary>
+Object that holds the raw pixel and mask data of a range image.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.CogCenterPointsToLinesNormalDirectionInferenceMethodConstants">
+            <summary>
+How the <see cref="T:Cognex.VisionPro.CogCenterPointsToLines" />
+class will infer the normal direction of the line segments.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesNormalDirectionInferenceMethodConstants.UseLineSegmentNormalDirection">
+            <summary>
+Use the direction of the given line segments to determine
+the normal direction for each line segment. The direction of
+a line segment is implied by the ordering of its start and
+end points (end - start). The normal direction is defined to be
++90 degrees from the line segment direction.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesNormalDirectionInferenceMethodConstants.InferFromConvexity">
+            <summary>
+Automatically infer the line segment normal direction for
+each input line segment. It requires the input line segments
+to form a convex shape. It selects the normal direction for
+each line segment such that the line normal points outwards.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.CogCenterPointsToLinesModeConstants">
+            <summary>
+What fitting style was or will be used with the
+<see cref="T:Cognex.VisionPro.CogCenterPointsToLines" />
+object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesModeConstants.Pair">
+            <summary>
+For point pair to line pair fitting. The feature correspondences
+are between point pairs and line pairs. The
+<see cref="T:Cognex.VisionPro.CogCenterPointsToLines" />
+class will minimize the variation in the point to line
+signed distance differences, across all point pair line
+pair correspondences. The point to line distance difference for
+a given point pair line pair correspondence is the difference
+between the point to line distance for the first point and the
+point to line distance for the second point in the point pair.
+The class tries to make the two point to line signed distances
+in each point pair line pair correspondence the same. Signed
+distances are measured in the direction of the normal to the
+line.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogCenterPointsToLinesModeConstants.Single">
+            <summary>
+For point to line fitting. The feature correspondences
+are between individual points and lines. The 
+<see cref="T:Cognex.VisionPro.CogCenterPointsToLines" />
+class will minimize the variance in the point to line
+signed distance across all point to line correspondences.
+The class tries to make all of the point to line distances the
+same.
+</summary>
+        </member>
+        <!-- Discarding badly formed XML document comment for member 'M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.#ctor(Cognex.VisionPro3D.ICog3DTransform,Cognex.VisionPro.CogImage16Grey,Cognex.VisionPro.CogImage8Grey)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:Cognex.VisionPro3D.Cog3DPointCloudMeshRoot.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:Cognex.VisionPro3D.Cog3DPointCloudMesh'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:Cognex.VisionPro3D.Cog3DPointCloudMesh.GetTransform3D(System.String,System.String)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:Cognex.VisionPro3D.Cog3DPointCloudMesh.Accessor3F.Finalize'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:Cognex.VisionPro3D.Cog3DPointCloudMesh.NormalAccessor'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:Cognex.VisionPro3D.Cog3DPointCloudMesh.TriangleAccessor.#ctor(Cognex.VisionPro3D.Cog3DPointCloudMesh,System.String,System.Boolean,System.Boolean,System.Single,System.Boolean,System.Single,System.Boolean,System.Single)'. -->
+    </members>
+</doc>

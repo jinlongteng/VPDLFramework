@@ -1,0 +1,1480 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ViDi.NET.VisionPro</name>
+    </assembly>
+    <members>
+        <member name="T:ViDi2.VisionPro.Calibration.CalibratedBlueMarking">
+            <summary>
+            Wraps an <see cref="T:ViDi2.IBlueMarking"/> in order to provide calibration.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedBlueMarking.#ctor">
+            <summary>
+            Constructs a <see cref="T:ViDi2.VisionPro.Calibration.CalibratedBlueMarking"/>. 
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedBlueMarking.Init(ViDi2.IMarking,Cognex.VisionPro.CogTransform2DLinear)">
+            <summary>
+            Initializes the <see cref="T:ViDi2.VisionPro.Calibration.CalibratedBlueMarking"/>. 
+            </summary>
+            <param name="marking">A marking in pixel space.</param>
+            <param name="xform">The transform to apply.</param>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedBlueMarking.Views">
+            <summary>
+            Gets the views of the marking.  
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedBlueMarking.ViDi2#IMarking#Views">
+            <summary>
+            Gets the views of the marking. 
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedBlueMarking.Export">
+            <summary>
+            Exports all information contained in the marking as an XML element.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedBlueMarking.ViewImage(System.Int32)">
+            <summary>
+            Gets the image of the view.
+            </summary>
+            <param name="viewIndex">view index</param>
+            <returns></returns>
+        </member>
+        <member name="T:ViDi2.VisionPro.Calibration.CalibratedBlueView">
+            <summary>
+            A wrapper for <see cref="T:ViDi2.IBlueView"/> that provides calibration. 
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedBlueView.#ctor(ViDi2.IBlueView,ViDi2.IMarking,Cognex.VisionPro.CogTransform2DLinear)">
+            <summary>
+            Constructs a calibrated <see cref="T:ViDi2.IBlueView"/>. 
+            </summary>
+            <param name="blueView"></param>
+            <param name="parent"></param>
+            <param name="xform"></param>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedBlueView.Features">
+            <summary>
+            Gets the list of features.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedBlueView.Matches">
+            <summary>
+            Gets the list of matches.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedBlueView.OrientedFeatures">
+            <summary>
+            Gets whether the features are oriented.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedBlueView.ScaledFeatures">
+            <summary>
+            Gets whether teh features are scaled.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedBlueView.AspectRatioFeatures">
+            <summary>
+            Gets whether teh features can have non unit aspect-ratio.
+            </summary>
+        </member>
+        <member name="T:ViDi2.VisionPro.Calibration.CalibratedFeature">
+            <summary>
+            Wraps a <see cref="T:ViDi2.IFeature"/> in order to provide calibration. 
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedFeature.#ctor(ViDi2.IFeature,Cognex.VisionPro.CogTransform2DLinear)">
+            <summary>
+            Constructs a calibrated <see cref="T:ViDi2.IFeature"/>. 
+            </summary>
+            <param name="feature"></param>
+            <param name="xform"></param>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedFeature.Angle">
+            <summary>
+            Gets the feature angle.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedFeature.Covers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedFeature.Name">
+            <summary>
+            Gets the feature name.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedFeature.Position">
+            <summary>
+            Gets the feature position.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedFeature.Score">
+            <summary>
+            Gets the feature score.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedFeature.Size">
+            <summary>
+            Gets the feature size.
+            </summary>
+        </member>
+        <member name="T:ViDi2.VisionPro.Calibration.CalibratedGreenMarking">
+            <summary>
+            Wraps a <see cref="T:ViDi2.IGreenMarking"/> to provide calibration. 
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedGreenMarking.#ctor">
+            <summary>
+            Constructs a calibrated green marking.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedGreenMarking.Init(ViDi2.IMarking,Cognex.VisionPro.CogTransform2DLinear)">
+            <summary>
+            Initializes a calibrated green marking.
+            </summary>
+            <param name="marking"></param>
+            <param name="xform"></param>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedGreenMarking.Views">
+            <summary>
+            Gets the views of the marking.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedGreenMarking.ViDi2#IMarking#Views">
+            <summary>
+            Gets the views of the marking.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedGreenMarking.Export">
+            <summary>
+            Exports all information contained in the marking as an XML element.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedGreenMarking.ViewImage(System.Int32)">
+            <summary>
+            Gets the image of the view.
+            </summary>
+            <param name="viewIndex">view index</param>
+            <returns></returns>
+        </member>
+        <member name="T:ViDi2.VisionPro.Calibration.CalibratedGreenView">
+            <summary>
+            Wraps a <see cref="T:ViDi2.IGreenView"/> to provide calibration. 
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedGreenView.#ctor(ViDi2.IGreenView,ViDi2.IMarking,Cognex.VisionPro.CogTransform2DLinear)">
+            <summary>
+            Constructs a calibrated green view.
+            </summary>
+            <param name="greenView"></param>
+            <param name="parent"></param>
+            <param name="xform"></param>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedGreenView.BestTag">
+            <summary>
+            Gets the tag with the highest score.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedGreenView.Exclusive">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedGreenView.Tags">
+            <summary>
+            Gets the collection of tags.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedGreenView.Threshold">
+            <summary>
+            Gets the view's classification threshold.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedGreenView.Uncertainty">
+            <summary>
+            Gets the view's prediction uncertainty, if not computed -1
+            </summary>
+        </member>
+        <member name="T:ViDi2.VisionPro.Calibration.CalibratedMarking">
+            <summary>
+            A base class for calibrated markings.
+            </summary>
+        </member>
+        <member name="F:ViDi2.VisionPro.Calibration.CalibratedMarking._xform">
+            <summary>
+            The calibration transform.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedMarking.#ctor">
+            <summary>
+            Constructs a calibrated marking.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedMarking.Init(ViDi2.IMarking,Cognex.VisionPro.CogTransform2DLinear)">
+            <summary>
+            Initializes the calibrated marking.
+            </summary>
+            <param name="marking"></param>
+            <param name="xform"></param>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMarking.Added">
+            <summary>
+            Gets the date when the marking was added.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMarking.Duration">
+            <summary>
+            Gets the processing duration in seconds.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMarking.ImageInfo">
+            <summary>
+            Gets the size of the processed image in pixels.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMarking.Processed">
+            <summary>
+            Gets the date when the marking was processed.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMarking.ToolName">
+            <summary>
+            Gets the name of the source tool.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMarking.ToolType">
+            <summary>
+            Gets the type of the source tool.
+            </summary>
+        </member>
+        <member name="T:ViDi2.VisionPro.Calibration.CalibratedMatch">
+            <summary>
+            Wraps an <see cref="T:ViDi2.IMatch"/> to provide calibration.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedMatch.#ctor(ViDi2.IMatch,Cognex.VisionPro.CogTransform2DLinear)">
+            <summary>
+            Constructs a calibrated <see cref="T:ViDi2.IMatch"/>.
+            </summary>
+            <param name="match"></param>
+            <param name="xform"></param>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMatch.AspectRatio">
+            <summary>
+            Gets the model aspect ratio.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMatch.Covers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMatch.Features">
+            <summary>
+            Gets the list of features participating in the match.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMatch.FeatureString">
+            <summary>
+            Gets the string of feature IDs.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMatch.PrettifiedString">
+            <summary>
+            Gets the feature string with whitespace inserted.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMatch.ModelName">
+            <summary>
+            Gets the name of the matched model.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMatch.Orientation">
+            <summary>
+            Gets the model orientation.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMatch.Points">
+            <summary>
+            Gets the list of model points.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMatch.Pose">
+            <summary>
+            Gets the matrix describing the transformation from model to view coordinates.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMatch.Position">
+            <summary>
+            Gets the model position.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMatch.Scale">
+            <summary>
+            Gets the model scale.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMatch.Score">
+            <summary>
+            Gets the model score.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedMatch.Shear">
+            <summary>
+            Gets the model skew.
+            </summary>
+        </member>
+        <member name="T:ViDi2.VisionPro.Calibration.CalibratedRedMarking">
+            <summary>
+            Wraps an <see cref="T:ViDi2.IRedMarking"/> to provide calibration.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedRedMarking.#ctor">
+            <summary>
+            Constructs a calibrated red marking.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedRedMarking.Init(ViDi2.IMarking,Cognex.VisionPro.CogTransform2DLinear)">
+            <summary>
+            Initializes the calibrated red marking.
+            </summary>
+            <param name="marking"></param>
+            <param name="xform"></param>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRedMarking.Views">
+            <summary>
+            Gets the views of the marking.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRedMarking.ViDi2#IMarking#Views">
+            <summary>
+            Gets the views of the marking.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedRedMarking.Export">
+            <summary>
+            Exports all information contained in the marking as an XML element.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedRedMarking.ViewImage(System.Int32)">
+            <summary>
+            Gets the image of the view.
+            </summary>
+            <param name="viewIndex">view index</param>
+            <returns></returns>
+        </member>
+        <member name="T:ViDi2.VisionPro.Calibration.CalibratedRedView">
+            <summary>
+            Wraps an <see cref="T:ViDi2.IRedView"/> to provide calibration. 
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedRedView.#ctor(ViDi2.IRedView,ViDi2.IMarking,Cognex.VisionPro.CogTransform2DLinear)">
+            <summary>
+            Constructs a calibrated red view.
+            </summary>
+            <param name="redView"></param>
+            <param name="parent"></param>
+            <param name="xform"></param>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRedView.HasHeatMap">
+            <summary>
+            Checks whether the view has a heat map.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRedView.HeatMap">
+            <summary>
+            Gets the view's heat map.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRedView.Regions">
+            <summary>
+            Gets the list of found regions.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRedView.Uncertainty">
+            <summary>
+            Gets the view's prediction uncertainty (-1 if not computed)
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRedView.Score">
+            <summary>
+            Gets the maximal score.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRedView.ScoreMaps">
+            <summary>
+            Gets the score map for the given class name.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRedView.Threshold">
+            <summary>
+            Gets the view's detection thresholds.
+            </summary>
+        </member>
+        <member name="T:ViDi2.VisionPro.Calibration.CalibratedRegion">
+            <summary>
+            Wraps an <see cref="T:ViDi2.IRegion"/> to provide calibration.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedRegion.#ctor(ViDi2.IRegion,Cognex.VisionPro.CogTransform2DLinear)">
+            <summary>
+            Constructs a calibrated region.
+            </summary>
+            <param name="region"></param>
+            <param name="xform"></param>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRegion.Name">
+            <summary>
+            Gets the class name.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRegion.Score">
+            <summary>
+            Gets the score for this region.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRegion.Area">
+            <summary>
+            Gets the region's area.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRegion.Perimeter">
+            <summary>
+            Gets the region's perimeter.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRegion.Compactness">
+            <summary>
+            Gets the region's compactness (max 1.0 for a circle).
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRegion.Coverage">
+            <summary>
+            Gets the coverage of this labeled/unlabeled region by other unlabeled/labeled regions.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRegion.Center">
+            <summary>
+            Gets the region's center of gravity.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRegion.Outer">
+            <summary>
+            Gets the lsit of points for the outer contour.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedRegion.Inners">
+            <summary>
+            Gets the list of points for inner contours.
+            </summary>
+        </member>
+        <member name="T:ViDi2.VisionPro.Calibration.CalibratedView">
+            <summary>
+            Wraps an <see cref="T:ViDi2.IView"/> to provide calibration. 
+            </summary>
+        </member>
+        <member name="F:ViDi2.VisionPro.Calibration.CalibratedView._xform">
+            <summary>
+            The calibration transform.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.CalibratedView.#ctor(ViDi2.IView,ViDi2.IMarking,Cognex.VisionPro.CogTransform2DLinear)">
+            <summary>
+            Constructs a calibrated view.
+            </summary>
+            <param name="view"></param>
+            <param name="parent"></param>
+            <param name="xform"></param>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedView.Group">
+            <summary>
+            Gets the name of the view's group.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedView.InvalidMessage">
+            <summary>
+            Holds a message why the view is invalid and cannot be trained
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedView.HasMask">
+            <summary>
+            Indicates whether the view has a mask.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedView.Mask">
+            <summary>
+            Gets the view's mask.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedView.Parent">
+            <summary>
+            Gets the view's parent marking.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedView.Pose">
+            <summary>
+            Gets the pose of the region as a transformation matrix.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedView.RefPose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedView.Size">
+            <summary>
+            Gets the size of the view.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedView.ProcessingError">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedView.Bookmark">
+            <summary>
+            Gets the bookmark of the view
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.Calibration.CalibratedView.Memo">
+            <summary>
+            Gets the memo of the view
+            </summary>
+        </member>
+        <member name="T:ViDi2.VisionPro.Calibration.ICalibratedMarking">
+            <summary>
+            An initialization interface for calibrated markings.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Calibration.ICalibratedMarking.Init(ViDi2.IMarking,Cognex.VisionPro.CogTransform2DLinear)">
+            <summary>
+            Initializes the calibrated marking.
+            </summary>
+            <param name="marking"></param>
+            <param name="xform"></param>
+        </member>
+        <member name="M:ViDi2.VisionPro.Compatibility.EnableVisionProVersionCompatibility">
+            <summary>
+            removes the dependency of the ViDi.NET.VisionPro assembly to a specific version of visionPro
+            Without calling this method, this assembly is only compatible with VisionPro 9.3
+            </summary>
+        </member>
+        <member name="T:ViDi2.VisionPro.IHeatMapConverter">
+            <summary>
+            Defines an interface for applying a ViDi "heat map" image
+            to an ICogImage. Different implementations may have different
+            quality/performance/output priorities.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.IHeatMapConverter.ApplyHeatMapToImage(Cognex.VisionPro.ICogImage,ViDi2.IRedView,System.Collections.Generic.IList{Cognex.VisionPro.CogRectangle})">
+            <summary>
+            Returns a new image with the heat map image
+            from the given IRedView on top of the original image.
+            </summary>
+            <param name="image"> The original image to which the heat map will be applied. </param>
+            <param name="redView"> The region of interest from the original image. </param>
+            <param name="regions"> The defect regions of the view that should be colored in. </param>
+            <returns> The original image with the heat map on top. </returns>
+        </member>
+        <member name="T:ViDi2.VisionPro.BlueToolRecord">
+            <summary>
+            Provides an aggregator for the results from a blue tool, including
+            the input image, view records, feature records, and model records.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.BlueToolRecord.#ctor(ViDi2.IBlueMarking,ViDi2.IImage,System.String)">
+            <summary>
+            Creates a <see cref="T:ViDi2.VisionPro.Records.Record"/> with the given image as its Content.
+            Then, converts the results in the given marking into the corresponding
+            Records and adds these as SubRecords.
+            
+            The resulting structure has <see cref="T:ViDi2.VisionPro.Records.ViewRecord"/>s as SubRecords,
+            and each of those ViewRecords have <see cref="T:ViDi2.VisionPro.FeatureRecord"/>s and
+            <see cref="T:ViDi2.VisionPro.ModelRecord"/>s as SubRecords.
+            </summary>
+            <remarks>
+            The feature and model records are created according to 
+            the default strategy (<see cref="T:ViDi2.VisionPro.Records.DefaultBlueToolGraphicCreator"/>).
+            </remarks>
+            <param name="marking"> The blue tool results to convert into records. </param>
+            <param name="image"> The input image to the blue tool that yielded these results. </param>
+            <param name="name"> The name to give the record. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.BlueToolRecord.#ctor(ViDi2.IBlueMarking,ViDi2.IImage,System.String,ViDi2.VisionPro.Records.ICreateBlueToolGraphics)">
+            <summary>
+            Creates a <see cref="T:ViDi2.VisionPro.Records.Record"/> with the given image as its Content.
+            Then, converts the results in the given marking into the corresponding
+            Records and adds these as SubRecords.
+            
+            The resulting structure has <see cref="T:ViDi2.VisionPro.Records.ViewRecord"/>s as SubRecords,
+            and each of those ViewRecords have <see cref="T:ViDi2.VisionPro.FeatureRecord"/>s and
+            <see cref="T:ViDi2.VisionPro.ModelRecord"/>s as SubRecords.
+            </summary>
+            <param name="marking"> The blue tool results to convert into records. </param>
+            <param name="image"> The input image to the blue tool that yielded these results. </param>
+            <param name="name"> The name to give the record. </param>
+            <param name="graphicsCreator"> The strategy for creating the feature graphics. </param>
+        </member>
+        <member name="P:ViDi2.VisionPro.BlueToolRecord.Views">
+            <inheritdoc/>
+        </member>
+        <member name="M:ViDi2.VisionPro.BlueToolRecord.SetFeatureGraphicsVisibility(System.Boolean)">
+            <summary>
+            Toggles the visibility of all graphics for each feature in each View.
+            </summary>
+            <param name="visible"> True to show the feature graphics, false to hide them. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.BlueToolRecord.SetModelGraphicsVisibility(System.Boolean)">
+            <summary>
+            Toggles the visibility of all graphics for each model in each View.
+            </summary>
+            <param name="visible"> True to show the model graphics, false to hide them. </param>
+        </member>
+        <member name="T:ViDi2.VisionPro.BlueToolRecordConfiguration">
+            <summary>
+            Describes which graphics to show/hide given a BlueToolRecord
+            and its children.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.BlueToolRecordConfiguration.#ctor(ViDi2.VisionPro.BlueToolRecord)">
+            <summary>
+            Creates a configuration from the current record, making note of
+            which graphics are shown/hidden per view.
+            </summary>
+            <param name="record"> The record whose current status should be preserved with this configuration. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.BlueToolRecordConfiguration.ApplyConfiguration(ViDi2.VisionPro.BlueToolRecord)">
+            <summary>
+            Applies this configuration to a record, turning on/off the same
+            graphics in the same views as the record that produced this configuration.
+            </summary>
+            <param name="record"> The record whose current status should be set according to this configuration. </param>
+        </member>
+        <member name="P:ViDi2.VisionPro.BlueToolRecordConfiguration.Views">
+            <summary>
+            Configurations for each ViewRecord in the original BlueToolRecord.
+            </summary>
+            <remarks>
+            These are ordered such that Views[0] applies to the first view
+            encountered, Views[1] to the second view, and so on.
+            
+            Therefore, if the ordering of views changes between creating this
+            configuration and applying it, an unintended configuration may be applied
+            to each view.
+            </remarks>
+        </member>
+        <member name="T:ViDi2.VisionPro.BlueViewRecord">
+            <summary>
+            Defines a view record with properties specific to blue tool results.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.BlueViewRecord.#ctor(ViDi2.IBlueView,ViDi2.VisionPro.Records.ICreateBlueToolGraphics)">
+            <summary>
+            Creates a record from a BlueView whose content is the
+            view's bounding box, and whose subrecords are the features
+            and models from the view, all of which are transformed by the view's Pose.
+            </summary>
+            <param name="view"> The view to represent as a tree of records. </param>
+            <param name="graphicsCreator"> The strategy for creating the feature and model graphics. </param>
+        </member>
+        <member name="P:ViDi2.VisionPro.BlueViewRecord.Features">
+            <summary>
+            Returns all SubRecords of this view that are FeatureRecords.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.BlueViewRecord.Models">
+            <summary>
+            Returns all SubRecords of this view that are ModelRecords.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.BlueViewRecord.SetFeatureGraphicsVisibility(System.Boolean)">
+            <summary>
+            Toggles the visibility of all graphics for each feature in this View.
+            </summary>
+            <param name="visible"> True to show the feature graphics, false to hide them. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.BlueViewRecord.SetModelGraphicsVisibility(System.Boolean)">
+            <summary>
+            Toggles the visibility of all graphics for each model in each View.
+            </summary>
+            <param name="visible"> True to show the model graphics, false to hide them. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.Record.#ctor(Cognex.VisionPro.ICogRecord)">
+            <summary>
+            Wrap an ICogRecord with a DeepLearningRecord, such as a PatMax
+            result record used in a deep learning application.
+            </summary>
+            <remarks>
+            In particular, this wrapper can be used to show/hide the
+            graphics of any ICogRecord that contains graphics.
+            </remarks>
+            <param name="other"> The record to wrap. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.Record.SetGraphicVisibility(System.Boolean)">
+            <summary>
+            Changes the visibility of this record's graphics,
+            if it has graphics (i.e. if the record's Content is
+            an ICogGraphic).
+            </summary>
+            <param name="visible"> True to show the graphics; false to hide them. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.Record.SetGraphicVisibilityForSelfAndSubRecords(System.Boolean)">
+            <summary>
+            Changes the visibility of this record's graphics,
+            if it has graphics (i.e. if the record's Content is
+            an ICogGraphic) as well as the visibility of any
+            Records in this record's SubRecords.
+            </summary>
+            <param name="visible"> True to show the graphics; false to hide them. </param>
+        </member>
+        <member name="T:ViDi2.VisionPro.Records.DefaultBlueToolGraphicCreator">
+            <summary>
+            Describes a class that knows how to make labelled blue ellipses for
+            blue tool features, and labelled blue rectangles for OCR tool features.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.DefaultBlueToolGraphicCreator.CreateFeatureGraphics(ViDi2.IFeature,ViDi2.IView)">
+            <summary>
+            Creates graphics to represent the feature that
+            was found in the given view.
+            </summary>
+            <remarks>
+            The center of the feature marker will be transformed with the given matrix.
+            The outline of the feature marker will match the feature's shape
+            (elliptical for standard features, rectangular for characters).
+            The outline will also be rotated to fit correctly over the feature
+            in the original image.
+            </remarks>
+            <param name="feature"> The feature to represent graphically. </param>
+            <param name="foundIn"> The view in which the feature was found. </param>
+            <returns> A graphical outline w/ crosshairs centered on the feature in the original image. </returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.DefaultBlueToolGraphicCreator.CreateEllipticalFeatureGraphic(ViDi2.IFeature,ViDi2.Point,System.Double)">
+            <summary>
+            Creates an elliptical graphic to outline the feature that
+            was found in the given view.
+            </summary>
+            <remarks>
+            The center of the ellipse will be converted from the view's
+            coordinate system to the original image's coordinate system.
+            The ellipse will also be rotated to fit correctly over the feature
+            in the original image.
+            </remarks>
+            <param name="feature"> The feature to represent graphically. </param>
+            <param name="imagePosition"> The coordinates of the feature's center in the original image's coordinate system. </param>
+            <param name="imageRotation">
+            The number of radians in the CCW direction that this 
+            graphic should be rotated to align with the feature in the original view.
+            </param>
+            <returns> An ellipse centered on the feature in the original image. </returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.DefaultBlueToolGraphicCreator.CreateRectangularFeatureGraphic(ViDi2.IFeature,ViDi2.Point,System.Double)">
+            <summary>
+            Creates a rectangular graphic to outline the character that
+            was found in the given view.
+            </summary>
+            <remarks>
+            The center of the rectangle will be converted from the view's
+            coordinate system to the original image's coordinate system.
+            The rectangle will also be rotated to fit correctly over the feature
+            in the original image.
+            </remarks>
+            <param name="feature"> The feature to represent graphically. </param>
+            <param name="imagePosition"> The coordinates of the feature's center in the original image's coordinate system. </param>
+            <param name="imageRotation">
+            The number of radians in the CCW direction that this 
+            graphic should be rotated to align with the feature in the original view.
+            </param>
+            <returns> A rectangle centered on the feature in the original image. </returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.DefaultBlueToolGraphicCreator.CreateModelGraphic(ViDi2.IMatch,ViDi2.IView)">
+            <summary>
+            Creates a graphic to represent the model that
+            was found in the given view.
+            </summary>
+            <remarks>
+            Each point in the model will be converted from the model's 
+            coordinate system to the original image's coordinate system.
+            </remarks>
+            <param name="model"> The model to represent graphically. </param>
+            <param name="foundIn"> The view in which the model was found. </param>
+            <returns> A labeled polygon that traces the model in the original image. </returns>
+        </member>
+        <member name="T:ViDi2.VisionPro.Records.DefaultGreenToolGraphicCreator">
+            <summary>
+            Describes a class that knows how to make label graphics for tags
+            (based on their color) and how to stack multiple tags vertically.
+            </summary>
+        </member>
+        <member name="F:ViDi2.VisionPro.Records.DefaultGreenToolGraphicCreator.Offset">
+            <summary> The offset from the origin (of the view) to use as each tag's anchor. </summary>
+        </member>
+        <member name="F:ViDi2.VisionPro.Records.DefaultGreenToolGraphicCreator.Spacing">
+            <summary> The number of pixels to place between consecutive labels. </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.DefaultGreenToolGraphicCreator.CreateTagGraphic(ViDi2.ITag,ViDi2.IView,ViDi2.Point@)">
+            <summary>
+            Creates a label graphic to represent the tag that
+            was assigned to the given view.
+            </summary>
+            <param name="tag"> The classification to represent graphically. </param>
+            <param name="foundIn"> 
+            The view to which the tag belongs. The tag will be drawn
+            relative to the view's bounding box.
+            </param>
+            <param name="anchor"> The position at which this tag was created. </param>
+            <returns> A label with the class name/color. </returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.DefaultGreenToolGraphicCreator.SetGraphicVisibilityAndOffset(ViDi2.VisionPro.TagRecord,System.Boolean,System.Int32)">
+            <summary>
+            Changes the visibility of this tag's label while also
+            moving it downwards by the specified number of pixels.
+            </summary>
+            <remarks>
+            A class managing the display of a set of tag records can
+            use this to display a stack of multiple labels.
+            </remarks>
+            <param name="visible"> Whether or not to show this tag's graphics. </param>
+            <param name="index"> The 0-based ordering of the given tag in the stack of tags. </param>
+            <param name="recordToModify"> The record to set the visibility/position of. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.DefaultGreenToolGraphicCreator.ResetGraphicPosition(ViDi2.VisionPro.TagRecord)">
+            <summary>
+            Resets the label's vertical position to its default value.
+            The tag can then be drawn relative to this origin using
+            <see cref="M:ViDi2.VisionPro.Records.DefaultGreenToolGraphicCreator.SetGraphicVisibilityAndOffset(ViDi2.VisionPro.TagRecord,System.Boolean,System.Int32)"/>.
+            </summary>
+            <param name="recordToModify"> The record to reset the position of. </param>
+        </member>
+        <member name="T:ViDi2.VisionPro.Records.DefaultRedToolGraphicCreator">
+            <summary>
+            Describes a class that knows how to make dashed polygons
+            around defect regions that are colored based on their score.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.DefaultRedToolGraphicCreator.CreateRegionGraphic(ViDi2.IRegion,ViDi2.IRedView)">
+            <summary>
+            Creates a polygon graphic to represent the feature that
+            was found in the given view.
+            </summary>
+            <remarks>
+            Each coordinate of the region will be converted from the
+            view's coordinate system to the original image's coordinate system.
+            
+            The outline of the region will be colored based on the detection threshold;
+            regions that score above the upper limit (defects) will be red, while defects
+            that score between the two limits (intermediate) will be white.
+            </remarks>
+            <param name="region"> The region to represent graphically. </param>
+            <param name="foundIn"> The view in which the region was found. </param>
+            <returns> A polygon graphic outlining the region in the original image. </returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.DefaultRedToolGraphicCreator.ApplyHeatMapToImage(Cognex.VisionPro.ICogImage,System.Collections.Generic.IDictionary{ViDi2.IRedView,System.Collections.Generic.IEnumerable{Cognex.VisionPro.ICogGraphic}})">
+            <summary>
+            Iterates over each rectangular defect region in an image,
+            matching each pixel in the region to a pixel in the
+            heat map and copying the heat map's color to the original
+            image.
+            </summary>
+            <param name="image"> The original image to which the heat map will be applied. </param>
+            <param name="lookup"> 
+            Pairs a view with its regions that need to be filled in from the heatmap.
+            Each view's transform is used to transform the pixels contained within the corresponding polygons.
+            </param>
+            <exception cref="T:System.InvalidCastException"> If the given regions are not of type <see cref="T:Cognex.VisionPro.CogPolygon"/>. </exception>
+            <returns> The original image with pixels recolored according to the heatmap. </returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.DefaultRedToolGraphicCreator.CopyPixelFromHeatMapToOriginal(ViDi2.Point,ViDi2.Point,System.Drawing.Bitmap,System.Byte[]@,System.Int32)">
+            <summary>
+            Given a pixel in the original image and a pixel in the
+            heat map image, copies the color from the heat map pixel
+            to the original pixel.
+            </summary>
+            <param name="originalPoint"> The coordinates of a pixel in the original image. </param>
+            <param name="heatMapPoint"> The coordinates of the corresponding pixel in the heatmap image. </param>
+            <param name="originalImage"> The image to copy the heatmap into. </param>
+            <param name="pixels"> 
+            A reference to a byte array containing four bytes (BGRA) per pixel in the heatmap image.
+            </param>
+            <param name="stride"> <see cref="T:System.Windows.Media.Imaging.BitmapSource"/> </param>
+        </member>
+        <member name="T:ViDi2.VisionPro.Records.GreenToolRecordConfiguration">
+            <summary>
+            Describes which graphics to show/hide given a GreenToolRecord
+            and its children.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.GreenToolRecordConfiguration.#ctor(ViDi2.VisionPro.GreenToolRecord)">
+            <summary>
+            Creates a configuration from the current record, making note of
+            which graphics are shown/hidden per view.
+            </summary>
+            <param name="record"> The record whose current status should be preserved with this configuration. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.GreenToolRecordConfiguration.ApplyConfiguration(ViDi2.VisionPro.GreenToolRecord)">
+            <summary>
+            Applies this configuration to a record, turning on/off the same
+            graphics in the same views as the record that produced this configuration.
+            </summary>
+            <param name="record"> The record whose current status should be set according to this configuration. </param>
+        </member>
+        <member name="P:ViDi2.VisionPro.Records.GreenToolRecordConfiguration.Views">
+            <summary>
+            Configurations for each ViewRecord in the original GreenToolRecord.
+            </summary>
+            <remarks>
+            These are ordered such that Views[0] applies to the first view
+            encountered, Views[1] to the second view, and so on.
+            
+            Therefore, if the ordering of views changes between creating this
+            configuration and applying it, an unintended configuration may be applied
+            to each view.
+            </remarks>
+        </member>
+        <member name="T:ViDi2.VisionPro.Records.ICreateBlueToolGraphics">
+            <summary>
+            Describes an interface for creating blue tool feature and model graphics
+            that can be used as the content of VisionPro records.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.ICreateBlueToolGraphics.CreateFeatureGraphics(ViDi2.IFeature,ViDi2.IView)">
+            <summary>
+            Creates graphics to represent the feature that
+            was found in the given view.
+            </summary>
+            <remarks>
+            The center of the feature should be transformed from the given view's coordinates
+            to the coordinates of the input image.
+            The feature's orientation should also be preserved when transforming the feature
+            to the input image's coordinates.
+            </remarks>
+            <param name="feature"> The feature to represent graphically. </param>
+            <param name="foundIn"> The view in which the feature was found. </param>
+            <returns> A graphical representation of the feature (in the input image's coordinates). </returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.ICreateBlueToolGraphics.CreateModelGraphic(ViDi2.IMatch,ViDi2.IView)">
+            <summary>
+            Creates a graphic to represent the model that
+            was found in the given view.
+            </summary>
+            <remarks>
+            Each point in the model should be converted from the model's 
+            coordinate system to the original image's coordinate system.
+            </remarks>
+            <param name="model"> The model to represent graphically. </param>
+            <param name="foundIn"> The view in which the model was found. </param>
+            <returns> A graphical representation of the feature (in the input image's coordinates). </returns>
+        </member>
+        <member name="T:ViDi2.VisionPro.Records.ICreateGreenToolGraphics">
+            <summary>
+            Describes an interface for creating green tag graphics
+            that can be used as the content of VisionPro records.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.ICreateGreenToolGraphics.CreateTagGraphic(ViDi2.ITag,ViDi2.IView,ViDi2.Point@)">
+            <summary>
+            Creates a graphic to represent the tag used
+            to classify a view from the green tool.
+            </summary>
+            <param name="tag"> The classification to represent graphically. </param>        
+            <param name="foundIn"> The view to which the tag belongs. </param>
+            <param name="anchor"> The position at which this tag was created. </param>
+            <returns> A graphical representation of the tag. </returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.ICreateGreenToolGraphics.SetGraphicVisibilityAndOffset(ViDi2.VisionPro.TagRecord,System.Boolean,System.Int32)">
+            <summary>
+            Changes the visibility of this tag's label while also
+            moving it by the specified number of pixels.
+            </summary>
+            <remarks>
+            A class managing the display of a set of tag records can
+            use this to display a stack of multiple labels.
+            </remarks>
+            <param name="visible"> Whether or not to show this tag's graphics. </param>
+            <param name="offset"> The distance to move this tag's graphics. </param>
+            <param name="recordToModify"> The record to set the visibility/position of. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.ICreateGreenToolGraphics.ResetGraphicPosition(ViDi2.VisionPro.TagRecord)">
+            <summary>
+            Resets the label's vertical position to its default value.
+            The tag can then be drawn relative to this origin using
+            <see cref="M:ViDi2.VisionPro.Records.ICreateGreenToolGraphics.SetGraphicVisibilityAndOffset(ViDi2.VisionPro.TagRecord,System.Boolean,System.Int32)"/>.
+            </summary>
+            <param name="recordToModify"> The record to reset the position of. </param>
+        </member>
+        <member name="T:ViDi2.VisionPro.Records.ICreateRedToolGraphics">
+            <summary>
+            Describes an interface for creating red region graphics
+            that can be used as the content of VisionPro records.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.ICreateRedToolGraphics.CreateRegionGraphic(ViDi2.IRegion,ViDi2.IRedView)">
+            <summary>
+            Creates a graphic to represent the defect region that
+            was found in the given red view.
+            </summary>
+            <remarks>
+            Each coordinate of the region should be converted from the
+            view's coordinate system to the original image's coordinate system.
+            </remarks>
+            <param name="region"> The region to represent graphically. </param>
+            <param name="foundIn"> The view in which the region was found. </param>
+            <returns> A graphic representing the region in the original image. </returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.ICreateRedToolGraphics.ApplyHeatMapToImage(Cognex.VisionPro.ICogImage,System.Collections.Generic.IDictionary{ViDi2.IRedView,System.Collections.Generic.IEnumerable{Cognex.VisionPro.ICogGraphic}})">
+            <summary>
+            Returns a new image with the heat map image
+            from the given IRedView on top of the original image.
+            </summary>
+            <param name="image"> The original image to which the heat map will be applied. </param>
+            <param name="lookup"> Pairs a view with its regions that need to be filled in from the heatmap. </param>
+            <returns> The original image with the heat map on top. </returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.IToolRecord.SetRegionGraphicsVisibility(System.Boolean)">
+            <summary>
+            Toggles the visibility of all graphics for each view record in the tool record.
+            </summary>
+            <param name="visible"> True to show the view graphics, false to hide them. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.IToolRecord.HideGraphicsForAllViewsBut(ViDi2.VisionPro.Records.ViewRecord)">
+            <summary>
+            Shows all graphics associated with the given view.
+            Hides all graphics associated with every other view
+            managed by this record.
+            </summary>
+            <param name="toShow"> The only ViewRecord in Views whose graphics should be visible. </param>
+        </member>
+        <member name="T:ViDi2.VisionPro.Records.RedToolRecordConfiguration">
+            <summary>
+            Describes which graphics to show/hide given a RedToolRecord
+            and its children.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.RedToolRecordConfiguration.#ctor(ViDi2.VisionPro.RedToolRecord)">
+            <summary>
+            Creates a configuration from the current record, making note of
+            which graphics are shown/hidden per view.
+            </summary>
+            <param name="record"> The record whose current status should be preserved with this configuration. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.Records.RedToolRecordConfiguration.ApplyConfiguration(ViDi2.VisionPro.RedToolRecord,Cognex.VisionPro.ICogRecord)">
+            <summary>
+            Applies this configuration to a record, turning on/off the same
+            graphics in the same views as the record that produced this configuration.
+            </summary>
+            <remarks>
+            The rootRecord's image will also be updated according to this configuration
+            in order to show/hide the heatmap, overwriting the image that was already there.
+            </remarks>
+            <param name="toolRecord"> The record whose current status should be set according to this configuration. </param>
+            <param name="rootRecord">
+            The record containing the image to be displayed; to display the heatmap image,
+            it should be set as the Content of this record.
+            </param>
+        </member>
+        <member name="P:ViDi2.VisionPro.Records.RedToolRecordConfiguration.Views">
+            <summary>
+            Configurations for each ViewRecord in the original RedToolRecord.
+            </summary>
+            <remarks>
+            These are ordered such that Views[0] applies to the first view
+            encountered, Views[1] to the second view, and so on.
+            
+            Therefore, if the ordering of views changes between creating this
+            configuration and applying it, an unintended configuration may be applied
+            to each view.
+            </remarks>
+        </member>
+        <member name="P:ViDi2.VisionPro.Records.RedToolRecordConfiguration.HeatmapHidden">
+            <summary>
+            Should only be false for up to one red tool record in a RecordConfiguration.
+            This is because the record being configured can only show one image
+            at a time, so up to one tool's heatmap can be shown at a time.
+            </summary>
+        </member>
+        <member name="T:ViDi2.VisionPro.Records.ViewRecord">
+            <summary>
+            Describes a VisionPro record that represents a "view,"
+            (region of interest) for a ViDi tool.
+            </summary>
+        </member>
+        <member name="T:ViDi2.VisionPro.FeatureRecord">
+            <summary>
+            Defines a <see cref="!:DeepLearningRecord"/> with content appropriate 
+            for representing a feature on a VisionPro display.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.FeatureRecord.#ctor(ViDi2.IFeature,ViDi2.IView,ViDi2.VisionPro.Records.ICreateBlueToolGraphics)">
+            <summary>
+            Creates a record from a feature, such as a location
+            found at runtime with the blue tool. The view's Pose
+            is used to transform the record's graphics.
+            </summary>
+            <param name="feature"> The feature to translate into a CogRecord. </param>
+            <param name="foundIn"> The view in which the feature was found. </param>
+            <param name="graphicsCreator"> The strategy for creating the feature graphics. </param>
+        </member>
+        <member name="T:ViDi2.VisionPro.GreenToolRecord">
+            <summary>
+            Provides an aggregator for the results from a green tool, including
+            the input image, view records, and tag records.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.GreenToolRecord.#ctor(ViDi2.IGreenMarking,ViDi2.IImage,System.String)">
+            <summary>
+            Creates a <see cref="T:ViDi2.VisionPro.Records.Record"/> with the given image as its Content.
+            Then, converts the results in the given marking into the corresponding
+            Records and adds these as SubRecords.
+            
+            The resulting structure has <see cref="T:ViDi2.VisionPro.Records.ViewRecord"/>s as SubRecords,
+            and each of those ViewRecords has a <see cref="T:ViDi2.VisionPro.TagRecord"/> representing
+            the best tag assigned to that view.
+            </summary>
+            <remarks>
+            The feature and model records are created according to 
+            the default strategy (<see cref="T:ViDi2.VisionPro.Records.DefaultGreenToolGraphicCreator"/>).
+            </remarks>
+            <param name="marking"> The green tool results to convert into records. </param>
+            <param name="image"> The input image to the green tool that yielded these results. </param>
+            <param name="name"> The name to give the record. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.GreenToolRecord.#ctor(ViDi2.IGreenMarking,ViDi2.IImage,System.String,ViDi2.VisionPro.Records.ICreateGreenToolGraphics)">
+            <summary>
+            Creates a <see cref="T:ViDi2.VisionPro.Records.Record"/> with the given image as its Content.
+            Then, converts the results in the given marking into the corresponding
+            Records and adds these as SubRecords.
+            
+            The resulting structure has <see cref="T:ViDi2.VisionPro.Records.ViewRecord"/>s as SubRecords,
+            and each of those ViewRecords has a <see cref="T:ViDi2.VisionPro.TagRecord"/> representing
+            the best tag assigned to that view.
+            </summary>
+            <param name="marking"> The green tool results to convert into records. </param>
+            <param name="image"> The input image to the green tool that yielded these results. </param>
+            <param name="name"> The name to give the record. </param>
+            <param name="graphicsCreator"> The strategy for creating the tool's graphics. </param>
+        </member>
+        <member name="P:ViDi2.VisionPro.GreenToolRecord.Views">
+            <summary>
+            Returns all SubRecords of this Record that are ViewRecords.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.GreenToolRecord.SetTagGraphicsVisibility(System.Boolean)">
+            <summary>
+            Toggles the visibility of all graphics for each tag in each View.
+            </summary>
+            <param name="visible"> True to show the tag graphics, false to hide them. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.GreenToolRecord.SetGraphicVisibilityForSelfAndSubRecords(System.Boolean)">
+            <summary>
+            Instead of just flipping all tag graphics on, adjust
+            their position so that multiple tags don't overlap.
+            </summary>
+            <param name="visible"> Whether or not the ROI and all tag graphics should be shown or not. </param>
+        </member>
+        <member name="T:ViDi2.VisionPro.GreenViewRecord">
+            <summary>
+            Defines a view record with properties specific to green tool results.
+            </summary>
+        </member>
+        <member name="F:ViDi2.VisionPro.GreenViewRecord.DefaultTagPosition">
+            <summary> The default position for each tag graphic (in pixels). </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.GreenViewRecord.#ctor(ViDi2.IGreenView,ViDi2.VisionPro.Records.ICreateGreenToolGraphics)">
+            <summary>
+            Creates a record from a GreenView whose content is the
+            view's bounding box, and whose subrecords are the tags
+            assigned to the view.
+            </summary>
+            <param name="view"> The view to represent as a tree of records. </param>
+            <param name="graphicsCreator"> The strategy for creating the feature and model graphics. </param>
+        </member>
+        <member name="P:ViDi2.VisionPro.GreenViewRecord.Tags">
+            <summary>
+            Returns all SubRecords of this view that are TagRecords.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.GreenViewRecord.OrderedTags">
+            <summary>
+            Returns all tags assigned to this view in order
+            of decreasing score.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.GreenViewRecord.DisplayMode">
+            <summary>
+            The last strategy used to display all of the tags for this tool.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.GreenViewRecord.LastThreshold">
+            <summary>
+            The last minimum score used for displaying all tags above
+            a certain score.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.GreenViewRecord.ShowBestTag">
+            <summary>
+            Sets the tag with the highest score across all views to be
+            visible and hides all other tags.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.GreenViewRecord.ShowAllTagsAboveThreshold(System.Double)">
+            <summary>
+            Makes all tags with a score greater than or equal to
+            the given threshold visible; hides all other tags.
+            </summary>
+            <param name="threshold"> The minimum score a tag must have to be visible. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.GreenViewRecord.SetTagGraphicsVisibility(System.Boolean)">
+            <summary>
+            Toggles the visibility of all graphics for each tag in this view, 
+            adjusting the position of multiple tags to prevent overlap.
+            </summary>
+            <param name="visible"> True to show the tag graphics, false to hide them. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.GreenViewRecord.SetGraphicVisibilityForSelfAndSubRecords(System.Boolean)">
+            <summary>
+            Instead of just flipping all tag graphics on, adjust
+            their position so that multiple tags don't overlap.
+            </summary>
+            <param name="visible"> Whether or not all graphics should be shown or not. </param>
+        </member>
+        <member name="T:ViDi2.VisionPro.ModelRecord">
+            <summary>
+            Defines a <see cref="!:DeepLearningRecord"/> with content appropriate 
+            for outlining a model on a VisionPro display.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.ModelRecord.#ctor(ViDi2.IMatch,ViDi2.IView,ViDi2.VisionPro.Records.ICreateBlueToolGraphics)">
+            <summary>
+            Creates a record from a match, such as a model
+            found at runtime with the blue tool. The view's Pose
+            is used to transform the graphics.
+            </summary>
+            <param name="model"> The model to translate into a CogRecord. </param>
+            <param name="foundIn"> The view in which the model was found. </param>
+            <param name="graphicsCreator"> The strategy for creating the model graphics. </param>
+        </member>
+        <member name="T:ViDi2.VisionPro.RedToolRecord">
+            <summary>
+            Provides an aggregator for the results from a red tool, including
+            the input image (with or without the heat map), view records, 
+            and defect region records.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.RedToolRecord.#ctor(ViDi2.IRedMarking,ViDi2.IImage,System.String,System.Boolean)">
+            <summary>
+            Creates a <see cref="T:ViDi2.VisionPro.Records.Record"/> with the given image as its Content.
+            Then, converts the results in the given marking into the corresponding
+            Records and adds these as SubRecords. Lastly, the heat map image is created
+            and can be toggled on and off.
+            
+            The resulting structure has a record with <see cref="T:ViDi2.VisionPro.Records.ViewRecord"/>s as SubRecords. 
+            Each of those ViewRecords have <see cref="T:ViDi2.VisionPro.RegionRecord"/>s as SubRecords.
+            </summary>
+            <remarks>
+            The region records and heatmap are created according to 
+            the default strategy (<see cref="T:ViDi2.VisionPro.Records.DefaultRedToolGraphicCreator"/>).
+            </remarks>
+            <param name="marking"> The red tool results to convert into records. </param>
+            <param name="image"> The input image to the red tool that yielded these results. </param>
+            <param name="name"> The name to give the record. </param>
+            <param name="createHeatmap"> 
+            Whether or not the heatmap image should be created (adding significant overhead for massive images).
+            </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.RedToolRecord.#ctor(ViDi2.IRedMarking,ViDi2.IImage,System.String,ViDi2.VisionPro.Records.ICreateRedToolGraphics,System.Boolean)">
+            <summary>
+            Creates a <see cref="T:ViDi2.VisionPro.Records.Record"/> with the given image as its Content.
+            Then, converts the results in the given marking into the corresponding
+            Records and adds these as SubRecords. Lastly, the heat map image is created
+            and can be toggled on and off.
+            
+            The resulting structure has a record with <see cref="T:ViDi2.VisionPro.Records.ViewRecord"/>s as SubRecords. 
+            Each of those ViewRecords have <see cref="T:ViDi2.VisionPro.RegionRecord"/>s as SubRecords.
+            </summary>
+            <param name="marking"> The red tool results to convert into records. </param>
+            <param name="image"> The input image to the red tool that yielded these results. </param>
+            <param name="name"> The name to give the record. </param>
+            <param name="graphicsCreator"> The strategy for creating the region graphics. </param>
+            <param name="createHeatmap"> 
+            Whether or not the heatmap image should be created 
+            (potentially adding significant overhead for massive images).
+            </param>
+        </member>
+        <member name="P:ViDi2.VisionPro.RedToolRecord.Views">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.VisionPro.RedToolRecord.HeatMapImage">
+            <summary>
+            The heatmap image generated for this record, or null if no heatmap was generated.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.RedToolRecord.HasHeatMap">
+            <returns> Whether or not a heatmap image was generated for this record. </returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.RedToolRecord.IsHeatMapVisible">
+            <returns> Whether or not the heatmap image is currently this record's Content. </returns>
+        </member>
+        <member name="M:ViDi2.VisionPro.RedToolRecord.SetDefectOutlineGraphicsVisibility(System.Boolean)">
+            <summary>
+            Toggles the visibility of all graphics for each defect region in each View.
+            </summary>
+            <param name="visible"> True to show the defect region graphics, false to hide them. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.RedToolRecord.SetHeatMapGraphicsVisibility(System.Boolean)">
+            <summary>
+            Toggles the visibility of the heat map "overlay" on the original image.
+            If there is no heat map image, the original image remains unchanged.
+            </summary>
+            <param name="visible"> True to show the heat map, false to hide it. </param>
+        </member>
+        <member name="T:ViDi2.VisionPro.RedViewRecord">
+            <summary>
+            Defines a view record with properties specific to red tool results.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.RedViewRecord.#ctor(ViDi2.IRedView,ViDi2.VisionPro.Records.ICreateRedToolGraphics)">
+            <summary>
+            Creates a record from a RedView whose content is the
+            view's bounding box, and whose subrecords are graphics
+            for the defect regions found in the view.
+            </summary>
+            <param name="view"> The view to represent as a tree of records. </param>
+            <param name="graphicsCreator"> The strategy for creating the region graphics. </param>
+        </member>
+        <member name="P:ViDi2.VisionPro.RedViewRecord.DefectRegions">
+            <summary>
+            Returns all SubRecords that are RegionRecords.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.RedViewRecord.SetDefectOutlineGraphicsVisibility(System.Boolean)">
+            <summary>
+            Toggles the visibility of every defect region graphic in this view.
+            </summary>
+            <param name="visible"> True to show the defect region graphics, false to hide them. </param>
+        </member>
+        <member name="M:ViDi2.VisionPro.RedViewRecord.GetEnclosingRectangles">
+            <returns> 
+            A list of rectangles where each rectangle encloses
+            a defect region in this view.
+            </returns>
+        </member>
+        <member name="T:ViDi2.VisionPro.RegionRecord">
+            <summary>
+            Defines a <see cref="!:DeepLearningRecord"/> with content appropriate 
+            for representing a region on a VisionPro display. The view's Pose
+            is used to transform the record's graphics.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.RegionRecord.#ctor(ViDi2.IRegion,ViDi2.IRedView,ViDi2.VisionPro.Records.ICreateRedToolGraphics)">
+            <summary>
+            Creates a record from a region, such as a defect
+            found at runtime with the red tool. The view's Pose
+            is used to transform the record's graphics.
+            </summary>
+            <param name="region"> The region to translate into a CogRecord. </param>
+            <param name="foundIn"> The view in which the feature was found. </param>
+            <param name="graphicsCreator"> The strategy for creating the region graphics. </param>
+        </member>
+        <member name="T:ViDi2.VisionPro.TagRecord">
+            <summary>
+            Defines a <see cref="!:DeepLearningRecord"/> with content appropriate 
+            for representing a tag on a VisionPro display.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.TagRecord.#ctor(ViDi2.ITag,ViDi2.IView,ViDi2.VisionPro.Records.ICreateGreenToolGraphics)">
+            <summary>
+            Creates a record from a tag, such as a class found
+            at runtime with the green tool.
+            </summary>
+            <param name="tag"> The tag to translate into a CogRecord. </param>
+            <param name="foundIn"> The view to which the tag belongs. </param>
+            <param name="graphicsCreator"> The strategy for creating the tag graphics. </param>
+        </member>
+        <member name="T:ViDi2.VisionPro.ToolRecord`1">
+            <summary>
+            Defines a base for aggregate records (such as records
+            for tool results) that manage records for several views.
+            </summary>
+        </member>
+        <member name="P:ViDi2.VisionPro.ToolRecord`1.Views">
+            <summary>
+            Returns all SubRecords of this Record that are ViewRecords of type T.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.ToolRecord`1.SetRegionGraphicsVisibility(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:ViDi2.VisionPro.ToolRecord`1.HideGraphicsForAllViewsBut(ViDi2.VisionPro.Records.ViewRecord)">
+            <inheritdoc/>
+        </member>
+        <member name="T:ViDi2.VisionPro.TransformationExtensions">
+            <summary>
+            Defines extension methods that simplify transforming objects
+            from one coordinate space to another.
+            </summary>
+        </member>
+        <member name="M:ViDi2.VisionPro.TransformationExtensions.ToOriginalFromView(ViDi2.Point,ViDi2.IView)">
+            <summary>
+            Transforms a point from a view-specific coordinate system
+            to the coordinate system coresponding to the original image
+            from which the view was obtained.
+            
+            </summary>
+            <param name="point"> The point in view coordinates. </param>
+            <param name="view"> The view obtained by transforming the original image. </param>
+            <returns> The point in the original image's coordinates. </returns>
+        </member>
+        <member name="T:ViDi.NET.VisionPro.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ViDi.NET.VisionPro.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ViDi.NET.VisionPro.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ViDi.NET.VisionPro.Properties.Resources._0DoesNotImplementToCogImage">
+            <summary>
+              Looks up a localized string similar to {0} does not implement ToCogImage.
+            </summary>
+        </member>
+        <member name="P:ViDi.NET.VisionPro.Properties.Resources.BlueView">
+            <summary>
+              Looks up a localized string similar to BlueView.
+            </summary>
+        </member>
+        <member name="P:ViDi.NET.VisionPro.Properties.Resources.GreenView">
+            <summary>
+              Looks up a localized string similar to GreenView.
+            </summary>
+        </member>
+        <member name="P:ViDi.NET.VisionPro.Properties.Resources.RawImageConversionToCogImageNotSupported">
+            <summary>
+              Looks up a localized string similar to RawImage conversion to CogImage not supported.
+            </summary>
+        </member>
+        <member name="P:ViDi.NET.VisionPro.Properties.Resources.RedView">
+            <summary>
+              Looks up a localized string similar to RedView.
+            </summary>
+        </member>
+        <member name="P:ViDi.NET.VisionPro.Properties.Resources.View">
+            <summary>
+              Looks up a localized string similar to View.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,386 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--  MainWindow  -->
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnOnLine">联机/脱机</sys:String>
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnWorkList">工作列表</sys:String>
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnSystemLog">系统日志</sys:String>
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnSystemSetup">系统设置</sys:String>
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnFileManager">文件管理</sys:String>
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnVersionInfo">版本信息</sys:String>
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnUserLogin">用户登录</sys:String>
+    <sys:String x:Key="Lan.MainWin.MenuBar.BtnHelp">帮助</sys:String>
+    <sys:String x:Key="Lan.MainWin.StatusBar.TextStatusMonitor">状态监视</sys:String>
+    <sys:String x:Key="Lan.MainWin.StatusBar.TextCamera">相机:</sys:String>
+    <sys:String x:Key="Lan.MainWin.StatusBar.TextHDD">硬盘:</sys:String>
+
+    <!--  Control_WorkList  -->
+    <sys:String x:Key="Lan.Control_WorkList.MenuBar.BtnRefresh">刷新</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.MenuBar.BtnAdd">添加</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.MenuBar.BtnImport">导入</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.MenuBar.BtnEdit">编辑</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.MenuBar.BtnLoadWork">装载</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.MenuBar.BtnUnloadWork">卸载</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.ContextMenu.BtnCopy">复制</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.ContextMenu.BtnExport">导出</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.ContextMenu.BtnDelete">删除</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.BtnSave">保存</sys:String>
+    <sys:String x:Key="Lan.Control_WorkList.BtnClose">关闭</sys:String>
+
+    <!--  Control_Filmstrip  -->
+    <sys:String x:Key="Lan.Control_Filmstrip.MenuBar.BtnImportImage">导入图片</sys:String>
+    <sys:String x:Key="Lan.Control_Filmstrip.MenuBar.BtnFirstImage">第一张图片</sys:String>
+    <sys:String x:Key="Lan.Control_Filmstrip.MenuBar.BtnNextImage">下一张图片</sys:String>
+    <sys:String x:Key="Lan.Control_Filmstrip.MenuBar.BtnPreviousImage">上一张</sys:String>
+    <sys:String x:Key="Lan.Control_Filmstrip.MenuBar.BtnLastImage">最后一张图片</sys:String>
+
+    <!--  Control_ProductionData  -->
+    <sys:String x:Key="Lan.Control_ProductionData.TextStartDate">起始日期:</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextEndDate">截止日期:</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.BtnQuery">查询</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.BtnQueryToday">查询当天</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.BtnExportCSV">导出CSV</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextRate">通过率</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextTotal">总数</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextTriggerTime">触发时间</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextTriggerIndex">触发序号</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextResultDisplay">结果显示</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextResultSend">结果发送</sys:String>
+    <sys:String x:Key="Lan.Control_ProductionData.TextResultStatus">结果状态</sys:String>
+
+    <!--  Control_RuntimeResultViewer  -->
+    <sys:String x:Key="Lan.Control_RuntimeResultViewer.TextBufferQueue">缓存队列</sys:String>
+    <sys:String x:Key="Lan.Control_RuntimeResultViewer.BtnManualTrigger">手动触发</sys:String>
+    <sys:String x:Key="Lan.Control_RuntimeResultViewer.BtnLiveMode">实时显示</sys:String>
+    <sys:String x:Key="Lan.Control_RuntimeResultViewer.TextResult">结果:</sys:String>
+
+    <!--  Control_SystemLog  -->
+    <sys:String x:Key="Lan.Control_SystemLog.TextTime">时间</sys:String>
+    <sys:String x:Key="Lan.Control_SystemLog.TextLevel">等级</sys:String>
+    <sys:String x:Key="Lan.Control_SystemLog.TextMessage">消息</sys:String>
+
+    <!--  Control_UserLogin  -->
+    <sys:String x:Key="Lan.Control_UserLogin.TextUserLogin">用户登录</sys:String>
+    <sys:String x:Key="Lan.Control_UserLogin.TextUserName">用户名:</sys:String>
+    <sys:String x:Key="Lan.Control_UserLogin.TextPassword">密码:</sys:String>
+    <sys:String x:Key="Lan.Control_UserLogin.BtnLogin">登入</sys:String>
+    <sys:String x:Key="Lan.Control_UserLogin.BtnLogout">登出</sys:String>
+    <sys:String x:Key="Lan.Control_UserLogin.BtnChangePassword">修改密码</sys:String>
+
+    <!--  Control_WorkEdit  -->
+    <sys:String x:Key="Lan.Control_WorkEdit.HeaderImageSource">图像源</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.HeaderDLModel">深度学习模型</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.HeaderTCPIP">TCP/IP</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.HeaderCommCard">通讯板卡</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.HeaderGroup">工作流组</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.HeaderWorkStream">工作流</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnAdd">添加</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnRemove">删除</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextName">名称</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextCameraMode">相机模式</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextMode">模式</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextFolderPath">图片路径</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextOperator">操作</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextLightControl">光源控制</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnEditCam">编辑相机</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnSelectPath">选择路径</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnResetImageSequence">重置图像顺序</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnRunOnce">运行一次</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnViewImage">查看图片</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextEnable">启用</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextController">控制器</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextLightOnCmd">开启指令</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextLightOffCmd">关闭指令</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextLightProtocol">协议</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextHex">16进制</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextWorkspace">工作区</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextStreamList">流列表</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextType">类型</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextAddressPort">地址:端口</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextOpen">打开</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextClose">关闭</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextReceived">收到:</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextFFP">工厂协议:</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextScript">脚本:</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnEditScript">编辑脚本</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnResetScript">重置脚本</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnCommTest">通讯测试</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextInput">输入</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextOutput">输出</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextLineNum">线号</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextPulseWidth">脉冲宽度</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextStreamCollection">工作流集合</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextSetup">设置</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextValidity">有效性</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextAlgorithmTB">算法工具块</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextResultGraphic">结果图形</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextDisplayOption">显示选项</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextChartSeries">图表系列</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextResultSend">结果发送</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnDetail">详情</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextTCPSend">TCP发送</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextValidityTip">工作流数量不能小于2</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextVisibleInRuntime">运行显示</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnRecipes">配方</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnCopy">复制</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnUp">上移</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnDown">下移</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextInternalTrigger">内触发</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextAutoStart">自动开始</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextAsyncMode">异步模式</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextOnlyVPro">仅VisionPro</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextInputTB">输入工具块</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextOutputTB">输出工具块</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextAdvancedMode">高级模式</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextGPU">显卡</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextImageRecord">图像记录</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextCondition">条件</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextTrigger">触发</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextDisable">禁用</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.BtnImageReplay">图片回放</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextMultiThread">多线程</sys:String>
+
+    <!--  Control_WorkLog  -->
+    <sys:String x:Key="Lan.Control_WorkLog.TextMessageTime">消息时间</sys:String>
+    <sys:String x:Key="Lan.Control_WorkLog.TextMessageType">消息类型</sys:String>
+    <sys:String x:Key="Lan.Control_WorkLog.TextMessageContent">消息内容</sys:String>
+
+    <!--  Control_WorkRuntime  -->
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnRuntimeImage">运行图像</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnRuntimeData">运行数据</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnRuntimeLog">运行日志</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnRecipesManage">配方管理</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnAlgorithmManage">算法管理</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnCameraManage">相机管理</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnParaManage">参数管理</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.TextShowChart">显示图表</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.TextRow">行:</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.TextCol">列:</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnSaveConfig">保存配置</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnScriptManage">脚本管理</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnEditScript">编辑脚本</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnReloadScript">重载脚本</sys:String>
+
+    <!--  Control_WorkStreamRecipes  -->
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.BtnImportRecipe">导入配方</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.BtnSaveRecipe">保存配方</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.BtnAddRecipe">添加配方</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.BtnRemoveRecipe">删除配方</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextParaList">参数列表</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextValue">值</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextDescriptionLabel">描述标签</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextDesableChangingDiscriptionLabel">禁用更改描述标签</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextSaveCurrentTBToRecipe">保存当前工具块到配方</sys:String>
+
+    <!--  Window_CommCard  -->
+    <sys:String x:Key="Lan.Window_CommCard.TitleCommTest">通讯测试</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextWriteFFP">FFP写入</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextReadFFP">FFP读取</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextOffset">偏移:</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextData">数据：</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextEnableScript">启用脚本</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.BtnWriteInpsectedResult">写入检测结果</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.BtnWriteStatus">写入状态</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextByteSize">字节数:</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.BtnReadUserData">读取用户数据</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextInput">输入:</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextOutput">输出:</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.BtnForceOutput">强制输出</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.TextMessageList">消息列表</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.BtnWriteInpsectResultTip">不启用脚本时,输入的字符串每一个char按照16位Word类型进行转换,启用脚本后将按照自定义方法进行转换</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.BtnReadUserDataTip">不启用脚本时,读取的byte[]将每一个byte按照short类型进行转换,启用脚本后将按照自定义方法进行转换</sys:String>
+    <sys:String x:Key="Lan.Window_CommCard.BtnForceOutputTip">强制选择的输出引脚高电平持续1s</sys:String>
+
+    <!--  Window_EditAdvancedDLMode  -->
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.TitleEditAdvancedDLMode">深度学习高级模式编辑</sys:String>
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.BtnAddStep">添加步骤</sys:String>
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.BtnAddTool">添加工具</sys:String>
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.BtnRefreshPara">刷新参数</sys:String>
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.TextInputParaList">输入参数列表</sys:String>
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.TextOutputParaList">输出参数列表</sys:String>
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.TextToolList">工具列表</sys:String>
+    <sys:String x:Key="Lan.Window_EditAdvancedDLMode.BtnTransferPara">传入参数</sys:String>
+
+    <!--  Window_EditScript  -->
+    <sys:String x:Key="Lan.Window_EditScript.TitleCommScript">通讯脚本</sys:String>
+    <sys:String x:Key="Lan.Window_EditScript.HeaderInputScript">输入脚本</sys:String>
+    <sys:String x:Key="Lan.Window_EditScript.HeaderOutputScript">输出脚本</sys:String>
+    <sys:String x:Key="Lan.Window_EditScript.BtnShowReference">显示引用</sys:String>
+    <sys:String x:Key="Lan.Window_EditScript.BtnAddReference">添加引用</sys:String>
+    <sys:String x:Key="Lan.Window_EditScript.BtnCompile">编译</sys:String>
+    <sys:String x:Key="Lan.Window_EditScript.TextSucceed">成功</sys:String>
+    <sys:String x:Key="Lan.Window_EditScript.TextFailed">失败</sys:String>
+
+    <!--  Window_EditToolBlock  -->
+    <sys:String x:Key="Lan.Window_EditToolBlock.TitleEditTB">编辑ToolBlock</sys:String>
+
+    <!--  Window_FileManager  -->
+    <sys:String x:Key="Lan.Window_FileManager.TitleFileManager">文件管理</sys:String>
+    <sys:String x:Key="Lan.Window_FileManager.TextWorkStreamName">工作流名称</sys:String>
+    <sys:String x:Key="Lan.Window_FileManager.TextProductionData">生产数据</sys:String>
+    <sys:String x:Key="Lan.Window_FileManager.TextImage">图片</sys:String>
+    <sys:String x:Key="Lan.Window_FileManager.BtnExport">导出</sys:String>
+    <sys:String x:Key="Lan.Window_FileManager.BtnClear">清空</sys:String>
+    <sys:String x:Key="Lan.Window_FileManager.BtnWorkLogBatchExportToCSV">工作日志批量导出到CSV</sys:String>
+    <sys:String x:Key="Lan.Window_FileManager.BtnProductDataBatchExportToCSV">生产数据批量导出到CSV</sys:String>
+
+    <!--  Window_SystemSetup  -->
+    <sys:String x:Key="Lan.Window_SystemSetup.TitleSystemSteup">系统设置</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.HeaderWorkSteup">工作设置</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.HeaderCameraOrder">相机顺序</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.HeaderSystemServer">系统服务器</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.HeaderFFP">工厂协议</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.HeaderDiskManage">磁盘管理</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.HeaderLanguage">语言</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextWorkName">工作名称</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextWorkTitle">工作标题</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextDefault">默认</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextSN">序列号</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextCamName">相机名称</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.BtnRefreshCam">刷新相机</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.BtnClearConfig">清空配置</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextCommCard">通讯板卡:</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextProtocalType">协议类型:</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextProjectDisk">项目磁盘</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextImageDisk">图片磁盘</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextImageStorage">图片保存</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextDataStorage">数据保存</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextLanSelected">语言选择</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextStartupOnline">以联机模式启动</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.BtnSave">保存</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextDay">天</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.BtnExportLanguageFile">导出语言文件</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.BtnImportLanguageFile">导入语言文件</sys:String>
+    <sys:String x:Key="Lan.Window_SystemSetup.TextEnableOtherCard">启用其他板卡</sys:String>
+
+    <!--  Window_UserInput  -->
+    <sys:String x:Key="Lan.Window_UserInput.TitleUserInput">用户输入</sys:String>
+
+    <!--  Window_VersionInfo  -->
+    <sys:String x:Key="Lan.Window_VersionInfo.TitleVersionInfo">版本信息</sys:String>
+    <sys:String x:Key="Lan.Window_VersionInfo.TextVersion">版本:</sys:String>
+    <sys:String x:Key="Lan.Window_VersionInfo.TextSoftwareEnvironment">软件环境:</sys:String>
+
+    <!--  描述标签  -->
+    <sys:String x:Key="LabelConstants.ProgramStart">程序启动</sys:String>
+    <sys:String x:Key="LabelConstants.ProgramStartFinished">程序启动完成</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingSystemStartupSetup">正在加载系统启动设置</sys:String>
+    <sys:String x:Key="LabelConstants.SystemStartupSetupLoaded">系统启动设置加载完成</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingVisionModule">正在加载视觉模块</sys:String>
+    <sys:String x:Key="LabelConstants.VisionModuleLoaded">视觉模块加载完成</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingWindowsMonitor">正在加载Windows监控模块</sys:String>
+    <sys:String x:Key="LabelConstants.WindowsMonitorLoaded">Windows监控模块加载完成</sys:String>
+    <sys:String x:Key="LabelConstants.VPDLVersion">深度学习版本</sys:String>
+    <sys:String x:Key="LabelConstants.VPDLLoadFinished">深度学习模块加载完成</sys:String>
+    <sys:String x:Key="LabelConstants.VPDLLoadFailed">深度学习模块加载失败</sys:String>
+    <sys:String x:Key="LabelConstants.ProgramExit">程序退出</sys:String>
+    <sys:String x:Key="LabelConstants.EditWork">编辑工作</sys:String>
+    <sys:String x:Key="LabelConstants.CloseEdit">关闭编辑</sys:String>
+    <sys:String x:Key="LabelConstants.LoadWork">加载工作</sys:String>
+    <sys:String x:Key="LabelConstants.UnloadWork">卸载工作</sys:String>
+    <sys:String x:Key="LabelConstants.ConfirmRemove">确认删除</sys:String>
+    <sys:String x:Key="LabelConstants.PleaseInputName">请输入名称</sys:String>
+    <sys:String x:Key="LabelConstants.DuplicateName">重复的名称</sys:String>
+    <sys:String x:Key="LabelConstants.InvalidName">无效的名称</sys:String>
+    <sys:String x:Key="LabelConstants.SaveFinished">保存完成</sys:String>
+    <sys:String x:Key="LabelConstants.SaveFailed">保存失败</sys:String>
+    <sys:String x:Key="LabelConstants.ExportFinished">导出完成</sys:String>
+    <sys:String x:Key="LabelConstants.ExportFailed">导出失败</sys:String>
+    <sys:String x:Key="LabelConstants.ImportFinished">导入完成</sys:String>
+    <sys:String x:Key="LabelConstants.ImportFailed">导入失败</sys:String>
+    <sys:String x:Key="LabelConstants.ErrorOccured">出现异常</sys:String>
+    <sys:String x:Key="LabelConstants.Loading">正在加载</sys:String>
+    <sys:String x:Key="LabelConstants.Closing">正在关闭</sys:String>
+    <sys:String x:Key="LabelConstants.Creating">正在创建</sys:String>
+    <sys:String x:Key="LabelConstants.PleaseWait">请等待</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingImageSourceSetup">正在加载图像源配置</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingVPDLSetup">正在加载深度学习配置</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingTCPIPSetup">正在加载TCP/IP配置</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingWorkStreamSetup">正在加载工作流设置</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingWorkGroupSetup">正在加载工作流组设置</sys:String>
+    <sys:String x:Key="LabelConstants.LoadingCommCardSetup">正在加载通讯卡设置</sys:String>
+    <sys:String x:Key="LabelConstants.ImageSource">图像源</sys:String>
+    <sys:String x:Key="LabelConstants.DeepLearning">深度学习</sys:String>
+    <sys:String x:Key="LabelConstants.TCPIP">TCP/IP</sys:String>
+    <sys:String x:Key="LabelConstants.WorkStream">工作流</sys:String>
+    <sys:String x:Key="LabelConstants.WorkGroup">工作流组</sys:String>
+    <sys:String x:Key="LabelConstants.CommCard">通讯卡</sys:String>
+    <sys:String x:Key="LabelConstants.NativeModeCommand">本地化指令</sys:String>
+    <sys:String x:Key="LabelConstants.Trigger">触发</sys:String>
+    <sys:String x:Key="LabelConstants.ExposureTime">曝光时间</sys:String>
+    <sys:String x:Key="LabelConstants.UserData">用户数据</sys:String>
+    <sys:String x:Key="LabelConstants.Recipe">配方</sys:String>
+    <sys:String x:Key="LabelConstants.OverrideExist">覆盖已有文件</sys:String>
+    <sys:String x:Key="LabelConstants.CloseEditingWorkFirstly">请先关闭编辑的工作</sys:String>
+    <sys:String x:Key="LabelConstants.DeleteFinished">删除完成</sys:String>
+    <sys:String x:Key="LabelConstants.DeleteWithError">删除过程出错</sys:String>
+    <sys:String x:Key="LabelConstants.Import">导入</sys:String>
+    <sys:String x:Key="LabelConstants.CheckFailed">检查失败</sys:String>
+    <sys:String x:Key="LabelConstants.Exporting">正在导出</sys:String>
+    <sys:String x:Key="LabelConstants.AdminLogin">管理员登录</sys:String>
+    <sys:String x:Key="LabelConstants.AdminLogout">管理员登出</sys:String>
+    <sys:String x:Key="LabelConstants.NewPassword">新密码</sys:String>
+    <sys:String x:Key="LabelConstants.InvalidPassword">无效的密码</sys:String>
+    <sys:String x:Key="LabelConstants.PleaseInputPassword">无效的密码</sys:String>
+    <sys:String x:Key="LabelConstants.IncorrectUserOrPassword">错误的用户名或密码</sys:String>
+    <sys:String x:Key="LabelConstants.Importing">正在导入</sys:String>
+    <sys:String x:Key="LabelConstants.NoCC24CommCard">CC24通讯板卡不存在</sys:String>
+    <sys:String x:Key="LabelConstants.Saving">正在保存</sys:String>
+    <sys:String x:Key="LabelConstants.SavingImageSourceWithError">保存图像源出错</sys:String>
+    <sys:String x:Key="LabelConstants.SavingDeepLearningWithError">保存深度学习出错</sys:String>
+    <sys:String x:Key="LabelConstants.SavingTCPIPWithError">保存TCPIP出错</sys:String>
+    <sys:String x:Key="LabelConstants.SavingCommCardWithError">保存通讯板卡出错</sys:String>
+    <sys:String x:Key="LabelConstants.SavingWorkGroupWithError">保存工作流组出错</sys:String>
+    <sys:String x:Key="LabelConstants.SavingWorkStreamWithError">保存工作流出错</sys:String>
+    <sys:String x:Key="LabelConstants.LoadFinished">加载完成</sys:String>
+    <sys:String x:Key="LabelConstants.LoadFailed">加载失败</sys:String>
+    <sys:String x:Key="LabelConstants.TriggerOverflow">触发信号溢出</sys:String>
+    <sys:String x:Key="LabelConstants.StartRunning">开始运行</sys:String>
+    <sys:String x:Key="LabelConstants.RunComplete">运行完成</sys:String>
+    <sys:String x:Key="LabelConstants.CannotFind">无法找到</sys:String>
+    <sys:String x:Key="LabelConstants.ImageIsNull">图像为空</sys:String>
+    <sys:String x:Key="LabelConstants.ReceivedMessage">收到消息</sys:String>
+    <sys:String x:Key="LabelConstants.SendMessage">发出消息</sys:String>
+    <sys:String x:Key="LabelConstants.IO">IO</sys:String>
+    <sys:String x:Key="LabelConstants.IOInput">IO输入</sys:String>
+    <sys:String x:Key="LabelConstants.IOOutput">IO输出</sys:String>
+    <sys:String x:Key="LabelConstants.Event">事件</sys:String>
+    <sys:String x:Key="LabelConstants.FFP">工厂协议</sys:String>
+    <sys:String x:Key="LabelConstants.SendFailed">发送失败</sys:String>
+    <sys:String x:Key="LabelConstants.NoValidFile">没有有效的文件</sys:String>
+    <sys:String x:Key="LabelConstants.ClearFinished">清理完成</sys:String>
+    <sys:String x:Key="LabelConstants.ClearFailed">清理失败</sys:String>
+    <sys:String x:Key="LabelConstants.SavingTipOfSystemSetup">相机顺序,系统服务器,磁盘管理和语言将在程序重启后生效</sys:String>
+    <sys:String x:Key="LabelConstants.CheckWorkStreamUpdate">检查工作流更新</sys:String>
+    <sys:String x:Key="LabelConstants.DuplicateNameIsNotAllowed">不允许重复的名称</sys:String>
+    <sys:String x:Key="LabelConstants.FileChooseYesFolderChooseNo">文件选择: 是, 文件夹: 否</sys:String>
+    <sys:String x:Key="LabelConstants.PleaseSelect">请选择</sys:String>
+    <sys:String x:Key="LabelConstants.PleaseRemoveLatterStep">请先删除后一步骤</sys:String>
+    <sys:String x:Key="LabelConstants.ResultsOfDLToolAddedToOutputTB">深度学习结果已被添加至输出工具块</sys:String>
+    <sys:String x:Key="LabelConstants.ValidType">有效的类型</sys:String>
+    <sys:String x:Key="LabelConstants.SystemServerStart">系统服务器启动</sys:String>
+    <sys:String x:Key="LabelConstants.InvalidVProLicense">无效的VisionPro授权</sys:String>
+    <sys:String x:Key="LabelConstants.IncompatibleMode">工作设计模式与软件当前模式不符</sys:String>
+    <sys:String x:Key="LabelConstants.DLEnabled">软件当前为深度学习模式</sys:String>
+    <sys:String x:Key="LabelConstants.FFPType">工厂协议类型</sys:String>
+    <sys:String x:Key="LabelConstants.Message">消息</sys:String>
+    <sys:String x:Key="LabelConstants.Verify">确认</sys:String>
+    <sys:String x:Key="LabelConstants.Unloading">正在卸载</sys:String>
+    <sys:String x:Key="LabelConstants.Clearing">正在清理</sys:String>
+    <sys:String x:Key="LabelConstants.Querying">正在查询</sys:String>
+    <sys:String x:Key="LabelConstants.RefreshListAfterCloseEdit">请在关闭编辑后刷新列表</sys:String>
+    <sys:String x:Key="LabelConstants.VerifyOffline">确认脱机</sys:String>
+    <sys:String x:Key="LabelConstants.VerifyOnline">确认联机</sys:String>
+    <sys:String x:Key="LabelConstants.StartupWithOnlineMode">以联机模式启动</sys:String>
+    <sys:String x:Key="LabelConstants.Login">登录</sys:String>
+    <sys:String x:Key="LabelConstants.Logout">登出</sys:String>
+    <sys:String x:Key="LabelConstants.InvalidLicenseFile">无效的授权文件,请提供License.json文件以获取授权</sys:String>
+    <sys:String x:Key="LabelConstants.ClientConnected">客户端已连接</sys:String>
+    <sys:String x:Key="LabelConstants.ClientDisconnected">客户端已断开</sys:String>
+    <sys:String x:Key="LabelConstants.BufferQueueOverflow">缓存队列溢出</sys:String>
+    <sys:String x:Key="LabelConstants.OccupancyTooHigh">占用率超过99%</sys:String>
+    <sys:String x:Key="LabelConstants.CatchException">捕获到异常在</sys:String>
+    <sys:String x:Key="LabelConstants.ImageSourceIsNullOrNoImages">图像源为空或没有可用的图像</sys:String>
+    <sys:String x:Key="LabelConstants.ChangesWillLoseWhenCompileFailed">编译失败时修改将不会保留</sys:String>
+</ResourceDictionary>

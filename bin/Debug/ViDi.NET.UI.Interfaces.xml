@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ViDi.NET.UI.Interfaces</name>
+    </assembly>
+    <members>
+        <member name="T:ViDi2.UI.ICheckAndAddToDatabaseProvider">
+            <summary>
+            Interface representing an instance which can provide a method to check whether the input image
+            with the given file info can be added to a database, and adds it. 
+            </summary>
+        </member>
+        <member name="M:ViDi2.UI.ICheckAndAddToDatabaseProvider.CheckAndAddToDatabase(System.Tuple{System.String,ViDi2.UI.IFileInfo},ViDi2.IImage)">
+            <summary>
+            Checks whether the input image with the given file info can be added to a database, and adds it
+            </summary>
+            <param name="file">Tuple consisting of a naming prefix (like a path) and the actual image name</param>
+            <param name="image">The <see cref="T:ViDi2.IImage"/> to add</param>
+            <returns></returns>
+        </member>
+        <member name="T:ViDi2.UI.ICheckIsImageCompatible">
+            <summary>
+            Interface representing an instance which can determine whether an image is compatible,
+            typically with an <see cref="T:ViDi2.IWorkspace"/>'s <see cref="T:ViDi2.DeploymentTarget"/>
+            </summary>
+        </member>
+        <member name="M:ViDi2.UI.ICheckIsImageCompatible.IsImageCompatible(ViDi2.IImage)">
+            <summary>
+            Returns true if compatible, false if not
+            </summary>
+            <param name="image"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ViDi2.UI.IDrawingContext">
+            <summary>
+            A general place to store information about what types of graphics should be drawn
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.IDrawingContext.ShowMarkings">
+            <summary>
+            Gets or sets whether to draw markings
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.IDrawingContext.ShowHeatmap">
+            <summary>
+            Gets or Sets whether to display Heatmap
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.IDrawingContext.AsyncLoading">
+            <summary>
+            Gets or sets whether resources are loaded asynchronously
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.IDrawingContext.PreferSimpleGraphics">
+            <summary>
+            Set to true to advertise that simplified graphics should
+            be drawn, if available. If false, advertise that simplified
+            graphics should not be drawn, even if available.
+            </summary>
+        </member>
+        <member name="T:ViDi2.UI.IFileInfo">
+            <summary>
+            Interface representing a facade of <see cref="T:System.IO.FileInfo"/> with commonly accessed members
+            </summary>
+        </member>
+        <member name="T:ViDi2.UI.IImageFileProvider">
+            <summary>
+            Interface representing an instance which can be used to obtain a list of Tuples containing an image base name
+            (like a path) and <see cref="T:ViDi2.UI.IFileInfo"/>s from a list of file/folder names
+            </summary>
+        </member>
+        <member name="M:ViDi2.UI.IImageFileProvider.GetAllImageFiles(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Get all images in all provided file/folder names
+            </summary>
+            <param name="fileNames"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ViDi2.UI.ViewModels.IMenuItemViewModel">
+            <summary>
+            This interface represents the data behind the core functionality of MenuItems.
+            This does not implement INotifyPropertyChanged so if property values are changed, the view will need to updated some other way. 
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.ViewModels.IMenuItemViewModel.Header">
+            <summary>
+            The text displayed for the MenuItem
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.ViewModels.IMenuItemViewModel.Command">
+            <summary>
+            The command invoked when the MenuItem is clicked
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.ViewModels.IMenuItemViewModel.InputGestureText">
+            <summary>
+            The text displayed at the right margin of the MenuItem indicating if a keyboard shortcut is available
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.ViewModels.IMenuItemViewModel.IsVisible">
+            <summary>
+            Whether the MenuItem is visible or collapsed
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.ViewModels.IMenuItemViewModel.IsChecked">
+            <summary>
+            Whether the MenuItem is checked or not
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.ViewModels.IMenuItemViewModel.Children">
+            <summary>
+            List of nested <see cref="T:ViDi2.UI.ViewModels.IMenuItemViewModel"/>s
+            </summary>
+        </member>
+        <member name="T:ViDi2.UI.ViewModels.IPillViewModelBase">
+            <summary>
+            Common interface for all pill view models
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.ViewModels.ISampleViewerViewModel.Sample">
+            <summary>
+            Gets or set the currently displayed sample
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.ViewModels.ISampleViewerViewModel.ToolName">
+            <summary>
+            Gets or set the currently display tool by its name
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.ViewModels.ISampleViewerViewModel.ViewIndex">
+            <summary>
+            Gets or sets the currently displayed view; if -1, all views are shown on the complete image
+            </summary>
+        </member>
+        <member name="M:ViDi2.UI.ViewModels.ISampleViewerViewModel.ResetZoom">
+            <summary>
+            Resets the zoom and pan to show the current sample
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.ViewModels.ISampleViewerViewModel.IsZoomPanFrozen">
+            <summary>
+            Gets or sets whether mouse interactions are enabled to zoom or pan the display
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.ViewModels.ISampleViewerViewModel.ImageEffect">
+            <summary>
+            Gets or set the image effect applied to the displayed image
+            </summary>
+        </member>
+        <member name="P:ViDi2.UI.ViewModels.ISupervisedRedViewOverlayViewModel.Scores">
+            <summary>
+            List of tuples containing the class (1) name, (2) color and (3) score.
+            </summary>
+        </member>
+        <member name="T:ViDi2.UI.IProgressControl">
+            <summary>
+            Interface which represents the underlying data behind a control used to display progress
+            </summary>
+        </member>
+        <member name="M:ViDi2.UI.IRelayCommand.RaiseCanExecuteChanged(System.Boolean)">
+            <summary>
+            Public access to raising the CanExecuteChanged event
+            </summary>
+            <param name="invokeWithDispatcherIfRegistered">If an IDispatcher is registered with the ServiceLocator, it will be used to invoke the event on the UI thread.</param>
+        </member>
+        <member name="T:ViDi2.UI.ISampleViewerView">
+            <summary>
+            Represents a panel to display a processed sample
+            </summary>
+        </member>
+        <member name="T:ViDi2.UI.ToolSelectedHandler">
+            <summary>
+            Handler called when the currently selected tool changed
+            </summary>
+            <param name="tool"></param>
+        </member>
+        <member name="T:ViDi2.UI.IStatusBarItem">
+            <summary>
+            Interface representing an item which can be placed in a <see cref="T:System.Windows.Controls.Primitives.StatusBar"/>
+            </summary>
+        </member>
+        <member name="T:ViDi2.UI.ITree`1">
+            <summary>
+            Describes an object which
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:ViDi2.UI.ITree`1.Children">
+            <summary>
+            Gets the <see cref="T:System.Collections.IEnumerable"/> of nested objects which are also implement <see cref="T:ViDi2.UI.ITree`1"/>
+            </summary>
+        </member>
+        <member name="T:ViDi2.UI.IDispatcher">
+            <summary>
+            Interface representing an instance which can be used to invoke code on the UI thread from another thread
+            </summary>
+        </member>
+        <member name="M:ViDi2.UI.IDispatcher.Invoke(System.Action)">
+            <summary>
+            Invokes the action on the main thread and blocks if already on the main thread, executes asynchronously otherwise
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:ViDi2.UI.IDispatcher.Invoke(System.Action,System.Windows.Threading.DispatcherPriority)">
+            <summary>
+            Invokes the action on the main thread and blocks if already on the main thread, executes asynchronously otherwise
+            </summary>
+            <param name="action"></param>
+            <param name="dispatcherPriority"></param>
+        </member>
+        <member name="M:ViDi2.UI.IDispatcher.InvokeAndBlock(System.Action)">
+            <summary>
+            Invokes the action and blocks until the action returns regardless of what thread invoked this method
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:ViDi2.UI.IDispatcher.CheckAccess">
+            <summary>
+            Returns whether the call is made from the main thread.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ViDi2.UI.IDispatcher.InvokeAsyncWithLowestPriority(System.Action)">
+            <summary>
+            Invokes the action on the main thread asynchronously with the lowest thread priority level regardless
+            of whether the calling thread is the main thread or not.
+            </summary>
+            <param name="action"></param>
+        </member>
+    </members>
+</doc>

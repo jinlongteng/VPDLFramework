@@ -85,7 +85,7 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 语言文件目录
         /// </summary>
-        public static string LanguagesFolder = ProjectFolder + @"\" + "Languages";
+        public static string LanguagesFolder =Directory.GetParent(ProjectFolder).Parent.FullName + @"\" + "Languages";
 
         /// <summary>
         /// 标准文件目录

@@ -16,6 +16,7 @@ using System.Diagnostics;
 using System.Net.Sockets;
 using System.Net.NetworkInformation;
 using System.Net;
+using VPDLFramework.Models;
 
 namespace VPDLFramework
 {
@@ -28,10 +29,19 @@ namespace VPDLFramework
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            server.Start(IPAddress.Parse("192.168.0.190"), 3000);
-            server.ClientConnected += Server_ClientConnected;
-            server.ClientDisconnected += Server_ClientDisconnected;
-            server.DataReceived += Server_DataReceived;
+            try
+            {
+                server.Start(IPAddress.Parse(ECStartupSettings.Instance().SystemTCPServerIP), 3000);
+                server.ClientConnected += Server_ClientConnected;
+                server.ClientDisconnected += Server_ClientDisconnected;
+                server.DataReceived += Server_DataReceived;
+            }
+            catch (System.Exception exc)
+            {
+                ECLog.WriteToLog($"Start server monitor LightController failed!{exc}",NLog.LogLevel.Error);
+            }
+            
+            
 
 
             base.OnStartup(e);

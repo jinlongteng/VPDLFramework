@@ -835,18 +835,6 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.CodeAnalysis.CSharp.Scripting.dll" size="34080">
-      <assemblyIdentity name="Microsoft.CodeAnalysis.CSharp.Scripting" version="4.8.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Ver0/crHJ3EYVxbBN7kmq3VJkhn8jb/DQaFOEXK854E=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="cs\Microsoft.CodeAnalysis.resources.dll" size="46752">
       <assemblyIdentity name="Microsoft.CodeAnalysis.resources" version="4.8.0.0" publicKeyToken="31BF3856AD364E35" language="cs" processorArchitecture="msil" />
       <hash>
@@ -1027,18 +1015,6 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Extensions.Configuration.Abstractions.dll" size="19976">
-      <assemblyIdentity name="Microsoft.Extensions.Configuration.Abstractions" version="2.0.0.0" publicKeyToken="ADB9793829DDAE60" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vefu0e8nmoAHHaNRcIAqqBekaaL4LhJFserOiJMyMNQ=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Extensions.Configuration.FileExtensions.dll" size="22024">
       <assemblyIdentity name="Microsoft.Extensions.Configuration.FileExtensions" version="2.0.0.0" publicKeyToken="ADB9793829DDAE60" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -1071,30 +1047,6 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>oNWScuS1u+0qSQjswdod+D/iLQDx3yV0WUzTM2v3hLg=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Extensions.FileProviders.Abstractions.dll" size="17416">
-      <assemblyIdentity name="Microsoft.Extensions.FileProviders.Abstractions" version="2.0.0.0" publicKeyToken="ADB9793829DDAE60" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>R5Tb3L777aI5jMiv3erdZ9XXPMvWJ3vuFsXMzizG+Xo=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Extensions.FileProviders.Physical.dll" size="31240">
-      <assemblyIdentity name="Microsoft.Extensions.FileProviders.Physical" version="2.0.0.0" publicKeyToken="ADB9793829DDAE60" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>XxJsksWxNbY74AxPnxLydeXYog+EusuRv4rvlUfVz4s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -2251,14 +2203,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="VPDLFramework.exe" size="4935128">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="VPDLFramework.exe" size="4935640">
       <assemblyIdentity name="VPDLFramework" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+gpvB8paEy0CSz+ebW6qIwaDPcUS4htzt1R33PZI/6Q=</dsig:DigestValue>
+        <dsig:DigestValue>OMJdqL/Kof5uo6+T9g6IlVaPOHrwFDotENKhgB7mTBM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -2270,7 +2222,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>D1HtsTkHUZ+qNCTdRZYL848iddFnw/uVvyndAPg0k1U=</dsig:DigestValue>
+        <dsig:DigestValue>AV/sEbLqKyc0E7nyU2LUPLXLMPe7XU1BvBLiDYGu3Ho=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

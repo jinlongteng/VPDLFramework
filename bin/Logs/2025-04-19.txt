@@ -1,0 +1,117 @@
+2025-04-19 14:40:22.9447 [ERROR] : Start server monitor LightController failed!System.IO.DirectoryNotFoundException: 未能找到路径“D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\bin\Debug\Languages”的一部分。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   在 System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler, Boolean checkHost)
+   在 System.IO.Directory.GetFiles(String path)
+   在 VPDLFramework.Models.ECStartupSettings.GetLanguagesInfo() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 102
+   在 VPDLFramework.Models.ECStartupSettings..ctor() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 31
+   在 VPDLFramework.Models.ECStartupSettings.Instance() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 43
+   在 VPDLFramework.App.OnStartup(StartupEventArgs e) 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\App.xaml.cs:行号 34
+2025-04-19 14:40:24.1216 [ERROR] :    在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   在 System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler, Boolean checkHost)
+   在 System.IO.Directory.GetFiles(String path)
+   在 VPDLFramework.Models.ECStartupSettings.GetLanguagesInfo() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 102
+   在 VPDLFramework.Models.ECStartupSettings..ctor() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 31
+   在 VPDLFramework.Models.ECStartupSettings.Instance() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 43
+   在 VPDLFramework.ViewModels.MainViewModel.GetStartupInfo() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\ViewModels\MainViewModel.cs:行号 308未能找到路径“D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\bin\Debug\Languages”的一部分。
+2025-04-19 14:40:24.1216 [TRACE] : 系统启动设置加载完成
+2025-04-19 14:40:24.1216 [TRACE] : 视觉模块加载完成
+2025-04-19 14:40:24.1216 [TRACE] : Windows监控模块加载完成
+2025-04-19 14:40:24.4698 [TRACE] : 程序启动完成
+2025-04-19 14:40:59.0595 [ERROR] : Start server monitor LightController failed!System.IO.DirectoryNotFoundException: 未能找到路径“D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\bin\Debug\Languages”的一部分。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   在 System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler, Boolean checkHost)
+   在 System.IO.Directory.GetFiles(String path)
+   在 VPDLFramework.Models.ECStartupSettings.GetLanguagesInfo() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 102
+   在 VPDLFramework.Models.ECStartupSettings..ctor() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 31
+   在 VPDLFramework.Models.ECStartupSettings.Instance() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 43
+   在 VPDLFramework.App.OnStartup(StartupEventArgs e) 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\App.xaml.cs:行号 34
+2025-04-19 14:40:59.3454 [ERROR] :    在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   在 System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler, Boolean checkHost)
+   在 System.IO.Directory.GetFiles(String path)
+   在 VPDLFramework.Models.ECStartupSettings.GetLanguagesInfo() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 102
+   在 VPDLFramework.Models.ECStartupSettings..ctor() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 31
+   在 VPDLFramework.Models.ECStartupSettings.Instance() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 43
+   在 VPDLFramework.ViewModels.MainViewModel.GetStartupInfo() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\ViewModels\MainViewModel.cs:行号 308未能找到路径“D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\bin\Debug\Languages”的一部分。
+2025-04-19 14:40:59.3454 [TRACE] : 系统启动设置加载完成
+2025-04-19 14:40:59.3454 [TRACE] : 视觉模块加载完成
+2025-04-19 14:40:59.3454 [TRACE] : Windows监控模块加载完成
+2025-04-19 14:40:59.5882 [TRACE] : 程序启动完成
+2025-04-19 14:42:55.6219 [ERROR] : Start server monitor LightController failed!System.IO.DirectoryNotFoundException: 未能找到路径“D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\bin\Debug\Languages”的一部分。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   在 System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler, Boolean checkHost)
+   在 System.IO.Directory.GetFiles(String path)
+   在 VPDLFramework.Models.ECStartupSettings.GetLanguagesInfo() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 102
+   在 VPDLFramework.Models.ECStartupSettings..ctor() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 31
+   在 VPDLFramework.Models.ECStartupSettings.Instance() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 43
+   在 VPDLFramework.App.OnStartup(StartupEventArgs e) 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\App.xaml.cs:行号 34
+2025-04-19 14:42:55.9152 [ERROR] :    在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   在 System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler, Boolean checkHost)
+   在 System.IO.Directory.GetFiles(String path)
+   在 VPDLFramework.Models.ECStartupSettings.GetLanguagesInfo() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 102
+   在 VPDLFramework.Models.ECStartupSettings..ctor() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 31
+   在 VPDLFramework.Models.ECStartupSettings.Instance() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 43
+   在 VPDLFramework.ViewModels.MainViewModel.GetStartupInfo() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\ViewModels\MainViewModel.cs:行号 308未能找到路径“D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\bin\Debug\Languages”的一部分。
+2025-04-19 14:42:55.9162 [TRACE] : 系统启动设置加载完成
+2025-04-19 14:42:55.9162 [TRACE] : 视觉模块加载完成
+2025-04-19 14:42:55.9162 [TRACE] : Windows监控模块加载完成
+2025-04-19 14:42:56.1476 [TRACE] : 程序启动完成
+2025-04-19 14:51:45.8864 [ERROR] : Start server monitor LightController failed!System.ArgumentNullException: 值不能为 null。
+参数名: ipString
+   在 System.Net.IPAddress.InternalParse(String ipString, Boolean tryParse)
+   在 VPDLFramework.App.OnStartup(StartupEventArgs e) 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\App.xaml.cs:行号 34
+2025-04-19 14:51:46.1953 [INFO] : Language file is loading
+2025-04-19 14:51:46.2033 [ERROR] :    在 VPDLFramework.Models.ECGeneric.CheckLanguage(String languageKey) 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECGeneric.cs:行号 38
+   在 VPDLFramework.ViewModels.MainViewModel.GetStartupInfo() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\ViewModels\MainViewModel.cs:行号 310Can not found Language file at:D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\bin\Debug\Languages\SimplifiedChinese.xaml
+2025-04-19 14:51:46.2033 [TRACE] : 系统启动设置加载完成
+2025-04-19 14:51:46.2033 [TRACE] : 视觉模块加载完成
+2025-04-19 14:51:46.2033 [TRACE] : Windows监控模块加载完成
+2025-04-19 14:51:46.5257 [TRACE] : 程序启动完成
+2025-04-19 14:59:21.6543 [ERROR] : Start server monitor LightController failed!System.ArgumentNullException: 值不能为 null。
+参数名: ipString
+   在 System.Net.IPAddress.InternalParse(String ipString, Boolean tryParse)
+   在 VPDLFramework.App.OnStartup(StartupEventArgs e) 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\App.xaml.cs:行号 34
+2025-04-19 14:59:21.9610 [INFO] : Language file is loading
+2025-04-19 14:59:21.9685 [ERROR] :    在 VPDLFramework.Models.ECGeneric.CheckLanguage(String languageKey) 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECGeneric.cs:行号 38
+   在 VPDLFramework.ViewModels.MainViewModel.GetStartupInfo() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\ViewModels\MainViewModel.cs:行号 310Can not found Language file at:D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\bin\Debug\Languages\SimplifiedChinese.xaml
+2025-04-19 14:59:21.9685 [TRACE] : 系统启动设置加载完成
+2025-04-19 14:59:21.9685 [TRACE] : 视觉模块加载完成
+2025-04-19 14:59:21.9685 [TRACE] : Windows监控模块加载完成
+2025-04-19 14:59:22.2916 [TRACE] : 程序启动完成
+2025-04-19 15:05:06.1698 [ERROR] : Start server monitor LightController failed!System.IO.DirectoryNotFoundException: 未能找到路径“D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\bin\Debug\VisionPro Framework Source Code\Languages”的一部分。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   在 System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler, Boolean checkHost)
+   在 System.IO.Directory.GetFiles(String path)
+   在 VPDLFramework.Models.ECStartupSettings.GetLanguagesInfo() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 102
+   在 VPDLFramework.Models.ECStartupSettings..ctor() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 31
+   在 VPDLFramework.Models.ECStartupSettings.Instance() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 43
+   在 VPDLFramework.App.OnStartup(StartupEventArgs e) 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\App.xaml.cs:行号 34
+2025-04-19 15:05:07.4437 [ERROR] :    在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   在 System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler, Boolean checkHost)
+   在 System.IO.Directory.GetFiles(String path)
+   在 VPDLFramework.Models.ECStartupSettings.GetLanguagesInfo() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 102
+   在 VPDLFramework.Models.ECStartupSettings..ctor() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 31
+   在 VPDLFramework.Models.ECStartupSettings.Instance() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\Models\ECStartupSettings.cs:行号 43
+   在 VPDLFramework.ViewModels.MainViewModel.GetStartupInfo() 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\ViewModels\MainViewModel.cs:行号 308未能找到路径“D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\bin\Debug\VisionPro Framework Source Code\Languages”的一部分。
+2025-04-19 15:05:07.4437 [TRACE] : 系统启动设置加载完成
+2025-04-19 15:05:07.4437 [TRACE] : 视觉模块加载完成
+2025-04-19 15:05:07.4437 [TRACE] : Windows监控模块加载完成
+2025-04-19 15:05:07.8185 [TRACE] : 程序启动完成
+2025-04-19 15:08:01.1925 [ERROR] : Start server monitor LightController failed!System.ArgumentNullException: 值不能为 null。
+参数名: ipString
+   在 System.Net.IPAddress.InternalParse(String ipString, Boolean tryParse)
+   在 VPDLFramework.App.OnStartup(StartupEventArgs e) 位置 D:\projects\volvo\VisionPro Framework Source Code\VisionPro Framework Source Code\VPDLFramework\App.xaml.cs:行号 34
+2025-04-19 15:08:01.4197 [INFO] : Language file is loading
+2025-04-19 15:08:01.4451 [TRACE] : 程序启动
+2025-04-19 15:08:01.4451 [TRACE] : CC24通讯板卡不存在
+2025-04-19 15:08:01.4451 [TRACE] : 系统启动设置加载完成
+2025-04-19 15:08:01.4451 [TRACE] : 视觉模块加载完成
+2025-04-19 15:08:01.4451 [TRACE] : Windows监控模块加载完成
+2025-04-19 15:08:01.4486 [TRACE] : 程序启动完成
