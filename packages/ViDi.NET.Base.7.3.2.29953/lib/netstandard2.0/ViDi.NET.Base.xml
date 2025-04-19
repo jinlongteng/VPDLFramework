@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ViDi.NET.Base</name>
+    </assembly>
+    <members>
+        <member name="T:ViDi2.ByteImage">
+            <summary>
+            this class holds an image including its pixel values in an array of bytes
+            </summary>
+        </member>
+        <member name="M:ViDi2.ByteImage.#ctor(System.Int32,System.Int32,System.Int32,ViDi2.ImageChannelDepth,System.Byte[],System.Int32)">
+            <summary>
+            Initializes a newinstance with the given image dimensions and pixel-data
+            </summary>
+            <param name="width">the image width in pixel</param>
+            <param name="height">the image height in pixel</param>
+            <param name="channels">the number of color channels (1-4)</param>
+            <param name="channelDepth">the bit-depth per channel (8 or 16)</param>
+            <param name="data">pointer to the pixel data in unmanaged memory</param>
+            <param name="step">the number of bytes per image row</param>
+        </member>
+        <member name="P:ViDi2.ByteImage.Data">
+            <summary>
+            image pixel values
+            </summary>
+        </member>
+        <member name="M:ViDi2.ByteImage.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.ByteImage.Lock">
+            <inheritdoc/>
+        </member>
+        <member name="T:ViDi2.DataImage">
+             <summary>
+            abstract image type of image holding a direct access to image pixels
+             </summary>
+        </member>
+        <member name="P:ViDi2.DataImage.Width">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.DataImage.Height">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.DataImage.Channels">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.DataImage.ChannelDepth">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.DataImage.Step">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.DataImage.Bitmap">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.DataImage.RGBOrder">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.DataImage.Lock">
+            <inheritdoc/>
+        </member>
+        <member name="M:ViDi2.DataImage.Save(System.IO.Stream,ViDi2.ImageFormat)">
+            <inheritdoc/>
+        </member>
+        <member name="T:ViDi2.FormsImage">
+            <summary>
+            Represents an image based on <see cref="T:System.Drawing.Bitmap"/> (Forms)
+            </summary>
+        </member>
+        <member name="M:ViDi2.FormsImage.#ctor(System.String)">
+            <summary>
+            Initializes an image loading it from the given file
+            </summary>
+            <param name="filename">file containing the image</param>
+        </member>
+        <member name="M:ViDi2.FormsImage.#ctor(System.IO.Stream)">
+            <summary>
+            Initializes an image loading it from the given stream
+            </summary>
+            <param name="stream">stream containing the image</param>
+        </member>
+        <member name="M:ViDi2.FormsImage.#ctor(System.Drawing.Bitmap)">
+            <summary>
+            Initializes an image directly from the Bitmap
+            </summary>
+            <param name="bitmap">the Bitmap</param>
+        </member>
+        <member name="P:ViDi2.FormsImage.Width">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.FormsImage.Height">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.FormsImage.Channels">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.FormsImage.ChannelDepth">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.FormsImage.Bitmap">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.FormsImage.RGBOrder">
+            <inheritdoc/>
+        </member>
+        <member name="T:ViDi2.FormsImage.ImageLock">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.FormsImage.ImageLock.Step">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.FormsImage.ImageLock.PixelData">
+            <inheritdoc/>
+        </member>
+        <member name="M:ViDi2.FormsImage.ImageLock.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:ViDi2.Training.GUI.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Training.GUI.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Training.GUI.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Training.GUI.Properties.Resources.Error_BitmapSourceUnsupportedPixelFormat">
+            <summary>
+              Looks up a localized string similar to The BitmapSource has an unsupported pixel-format: &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Training.GUI.Properties.Resources.Error_BitmapUnsupportedPixelFormat">
+            <summary>
+              Looks up a localized string similar to The bitmap has an unsupported pixel-format: &apos;{0}&apos; .
+            </summary>
+        </member>
+        <member name="P:ViDi2.Training.GUI.Properties.Resources.Error_CannotAccessDisposedMemory">
+            <summary>
+              Looks up a localized string similar to Cannot access disposed memory..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Training.GUI.Properties.Resources.Error_UnsupportedImageFormat">
+            <summary>
+              Looks up a localized string similar to Unsupported image format..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Training.GUI.Properties.Resources.Error_UnsupportedNumberOfChannels">
+            <summary>
+              Looks up a localized string similar to Unsupported number of image channels..
+            </summary>
+        </member>
+        <member name="T:ViDi2.RawImage">
+            <summary>
+            Represents an image in unmanaged memory
+            </summary>
+        </member>
+        <member name="M:ViDi2.RawImage.#ctor(System.Int32,System.Int32,System.Int32,ViDi2.ImageChannelDepth,System.IntPtr,System.Int32)">
+            <summary>
+            Initializes a newinstance with the given image dimensions and pixel-data
+            The memory is NOT managed by this object. It is just a wrapper around unmanaged memory
+            </summary>
+            <param name="width">the image width in pixel</param>
+            <param name="height">the image height in pixel</param>
+            <param name="channels">the number of color channels (1-4)</param>
+            <param name="channelDepth">the bit-depth per channel (8 or 16)</param>
+            <param name="data">pointer to the pixel data in unmanaged memory</param>
+            <param name="step">the number of bytes per image row</param>
+        </member>
+        <member name="P:ViDi2.RawImage.Data">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.RawImage.SerializationFormatHint">
+            <summary>
+            preferred format used to serialize this image 
+            </summary>
+        </member>
+        <member name="M:ViDi2.RawImage.Dispose">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

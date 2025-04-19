@@ -5,9 +5,11 @@ using GalaSoft.MvvmLight.Threading;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -104,8 +106,8 @@ namespace VPDLFramework.ViewModels
         {
             try
             {
-                ImageSourceViewModelList = new BindingList<WorkImageSourceItemViewModel>();
-
+                ImageSourceViewModelList.Clear();
+                List<Task<WorkImageSourceItemViewModel>> loadConfigTasks=new List<Task<WorkImageSourceItemViewModel>>();
                 string folder = $"{ECFileConstantsManager.RootFolder}\\{_workName}\\{ECFileConstantsManager.ImageSourceFolderName}";
                 if (Directory.Exists(folder))
                 {
@@ -114,7 +116,7 @@ namespace VPDLFramework.ViewModels
                     {
                         if (File.Exists($"{item}\\{ECFileConstantsManager.ImageSourceConfigName}"))
                         {
-                            WorkImageSourceItemViewModel viewModel = new WorkImageSourceItemViewModel(_workName, new DirectoryInfo(item).Name);
+                            var viewModel = new WorkImageSourceItemViewModel(_workName, new DirectoryInfo(item).Name);
                             viewModel.WorkImageSource.LoadConfig();
                             ImageSourceViewModelList.Add(viewModel);
                         }
@@ -141,7 +143,7 @@ namespace VPDLFramework.ViewModels
                     foreach (string diretory in folders)
                     {
                         bool bDelete = true;
-                        foreach (var item in _imageSourceViewModelList)
+                        foreach (var item in ImageSourceViewModelList)
                         {
                             if (item.WorkImageSource.ImageSourceInfo.ImageSourceName == new DirectoryInfo(diretory).Name)
                             {
@@ -153,14 +155,16 @@ namespace VPDLFramework.ViewModels
                             Directory.Delete(diretory,true);
                     }
                 }
-                foreach (var item in _imageSourceViewModelList)
+                foreach (var item in ImageSourceViewModelList)
                 {
                     string directory = $"{ECFileConstantsManager.RootFolder}\\{_workName}\\{ECFileConstantsManager.ImageSourceFolderName}\\{item.WorkImageSource.ImageSourceInfo.ImageSourceName}";
                     string jsonPath = directory + $"\\{ECFileConstantsManager.ImageSourceConfigName}";
                     string tbPath = directory + $"\\{ECFileConstantsManager.ImageSourceAcqTBName}";
                     if (!Directory.Exists(directory)) { Directory.CreateDirectory(directory); }
                     ECSerializer.SaveObjectToJson(jsonPath, item.WorkImageSource.ImageSourceInfo);
-                    CogSerializer.SaveObjectToFile(item.WorkImageSource.ToolBlock, tbPath);
+
+                    CogSerializer.SaveObjectToFile(item.WorkImageSource.ToolBlock, tbPath, typeof(BinaryFormatter), CogSerializationOptionsConstants.Minimum);
+                    //item.WorkImageSource.ToolBlock.Tools
                 }
                 return true;
             }
@@ -204,17 +208,9 @@ namespace VPDLFramework.ViewModels
         /// <summary>
         /// 图像源集合视图
         /// </summary>
-        private BindingList<WorkImageSourceItemViewModel> _imageSourceViewModelList;
 
-        public BindingList<WorkImageSourceItemViewModel> ImageSourceViewModelList
-        {
-            get { return _imageSourceViewModelList; }
-            set
-            {
-                _imageSourceViewModelList = value;
-                RaisePropertyChanged();
-            }
-        }
+        public ObservableCollection<WorkImageSourceItemViewModel> ImageSourceViewModelList { get; set; }
+            = new ObservableCollection<WorkImageSourceItemViewModel>();
 
 
         #endregion

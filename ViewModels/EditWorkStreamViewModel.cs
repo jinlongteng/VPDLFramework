@@ -360,7 +360,11 @@ namespace VPDLFramework.ViewModels
 
                     // 保存配置信息
                     ECSerializer.SaveObjectToJson(jsonPath, item.WorkStream.WorkStreamInfo); // 配置文件
-                    CogSerializer.SaveObjectToFile(item.WorkStream.DLInputTB, tbDLInputPath); // 输入ToolBlock
+                    if (item.WorkStream.DLInputTB != null)
+                    {
+                        CogSerializer.SaveObjectToFile(item.WorkStream.DLInputTB, tbDLInputPath);
+                    }
+                     // 输入ToolBlock
                     CogSerializer.SaveObjectToFile(item.WorkStream.DLOutputTB, tbDLOutputPath); // 输出ToolBlock
 
                     // 保存配方

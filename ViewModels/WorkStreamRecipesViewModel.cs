@@ -92,9 +92,6 @@ namespace VPDLFramework.ViewModels
                             return;
                         }
                     }
-                    // 添加新的配方
-                    if (WorkStream.Recipes == null)
-                        WorkStream.Recipes = new BindingList<ECRecipe>();
                     ECRecipe newRecipe = ECRecipesManager.FilterValidRecipe(WorkStream.WorkStreamInfo.IsOnlyVpro ? WorkStream.DLOutputTB.Inputs : WorkStream.DLInputTB.Inputs, name);
                     if (newRecipe != null && newRecipe.Values.Count > 0)
                         WorkStream.Recipes.Add(newRecipe);

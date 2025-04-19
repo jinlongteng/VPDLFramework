@@ -101,7 +101,7 @@ namespace VPDLFramework.Views
             // 使用EL需要初始化
             try
             {
-                Startup.Initialize(Startup.ProductKey.VProX);
+                //Startup.Initialize(Startup.ProductKey.VProX);
             }
             catch
             { }

@@ -12,6 +12,7 @@ using NLog;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Web.UI.WebControls;
 
 namespace VPDLFramework.Models
 {
@@ -23,23 +24,22 @@ namespace VPDLFramework.Models
         /// <param name="languageKey">语言键值</param>
         public static void CheckLanguage(string languageKey)
         {
-            if (string.IsNullOrEmpty(languageKey)) return;
-            if (!File.Exists(ECFileConstantsManager.LanguagesFolder + $"\\{languageKey}.xaml")) languageKey = "SimplifiedChinese";
-
-            ResourceDictionary dict = App.Current.Resources.MergedDictionaries.Where(r => r.Source.OriginalString.Contains(@"Languages")).FirstOrDefault();
+            ECLog.WriteToLog("Language file is loading", NLog.LogLevel.Info);
+            if (string.IsNullOrEmpty(languageKey))
+                languageKey = "SimplifiedChinese";
+           
+            ResourceDictionary dict = App.Current.Resources.MergedDictionaries.FirstOrDefault(r => r.Source.OriginalString.Contains(@"Languages"));
             if(dict == null) return;
-            try
+            string fullname = ECFileConstantsManager.LanguagesFolder + $"\\{languageKey}.xaml";
+            if (!File.Exists(fullname))
             {
-                Uri newUri = new Uri(ECFileConstantsManager.LanguagesFolder + $"\\{languageKey}.xaml", UriKind.Absolute);
-
-                ResourceDictionary resource = new ResourceDictionary();
-                dict.Source = newUri;
+                throw new Exception($"Can not found Language file at:{fullname}");
             }
-            catch (Exception ex)
-            {
-                ECLog.WriteToLog(ex.StackTrace + ex.Message, NLog.LogLevel.Error);
-            }
+            Uri newUri = new Uri(fullname, UriKind.Absolute);
 
+            ResourceDictionary resource = new ResourceDictionary();
+            dict.Source = newUri;
+            
         }
 
         /// <summary>
@@ -50,6 +50,7 @@ namespace VPDLFramework.Models
         public static BindingList<string> GetConstantsBindableList<T>() where T : Enum
         {
             BindingList<string> list = new BindingList<string>();
+            
             foreach (string item in Enum.GetNames(typeof(T)))
             {
                 list.Add(item);
@@ -171,28 +172,17 @@ namespace VPDLFramework.Models
         /// </summary>
         public static List<string> GetLocalIPs()
         {
-            List<string> list = new List<string>();
-            try
+            List<string> ips = new List<string>();
+            IPHostEntry hostEntry = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (IPAddress ip in hostEntry.AddressList)
             {
-                SimpleTcpServer tcpServer = new SimpleTcpServer();
-                var ips = tcpServer.GetIPAddresses();
-                
-
-                foreach (System.Net.IPAddress ip in ips)
+                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
                 {
-                    int num = ip.ToString().Split('.').Length;
-                    if (num==4)
-                    {
-                        list.Add(ip.ToString());
-                    }
+                    ips.Add(ip.ToString());
                 }
-                return list;
+
             }
-            catch (System.Exception ex)
-            {
-                ECLog.WriteToLog(ex.StackTrace + ex.Message, NLog.LogLevel.Error);
-                return list;
-            }
+            return ips;
         }
 
         /// <summary>

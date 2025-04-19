@@ -7,7 +7,6 @@
     xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:VPDLFramework"
     xmlns:vm="clr-namespace:VPDLFramework.ViewModels"
-    
     d1p1:Ignorable="d"
     StartupUri="Views/Window_StartupPage.xaml">
     <Application.Resources>

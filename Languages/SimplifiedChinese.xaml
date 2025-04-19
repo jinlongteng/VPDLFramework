@@ -80,7 +80,7 @@
     <sys:String x:Key="Lan.Control_WorkEdit.TextName">名称</sys:String>
     <sys:String x:Key="Lan.Control_WorkEdit.TextCameraMode">相机模式</sys:String>
     <sys:String x:Key="Lan.Control_WorkEdit.TextMode">模式</sys:String>
-    <sys:String x:Key="Lan.Control_WorkEdit.TextFolderPath">文件夹路径</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextFolderPath">图片路径</sys:String>
     <sys:String x:Key="Lan.Control_WorkEdit.TextOperator">操作</sys:String>
     <sys:String x:Key="Lan.Control_WorkEdit.TextLightControl">光源控制</sys:String>
     <sys:String x:Key="Lan.Control_WorkEdit.BtnEditCam">编辑相机</sys:String>
@@ -158,6 +158,9 @@
     <sys:String x:Key="Lan.Control_WorkRuntime.TextRow">行:</sys:String>
     <sys:String x:Key="Lan.Control_WorkRuntime.TextCol">列:</sys:String>
     <sys:String x:Key="Lan.Control_WorkRuntime.BtnSaveConfig">保存配置</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnScriptManage">脚本管理</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnEditScript">编辑脚本</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnReloadScript">重载脚本</sys:String>
 
     <!--  Control_WorkStreamRecipes  -->
     <sys:String x:Key="Lan.Control_WorkStreamRecipes.BtnImportRecipe">导入配方</sys:String>
@@ -168,6 +171,7 @@
     <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextValue">值</sys:String>
     <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextDescriptionLabel">描述标签</sys:String>
     <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextDesableChangingDiscriptionLabel">禁用更改描述标签</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextSaveCurrentTBToRecipe">保存当前工具块到配方</sys:String>
 
     <!--  Window_CommCard  -->
     <sys:String x:Key="Lan.Window_CommCard.TitleCommTest">通讯测试</sys:String>
@@ -350,7 +354,7 @@
     <sys:String x:Key="LabelConstants.SavingTipOfSystemSetup">相机顺序,系统服务器,磁盘管理和语言将在程序重启后生效</sys:String>
     <sys:String x:Key="LabelConstants.CheckWorkStreamUpdate">检查工作流更新</sys:String>
     <sys:String x:Key="LabelConstants.DuplicateNameIsNotAllowed">不允许重复的名称</sys:String>
-    <sys:String x:Key="LabelConstants.FileChooseYesFolderChooseNo">文件选择:是,文件夹:否</sys:String>
+    <sys:String x:Key="LabelConstants.FileChooseYesFolderChooseNo">文件选择: 是, 文件夹: 否</sys:String>
     <sys:String x:Key="LabelConstants.PleaseSelect">请选择</sys:String>
     <sys:String x:Key="LabelConstants.PleaseRemoveLatterStep">请先删除后一步骤</sys:String>
     <sys:String x:Key="LabelConstants.ResultsOfDLToolAddedToOutputTB">深度学习结果已被添加至输出工具块</sys:String>
@@ -371,11 +375,12 @@
     <sys:String x:Key="LabelConstants.StartupWithOnlineMode">以联机模式启动</sys:String>
     <sys:String x:Key="LabelConstants.Login">登录</sys:String>
     <sys:String x:Key="LabelConstants.Logout">登出</sys:String>
-    <sys:String x:Key="LabelConstants.InvalidLicenseFile">无效的授权文件,请提供文件以获取授权C:\Program Files (x86)\VisionPro Framework\License\license.json</sys:String>
+    <sys:String x:Key="LabelConstants.InvalidLicenseFile">无效的授权文件,请提供License.json文件以获取授权</sys:String>
     <sys:String x:Key="LabelConstants.ClientConnected">客户端已连接</sys:String>
     <sys:String x:Key="LabelConstants.ClientDisconnected">客户端已断开</sys:String>
     <sys:String x:Key="LabelConstants.BufferQueueOverflow">缓存队列溢出</sys:String>
     <sys:String x:Key="LabelConstants.OccupancyTooHigh">占用率超过99%</sys:String>
     <sys:String x:Key="LabelConstants.CatchException">捕获到异常在</sys:String>
     <sys:String x:Key="LabelConstants.ImageSourceIsNullOrNoImages">图像源为空或没有可用的图像</sys:String>
+    <sys:String x:Key="LabelConstants.ChangesWillLoseWhenCompileFailed">编译失败时修改将不会保留</sys:String>
 </ResourceDictionary>

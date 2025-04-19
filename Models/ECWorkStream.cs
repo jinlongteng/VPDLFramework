@@ -33,15 +33,14 @@ namespace VPDLFramework.Models
             _workName = workName;
             _workStreamName = streamName;
             _streamFolderPath = ECFileConstantsManager.RootFolder + @"\" + _workName + @"\" + ECFileConstantsManager.StreamsFolderName + @"\" + _workStreamName;
-            ResultViewModel = new ECWorkStreamOrGroupResult() { StreamOrGroupName = _workStreamName,IsWrokStreamType=true };
+            ResultViewModel = new ECWorkStreamOrGroupResult() { StreamOrGroupName = _workStreamName, IsWrokStreamType = true };
             _triggerCount = 0;
-            AdvancedDLSteps = new BindingList<ECAdvancedStep>();
-            Recipes = new BindingList<ECRecipe>();
-            _imageRecord=new ECImageRecorder();
+            _imageRecord = new ECImageRecorder();
+
             InitialGraphicTB();
             InitialLiveModeTB();
             StreamMutex = new Mutex(false, streamName);
-            _databaseMutex = new Mutex(false, streamName+"_db");
+            _databaseMutex = new Mutex(false, streamName + "_db");
         }
 
         #region 方法
@@ -50,29 +49,15 @@ namespace VPDLFramework.Models
         /// </summary>
         private void InitialGraphicTB()
         {
-            try
+            var firstType = typeof(CogImage8Grey).Assembly.GetTypes().FirstOrDefault(t => t.Name == nameof(ICogImage));
+            if (firstType != null)
             {
-                _graphicTB = new CogToolBlock();
-                CogImage8Grey image8Grey = new CogImage8Grey();
-                Type type = typeof(CogImage8Grey);
-                System.Reflection.Assembly assembly = type.Assembly;
-                Type[] types = assembly.GetTypes();
-                foreach (Type t in types)
-                {
-                    if (t.Name == "ICogImage")
-                    {
-                        _graphicTB.Inputs.Add(new CogToolBlockTerminal("InputImage", t));
-                        break;
-                    }
-                }
-                CogIPOneImageTool oneImageTool = new CogIPOneImageTool();
-                oneImageTool.Name = "CogIPOneImageTool1";
-                _graphicTB.Tools.Add(oneImageTool);
+                _graphicTB.Inputs.Add(new CogToolBlockTerminal("InputImage", firstType));
             }
-            catch (System.Exception ex)
+            _graphicTB.Tools.Add(new CogIPOneImageTool
             {
-                ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Error);
-            }
+                Name = "CogIPOneImageTool1"
+            });
         }
 
         /// <summary>
@@ -80,15 +65,7 @@ namespace VPDLFramework.Models
         /// </summary>
         private void InitialLiveModeTB()
         {
-            try
-            {
-                if(File.Exists(ECFileConstantsManager.StdTB_LiveModePath))
-                    _liveModeTB = CogSerializer.LoadObjectFromFile(ECFileConstantsManager.StdTB_LiveModePath) as CogToolBlock;
-            }
-            catch (System.Exception ex)
-            {
-                ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Error);
-            }
+            _liveModeTB = CogSerializer.LoadObjectFromFile(ECFileConstantsManager.StdTB_LiveModePath) as CogToolBlock;
         }
 
         /// <summary>
@@ -106,26 +83,22 @@ namespace VPDLFramework.Models
                     return false;
 
                 // 加载ToolBlock
-                string tbDLInputPath = _streamFolderPath + @"\" + ECFileConstantsManager.DLInputTBName;
                 string tbDLOutputPath = _streamFolderPath + @"\" + ECFileConstantsManager.DLOutputTBName;
-                if (File.Exists(tbDLInputPath))
-                    DLInputTB = CogSerializer.LoadObjectFromFile(tbDLInputPath) as CogToolBlock;
-                else
-                    return false;
-                if (File.Exists(tbDLOutputPath))
+                if (!File.Exists(tbDLOutputPath))
                 {
-                    DLOutputTB = CogSerializer.LoadObjectFromFile(tbDLOutputPath) as CogToolBlock;
-                    ToolBlockRecordsKeyList=GetRecordKeyList(DLOutputTB.CreateLastRunRecord());
-                }
-                else
                     return false;
-
+                }
+                using (FileStream fs=new FileStream (tbDLOutputPath,FileMode.Open))
+                {
+                    DLOutputTB = CogSerializer.LoadObjectFromStream(fs) as CogToolBlock;
+                }
+                ToolBlockRecordsKeyList = GetRecordKeyList(DLOutputTB.CreateLastRunRecord());
                 // 加载高级DL模式配置
                 if (!GetAdvancedDLModelConfig())
                     return false;
 
                 // 加载配方
-                if(!GetRecipes())
+                if (!GetRecipes())
                     return false;
 
                 // 初始化显示图表
@@ -134,13 +107,13 @@ namespace VPDLFramework.Models
                 // 判断是否是异步模式
                 if (WorkStreamInfo.IsAsyncMode)
                 {
-                    BufferCount= BufferCount == 0 ? 30 : BufferCount;
+                    BufferCount = BufferCount == 0 ? 30 : BufferCount;
                     BufferQueue = new ECBufferQueue(BufferCount);
                 }
 
                 // 是否显示3D模式
                 ResultViewModel.IsDisplay3D = WorkStreamInfo.IsDisplay3D;
-                    
+
                 return true;
             }
             catch (System.Exception ex)
@@ -163,7 +136,7 @@ namespace VPDLFramework.Models
             }
             catch (System.Exception ex)
             {
-                ECLog.WriteToLog(ex.StackTrace+ex.Message, LogLevel.Error);
+                ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Error);
             }
         }
 
@@ -176,16 +149,17 @@ namespace VPDLFramework.Models
             try
             {
                 string recipesFolder = _streamFolderPath + @"\" + ECFileConstantsManager.RecipesFolderName;
-                Recipes = new BindingList<ECRecipe>();
+                Recipes.Clear();
                 if (Directory.Exists(recipesFolder))
                 {
-                    BindingList<ECRecipe> tmp = ECRecipesManager.GetRecipes(recipesFolder);
-                    if (tmp != null)
-                        Recipes = tmp;
+                    foreach (var item in ECRecipesManager.GetRecipes(recipesFolder))
+                    {
+                        Recipes.Add(item);
+                    }
                 }
                 return true;
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
                 ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Error);
                 return false;
@@ -201,28 +175,31 @@ namespace VPDLFramework.Models
             try
             {
                 string modelFolder = _streamFolderPath + @"\" + ECFileConstantsManager.AdvancedDLModelFolderName;
-                AdvancedDLSteps = new BindingList<ECAdvancedStep>();
-                if (Directory.Exists(modelFolder))
+                AdvancedDLSteps.Clear();
+                if (!Directory.Exists(modelFolder))
                 {
-                    string[] stepsFolder = Directory.GetDirectories(modelFolder);
-                    // 遍历所有步骤
-                    foreach (string stepFolder in stepsFolder)
+                    return false;
+                }
+                string[] stepsFolder = Directory.GetDirectories(modelFolder);
+                // 遍历所有步骤
+                foreach (string stepFolder in stepsFolder)
+                {
+                    ECAdvancedStep step = new ECAdvancedStep(Path.GetFileName(stepFolder));
+                    string[] toolsFolder = Directory.GetDirectories(stepFolder);
+                    // 遍历所有工具
+                    foreach (string toolFolder in toolsFolder)
                     {
-                        ECAdvancedStep step = new ECAdvancedStep(Path.GetFileName(stepFolder));
-                        string[] toolsFolder = Directory.GetDirectories(stepFolder);
-                        // 遍历所有工具
-                        foreach (string toolFolder in toolsFolder)
+                        string jsonPath = toolFolder + @"\" + ECFileConstantsManager.AdvancedToolConfigName;
+                        string tbPath = toolFolder + @"\" + ECFileConstantsManager.AdvancedToolTBName;
+                        ECAdvancedToolInfo info = ECSerializer.LoadObjectFromJson<ECAdvancedToolInfo>(jsonPath);
+                        ECAdvancedTool tool = new ECAdvancedTool(info.ToolName)
                         {
-                            string jsonPath = toolFolder + @"\" + ECFileConstantsManager.AdvancedToolConfigName;
-                            string tbPath = toolFolder + @"\" + ECFileConstantsManager.AdvancedToolTBName;
-                            ECAdvancedToolInfo info = ECSerializer.LoadObjectFromJson<ECAdvancedToolInfo>(jsonPath);
-                            ECAdvancedTool tool = new ECAdvancedTool(info.ToolName);
-                            tool.ToolInfo = info;
-                            tool.ToolBlock = CogSerializer.LoadObjectFromFile(tbPath) as CogToolBlock;
-                            step.Tools.Add(tool);
-                        }
-                        AdvancedDLSteps.Add(step);
+                            ToolInfo = info,
+                            ToolBlock = CogSerializer.LoadObjectFromFile(tbPath) as CogToolBlock
+                        };
+                        step.Tools.Add(tool);
                     }
+                    AdvancedDLSteps.Add(step);
                 }
                 return true;
             }
@@ -239,28 +216,27 @@ namespace VPDLFramework.Models
         /// <returns>初始化成功返回True，否则返回False</returns>
         public bool CreateNewConfig()
         {
-            try
-            {
-                // 加载配置信息
-                WorkStreamInfo = new ECWorkStreamInfo(_workStreamName);
+            // 加载配置信息
+            WorkStreamInfo = new ECWorkStreamInfo(_workStreamName);
 
-                // 加载ToolBlock
-                if (File.Exists(ECFileConstantsManager.StdTB_DLInputPath))
-                    DLInputTB = CogSerializer.LoadObjectFromFile(ECFileConstantsManager.StdTB_DLInputPath) as CogToolBlock;
-                else
-                    return false;
-                if (File.Exists(ECFileConstantsManager.StdTB_DLOutputPath))
-                    DLOutputTB = CogSerializer.LoadObjectFromFile(ECFileConstantsManager.StdTB_DLOutputPath) as CogToolBlock;
-                else
-                    return false;
-
-                return true;
-            }
-            catch (System.Exception ex)
+            // 加载ToolBlock
+            if (!File.Exists(ECFileConstantsManager.StdTB_DLInputPath))
+                return false;
+            DLInputTB = CogSerializer.LoadObjectFromFile(ECFileConstantsManager.StdTB_DLInputPath) as CogToolBlock;
+            if (DLInputTB is null)
             {
-                ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Error);
                 return false;
             }
+
+            if (!File.Exists(ECFileConstantsManager.StdTB_DLOutputPath))
+                return false;
+            DLOutputTB = CogSerializer.LoadObjectFromFile(ECFileConstantsManager.StdTB_DLOutputPath) as CogToolBlock;
+            if (DLOutputTB is null)
+            {
+                return false;
+            }
+            return true;
+
 
         }
 
@@ -271,51 +247,36 @@ namespace VPDLFramework.Models
         /// <returns></returns>
         public bool LoadRecipe(string recipeName)
         {
-            try
+            if (Recipes == null)
             {
-                if(Recipes!=null)
-                {
-                    foreach (ECRecipe recipe in Recipes)
-                    {
-                        if (recipe.RecipeName==recipeName)
-                        {
-                            var valuesList = recipe.Values.ToDictionary(v => v.Key, v => v.Value);
-                            if (!WorkStreamInfo.IsOnlyVpro)
-                            {
-                                foreach (CogToolBlockTerminal terminal in DLInputTB.Inputs)
-                                {
-                                    if (valuesList.Keys.Contains(terminal.Name))
-                                    {
-                                        ECKeyValuePair keyValue= recipe.Values.Where(r => r.Key == terminal.Name)?.First();
-                                        Type type=Type.GetType(keyValue.Type);
-                                        terminal.Value = Convert.ChangeType(keyValue.Value, type);
-                                    }                                       
-                                }
-                            }
-                            else
-                            {
-                                foreach (CogToolBlockTerminal terminal in DLOutputTB.Inputs)
-                                {
-                                    if (valuesList.Keys.Contains(terminal.Name))
-                                    {
-                                        ECKeyValuePair keyValue = recipe.Values.Where(r => r.Key == terminal.Name)?.First();
-                                        Type type = Type.GetType(keyValue.Type);
-                                        terminal.Value = Convert.ChangeType(keyValue.Value,type);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                return true;
-            }
-            catch (System.Exception ex)
-            {
-                ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Error);
                 return false;
             }
+
+            var targetRecipe = Recipes.FirstOrDefault(r => r.RecipeName == recipeName);
+            if (targetRecipe == null)
+            {
+                return false;
+            }
+
+            var valuesDict = targetRecipe.Values.ToDictionary(v => v.Key, v => v.Value);
+            var inputTB = WorkStreamInfo.IsOnlyVpro ? DLOutputTB : DLInputTB;
+            SetTerminalValues(inputTB, valuesDict, targetRecipe.Values);
+
+            return true;
         }
 
+        private void SetTerminalValues(CogToolBlock toolBlock, Dictionary<string, object> valuesDict, IEnumerable<ECKeyValuePair> keyValuePairs)
+        {
+            foreach (CogToolBlockTerminal terminal in toolBlock.Inputs)
+            {
+                if (valuesDict.ContainsKey(terminal.Name))
+                {
+                    var keyValue = keyValuePairs.First(r => r.Key == terminal.Name);
+                    var type = Type.GetType(keyValue.Type);
+                    terminal.Value = Convert.ChangeType(keyValue.Value, type);
+                }
+            }
+        }
         /// <summary>
         /// 设置用户数据
         /// </summary>
@@ -323,32 +284,23 @@ namespace VPDLFramework.Models
         /// <returns></returns>
         public bool SetUserData(string data)
         {
-            try
-            {
-                if (data != null)
-                {
-                    if (!WorkStreamInfo.IsOnlyVpro)
-                    {
-                        if(DLInputTB.Inputs.Contains("DefaultUserData"))
-                        {
-                            DLInputTB.Inputs["DefaultUserData"].Value=data;
-                        }
-                    }
-                    else
-                    {
-                        if (DLOutputTB.Inputs.Contains("DefaultUserData"))
-                        {
-                            DLOutputTB.Inputs["DefaultUserData"].Value = data;
-                        }
-                    }
-                }
-                return true;
-            }
-            catch (System.Exception ex)
-            {
-                ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Error);
+            if (string.IsNullOrEmpty(data))
                 return false;
+            if (!WorkStreamInfo.IsOnlyVpro)
+            {
+                if (DLInputTB.Inputs.Contains("DefaultUserData"))
+                {
+                    DLInputTB.Inputs["DefaultUserData"].Value = data;
+                }
             }
+            else
+            {
+                if (DLOutputTB.Inputs.Contains("DefaultUserData"))
+                {
+                    DLOutputTB.Inputs["DefaultUserData"].Value = data;
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -379,7 +331,7 @@ namespace VPDLFramework.Models
             {
                 ResultViewModel.ResultRecord = null;
                 Completed?.Invoke(this, ResultViewModel);
-                ECLog.WriteToLog(ex.StackTrace+ex.Message,LogLevel.Error);
+                ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Error);
                 return false;
             }
 
@@ -391,20 +343,20 @@ namespace VPDLFramework.Models
         /// <returns></returns>
         public bool RunAsync(ECWorkImageSourceOutput imageSourceOutput)
         {
-            if(!IsRunning)
+            if (!IsRunning)
                 Run(imageSourceOutput);
-            else  if(BufferQueue!=null&&imageSourceOutput !=null&&imageSourceOutput.Image!=null)
+            else if (BufferQueue != null && imageSourceOutput != null && imageSourceOutput.Image != null)
             {
                 // 计数加1
                 _triggerCount += 1;
 
                 // 触发时间
                 _triggerTime = DateTime.Now;
-                bool isAdd= BufferQueue.AddImage(imageSourceOutput,_triggerCount,_triggerTime);
-                ResultViewModel.BufferedImagesCount=BufferQueue.BufferImages.Count;
+                bool isAdd = BufferQueue.AddImage(imageSourceOutput, _triggerCount, _triggerTime);
+                ResultViewModel.BufferedImagesCount = BufferQueue.BufferImages.Count;
                 return isAdd;
             }
-               
+
             return true;
         }
 
@@ -432,84 +384,79 @@ namespace VPDLFramework.Models
         {
             try
             {
-                // 当使用单线程处理时
-                //if (!IsRunning)
-                //{
-                //    // 正在运行
-                //    IsRunning = true;
 
-                    // 计数加1
-                    _triggerCount += 1;
+                // 计数加1
+                _triggerCount += 1;
 
-                    // 触发时间
-                    _triggerTime = DateTime.Now;
+                // 触发时间
+                _triggerTime = DateTime.Now;
 
-                    // 计时器启动
-                    _stopwatch.Reset();
-                    _stopwatch.Start();
+                // 计时器启动
+                _stopwatch.Reset();
+                _stopwatch.Start();
 
-                    // 结果异常复位
-                    ResultViewModel.IsResultError = false;
+                // 结果异常复位
+                ResultViewModel.IsResultError = false;
 
-                    // 触发时间赋值
-                    ResultViewModel.TriggerTime = _triggerTime;
+                // 触发时间赋值
+                ResultViewModel.TriggerTime = _triggerTime;
 
-                    // 触发计数赋值
-                    ResultViewModel.TriggerCount= _triggerCount;
+                // 触发计数赋值
+                ResultViewModel.TriggerCount = _triggerCount;
 
-                    // 采集图像
-                    _inputImage = imageSourceOutput.Image;
-                    if (_inputImage == null)
+                // 采集图像
+                _inputImage = imageSourceOutput.Image;
+                if (_inputImage == null)
+                {
+                    CreateResultWithError(ECWorkStreamErrorConstants.ImageSource);
+                    return;
+                }
+
+                // 只使用Vpro
+                if (WorkStreamInfo.IsOnlyVpro)
+                {
+                    // 运行输出工具块
+                    DLOutputTB.Inputs["DefaultOutputImage"].Value = _inputImage;
+
+                    // 图像源其他数据
+                    TransferToolBlockTerminalsToToolBlock(imageSourceOutput.OtherOutputs, DLOutputTB);
+
+                    DLOutputTB.Run();
+
+                    CreateResult();
+                }
+                // 使用Vpro+DL
+                else
+                {
+                    // 运行输入工具块
+                    DLInputTB.Inputs["DefaultInputImage"].Value = _inputImage;
+
+                    // 图像源其他数据
+                    TransferToolBlockTerminalsToToolBlock(imageSourceOutput.OtherOutputs, DLInputTB);
+
+                    DLInputTB.Run();
+
+                    // 运行DL
+                    if (DLInputTB.Outputs.Contains("DefaultOutputImage") && DLInputTB.Outputs["DefaultOutputImage"].ValueType.Name == "ICogImage")
                     {
-                        CreateResultWithError(ECWorkStreamErrorConstants.ImageSource);
-                        return;
-                    }
-
-                    // 只使用Vpro
-                    if (WorkStreamInfo.IsOnlyVpro)
-                    {
-                        // 运行输出工具块
-                        DLOutputTB.Inputs["DefaultOutputImage"].Value = _inputImage;
-
-                        // 图像源其他数据
-                        TransferToolBlockTerminalsToToolBlock(imageSourceOutput.OtherOutputs, DLOutputTB);
-
+                        // 高级DL模式运行
+                        if (WorkStreamInfo.IsUseAdvancedDLModel)
+                        {
+                            TransferDLResultToDLOutputTB(AdvancedDLModelRun());
+                            TransferDLInputTBOutputsToDLOutputTBInputs();
+                        }
+                        // DefaultDL模式运行
+                        else
+                        {
+                            // Default模式下输入工具块的输出参数传给输出工具块的输入参数
+                            TransferDLResultToDLOutputTB(DLRun());
+                            TransferDLInputTBOutputsToDLOutputTBInputs();
+                        }
                         DLOutputTB.Run();
-
+                        // 生成结果
                         CreateResult();
                     }
-                    // 使用Vpro+DL
-                    else
-                    {
-                        // 运行输入工具块
-                        DLInputTB.Inputs["DefaultInputImage"].Value = _inputImage;
-
-                        // 图像源其他数据
-                        TransferToolBlockTerminalsToToolBlock(imageSourceOutput.OtherOutputs, DLInputTB);
-
-                        DLInputTB.Run();
-
-                        // 运行DL
-                        if (DLInputTB.Outputs.Contains("DefaultOutputImage") && DLInputTB.Outputs["DefaultOutputImage"].ValueType.Name == "ICogImage")
-                        {
-                            // 高级DL模式运行
-                            if (WorkStreamInfo.IsUseAdvancedDLModel)
-                            {
-                                TransferDLResultToDLOutputTB(AdvancedDLModelRun());
-                                TransferDLInputTBOutputsToDLOutputTBInputs();
-                            }
-                            // DefaultDL模式运行
-                            else
-                            {
-                                // Default模式下输入工具块的输出参数传给输出工具块的输入参数
-                                TransferDLResultToDLOutputTB(DLRun());
-                                TransferDLInputTBOutputsToDLOutputTBInputs();
-                            }
-                            DLOutputTB.Run();
-                            // 生成结果
-                            CreateResult();
-                        }
-                    }
+                }
                 //}
             }
             catch (System.Exception ex)
@@ -533,61 +480,61 @@ namespace VPDLFramework.Models
                 //    // 正在运行
                 //    IsRunning = true;
 
-                    // 计数加1
-                    _triggerCount += 1;
+                // 计数加1
+                _triggerCount += 1;
 
-                    // 触发时间
-                    _triggerTime = DateTime.Now;
+                // 触发时间
+                _triggerTime = DateTime.Now;
 
-                    // 计时器启动
-                    _stopwatch.Reset();
-                    _stopwatch.Start();
+                // 计时器启动
+                _stopwatch.Reset();
+                _stopwatch.Start();
 
-                    // 结果异常复位
-                    ResultViewModel.IsResultError = false;
+                // 结果异常复位
+                ResultViewModel.IsResultError = false;
 
-                    // 触发时间赋值
-                    ResultViewModel.TriggerTime = _triggerTime;
+                // 触发时间赋值
+                ResultViewModel.TriggerTime = _triggerTime;
 
-                    // 触发计数赋值
-                    ResultViewModel.TriggerCount = _triggerCount;
+                // 触发计数赋值
+                ResultViewModel.TriggerCount = _triggerCount;
 
-                    // 只使用Vpro
-                    if (WorkStreamInfo.IsOnlyVpro)
+                // 只使用Vpro
+                if (WorkStreamInfo.IsOnlyVpro)
+                {
+                    // 运行输出工具块
+                    DLOutputTB.Run();
+                    CreateResult();
+                }
+                // 使用Vpro+DL
+                else
+                {
+                    // 运行输入工具块
+                    DLInputTB.Run();
+
+                    // 运行DL
+                    if (DLInputTB.Outputs.Contains("DefaultOutputImage") && DLInputTB.Outputs["DefaultOutputImage"].ValueType.Name == "ICogImage")
                     {
-                        // 运行输出工具块
+                        // 高级DL模式运行
+                        if (WorkStreamInfo.IsUseAdvancedDLModel)
+                        {
+                            if (DLInputTB.Outputs["DefaultOutputImage"].Value != null)
+                                TransferDLResultToDLOutputTB(AdvancedDLModelRun());
+                            TransferDLInputTBOutputsToDLOutputTBInputs();
+                        }
+                        // DefaultDL模式运行
+                        else
+                        {
+                            // Default模式下输入工具块的输出参数传给输出工具块的输入参数
+                            if (DLInputTB.Outputs["DefaultOutputImage"].Value != null)
+                                TransferDLResultToDLOutputTB(DLRun());
+                            TransferDLInputTBOutputsToDLOutputTBInputs();
+                        }
                         DLOutputTB.Run();
+                        // 生成结果
                         CreateResult();
                     }
-                    // 使用Vpro+DL
-                    else
-                    {
-                        // 运行输入工具块
-                        DLInputTB.Run();
-
-                        // 运行DL
-                        if (DLInputTB.Outputs.Contains("DefaultOutputImage") && DLInputTB.Outputs["DefaultOutputImage"].ValueType.Name == "ICogImage")
-                        {
-                            // 高级DL模式运行
-                            if (WorkStreamInfo.IsUseAdvancedDLModel)
-                            {
-                                if(DLInputTB.Outputs["DefaultOutputImage"].Value!=null)
-                                    TransferDLResultToDLOutputTB(AdvancedDLModelRun());
-                                TransferDLInputTBOutputsToDLOutputTBInputs();
-                            }
-                            // DefaultDL模式运行
-                            else
-                            {
-                                // Default模式下输入工具块的输出参数传给输出工具块的输入参数
-                                if (DLInputTB.Outputs["DefaultOutputImage"].Value != null)
-                                    TransferDLResultToDLOutputTB(DLRun());
-                                TransferDLInputTBOutputsToDLOutputTBInputs();
-                            }
-                            DLOutputTB.Run();
-                            // 生成结果
-                            CreateResult();
-                        }
-                    }
+                }
                 //}
             }
             catch (System.Exception ex)
@@ -604,9 +551,9 @@ namespace VPDLFramework.Models
         {
             try
             {
-                if(BufferQueue==null) return null;
-                ECWorkImageSourceOutput imageSourceOutput= BufferQueue?.GetNextImage();
-                ResultViewModel.BufferedImagesCount=BufferQueue.BufferImages.Count;
+                if (BufferQueue == null) return null;
+                ECWorkImageSourceOutput imageSourceOutput = BufferQueue?.GetNextImage();
+                ResultViewModel.BufferedImagesCount = BufferQueue.BufferImages.Count;
                 return imageSourceOutput;
             }
             catch (System.Exception ex)
@@ -622,11 +569,11 @@ namespace VPDLFramework.Models
         /// <returns></returns>
         public CogToolBlockTerminalCollection DLRun()
         {
-            CogToolBlockTerminalCollection result=new CogToolBlockTerminalCollection();
+            CogToolBlockTerminalCollection result = new CogToolBlockTerminalCollection();
             // 判断图像是否存在
             if ((ICogImage)DLInputTB.Outputs["DefaultOutputImage"].Value == null)
             {
-                ECLog.WriteToLog("Output ToolBlock's Outputs [DefaultOutputImage] Is Null",LogLevel.Error);
+                ECLog.WriteToLog("Output ToolBlock's Outputs [DefaultOutputImage] Is Null", LogLevel.Error);
                 CreateResultWithError(ECWorkStreamErrorConstants.DLInputTB);
                 return result;
             }
@@ -652,7 +599,7 @@ namespace VPDLFramework.Models
         /// </summary>
         public CogToolBlockTerminalCollection AdvancedDLModelRun()
         {
-            CogToolBlockTerminalCollection result= new CogToolBlockTerminalCollection();
+            CogToolBlockTerminalCollection result = new CogToolBlockTerminalCollection();
             try
             {
                 // 执行所有步骤
@@ -677,14 +624,14 @@ namespace VPDLFramework.Models
 
                     // 最后一步的输出作为整体结果返回
                     if (isLastStep)
-                        result=step.Outputs;
+                        result = step.Outputs;
                 }
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
-                ECLog.WriteToLog(ex.StackTrace+ex.Message+ "Error Occurred While DLAdvanced Mode Running", NLog.LogLevel.Error);
+                ECLog.WriteToLog(ex.StackTrace + ex.Message + "Error Occurred While DLAdvanced Mode Running", NLog.LogLevel.Error);
                 CreateResultWithError(ECWorkStreamErrorConstants.DL);
-                ECLog.WriteToLog(ex.StackTrace+ex.Message, LogLevel.Error);
+                ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Error);
             }
             return result;
         }
@@ -699,7 +646,7 @@ namespace VPDLFramework.Models
             {
                 foreach (ICogRecord r in record.SubRecords)
                 {
-                    strings.Add(record.Annotation+"."+ r.RecordKey);
+                    strings.Add(record.Annotation + "." + r.RecordKey);
                 }
             }
             return strings;
@@ -739,24 +686,15 @@ namespace VPDLFramework.Models
             {
                 // 从输出工具块生成结果
                 ResultViewModel.StreamOrGroupName = WorkStreamInfo.StreamName;
-                if (DLOutputTB.Outputs.Contains("ResultStatus") && DLOutputTB.Outputs["ResultStatus"].ValueType == typeof(Boolean))
-                    ResultViewModel.ResultStatus = (bool)DLOutputTB.Outputs["ResultStatus"].Value;
-                if (DLOutputTB.Outputs.Contains("ResultForDisplay") && DLOutputTB.Outputs["ResultForDisplay"].ValueType == typeof(string))
-                    ResultViewModel.ResultForDisplay = (string)DLOutputTB.Outputs["ResultForDisplay"].Value;
-                if (DLOutputTB.Outputs.Contains("ResultForSend") && DLOutputTB.Outputs["ResultForSend"].ValueType == typeof(string))
-                    ResultViewModel.ResultForSend = (string)DLOutputTB.Outputs["ResultForSend"].Value;
-
-                // 添加结果到结果图表
-                AddResultToResultChart(DLOutputTB);
-
-                // 用户自定义图形
-                _graphicList = new List<ICogGraphic>();
-                if (DLOutputTB.Outputs.Contains("CustomGraphics") && DLOutputTB.Outputs["CustomGraphics"].ValueType.Name == "List`1"
-                    && DLOutputTB.Outputs["CustomGraphics"].Value!=null)
+                if (!DLOutputTB.Outputs.Contains("ResultStatus")|| !DLOutputTB.Outputs.Contains("SaveGraphics")||!DLOutputTB.Outputs.Contains("ResultForSend"))
                 {
-                    foreach (ICogGraphic graphic in (List<ICogGraphic>)DLOutputTB.Outputs["CustomGraphics"].Value)
-                        _graphicList.Add(graphic);
+                    ECLog.WriteToLog("VisionPro Outputs must have ResultStatus and SaveGraphics and ResultForSend",LogLevel.Error);
+                    return;
                 }
+                ResultViewModel.ResultStatus = (bool)DLOutputTB.Outputs["ResultStatus"].Value;
+                _graphicList = DLOutputTB.Outputs["SaveGraphics"].Value as CogGraphicCollection;
+                ResultViewModel.ResultForSend = DLOutputTB.Outputs["ResultForSend"].Value.ToString();
+
 
                 // 获取指定的存图名称
                 if (DLOutputTB.Outputs.Contains("SpecifiedImageName") && DLOutputTB.Outputs["SpecifiedImageName"].ValueType == typeof(string))
@@ -764,6 +702,7 @@ namespace VPDLFramework.Models
 
                 // 输出工具块LastRunRecord
                 ICogRecord defaultRecord = DLOutputTB.CreateLastRunRecord();
+               
 
                 // 深度学习结果Record
                 if (!WorkStreamInfo.IsOnlyVpro && !WorkStreamInfo.IsUseAdvancedDLModel)
@@ -785,32 +724,32 @@ namespace VPDLFramework.Models
                 }
 
                 // ToolBlock显示项列表
-                ToolBlockRecordsKeyList=GetRecordKeyList(defaultRecord);
+                ToolBlockRecordsKeyList = GetRecordKeyList(defaultRecord);
 
                 // 传递输出工具块Custom的输出参数到结果中
                 TransferCustomOutputsToResult();
 
                 // 写入结果
-                WriteData(_triggerTime,_triggerCount,ResultViewModel);
+                WriteData(_triggerTime, _triggerCount, ResultViewModel);
 
                 // 存图
-                SaveImage(_inputImage,ResultViewModel.ResultStatus);
-                
+                SaveImage(_inputImage, ResultViewModel.ResultStatus);
+
                 // 结束计时
                 _stopwatch.Stop();
                 ResultViewModel.ElapsedTime = Math.Round((double)_stopwatch.Milliseconds + (WorkStreamInfo.IsOnlyVpro ? 0 : GetDLDuration()), 3);
-
+               
                 // 发出完成事件
                 Completed?.Invoke(this, ResultViewModel);
-                
+
                 // Stream状态恢复可用
                 IsRunning = false;
 
                 // 检测是否需要执行缓存队列
-                if(WorkStreamInfo.IsAsyncMode)
+                if (WorkStreamInfo.IsAsyncMode)
                 {
                     ECWorkImageSourceOutput imageSourceOutput = CheckBufferQueue();
-                    if(imageSourceOutput != null&&imageSourceOutput.Image!=null)
+                    if (imageSourceOutput != null && imageSourceOutput.Image != null)
                     {
                         Run(imageSourceOutput);
                     }
@@ -843,17 +782,6 @@ namespace VPDLFramework.Models
                 if (result.ToolBlock.Outputs.Contains("ResultForSend") && result.ToolBlock.Outputs["ResultForSend"].ValueType == typeof(string))
                     ResultViewModel.ResultForSend = (string)result.ToolBlock.Outputs["ResultForSend"].Value;
 
-                // 添加结果到结果图表
-                AddResultToResultChart(result.ToolBlock);
-
-                // 用户自定义图形
-                _graphicList = new List<ICogGraphic>();
-                if (result.ToolBlock.Outputs.Contains("CustomGraphics") && result.ToolBlock.Outputs["CustomGraphics"].ValueType.Name == "List`1"
-                    && result.ToolBlock.Outputs["CustomGraphics"].Value != null)
-                {
-                    foreach (ICogGraphic graphic in (List<ICogGraphic>)result.ToolBlock.Outputs["CustomGraphics"].Value)
-                        _graphicList.Add(graphic);
-                }
 
                 // 获取指定的存图名称
                 if (result.ToolBlock.Outputs.Contains("SpecifiedImageName") && result.ToolBlock.Outputs["SpecifiedImageName"].ValueType == typeof(string))
@@ -879,7 +807,7 @@ namespace VPDLFramework.Models
                 WriteData(result.TriggerTime, result.TriggerIndex, ResultViewModel);
 
                 // 存图
-                SaveImage(result.ImageSourceOutput.Image,ResultViewModel.ResultStatus);
+                SaveImage(result.ImageSourceOutput.Image, ResultViewModel.ResultStatus);
 
                 // 结束计时
                 _stopwatch.Stop();
@@ -924,9 +852,9 @@ namespace VPDLFramework.Models
                 //发出完成事件
                 Completed?.Invoke(this, ResultViewModel);
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
-                ECLog.WriteToLog(ex.StackTrace+ex.Message, LogLevel.Error);
+                ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Error);
             }
         }
 
@@ -944,9 +872,9 @@ namespace VPDLFramework.Models
 
                 }
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
-                ECLog.WriteToLog(ex.StackTrace+ex.Message, LogLevel.Error);
+                ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Error);
             }
         }
 
@@ -965,9 +893,9 @@ namespace VPDLFramework.Models
                     }
                 }
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
-                ECLog.WriteToLog(ex.StackTrace+ex.Message, LogLevel.Error);
+                ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Error);
             }
         }
 
@@ -980,7 +908,7 @@ namespace VPDLFramework.Models
             ResultViewModel.CustomOutputs = new CogToolBlockTerminalCollection();
             foreach (CogToolBlockTerminal terminal in DLOutputTB.Outputs)
             {
-                if (terminal.Name != "ResultStatus" && terminal.Name != "ResultForDisplay" && terminal.Name != "ResultForSend" && terminal.Name != "SpecifiedImageName"&&
+                if (terminal.Name != "ResultStatus" && terminal.Name != "ResultForDisplay" && terminal.Name != "ResultForSend" && terminal.Name != "SpecifiedImageName" &&
                     terminal.Name != "ResultForSend" && terminal.Name != "CustomGraphics" && terminal.Name != "ResultChartSeries" && terminal.Name != "ResultChartValues" && terminal.Name != "Display3DImage")
                 {
                     if (terminal.Value == null)
@@ -1007,7 +935,7 @@ namespace VPDLFramework.Models
             foreach (CogToolBlockTerminal terminal in DLOutputTB.Outputs)
             {
                 if (terminal.Name != "ResultStatus" && terminal.Name != "ResultForDisplay" && terminal.Name != "ResultForSend" && terminal.Name != "SpecifiedImageName" &&
-                    terminal.Name != "ResultForSend" && terminal.Name != "CustomGraphics" && terminal.Name != "ResultChartSeries" && terminal.Name != "ResultChartValues"&& terminal.Name != "Display3DImage")
+                    terminal.Name != "ResultForSend" && terminal.Name != "CustomGraphics" && terminal.Name != "ResultChartSeries" && terminal.Name != "ResultChartValues" && terminal.Name != "Display3DImage")
                 {
                     if (terminal.Value != null)
                     {
@@ -1029,7 +957,7 @@ namespace VPDLFramework.Models
         /// <returns></returns>
         private double GetDLDuration()
         {
-            if(_DLSample==null) return 0;
+            if (_DLSample == null) return 0;
             double duration = 0;
             foreach (var marking in _DLSample.Markings)
             {
@@ -1039,35 +967,6 @@ namespace VPDLFramework.Models
             return duration;
         }
 
-        /// <summary>
-        /// 添加结果到结果图表
-        /// </summary>
-        private void AddResultToResultChart(CogToolBlock toolBlock)
-        {
-            if(ResultChart==null) return;
-            List<string> resultSerires= new List<string>();
-            List<double> resultValues= new List<double>();
-
-            // 添加输出工具块中的结果图表系列
-            if (toolBlock.Outputs.Contains("ResultChartSeries") && toolBlock.Outputs["ResultChartSeries"].ValueType.Name == "IList")
-            {
-                if ((List<string>)toolBlock.Outputs["ResultChartSeries"].Value != null)
-                {
-                    foreach (string str in (List<string>)toolBlock.Outputs["ResultChartSeries"].Value)
-                        resultSerires.Add(str);
-                }
-            }
-            // 添加输出工具块中的结果图表数值
-            if (toolBlock.Outputs.Contains("ResultChartValues") && toolBlock.Outputs["ResultChartValues"].ValueType.Name == "IList")
-            {
-                if ((List<double>)toolBlock.Outputs["ResultChartValues"].Value != null)
-                {
-                    foreach (double d in (List<double>)toolBlock.Outputs["ResultChartValues"].Value)
-                        resultValues.Add(d);
-                }
-            }
-            ResultChart.AddData(resultValues, resultSerires);
-        }
 
         /// <summary>
         /// 生成显示Record
@@ -1076,28 +975,29 @@ namespace VPDLFramework.Models
         /// <param name="customGraphics">用户图形集合</param>
         /// <param name="image">输入图像</param>
         /// <returns></returns>
-        private ICogRecord CreateDisplayRecord(ICogRecord defaultRecord, List<ICogGraphic> customGraphics, ICogImage image)
+        private ICogRecord CreateDisplayRecord(ICogRecord defaultRecord, CogGraphicCollection customGraphics, ICogImage image)
         {
             ICogRecord record = null;
             ECWorkOptionManager.ResultGraphiConstants option;
 
-            if (!Enum.TryParse<ECWorkOptionManager.ResultGraphiConstants>(WorkStreamInfo.ResultGraphicOption, out option)) { return record; }
+            if (!Enum.TryParse(WorkStreamInfo.ResultGraphicOption, out option)) { return record; }
             switch (option)
             {
                 case ECWorkOptionManager.ResultGraphiConstants.Default:
-                    if(WorkStreamInfo.ToolBlockRecordKey!=null)
+                    if (WorkStreamInfo.ToolBlockRecordKey != null)
                     {
-                        foreach(ICogRecord r in defaultRecord.SubRecords)
+                        foreach (ICogRecord r in defaultRecord.SubRecords)
                         {
+                           
                             string key = defaultRecord.Annotation + "." + r.RecordKey;
-                            if(key==WorkStreamInfo.ToolBlockRecordKey)
+                            if (key == WorkStreamInfo.ToolBlockRecordKey)
                             {
                                 record = r;
                                 break;
-                            }       
+                            }
                         }
                     }
-                    else if(defaultRecord.SubRecords.Count>0) 
+                    else if (defaultRecord.SubRecords.Count > 0)
                         record = defaultRecord.SubRecords[0];
                     break;
 
@@ -1114,7 +1014,7 @@ namespace VPDLFramework.Models
         /// <param name="graphics"></param>
         /// <param name="image"></param>
         /// <returns></returns>
-        private ICogRecord CreateCustomRecord(List<ICogGraphic> graphics, ICogImage image)
+        private ICogRecord CreateCustomRecord(CogGraphicCollection graphics, ICogImage image)
         {
             if (_graphicTB == null) return null;
             _graphicTB.Inputs["InputImage"].Value = image;
@@ -1152,113 +1052,50 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 保存运行结果到数据库
         /// </summary>
-        private void WriteData(DateTime triggerTime,int triggerCount,ECWorkStreamOrGroupResult result)
+        private void WriteData(DateTime triggerTime, int triggerCount, ECWorkStreamOrGroupResult result)
         {
             // 判断是否启用数据库
             if (!IsEnableDatabase) return;
-
-            // 生成Default值
-            string data_TriggerTime = triggerTime.ToString("yyyy-MM-dd HH:mm:ss:fff");
-            int data_TriggerCount = _triggerCount;
-            string data_ResultForDisplay = "";
-            string data_ResultForTCP = "";
-            int data_ResultStatus = 0;
-
-            // 传入工作流结果数据
-            if (result.ResultForDisplay != null)
-                data_ResultForDisplay = result.ResultForDisplay;
-            if (result.ResultForSend != null)
-                data_ResultForTCP = result.ResultForSend;
-            data_ResultStatus = result.ResultStatus == true ? 1 : 0;
-
             // 打包成object[]
-            object[] datas = new object[5];
-            datas[0] = data_TriggerTime;
-            datas[1] = data_TriggerCount;
-            datas[2] = data_ResultForDisplay;
-            datas[3] = data_ResultForTCP;
-            datas[4] = data_ResultStatus;
+            object[] datas = new object[] { triggerTime.ToString("yyyy-MM-dd HH:mm:ss:fff") , _triggerCount , string.Empty , result.ResultForSend ?? string.Empty , result.ResultStatus ? 1 : 0 };
 
             // 数据库文件路径
             string folder = ECFileConstantsManager.RootFolder + @"\" + _workName + @"\" + ECFileConstantsManager.DatabaseFolderName + @"\"
-                            +ECFileConstantsManager.WorkStreamsDataFolderName+@"\"+ WorkStreamInfo.StreamName+@"\"+DateTime.Now.ToString("yyyy_MM_dd");
+                            + ECFileConstantsManager.WorkStreamsDataFolderName + @"\" + WorkStreamInfo.StreamName + @"\" + DateTime.Now.ToString("yyyy_MM_dd");
             string filePath = folder + @"\" + ECFileConstantsManager.StreamDatabaseFileName;
-
-            // 添加数据到文件
-            Task.Run(() =>
-            {
-                try
-                {
-                    // 获取数据库锁
-                    _databaseMutex.WaitOne();
-
-                    // 添加数据到文件
-                    ECSQLiteDataManager.AddData(filePath, ECSQLiteDataManager.DataType.ResultData, datas);
-                }
-                catch (System.Exception ex)
-                {
-                    ECLog.WriteToLog(ex.StackTrace + ex.Message+ "Write Data To Result Log Failed", LogLevel.Error);
-                }
-                finally { _databaseMutex.ReleaseMutex(); }
-
-            });
-            
+            ECSQLiteDataManager.AddData(filePath, ECSQLiteDataManager.DataType.ResultData, datas);
         }
 
         /// <summary>
         /// 保存图像
         /// </summary>
-        private void SaveImage(ICogImage cogImage,bool isOK)
+        private void SaveImage(ICogImage cogImage, bool isOK)
         {
-            if(cogImage==null) return;
+            if (cogImage == null) return;
             // 检查是否启用了存图并且图像有效
-            ECWorkOptionManager.ImageRecordConstants recordType;
-            if (!Enum.TryParse<ECWorkOptionManager.ImageRecordConstants>(WorkStreamInfo.ImageRecordOption, out recordType) || cogImage == null) return;
             ICogImage image = cogImage.CopyBase(CogImageCopyModeConstants.CopyPixels);
-            ICogRecord record = ECGeneric.DeepCopy(ResultViewModel.ResultRecord);
-
-            // 存图
 
             // 指定图像名称为空时使用时间加触发计数作为名称,否则使用指定的名称
-            string imageName = _specifiedImageName == "" || _specifiedImageName == null ? _triggerTime.ToString("yyyy_MM_dd_HH_mm_ss_fff_") + _triggerCount.ToString() : _specifiedImageName;
+            string imageName = string.IsNullOrEmpty(_specifiedImageName) ? _triggerTime.ToString("yyyy_MM_dd_HH_mm_ss_fff_") + _triggerCount.ToString() : _specifiedImageName;
 
             // 类型名称,OK/NG分开保存
             string className = isOK ? "OK" : "NG";
 
             // 原图文件夹
-            string originalPath = ECFileConstantsManager.ImageRootFolder + @"\" + _workName + @"\" + ECFileConstantsManager.ImageRecordFolderName + @"\" + _workStreamName + @"\" + ECFileConstantsManager.OriginalImageFolderName + @"\" + DateTime.Now.ToString("yyyy_MM_dd")+$"\\{className}";
+            string originalPath = ECFileConstantsManager.ImageRootFolder + @"\" + _workName + @"\" + ECFileConstantsManager.ImageRecordFolderName + @"\" + _workStreamName + @"\" + ECFileConstantsManager.OriginalImageFolderName + @"\" + DateTime.Now.ToString("yyyy_MM_dd") + $"\\{className}";
             // 图形文件夹
-            string graphicPath = ECFileConstantsManager.ImageRootFolder + @"\" + _workName + @"\" + ECFileConstantsManager.ImageRecordFolderName + @"\" + _workStreamName + @"\" + ECFileConstantsManager.GraphicImageFolderName + @"\" + DateTime.Now.ToString("yyyy_MM_dd")+ $"\\{className}";
+            string graphicPath =  ECFileConstantsManager.ImageRootFolder + @"\" + _workName + @"\" + ECFileConstantsManager.ImageRecordFolderName + @"\" + _workStreamName + @"\" + ECFileConstantsManager.GraphicImageFolderName + @"\" + DateTime.Now.ToString("yyyy_MM_dd") + $"\\{className}";
 
             // 创建文件夹
-            if (!Directory.Exists(originalPath)) Directory.CreateDirectory(originalPath);
-            if (!Directory.Exists(graphicPath)) Directory.CreateDirectory(graphicPath);
+            Directory.CreateDirectory(originalPath);
+            Directory.CreateDirectory(graphicPath);
 
             // 生成文件名
             string originalFullFileNameWithoutExtension = originalPath + @"\" + imageName;
             string graphicFullFileNameWithoutExtension = graphicPath + @"\" + imageName;
 
-            ECWorkOptionManager.ImageRecordConditionConstants option;
+            _imageRecord?.WriteImage(image, originalFullFileNameWithoutExtension, graphicFullFileNameWithoutExtension, _graphicList, _workStreamInfo);
 
-            if (!Enum.TryParse<ECWorkOptionManager.ImageRecordConditionConstants>(WorkStreamInfo.ImageRecordConditionOption, out option)) return;
-
-            // 判断存图条件
-            switch (option)
-            {
-                case ECWorkOptionManager.ImageRecordConditionConstants.All:
-                    _imageRecord?.WriteImage(image, originalFullFileNameWithoutExtension, graphicFullFileNameWithoutExtension, _graphicList, _workStreamInfo);
-                    break;
-
-                case ECWorkOptionManager.ImageRecordConditionConstants.True:
-                    if (ResultViewModel.ResultStatus)
-                        _imageRecord?.WriteImage(image, originalFullFileNameWithoutExtension, graphicFullFileNameWithoutExtension, _graphicList, _workStreamInfo);
-                    break;
-
-                case ECWorkOptionManager.ImageRecordConditionConstants.False:
-                    if (!ResultViewModel.ResultStatus)
-                        _imageRecord?.WriteImage(image, originalFullFileNameWithoutExtension, graphicFullFileNameWithoutExtension, _graphicList, _workStreamInfo);
-                    break;
-            }
         }
 
         /// <summary>
@@ -1299,14 +1136,14 @@ namespace VPDLFramework.Models
                         {
                             foreach (CogToolBlockTerminal terminal in ECDLEnvironment.GetDLStreamResultTerminals(tool.ToolInfo.DLWorkspaceName, tool.ToolInfo.DLStreamName))
                             {
-                                step.OutputParaList.Add(new KeyValuePair<string, Type>(step.StepName+"_"+tool.ToolInfo.ToolName + "_" + terminal.Name, terminal.ValueType));
+                                step.OutputParaList.Add(new KeyValuePair<string, Type>(step.StepName + "_" + tool.ToolInfo.ToolName + "_" + terminal.Name, terminal.ValueType));
                                 if (isLastStep)
                                 {
                                     if (!DLOutputTB.Inputs.Contains(step.StepName + "_" + tool.ToolInfo.ToolName + "_" + terminal.Name))
-                                        DLOutputTB.Inputs.Add(new CogToolBlockTerminal(step.StepName + "_" + tool.ToolInfo.ToolName + "_" + terminal.Name,terminal.ValueType));
+                                        DLOutputTB.Inputs.Add(new CogToolBlockTerminal(step.StepName + "_" + tool.ToolInfo.ToolName + "_" + terminal.Name, terminal.ValueType));
                                 }
                             }
-                            foreach(CogToolBlockTerminal terminal in tool.ToolBlock.Outputs)
+                            foreach (CogToolBlockTerminal terminal in tool.ToolBlock.Outputs)
                             {
                                 step.OutputParaList.Add(new KeyValuePair<string, Type>(step.StepName + "_" + tool.ToolInfo.ToolName + "_" + terminal.Name, terminal.ValueType));
                                 if (isLastStep)
@@ -1320,11 +1157,11 @@ namespace VPDLFramework.Models
                         {
                             foreach (CogToolBlockTerminal item in tool.ToolBlock.Outputs)
                             {
-                                step.OutputParaList.Add(new KeyValuePair<string, Type>(step.StepName + "_"+tool.ToolInfo.ToolName + "_" + item.Name, item.ValueType));
+                                step.OutputParaList.Add(new KeyValuePair<string, Type>(step.StepName + "_" + tool.ToolInfo.ToolName + "_" + item.Name, item.ValueType));
                                 if (isLastStep)
                                 {
                                     if (!DLOutputTB.Inputs.Contains(step.StepName + "_" + tool.ToolInfo.ToolName + "_" + item.Name))
-                                        DLOutputTB.Inputs.Add(new CogToolBlockTerminal(step.StepName + "_"+tool.ToolInfo.ToolName + "_" + item.Name, item.ValueType));
+                                        DLOutputTB.Inputs.Add(new CogToolBlockTerminal(step.StepName + "_" + tool.ToolInfo.ToolName + "_" + item.Name, item.ValueType));
                                 }
                             }
                         }
@@ -1355,6 +1192,7 @@ namespace VPDLFramework.Models
         private void _multiThreadManager_OnNewResultCome(object sender, KeyValuePair<int, ECWorkStreamMultiThreadResult> result)
         {
             CreateResult(result.Value);
+            
             ResultUsedCompleted.Invoke(this, result.Key);
         }
 
@@ -1367,14 +1205,14 @@ namespace VPDLFramework.Models
             _graphicTB?.Dispose();
             DLInputTB?.Dispose();
             DLOutputTB?.Dispose();
-            foreach(ECAdvancedStep step in AdvancedDLSteps)
+            foreach (ECAdvancedStep step in AdvancedDLSteps)
                 step.Dispose();
             AdvancedDLSteps?.Clear();
             MultiThreadManager?.Dispose();
 
             ResultViewModel = null;
-            _graphicTB=null;
-            DLInputTB=null;
+            _graphicTB = null;
+            DLInputTB = null;
             DLOutputTB = null;
         }
 
@@ -1415,12 +1253,12 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 显示图形Toolblock
         /// </summary>
-        private CogToolBlock _graphicTB;
+        private CogToolBlock _graphicTB = new CogToolBlock();
 
         /// <summary>
         /// 指定的图像名称
         /// </summary>
-        private string _specifiedImageName="";
+        private string _specifiedImageName = "";
 
         /// <summary>
         /// ViDi输入Toolblock
@@ -1435,7 +1273,7 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 实时显示ToolBlock
         /// </summary>
-        private CogToolBlock _liveModeTB {  get; set; }
+        private CogToolBlock _liveModeTB { get; set; }
 
         /// <summary>
         /// 启用数据库
@@ -1450,7 +1288,7 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 自定义图形
         /// </summary>
-        private List<ICogGraphic> _graphicList;
+        private CogGraphicCollection _graphicList= new  CogGraphicCollection ();
 
         /// <summary>
         /// 定时器
@@ -1520,7 +1358,9 @@ namespace VPDLFramework.Models
         public ECWorkStreamInfo WorkStreamInfo
         {
             get { return _workStreamInfo; }
-            set { _workStreamInfo = value;
+            set
+            {
+                _workStreamInfo = value;
                 RaisePropertyChanged();
             }
         }
@@ -1533,7 +1373,9 @@ namespace VPDLFramework.Models
         public ECWorkStreamOrGroupResult ResultViewModel
         {
             get { return _resultViewModel; }
-            set { _resultViewModel = value;
+            set
+            {
+                _resultViewModel = value;
                 RaisePropertyChanged();
             }
         }
@@ -1546,7 +1388,9 @@ namespace VPDLFramework.Models
         public ECWorkStreamOrGroupResultChart ResultChart
         {
             get { return _resultChart; }
-            set { _resultChart = value;
+            set
+            {
+                _resultChart = value;
                 RaisePropertyChanged();
             }
         }
@@ -1556,30 +1400,13 @@ namespace VPDLFramework.Models
         /// 高级DL模式步骤列表
         /// </summary>
 
-        public BindingList<ECAdvancedStep> _advancedDLSteps;
-
-        public BindingList<ECAdvancedStep> AdvancedDLSteps
-        {
-            get { return _advancedDLSteps; }
-            set
-            {
-                _advancedDLSteps = value;
-                RaisePropertyChanged();
-            }
-        }
+        public BindingList<ECAdvancedStep> AdvancedDLSteps { get; set; } = new BindingList<ECAdvancedStep>();
 
         /// <summary>
         /// 配方列表
         /// </summary>
-        private BindingList<ECRecipe> _recipes;
 
-        public BindingList<ECRecipe> Recipes
-        {
-            get { return _recipes; }
-            set { _recipes = value;
-                RaisePropertyChanged();
-            }
-        }
+        public BindingList<ECRecipe> Recipes { get; set; } = new BindingList<ECRecipe>();
 
         /// <summary>
         /// 缓存队列
@@ -1589,7 +1416,9 @@ namespace VPDLFramework.Models
         public ECBufferQueue BufferQueue
         {
             get { return _bufferQueue; }
-            set { _bufferQueue = value;
+            set
+            {
+                _bufferQueue = value;
                 RaisePropertyChanged();
             }
         }
@@ -1603,7 +1432,9 @@ namespace VPDLFramework.Models
         public int BufferCount
         {
             get { return _bufferCount; }
-            set { _bufferCount = value;
+            set
+            {
+                _bufferCount = value;
                 RaisePropertyChanged();
             }
         }

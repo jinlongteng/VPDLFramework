@@ -52,7 +52,7 @@
                                     </Style>
                                 </ComboBox.Style>
                             </ComboBox>
-                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                            <!--<StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                                 <TextBlock
                                     Margin="2"
                                     Padding="2"
@@ -82,7 +82,7 @@
                                     FontFamily="{StaticResource Font_Ico}"
                                     FontSize="16"
                                     Style="{StaticResource Style_Button_Ico}" />
-                            </StackPanel>
+                            </StackPanel>-->
                         </Grid>
                     </Border>
                 </Grid>

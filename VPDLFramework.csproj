@@ -17,6 +17,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,10 +28,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -76,6 +77,18 @@
   <PropertyGroup>
     <ApplicationIcon>vpdl_framework.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>9EA9630ADC681AFB358CDD2F2D747BF804B6B273</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>VPDLFramework_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdonisUI, Version=1.17.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\AdonisUI.1.17.1\lib\net45\AdonisUI.dll</HintPath>
@@ -113,26 +126,26 @@
     </Reference>
     <Reference Include="Cognex.Rbbt.Net, Version=9.20.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Cognex\VisionPro\bin\Cognex.Rbbt.Net.dll</HintPath>
+      <HintPath>..\DLLS\Cognex.Rbbt.Net.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Cognex.Vision.Core.Net">
-      <HintPath>C:\Program Files\Cognex\VisionPro\bin\Cognex.Vision.Core.Net.dll</HintPath>
+      <HintPath>..\DLLS\Cognex.Vision.Core.Net.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Cognex.Vision.ELCore.Net, Version=9.20.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Cognex\VisionPro\bin\Cognex.Vision.ELCore.Net.dll</HintPath>
+      <HintPath>..\DLLS\Cognex.Vision.ELCore.Net.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Cognex.Vision.Startup.Net, Version=9.20.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Cognex\VisionPro\bin\Cognex.Vision.Startup.Net.dll</HintPath>
+      <HintPath>..\DLLS\Cognex.Vision.Startup.Net.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Cognex.Vision.ViDiELClassify.Net, Version=9.20.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Cognex\VisionPro\bin\Cognex.Vision.ViDiELClassify.Net.dll</HintPath>
+      <HintPath>..\DLLS\Cognex.Vision.ViDiELClassify.Net.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Cognex.VisionPro, Version=79.0.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
@@ -140,7 +153,7 @@
       <HintPath>..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.dll</HintPath>
     </Reference>
     <Reference Include="Cognex.VisionPro.CogBmpImageWriter">
-      <HintPath>..\..\..\Cognex.VisionPro.CogImageWriter\bin\x64\Release\Cognex.VisionPro.CogBmpImageWriter.dll</HintPath>
+      <HintPath>..\DLLS\Cognex.VisionPro.CogBmpImageWriter.dll</HintPath>
     </Reference>
     <Reference Include="Cognex.VisionPro.Comm, Version=79.0.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
@@ -228,12 +241,12 @@
     </Reference>
     <Reference Include="Cognex.VisionProUI.Controls, Version=9.20.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Cognex\VisionPro\bin\Cognex.VisionProUI.Controls.dll</HintPath>
+      <HintPath>..\DLLS\Cognex.VisionProUI.Controls.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Cognex.VisionProUI.ViDiELClassify.Controls, Version=9.20.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Cognex\VisionPro\bin\Cognex.VisionProUI.ViDiELClassify.Controls.dll</HintPath>
+      <HintPath>..\DLLS\Cognex.VisionProUI.ViDiELClassify.Controls.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
@@ -364,11 +377,6 @@
     </Reference>
     <Reference Include="SQLitePCLRaw.core, Version=2.1.4.1835, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
       <HintPath>packages\SQLitePCLRaw.core.2.1.4\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
-    </Reference>
-    <Reference Include="stdole, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft.NET\Primary Interop Assemblies\stdole.dll</HintPath>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Svg, Version=3.4.0.0, Culture=neutral, PublicKeyToken=12a0bac221edeae2, processorArchitecture=MSIL">
       <HintPath>packages\Svg.3.4.4\lib\net462\Svg.dll</HintPath>
@@ -593,6 +601,12 @@
     <Compile Include="Models\ECWorkStreamOrGroupResult.cs" />
     <Compile Include="Models\ECWorkStreamOrGroupResultChart.cs" />
     <Compile Include="Models\ECFfpScriptProcessor.cs" />
+    <None Include="StdFiles\Std_FfpScript.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="StdFiles\Std_ThirdCardScript.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="ViewModels\CommCardViewModel.cs" />
     <Compile Include="ViewModels\EditCameraOrderViewModel.cs" />
     <Compile Include="ViewModels\EditWorkGroupViewModel.cs" />
@@ -707,12 +721,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Languages\English.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Languages\SimplifiedChinese.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Styles\GlobalVariableDictionary.xaml">
       <SubType>Designer</SubType>
@@ -853,14 +869,34 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Help\VisionProFrameworkHelp.chm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="License\license.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="StdFiles\TB_LiveMode.vpp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="StdFiles\TB_StdAcq.vpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="StdFiles\TB_StdDLInput.vpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="StdFiles\TB_StdDLOutput.vpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="StdFiles\TB_StdGroup.vpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VPDLFramework_TemporaryKey.pfx" />
     <Resource Include="Resources\Images\Cognex_Logo_Black.png" />
+    <Resource Include="Resources\Images\abb.png" />
+    <Resource Include="Resources\Font\mfont.otf" />
+    <Resource Include="vpdl_framework.ico" />
     <Resource Include="Resources\Images\Cognex_Logo_White.png" />
     <Resource Include="Resources\Images\Cognex_Logo_Yellow.png" />
-    <Resource Include="Resources\Images\abb.png" />
-    <Resource Include="vpdl_framework.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Font\mfont.otf" />
     <Resource Include="Resources\Font\iconfont.ttf" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -895,7 +931,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 和 x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -916,8 +952,7 @@
   <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>cd $(TargetDir)
-if exist VisionProDependencies\ (rmdir VisionProDependencies)
-mklink /D VisionProDependencies "$(VPRO_ROOT)\bin"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

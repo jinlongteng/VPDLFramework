@@ -17,7 +17,8 @@ namespace VPDLFramework.Models
             try
             {
                 // 显示到界面日志控件
-                Messenger.Default.Send<ECLogItem>(new ECLogItem() {Time=DateTime.Now,Level=level,Message=msg },ECMessengerManager.ECLogMessengerKeys.LogAdded);
+                Messenger.Default.Send<ECLogItem>(new ECLogItem() {Time=DateTime.Now,Level=level,Message=msg },
+                    ECMessengerManager.ECLogMessengerKeys.LogAdded);
                 
                 // 写入本地文件
                 switch(level.Name)

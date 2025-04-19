@@ -14,10 +14,10 @@ namespace VPDLFramework.Models
     {
         public ECWMI() 
         {
-            Initial();
-            _timer=new System.Timers.Timer(1000);
-            _timer.Elapsed += _timer_Elapsed;
-            _timer.Start();
+           // Initial();
+            //_timer=new System.Timers.Timer(1000);
+            //_timer.Elapsed += _timer_Elapsed;
+           // _timer.Start();
         }
 
         #region 方法
@@ -38,10 +38,10 @@ namespace VPDLFramework.Models
         /// </summary>
         public void Dispose()
         {
-            _timer?.Stop();
-            _timer?.Dispose();
-            _cpuCounter.Dispose();
-            _ramCounter.Dispose();
+            //_timer?.Stop();
+            //_timer?.Dispose();
+            //_cpuCounter.Dispose();
+            //_ramCounter.Dispose();
         }
 
         /// <summary>
@@ -59,7 +59,6 @@ namespace VPDLFramework.Models
         /// </summary>
         private void GetCPUUsage()
         {
-           
            float usage= _cpuCounter.NextValue();
             DispatcherHelper.CheckBeginInvokeOnUI(() =>
             {

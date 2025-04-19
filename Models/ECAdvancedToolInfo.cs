@@ -13,7 +13,6 @@ namespace VPDLFramework.Models
         public ECAdvancedToolInfo(string toolName)
         { 
             ToolName = toolName;
-            var rime = DateTime.Now;
         }
 
         /// <summary>

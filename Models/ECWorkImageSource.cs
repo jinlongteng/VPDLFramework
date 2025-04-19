@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -48,7 +49,12 @@ namespace VPDLFramework.Models
                 // 加载ToolBlock
                 if (File.Exists(tbPath))
                 {
-                    ToolBlock = CogSerializer.LoadObjectFromFile(tbPath) as CogToolBlock;
+                    using (var stream = new FileStream(tbPath, FileMode.Open))
+                    {
+                        
+                        ToolBlock = CogSerializer.LoadObjectFromStream(stream) as CogToolBlock;
+
+                    }
                     InitialHardwareTrigger();
                 }
                 else
@@ -57,10 +63,10 @@ namespace VPDLFramework.Models
                 GetCameraSerialNumName();
 
                 // 创建文件图像对象
-                if(ImageSourceInfo.ImageFilePath!=null)
+                if (ImageSourceInfo.ImageFilePath != null)
                 {
-                    if(Directory.Exists(ImageSourceInfo.ImageFilePath))
-                        _fileImageSource=new ECFileImageSource(ImageSourceInfo.ImageFilePath);
+                    if (Directory.Exists(ImageSourceInfo.ImageFilePath))
+                        _fileImageSource = new ECFileImageSource(ImageSourceInfo.ImageFilePath);
                 }
 
                 return true;
@@ -198,6 +204,18 @@ namespace VPDLFramework.Models
                 ECLog.WriteToLog(ex.StackTrace+ECGeneric.GetExceptionMethodName(ex)+ex.Message, NLog.LogLevel.Warn);
             }
             return result;
+        }
+
+
+
+        public double GetExposure()
+        {
+            if (_cogFifoTool == null)
+            {
+                throw new ArgumentNullException(nameof(_cogFifoTool));
+            }
+
+            return _cogFifoTool.Operator.OwnedExposureParams.Exposure;
         }
 
         /// <summary>

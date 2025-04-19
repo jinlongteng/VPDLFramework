@@ -46,17 +46,6 @@
                     </Grid.RowDefinitions>
                     <Border CornerRadius="10 10 0 0">
                         <StackPanel VerticalAlignment="Center">
-                            <!--<Image
-                            Width="200"
-                            Margin="10"
-                            Source="../Resources/Images/abb.png"
-                            Stretch="Uniform" />
-                            <TextBlock
-                            HorizontalAlignment="Center"
-                            FontFamily="Heiti"
-                            FontSize="28"
-                            FontWeight="ExtraBold"
-                            Text="VISION FRAMEWORK" />-->
                             <Image
                                 Width="500"
                                 Margin="10"

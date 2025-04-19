@@ -15,40 +15,20 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 从Json文件加载对象
         /// </summary>
-        public static T LoadObjectFromJson<T>(string jsonFilePath)
+        public static T LoadObjectFromJson<T>(string jsonFilePath) where T : class
         {
-            try
+            if (!File.Exists(jsonFilePath))
             {
-
-                if (File.Exists(jsonFilePath))
-                {
-                    using (System.IO.StreamReader file = System.IO.File.OpenText(jsonFilePath))
-                    {
-                        using (JsonTextReader reader = new JsonTextReader(file))
-                        {
-                            var o = JToken.ReadFrom(reader);
-                            if (o.Type == JTokenType.Object)
-                            {
-                                reader.Close();
-                                //反序列化Json文件
-                                return ((JObject)o).ToObject<T>();
-                            }
-                            else if (o.Type == JTokenType.Array)
-                            {
-                                reader.Close ();
-                                return ((JArray)o).ToObject<T>();
-                            }
-                            else
-                                reader.Close ();
-                        }
-                    }
-                }
                 return default;
             }
-            catch (Exception ex)
+            using (System.IO.StreamReader file = System.IO.File.OpenText(jsonFilePath))
             {
-                ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Error);
-                return default;
+                using (JsonTextReader reader = new JsonTextReader(file))
+                {
+                    var serializer = JsonSerializer.CreateDefault();
+                    var ret = serializer.Deserialize<T>(reader);
+                    return ret;
+                }
             }
         }
 

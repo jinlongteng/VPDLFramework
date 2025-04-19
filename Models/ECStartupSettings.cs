@@ -1,9 +1,13 @@
 ﻿using GalaSoft.MvvmLight;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
@@ -15,7 +19,7 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 启动设置
         /// </summary>
-        public ECStartupSettings()
+        private ECStartupSettings()
         {
             IsStatupOnline = false;
             WorksStartupInfo = new BindingList<ECWorkStartupInfo>();
@@ -27,14 +31,49 @@ namespace VPDLFramework.Models
             GetLanguagesInfo();
         }
         #region 方法
+
+        private static ECStartupSettings _instance;
+        public static string jsonPath = ECFileConstantsManager.ProgramStartupConifgFolder + @"\" + ECFileConstantsManager.StartupConfigName;
+        public static ECStartupSettings Instance()
+        {
+            if (_instance is null)
+            {
+                if (!File.Exists(jsonPath))
+                {
+                    return new ECStartupSettings();
+                }
+                _instance = JsonConvert.DeserializeObject<ECStartupSettings>(File.ReadAllText(jsonPath));
+                return _instance;
+            }
+            return _instance;
+        }
+
+        public void Save()
+        {
+            if (_instance != null)
+            {
+                Directory.CreateDirectory(ECFileConstantsManager.ProgramStartupConifgFolder);
+                var jsonText = JsonConvert.SerializeObject(_instance, Formatting.Indented);
+                File.WriteAllText(jsonPath, jsonText);
+            }
+        }
+
+
         /// <summary>
         /// 获取本机可用的IP
         /// </summary>
         private void GetLocalIPs()
         {
-            List<string> ips = ECGeneric.GetLocalIPs();
-            LocalIPs?.Clear();
-            LocalIPs = new BindingList<string>(ips.ToArray());
+            if (LocalIPs?.Count!=0)
+            {
+                return;
+            }
+            IPHostEntry hostEntry = Dns.GetHostEntry(Dns.GetHostName());
+            
+            hostEntry.AddressList.
+                Where(p => p.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).
+                Select(p => p.ToString()).ToList().
+                ForEach(ipName=>LocalIPs.Add(ipName));
         }
 
         /// <summary>
@@ -42,16 +81,13 @@ namespace VPDLFramework.Models
         /// </summary>
         private void GetDiskInfo()
         {
-            DriveInfo[] disks = ECFileConstantsManager.Disks;
-            BindingList<string> tmpList = new BindingList<string>();
-            
-            foreach(DriveInfo disk in disks)
+            if (DiskList?.Count!=0)
             {
-               tmpList.Add(disk.Name);
+                return;
             }
-            DiskList?.Clear();
-
-            DiskList = new BindingList<string>(tmpList.ToArray());
+            ECFileConstantsManager.Disks.
+                Select(disk=>disk.Name).ToList().
+                ForEach(diskName=>DiskList.Add(diskName));
         }
 
         /// <summary>
@@ -59,14 +95,14 @@ namespace VPDLFramework.Models
         /// </summary>
         private void GetLanguagesInfo()
         {
-            BindingList<string> tmpList = new BindingList<string>();
-            string[] lanFiles = Directory.GetFiles(ECFileConstantsManager.LanguagesFolder);
-            foreach(string lanFile in lanFiles)
+            if (LanguageList?.Count!=0)
             {
-                tmpList.Add(Path.GetFileNameWithoutExtension(lanFile));
+                return;
             }
-            LanguageList?.Clear();
-            LanguageList = new BindingList<string>(tmpList.ToArray());
+            Directory.GetFiles(ECFileConstantsManager.LanguagesFolder).
+                Select(file=>Path.GetFileNameWithoutExtension(file)).ToList().
+                ForEach(languageName=>LanguageList.Add(languageName));
+
         }
         #endregion
 
@@ -74,7 +110,7 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 启动自动联机
         /// </summary>
-        private bool _isStartupOnline;
+        private bool _isStartupOnline=false;
 
         public bool IsStatupOnline
         {
@@ -87,17 +123,8 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 管理员账户密码
         /// </summary>
-        private string _adminPassword;
 
-        public string AdminPassword
-        {
-            get { return _adminPassword; }
-            set
-            {
-                _adminPassword = value;
-                RaisePropertyChanged();
-            }
-        }
+        public string AdminPassword { get; set; }=string.Empty;
 
         /// <summary>
         /// 工作项目启动配置列表
@@ -116,42 +143,20 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 本机IP
         /// </summary>
-        private BindingList<string> _localIPs;
-
-        public BindingList<string> LocalIPs
-        {
-            get { return _localIPs; }
-            set { _localIPs = value;
-                RaisePropertyChanged();
-            }
-        }
+        [JsonIgnore]
+        public ObservableCollection<string> LocalIPs { get; set; } = new ObservableCollection<string>();
 
         /// <summary>
         /// 系统TCP服务器IP
         /// </summary>
-        private string _systemTCPServerIP;
 
-        public string SystemTCPServerIP
-        {
-            get { return _systemTCPServerIP; }
-            set { _systemTCPServerIP = value;
-                RaisePropertyChanged();
-            }
-        }
+        public string SystemTCPServerIP { get; set; }
 
         /// <summary>
         /// 系统TCP服务器端口号
         /// </summary>
-        private int _systemTCPServerPort;
 
-        public int SystemTCPServerPort
-        {
-            get { return _systemTCPServerPort; }
-            set {
-                _systemTCPServerPort = value;
-                RaisePropertyChanged();
-            }
-        }
+        public int SystemTCPServerPort { get; set; }
 
         /// <summary>
         /// 工厂协议类型
@@ -182,20 +187,13 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 磁盘列表
         /// </summary>
-        private BindingList<string> _diskList;
-
-        public BindingList<string> DiskList
-        {
-            get { return _diskList; }
-            set { _diskList = value;
-                RaisePropertyChanged();
-            }
-        }
+        [JsonIgnore]
+        public ObservableCollection<string> DiskList { get; set; }=new ObservableCollection<string>();
 
         /// <summary>
         /// 选择的磁盘
         /// </summary>
-        private string _selectedProjectDiskName;
+        private string _selectedProjectDiskName="C:\\";
 
         public string SelectedProjectDiskName
         {
@@ -224,7 +222,7 @@ namespace VPDLFramework.Models
         /// <summary>
         /// OK图片保留天数
         /// </summary>
-        private int _imageRetainedDaysForOK;
+        private int _imageRetainedDaysForOK=30;
 
         public int ImageRetainedDaysForOK
         {
@@ -239,7 +237,7 @@ namespace VPDLFramework.Models
         /// <summary>
         /// NG图片保留天数
         /// </summary>
-        private int _imageRetainedDaysForNG;
+        private int _imageRetainedDaysForNG=30;
 
         public int ImageRetainedDaysForNG
         {
@@ -254,7 +252,7 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 数据保留天数
         /// </summary>
-        private int _dataRetainedDays;
+        private int _dataRetainedDays = 30;
 
         public int DataRetainedDays
         {
@@ -267,17 +265,10 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 语言列表
         /// </summary>
-        private BindingList<string> _languageList;
+        [JsonIgnore]
+        public BindingList<string> LanguageList { get; set; } = new BindingList<string>();
 
-        public BindingList<string> LanguageList
-        {
-            get { return _languageList; }
-            set { _languageList = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        private string _selectedLanguage;
+        private string _selectedLanguage= "SimplifiedChinese";
 
         public string SelectedLanguage
         {

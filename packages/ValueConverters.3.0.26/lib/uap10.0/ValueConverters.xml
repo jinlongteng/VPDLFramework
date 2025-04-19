@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ValueConverters</name>
+    </assembly>
+    <members>
+        <member name="T:ValueConverters.BoolToValueConverterBase`2">
+            <summary>
+            Source:
+            http://geekswithblogs.net/codingbloke/archive/2010/05/28/a-generic-boolean-value-converter.aspx
+            </summary>
+            <typeparam name="T">Generic type T which is used as TrueValue or FalseValue.</typeparam>
+            <typeparam name="TConverter">Converter type</typeparam>
+        </member>
+        <member name="P:ValueConverters.ConverterBase.PreferredCulture">
+            <summary>
+            Allows to override the default culture used in <seealso cref="T:Windows.UI.Xaml.Data.IValueConverter"/> for the current converter.
+            The default override behavior can be configured in <seealso cref="P:ValueConverters.ValueConvertersConfig.DefaultPreferredCulture"/>.
+            </summary>
+        </member>
+        <member name="M:ValueConverters.ConverterBase.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts <paramref name="value"/> from binding source to binding target.
+            </summary>
+            <param name="value">The value provided by the binding source.</param>
+            <param name="targetType">The type of the binding target.</param>
+            <param name="parameter">Additional parameter (optional).</param>
+            <param name="culture">The preferred culture (see also <seealso cref="P:ValueConverters.ConverterBase.PreferredCulture"/>)</param>
+            <returns>The converted value.</returns>
+        </member>
+        <member name="M:ValueConverters.ConverterBase.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts back <paramref name="value"/> from binding target to binding source.
+            </summary>
+            <param name="value">The value provided by the binding target.</param>
+            <param name="targetType">The type of the binding source.</param>
+            <param name="parameter">Additional parameter (optional).</param>
+            <param name="culture">The preferred culture (see also <seealso cref="P:ValueConverters.ConverterBase.PreferredCulture"/>)</param>
+            <returns>The converted value.</returns>
+        </member>
+        <member name="T:ValueConverters.DateTimeOffsetConverter">
+            <inheritdoc/>
+        </member>
+        <member name="T:ValueConverters.DateTimeOffsetToStringConverter">
+            <summary>
+            Converts a <seealso cref="T:System.DateTimeOffset"/> value to string using formatting specified in <seealso cref="F:ValueConverters.DateTimeOffsetToStringConverter.DefaultFormat"/>.
+            </summary>
+        </member>
+        <member name="P:ValueConverters.DateTimeOffsetToStringConverter.Format">
+            <summary>
+            The datetime format property.
+            Standard date and time format strings: https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings
+            </summary>
+        </member>
+        <member name="T:ValueConverters.DateTimeToStringConverter">
+            <summary>
+            Converts a <seealso cref="T:System.DateTime"/> value to string using formatting specified in <seealso cref="F:ValueConverters.DateTimeToStringConverter.DefaultFormat"/>.
+            </summary>
+        </member>
+        <member name="P:ValueConverters.DateTimeToStringConverter.Format">
+            <summary>
+            The datetime format property.
+            Standard date and time format strings: https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings
+            </summary>
+        </member>
+        <member name="T:ValueConverters.IsInRangeConverter">
+            <inheritdoc/>
+        </member>
+        <member name="T:ValueConverters.MinMaxValueToBoolConverter">
+            <summary>
+            Checks if the value is between MinValue and MaxValue,
+            returning true if the value is within the range and false if the value is out of the range.
+            
+            All involved values (converter parameter 'value', MinValue and MaxValue) must be of the same type
+            and must implement <seealso cref="T:System.IComparable"/> (https://docs.microsoft.com/en-us/dotnet/api/system.icomparable).
+            </summary>
+        </member>
+        <member name="M:ValueConverters.MinMaxValueToBoolConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="P:ValueConverters.TimeSpanToStringConverter.Format">
+            <summary>
+            The timespan format property.
+            Standard date and time format strings: https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-timespan-format-strings
+            </summary>
+        </member>
+        <member name="T:ValueConverters.GuidToStringConverter">
+            <summary>
+            Converts a <seealso cref="T:System.Guid"/> to <seealso cref="T:System.String"/>
+            </summary>
+        </member>
+        <member name="P:ValueConverters.GuidToStringConverter.ToUpper">
+            <summary>
+            Determines if the string needs to be upper case.
+            </summary>
+        </member>
+        <member name="P:ValueConverters.GuidToStringConverter.Format">
+            <summary>
+            The format used to convert the Guid to string.
+            </summary>
+        </member>
+        <member name="M:ValueConverters.GuidToStringConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:ValueConverters.GuidToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="F:ValueConverters.PreferredCulture.ConverterCulture">
+            <summary>
+            Uses the default culture provided by <seealso cref="!:IValueConverter"/>.
+            </summary>
+        </member>
+        <member name="F:ValueConverters.PreferredCulture.CurrentCulture">
+            <summary>
+            Overrides the default converter culture with <seealso cref="P:System.Globalization.CultureInfo.CurrentCulture"/>.
+            </summary>
+        </member>
+        <member name="F:ValueConverters.PreferredCulture.CurrentUICulture">
+            <summary>
+            Overrides the default converter culture with <seealso cref="P:System.Globalization.CultureInfo.CurrentUICulture"/>.
+            </summary>
+        </member>
+        <member name="T:ValueConverters.StringCaseConverter">
+            <summary>
+            Changes capitalization of a string.
+            </summary>
+            <example>
+            Convert a string to lower case:
+            Text="{Binding Text, Converter={StaticResource StringCaseConverter}, ConverterParameter=L}}"
+            
+            Convert a string to upper case:
+            Text="{Binding Text, Converter={StaticResource StringCaseConverter}, ConverterParameter=U}}"
+            
+            Convert a string to title case:
+            Text="{Binding Text, Converter={StaticResource StringCaseConverter}, ConverterParameter=T}}"
+            </example>
+        </member>
+        <member name="T:ValueConverters.DateTimeConverter">
+            <inheritdoc/>
+        </member>
+        <member name="T:ValueConverters.EnumToBoolConverter">
+            <summary>
+            EnumToBoolConverter can be used to bind to RadioButtons.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:ValueConverters.EnumToObjectConverter" -->
+        <member name="M:ValueConverters.EnumWrapper.CreateWrappers``1">
+            <summary>
+                Creates a list of wrapped values of an enumeration.
+            </summary>
+            <typeparam name="TEnumType">Type of the enumeration.</typeparam>
+            <returns>The wrapped enumeration values.</returns>
+        </member>
+        <member name="M:ValueConverters.EnumWrapper.CreateWrapper``1(``0,ValueConverters.EnumWrapperConverterNameStyle)">
+            <summary>
+                Create the wrapped value of an enumeration value.
+            </summary>
+            <typeparam name="TEnumType">Type of the enumeration.</typeparam>
+            <param name="value">The value.</param>
+            <param name="nameStyle">The name (short or long) to be considered from the attribute</param>
+            <returns>The wrapped value.</returns>
+        </member>
+        <member name="M:ValueConverters.EnumWrapper.CreateWrapper``1(System.Int32)">
+            <summary>
+                Create the wrapped value of an enumeration value.
+            </summary>
+            <typeparam name="TEnumType">Type of the enumeration.</typeparam>
+            <param name="value">The value.</param>
+            <returns>The wrapped value.</returns>
+        </member>
+        <member name="P:ValueConverters.EnumWrapper`1.LocalizedValue">
+            <summary>
+            Use LocalizedValue to bind UI elements to.
+            To enforce a refresh of LocalizedValue property (e.g. when you change the UI culture at runtime)
+            just call the <code>Refresh</code> method.
+            </summary>
+        </member>
+        <member name="M:ValueConverters.EnumWrapper`1.ToString">
+            <summary>
+                Implicit to string conversion.
+            </summary>
+            <returns>Value converted to a localized string.</returns>
+        </member>
+        <member name="M:ValueConverters.EnumWrapper`1.Equals(System.Object)">
+            <summary>
+                Checks if some objects are equal.
+            </summary>
+            <param name="obj">The object.</param>
+            <returns>True or false.</returns>
+        </member>
+        <member name="M:ValueConverters.EnumWrapper`1.Equals(ValueConverters.EnumWrapper{`0})">
+            <summary>
+                Checks if some objects are equal.
+            </summary>
+            <param name="other">The other.</param>
+            <returns>True or false.</returns>
+        </member>
+        <member name="M:ValueConverters.EnumWrapper`1.op_Implicit(ValueConverters.EnumWrapper{`0})~`0">
+            <summary>
+                Implicit back conversion to the enumeration.
+            </summary>
+            <param name="enumToConvert">The enumeration to convert.</param>
+            <returns>The converted value.</returns>
+        </member>
+        <member name="M:ValueConverters.EnumWrapper`1.op_Implicit(ValueConverters.EnumWrapper{`0})~System.Int32">
+            <summary>
+                Implicit back conversion to the enumeration.
+            </summary>
+            <param name="enumToConvert">The enumeration to convert.</param>
+            <returns>The converted value.</returns>
+        </member>
+        <member name="M:ValueConverters.EnumWrapper`1.op_Equality(ValueConverters.EnumWrapper{`0},ValueConverters.EnumWrapper{`0})">
+            <summary>
+                Equality comparator.
+            </summary>
+            <param name="left">The left operand.</param>
+            <param name="right">The right operand.</param>
+            <returns>True or false.</returns>
+        </member>
+        <member name="M:ValueConverters.EnumWrapper`1.op_Inequality(ValueConverters.EnumWrapper{`0},ValueConverters.EnumWrapper{`0})">
+            <summary>
+                Not equal comparator.
+            </summary>
+            <param name="left">The left operand.</param>
+            <param name="right">The right operand.</param>
+            <returns>True or false.</returns>
+        </member>
+        <member name="M:ValueConverters.EnumWrapper`1.GetHashCode">
+            <summary>
+                The hash code of the object.
+            </summary>
+            <returns>The hash code.</returns>
+        </member>
+        <member name="T:ValueConverters.EnumWrapperCollection`1">
+            <summary>
+            EnumWrapperCollection is an observable collection for enums wrapped in <see cref="T:ValueConverters.EnumWrapper`1"/> type.
+            </summary>
+            <typeparam name="TEnumType">Enum type which shall be wrapped.</typeparam>
+        </member>
+        <member name="M:ValueConverters.EnumWrapperCollection`1.#ctor">
+            <summary>
+            Creates an instance of the <see cref="T:ValueConverters.EnumWrapperCollection`1"/> class
+            which initializes a collection of <see cref="T:ValueConverters.EnumWrapper`1"/>.
+            </summary>
+        </member>
+        <member name="M:ValueConverters.EnumWrapperCollection`1.#ctor(System.Collections.Generic.IEnumerable{ValueConverters.EnumWrapper{`0}})">
+            <summary>
+            Creates an instance of the <see cref="T:ValueConverters.EnumWrapperCollection`1"/> class.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:ValueConverters.StringToObjectConverter" -->
+        <member name="P:ValueConverters.ValueConvertersConfig.DefaultPreferredCulture">
+            <summary>
+            The default culture override behavior.
+            </summary>
+        </member>
+        <member name="T:ValueConverters.ValueToEnumerableConverter">
+            <summary>
+            Converts given value into an IEnumerable containing the value as single object.
+            This is particularly useful if you have a control which accepts IEnumerable but you only want to bind a single value.
+            </summary>
+        </member>
+        <member name="T:ValueConverters.ValueConverterGroup">
+            <summary>
+            Value converters which aggregates the results of a sequence of converters: Converter1 >> Converter2 >> Converter3
+            The output of converter N becomes the input of converter N+1.
+            </summary>
+        </member>
+        <member name="T:ValueConverters.VersionToStringConverter">
+            <summary>
+            Converts System.Version objects to string. Parameter can be used to limit the number of Version components to return.
+            [1] Major Version
+            [2] Minor Version 
+            [3] Build Number
+            [4] Revision
+            </summary>
+        </member>
+    </members>
+</doc>

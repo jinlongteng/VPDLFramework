@@ -59,15 +59,10 @@ namespace VPDLFramework.ViewModels
         /// <returns></returns>
         private bool CheckThirdCardEnable()
         {
-            string jsonPath = ECFileConstantsManager.ProgramStartupConifgFolder + @"\" + ECFileConstantsManager.StartupConfigName;
-            if (File.Exists(jsonPath))
+            ECStartupSettings _startupSettings = ECStartupSettings.Instance();
+            if (_startupSettings != null)
             {
-               ECStartupSettings  _startupSettings = ECSerializer.LoadObjectFromJson<ECStartupSettings>(jsonPath);
-               if(_startupSettings != null)
-                {
-                   if(_startupSettings.EnableThirdCard)
-                        return true;
-                }
+                if (_startupSettings.EnableThirdCard) return true;
             }
             return false;
         }
@@ -353,7 +348,7 @@ namespace VPDLFramework.ViewModels
         /// <summary>
         /// 启用第三方板卡
         /// </summary>
-        private bool _isThirdCard=false;
+        private bool _isThirdCard;
 
         public bool IsThirdCard
         {

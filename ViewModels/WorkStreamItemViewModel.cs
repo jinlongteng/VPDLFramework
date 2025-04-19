@@ -17,6 +17,7 @@ using System.Windows;
 using VPDLFramework.Views;
 using System.Text.RegularExpressions;
 using System.Reflection;
+using System.Collections.ObjectModel;
 
 namespace VPDLFramework.ViewModels
 {
@@ -41,7 +42,7 @@ namespace VPDLFramework.ViewModels
                 WorkStream.DLInputTB = ECGeneric.DeepCopy(item.WorkStream.DLInputTB);
                 WorkStream.DLOutputTB = ECGeneric.DeepCopy(item.WorkStream.DLOutputTB);
                 WorkStream.Recipes = item.WorkStream.Recipes;
-                WorkStream.AdvancedDLSteps = new BindingList<ECAdvancedStep>();
+           
                 // 复制DL高级模式步骤
                 foreach (ECAdvancedStep step in item.WorkStream.AdvancedDLSteps)
                 {
@@ -505,9 +506,9 @@ namespace VPDLFramework.ViewModels
         /// <summary>
         /// GPU列表
         /// </summary>
-        private BindingList<string> _GPUList;
+        private ObservableCollection<string> _GPUList;
 
-        public BindingList<string> GPUList
+        public ObservableCollection<string> GPUList
         {
             get { return _GPUList; }
             set

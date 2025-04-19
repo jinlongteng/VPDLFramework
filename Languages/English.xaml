@@ -80,7 +80,7 @@
     <sys:String x:Key="Lan.Control_WorkEdit.TextName">Name</sys:String>
     <sys:String x:Key="Lan.Control_WorkEdit.TextCameraMode">Camera Mode</sys:String>
     <sys:String x:Key="Lan.Control_WorkEdit.TextMode">Mode</sys:String>
-    <sys:String x:Key="Lan.Control_WorkEdit.TextFolderPath">Folder Path</sys:String>
+    <sys:String x:Key="Lan.Control_WorkEdit.TextFolderPath">Image Path</sys:String>
     <sys:String x:Key="Lan.Control_WorkEdit.TextOperator">Operator</sys:String>
     <sys:String x:Key="Lan.Control_WorkEdit.TextLightControl">Light Control</sys:String>
     <sys:String x:Key="Lan.Control_WorkEdit.BtnEditCam">Edit Camera</sys:String>
@@ -158,6 +158,9 @@
     <sys:String x:Key="Lan.Control_WorkRuntime.TextRow">Row:</sys:String>
     <sys:String x:Key="Lan.Control_WorkRuntime.TextCol">Col:</sys:String>
     <sys:String x:Key="Lan.Control_WorkRuntime.BtnSaveConfig">Save Config</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnScriptManage">Script Management</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnEditScript">Edit Script</sys:String>
+    <sys:String x:Key="Lan.Control_WorkRuntime.BtnReloadScript">Reload Script</sys:String>
 
     <!--  Control_WorkStreamRecipes  -->
     <sys:String x:Key="Lan.Control_WorkStreamRecipes.BtnImportRecipe">Import Recipe</sys:String>
@@ -168,6 +171,7 @@
     <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextValue">Value</sys:String>
     <sys:String x:Key="Lan.Control_WorkEdit.TextDescriptionLabel">Discription Label</sys:String>
     <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextDisableChangingDescriptionLabel">Disable Changing Description Label</sys:String>
+    <sys:String x:Key="Lan.Control_WorkStreamRecipes.TextSaveCurrentTBToRecipe">Save Current ToolBlock To Recipe</sys:String>
 
     <!--  Window_CommCard  -->
     <sys:String x:Key="Lan.Window_CommCard.TitleCommTest">Comm Test</sys:String>
@@ -371,11 +375,12 @@
     <sys:String x:Key="LabelConstants.StartupWithOnlineMode">Startup online</sys:String>
     <sys:String x:Key="LabelConstants.Login">Login</sys:String>
     <sys:String x:Key="LabelConstants.Logout">Logout</sys:String>
-    <sys:String x:Key="LabelConstants.InvalidLicenseFile">Invalid license file,please provide the file for authorization C:\Program Files (x86)\VisionPro Framework\License\license.json</sys:String>
+    <sys:String x:Key="LabelConstants.InvalidLicenseFile">Invalid license file,please provide the License.json file for authorization</sys:String>
     <sys:String x:Key="LabelConstants.ClientConnected">Client Connected</sys:String>
     <sys:String x:Key="LabelConstants.ClientDisconnected">Client Disconnected</sys:String>
     <sys:String x:Key="LabelConstants.BufferQueueOverflow">Buffer Queue Overflow</sys:String>
     <sys:String x:Key="LabelConstants.OccupancyTooHigh">Occupancy rate of more than 99%</sys:String>
     <sys:String x:Key="LabelConstants.CatchException">catch an exception at</sys:String>
     <sys:String x:Key="LabelConstants.ImageSourceIsNullOrNoImages">Image Source is null or no images</sys:String>
+    <sys:String x:Key="LabelConstants.ChangesWillLoseWhenCompileFailed">Changes will not be preserved when compiling failed</sys:String>
 </ResourceDictionary>

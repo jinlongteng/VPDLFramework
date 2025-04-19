@@ -34,21 +34,21 @@ namespace VPDLFramework.Models
                             string serialNumName = frameGrabber.SerialNumber + ":" + frameGrabber.Name;
                             if (MonitoredCamerasStatus.ContainsKey(serialNumName))
                             {
-                                try
-                                {
-                                    var s = frameGrabber.GetStatus(false);
+                                //try
+                                //{
+                                //    var s = frameGrabber.GetStatus(false);
 
-                                    if (frameGrabber.GetStatus(false) == Cognex.VisionPro.CogFrameGrabberStatusConstants.Active || frameGrabber.GetStatus(false) == Cognex.VisionPro.CogFrameGrabberStatusConstants.NotSupported)
-                                        MonitoredCamerasStatus[serialNumName] = true;
-                                    else
-                                    {
-                                        MonitoredCamerasStatus[serialNumName] = false;
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    string msg = ex.Message;
-                                }
+                                //    if (frameGrabber.GetStatus(false) == Cognex.VisionPro.CogFrameGrabberStatusConstants.Active || frameGrabber.GetStatus(false) == Cognex.VisionPro.CogFrameGrabberStatusConstants.NotSupported)
+                                //        MonitoredCamerasStatus[serialNumName] = true;
+                                //    else
+                                //    {
+                                //        MonitoredCamerasStatus[serialNumName] = false;
+                                //    }
+                                //}
+                                //catch (Exception ex)
+                                //{
+                                //    string msg = ex.Message;
+                                //}
                             }
                         }
                     }

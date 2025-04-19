@@ -17,21 +17,24 @@ namespace VPDLFramework.Models
         /// <returns></returns>
         public static NativeModeCommandTypeConstants CheckCommandString(string command)
         {
-            string[] strings = command.Split(',');
-            int validLength=strings.Length;
-            foreach (string s in strings)
-            {
-                if (s.Trim().Length == 0)
-                    validLength--;
-            }
-            if(validLength>0)
-            {
-                NativeModeCommandTypeConstants constant;
-                if (Enum.TryParse(strings[0], out constant))
-                    return constant;
-            }
+            var  commandUpper = command.ToUpper();
+            return Enum.TryParse(commandUpper, out NativeModeCommandTypeConstants cmd) ? cmd : NativeModeCommandTypeConstants.TS;
 
-            return NativeModeCommandTypeConstants.ERR;
+            //string[] strings = command.Split(',');
+            //int validLength=strings.Length;
+            //foreach (string s in strings)
+            //{
+            //    if (s.Trim().Length == 0)
+            //        validLength--;
+            //}
+            //if(validLength>0)
+            //{
+            //    NativeModeCommandTypeConstants constant;
+            //    if (Enum.TryParse(strings[0], out constant))
+            //        return constant;
+            //}
+
+           
         }
 
         /// <summary>
@@ -51,7 +54,14 @@ namespace VPDLFramework.Models
             TMS, // Trigger Multi Streams
             LR, // Load Recipe
             SUD, // Set User Data
-            SET, // Set Exposure Time
+            /// <summary>
+            /// Set Exposure Time
+            /// </summary>
+            SET,
+            /// <summary>
+            /// Get Exposure Time
+            /// </summary>
+            GET,
             SIS, // Set Image Source
             TSB, // Trigger Stream Beigin, For Internal Trigger
             TSE, // Trigger Stream End, For Internal Trigger

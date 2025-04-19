@@ -16,12 +16,7 @@
     WindowStyle="ToolWindow"
     mc:Ignorable="d">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Button Content="OLOSasfdasda"/>
-        <Grid Grid.Row="1">
+        <Grid>
             <Border BorderBrush="Gray" BorderThickness="1" />
             <Grid Margin="1">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">

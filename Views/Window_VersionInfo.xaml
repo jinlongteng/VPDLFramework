@@ -76,7 +76,7 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             FontSize="12"
-                            Text="ABBVision " />
+                            Text="VisionPro " />
                         <TextBlock
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
@@ -91,7 +91,7 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             FontSize="12"
-                            Text="ABB Vision Deep Learning " />
+                            Text="VisionPro Deep Learning " />
                         <TextBlock
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"

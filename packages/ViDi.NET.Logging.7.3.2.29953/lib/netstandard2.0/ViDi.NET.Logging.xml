@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ViDi.NET.Logging</name>
+    </assembly>
+    <members>
+        <member name="T:ViDi2.Logging.ViDiLogManager">
+            <summary>
+            Defines a LogManager that will initialize NLog targets and rules
+            suitable for ViDi Suite logging.
+            </summary>
+            <remarks> Projects that use this must target .NET Framework >= 4.6 </remarks>
+        </member>
+        <member name="F:ViDi2.Logging.ViDiLogManager.LogFilter">
+            <summary>
+            Ignore log messages from any loggers that have a name
+            that doesn't match this filter. A logger's name is typically
+            the name of the class calling it (including that class' namespace).
+            </summary>
+        </member>
+        <member name="M:ViDi2.Logging.ViDiLogManager.EnableViDiFileLogs(NLog.LogLevel)">
+            <summary>
+            Extends the NLog configuration of the current LogManager to
+            include targets/rules appropriate for logging messages from
+            ViDi Suite . Also, refreshes any existing loggers to use these
+            targets and rules. The logs are written into a file containing the minLevel in the filename.
+            </summary>
+            <param name="minLevel"></param>
+        </member>
+        <member name="M:ViDi2.Logging.ViDiLogManager.EnableLogConsole">
+            <summary>
+            enables logs in the console
+            </summary>
+        </member>
+        <member name="M:ViDi2.Logging.ViDiLogManager.EnableViDiLogs">
+            <summary>
+            Extends the NLog configuration of the current LogManager to
+            include targets/rules appropriate for logging messages from
+            ViDi Suite. Also, refreshes any existing loggers to use these
+            targets and rules.
+            </summary>
+        </member>
+    </members>
+</doc>

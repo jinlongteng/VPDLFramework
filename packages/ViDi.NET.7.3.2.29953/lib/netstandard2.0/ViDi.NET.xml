@@ -1,0 +1,583 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ViDi.NET</name>
+    </assembly>
+    <members>
+        <member name="T:ViDi2.ICachedXmlDocument">
+            <summary>
+            interface implemented by all the object using the
+            caching pattern
+            </summary>
+        </member>
+        <member name="P:ViDi2.ICachedXmlDocument.Cache">
+            <summary>
+            returns the cache object
+            </summary>
+        </member>
+        <member name="P:ViDi2.ICachedXmlDocument.CachedXml">
+            <summary>
+            Calls update if needed and return the cached xml document
+            </summary>
+        </member>
+        <member name="T:ViDi2.Cache`2">
+            <summary>
+            cache class
+            each KEY has an associated cached VALUE
+            </summary>
+            <typeparam name="KEY"></typeparam>
+            <typeparam name="VALUE"></typeparam>
+        </member>
+        <member name="P:ViDi2.Cache`2.Enabled">
+            <summary>
+            enable or disable the cache
+            </summary>
+        </member>
+        <member name="P:ViDi2.Cache`2.Timeout">
+            <summary>
+            cache timeout, if the value was not updated for 
+            timeout, the value is refreshed
+            if the timeout is null, the value is never refreshed if it was not invalidated
+            </summary>
+        </member>
+        <member name="M:ViDi2.Cache`2.#ctor(System.Func{`0,`1},System.Boolean,System.Nullable{System.TimeSpan},System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="fct">fuction called to update the cached value for the supplied key</param>
+            <param name="enable"></param>
+            <param name="timeout"></param>
+            <param name="maxEntries">maximum number of entries that the cache can have</param>
+        </member>
+        <member name="M:ViDi2.Cache`2.Invalidate(`0)">
+            <summary>
+            clearing the cache for a specific key
+            if key is null, clearing all the cache for all the keys
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:ViDi2.Cache`2.GetValue(`0)">
+            <summary>
+            Updates the cached value if needed and returns the cached value
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ViDi2.SingleValueCache`1">
+            <summary>
+            specialization of the Cache for a single key
+            </summary>
+            <typeparam name="VALUE"></typeparam>
+        </member>
+        <member name="M:ViDi2.SingleValueCache`1.GetValue(System.String)">
+            <summary>
+            not implemented  for a specific key
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ViDi2.ComputeDevice.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.ComputeDevice.Index">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.ComputeDevice.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.ComputeDevice.UUID">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.ComputeDevice.OptimizedGpuMemory">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.ComputeDevice.OptimizedGpuMemoryEnabled">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.ComputeDevice.FreeMemory">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.ComputeDevice.Version">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.ComputeDevice.SupportsLowPrecision">
+            <inheritdoc/>
+        </member>
+        <member name="M:ViDi2.ComputeDevice.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Control.Workspaces">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Control.LibraryAccess">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Control.ComputeDevices">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Control.LogMessages">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Control.License">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Control.CLibraryVersion">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Control.DotNETWrapperVersion">
+            <inheritdoc/>
+        </member>
+        <member name="T:ViDi2.Helper">
+            <summary>
+            class containing helper functions
+            </summary>
+        </member>
+        <member name="M:ViDi2.Helper.DeviceListToString(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            converts a list of int to a string gpu list
+            </summary>
+            <param name="gpuDevices"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ViDi2.Helper.DevicesToReadableString(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            returns a readable string from a gpu list
+            </summary>
+            <param name="gpuList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ViDi2.Helper.DevicesToReadableString(System.String)">
+            <summary>
+            returns a readable string from a gpu list
+            </summary>
+            <param name="gpuList"></param>
+            <returns></returns>
+        </member>
+        <member name="F:ViDi2.Helper.AllGPU">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ViDi2.Helper.AllGPUId">
+            <summary>
+            integer representing all gpus 
+            </summary>
+        </member>
+        <member name="F:ViDi2.Helper.NoGPU">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ViDi2.Helper.NoGPUId">
+            <summary>
+            integer representing no gpu device
+            </summary>
+        </member>
+        <member name="M:ViDi2.Helper.ToDeviceList(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="gpuDevices"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ViDi2.Helper.GetViDiBinEnvironmentVariable">
+            <summary>
+            gets the value of the VIDI_BIN enviroment variable for the current version
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ViDi2.Helper.ExtensiveEnvironmentVariableSearch(System.String)">
+            <summary>
+            Returns the value of a given environment variable, or null if that
+            variable does not exist.
+            </summary>
+            <remarks>
+            Candidates (in order of preference):
+            - Current process
+            - System registry
+            - User registry
+            </remarks>
+            <param name="environmentVariableName"> The name of the environment variable. </param>
+            <returns>
+            The value of a given environment variable, or null if that
+            variable does not exist.
+            </returns>
+        </member>
+        <member name="M:ViDi2.Helper.GetViDiRootEnvironnementVariable">
+            <summary>
+            gets the value of the VIDI_ROOT_VXX enviroment variable for the current version
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ViDi2.Helper.GetToolTemplatesPath">
+            <summary>
+            Returns the location of pretrained blue read tool templates.
+            </summary>
+            <remarks>
+            Candidates (in order of preference):
+            - %DEBUG_TOOL_TEMPLATES%
+            - %VIDI_ROOT_VXX%\Vidi Suite\tool_templates
+            - C:\Program Files\Cognex\ViDi Suite\X.X\Vidi Suite\tool_templates
+            - Some path relative to the build folder in the app repo
+            </remarks>
+        </member>
+        <member name="T:ViDi2.Extension">
+            <summary>
+            this class provides type extensions
+            </summary>
+        </member>
+        <member name="M:ViDi2.Extension.ToArray(System.IO.Stream)">
+            <summary>
+            Extension providing conversion between a Stream to a byte array
+            </summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ViDi2.Extension.EfficientCopyTo(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            copies a buffer using large buffer size. Linux must use the default buffer size
+            </summary>
+            <param name="src"></param>
+            <param name="dst"></param>
+        </member>
+        <member name="M:ViDi2.Extension.AlmostEqualTo(System.Double,System.Double)">
+            <summary>
+            Checks whether two double values are almost equal.
+            </summary>
+            <param name="value1">The first double value to compare.</param>
+            <param name="value2">The second double value to compare.</param>
+            <returns>
+            Returns true if the two values are almost equal, otherwise returns false.
+            The acceptable tolerance for the comparison is 0.0000001.
+            </returns>
+        </member>
+        <member name="P:ViDi2.License.PreviewChannel">
+            <summary>
+            Indicates whether this device has the preview channel bit enabled
+            </summary>
+        </member>
+        <member name="T:ViDi2.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources._01Remaining">
+            <summary>
+              Looks up a localized string similar to {0} {1} remaining.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources._0x1Pixel2x3bit">
+            <summary>
+              Looks up a localized string similar to {0}x{1} Pixel ({2}x {3}-bit).
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.All">
+            <summary>
+              Looks up a localized string similar to All.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.CannotDefineROIPrecedingBlueToolHasNoFeatures">
+            <summary>
+              Looks up a localized string similar to Cannot define ROI: Preceding Blue tool has no features or none fitting the current feature-filter..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.CannotDefineROIPrecedingBlueToolHasNoMatches">
+            <summary>
+              Looks up a localized string similar to Cannot define ROI: Preceding Blue tool has no matches or none fitting the current match-filter..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.CannotDefineROIPrecedingBlueToolHasNoNodesRegions">
+            <summary>
+              Looks up a localized string similar to Cannot define ROI: Preceding Blue tool has no nodes/regions or none fitting the current criteria..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.ClassCannotBeEdited">
+            <summary>
+              Looks up a localized string similar to The class cannot be edited if the tool has been trained. Please reset the tool and try again..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.CPU">
+            <summary>
+              Looks up a localized string similar to CPU.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Database_AddViewsToTrainingSet_LabeledAsBed">
+            <summary>
+              Looks up a localized string similar to - Labeled as Bad.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Database_AddViewsToTrainingSet_LabeledAsBedWithoutDefect">
+            <summary>
+              Looks up a localized string similar to - Labeled as Bad without Defect Region.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Database_AddViewsToTrainingSet_MissingLabels">
+            <summary>
+              Looks up a localized string similar to - Missing Labels.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Database_AddViewsToTrainingSet_Reason">
+             <summary>
+               Looks up a localized string similar to Among selected views, some views weren&apos;t added to the training set due to the following reason(s):
+            {0}.
+             </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Error_InvalidPrefix">
+            <summary>
+              Looks up a localized string similar to Prefix contains one illegal character.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Error_StreamNotFound">
+            <summary>
+              Looks up a localized string similar to Failed to find &apos;{0}&apos; stream..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Error_ToolNotFound">
+            <summary>
+              Looks up a localized string similar to Failed to find &apos;{0}&apos; tool..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Error_WorkspaceDoesNotExist">
+            <summary>
+              Looks up a localized string similar to Workspace does not exist..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Error_WorkspaceNotFound">
+            <summary>
+              Looks up a localized string similar to Failed to find &apos;{0}&apos; workspace..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.EstimatingTimeRemaining">
+            <summary>
+              Looks up a localized string similar to Estimating time remaining ....
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Exception_CouldNotParseFilterString">
+            <summary>
+              Looks up a localized string similar to Could not parse filter string.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.FailedToFindModel0">
+            <summary>
+              Looks up a localized string similar to Failed to find model &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Hour">
+            <summary>
+              Looks up a localized string similar to Hour.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Hours">
+            <summary>
+              Looks up a localized string similar to Hours.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.InvalidNetworkModelIdentifier0">
+            <summary>
+              Looks up a localized string similar to Invalid network model identifier {0}.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Minute">
+            <summary>
+              Looks up a localized string similar to Minute.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Minutes">
+            <summary>
+              Looks up a localized string similar to Minutes.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.NoModelDefinedInPrecedingBlueTool">
+            <summary>
+              Looks up a localized string similar to No model defined in preceding Blue tool. Click Model-&gt;Edit Model to create a model in the preceding tool, then select it..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.RedModeSetterIsDeprecated">
+            <summary>
+              Looks up a localized string similar to RedMode being deprecated. Use NetworkModel instead to select a different mode..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Second">
+            <summary>
+              Looks up a localized string similar to Second.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Seconds">
+            <summary>
+              Looks up a localized string similar to Seconds.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Target">
+            <summary>
+              Looks up a localized string similar to Target.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Tool0IsNotADirectChildOfThisToollist">
+            <summary>
+              Looks up a localized string similar to Tool &apos;{0}&apos; is not a direct child of this tool-list..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Workspace0IsBusy">
+            <summary>
+              Looks up a localized string similar to Workspace &apos;{0}&apos; is busy..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.Workspace0IsNotOpen">
+            <summary>
+              Looks up a localized string similar to Workspace &apos;{0}&apos; is not open..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Properties.Resources.WorkspaceIsNotOpen">
+            <summary>
+              Looks up a localized string similar to Workspace is not open..
+            </summary>
+        </member>
+        <member name="T:ViDi2.PropertyGeneratorForDevelopingGUI">
+            <summary>
+            This is made to lessen the core dependency in case a new variable is undefined in xml path.
+            GUI can be implemented first even if xml is not defined.
+            </summary>
+        </member>
+        <member name="M:ViDi2.PropertyGeneratorForDevelopingGUI.GetPropertyNameofCaller">
+            <summary>
+            Get property name of caller
+            </summary>
+            <returns>property name</returns>
+        </member>
+        <member name="M:ViDi2.PropertyGeneratorForDevelopingGUI.GetterActionIfUndefinedXML(System.String)">
+            <summary>
+            Get the property value in case it is undefined in xml.
+            </summary>
+            <returns>value</returns>
+        </member>
+        <member name="M:ViDi2.PropertyGeneratorForDevelopingGUI.SetterActionIfUndefinedXML(System.String,System.Object)">
+            <summary>
+            Set the property value in case it is undefined in xml.
+            </summary>
+            <param name="name">xml path</param>
+            <param name="value">set value</param>
+        </member>
+        <member name="T:ViDi2.Runtime.Stream">
+            <summary>
+            Class representing a ViDi Stream
+            </summary>
+        </member>
+        <member name="T:ViDi2.Runtime.Workspace">
+            <summary>
+            Class representing a ViDi Workspace
+            </summary>
+        </member>
+        <member name="T:ViDi2.Runtime.WorkspaceList">
+            <summary>
+            Represents a list of runtime workspaces
+            </summary>
+        </member>
+        <member name="M:ViDi2.Runtime.WorkspaceList.#ctor(ViDi2.Runtime.IControl,ViDi2.Runtime.ILibraryAccess)">
+            <summary>
+            Creates an instance of a workspace list
+            </summary>
+        </member>
+        <member name="M:ViDi2.Sample.#ctor(ViDi2.ILibraryAccess,ViDi2.IStream)">
+            <summary>
+            Allocation constructor
+            </summary>
+        </member>
+        <member name="M:ViDi2.Sample.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Deserialization constructor
+            </summary>
+        </member>
+        <member name="M:ViDi2.Sample.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:ViDi2.BatchedSample.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:ViDi2.Training.Database.NotifyAllDatabasesOfSetChanges(System.String)">
+            <summary>
+            Signals to all databases in the current stream that the database (and the affected views)
+            have changed as a result of Set membership/color changes.
+            </summary>
+            <remarks>
+            When Samples are added to/removed from Sets through this database, the other databases
+            in the current stream become stale. This is because Samples are added to Sets, not Views, and
+            all tools share the same Samples to some extent.
+            </remarks>
+            <param name="filter">
+            The filter determining which Views were impacted by the Set changes, or null if all Views were impacted.
+            </param>
+        </member>
+        <member name="M:ViDi2.Training.Database.GetAllViewKeysForGivenSampleNames(ViDi2.Training.IDatabase,System.Collections.Generic.ISet{System.String})">
+            <returns> All ViewKeys for the given database whose SampleName is in the given set. </returns>
+        </member>
+        <member name="P:ViDi2.Training.ToolStatus.TaskStatus.IsCanceled">
+            <summary>
+            Returns whether the task was previously canceled
+            </summary>
+        </member>
+        <member name="M:ViDi2.Training.Tool.Update">
+            <summary>
+            Updates the tool to match the new default parameters of the current version
+            </summary>
+        </member>
+        <member name="P:ViDi2.Training.Workspace.IsEasyUI">
+            <summary>
+            For Easy UI
+            </summary>
+        </member>
+        <member name="T:ViDi2.Training.WorkspaceList">
+            <summary>
+            Represents a list of training workspaces
+            </summary>
+        </member>
+        <member name="M:ViDi2.Training.WorkspaceList.#ctor(ViDi2.Training.IControl,ViDi2.Training.ILibraryAccess)">
+            <summary>
+            Creates an instance of a workspace list, must be called from UI thread
+            </summary>
+        </member>
+        <member name="M:ViDi2.Training.WorkspaceList.ViDi2#Training#IWorkspaceList#Refresh">
+            <inheritdoc />
+        </member>
+        <member name="M:ViDi2.Training.WorkspaceList.CreateNewWorkspace(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ViDi2.Version.Major">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Version.Minor">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Version.Revision">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Version.Build">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Version.Type">
+            <inheritdoc/>
+        </member>
+        <member name="M:ViDi2.Version.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Region.CenterString">
+            <summary>
+            Center string converting for DataGrid sort
+            </summary>
+        </member>
+    </members>
+</doc>

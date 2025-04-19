@@ -2,7 +2,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:sys="clr-namespace:System;assembly=netstandard">
-    <sys:String x:Key="string_ProgramName">ABB Vision Framework</sys:String>
+    <sys:String x:Key="string_ProgramName">VisionPro Framework</sys:String>
     <sys:String x:Key="string_MajorVersion">24.12.1</sys:String>
     <sys:String x:Key="string_MinorVersion">241220</sys:String>
     <sys:String x:Key="string_VisionProVersion">9.22 SR1</sys:String>

@@ -28,7 +28,6 @@ namespace VPDLFramework.Models
             Original,
             Graphic,
             OriginalAndGraphic,
-            OriginalAndSVG
         }
 
         /// <summary>

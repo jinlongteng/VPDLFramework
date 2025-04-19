@@ -1,0 +1,573 @@
+﻿COGNEX VisionPro Deep Learning 1.0
+SOFTWARE LICENSE AGREEMENT
+This Software License Agreement (“Agreement”) is a legal agreement between you (either an individual or a single entity) and Cognex Corporation or one of its subsidiaries or affiliates (“Cognex”) for the Cognex software, or a product which includes Cognex software, that accompanies this Agreement, which includes (i) computer software, (ii) any related firmware provided by Cognex, (iii) any and all modifications, improvements or updates to the software or firmware provided by Cognex, and may include associated media, printed materials and “online” or electronic documentation (collectively “Cognex Software”). 
+THIS COGNEX SOFTWARE CONTAINS CERTAIN COMPUTER PROGRAMS AND OTHER PROPRIETARY MATERIAL OF COGNEX AND/OR ITS LICENSORS, THE USE OF WHICH IS SUBJECT TO THIS AGREEMENT.  YOU AGREE TO BE BOUND BY THE TERMS OF THIS AGREEMENT BY OPENING THE SOFTWARE MEDIA PACKAGE, INSTALLING OR OTHERWISE USING OR COPYING THE COGNEX SOFTWARE.  DO NOT PROCEED WITH THE INSTALLATION OF THE COGNEX SOFTWARE UNTIL YOU (LATER DEFINED AS “LICENSEE”) HAVE READ THIS AGREEMENT AND AGREE TO BE BOUND BY AND BECOME A PARTY TO THIS AGREEMENT. IF YOU ARE ACCESSING THE COGNEX SOFTWARE ELECTRONICALLY, INDICATE YOUR ACCEPTANCE OF THESE AGREEMENT TERMS BY SELECTING THE AGREEMENT “ACCEPT” BUTTON OR CHECKING THE BOX NEXT TO “”I ACCEPT THE TERMS IN THE LICENSE AGREEMENT”.  IF YOU DO NOT AGREE TO THESE TERMS, DO NOT OPEN THE SOFTWARE MEDIA PACKAGE, CLICK “ACCEPT”, INSTALL, USE OR COPY THE COGNEX SOFTWARE, AS YOU ARE NOT AUTHORIZED TO DO SO.
+1.	Definitions.  For the purposes of this Agreement, the following terms have the following meanings:
+”Cognex” has the meaning set forth in the preamble.
+”Cognex Software” has the meaning set forth in the preamble.
+”Licensee” has the meaning set forth in the preamble.
+”License Fees” means the license fees paid by Licensee for the License granted under this Agreement.
+”Order Form” means the order form filled out and submitted by or on behalf of Licensee, and accepted by Cognex, for Licensee’s purchase of the Software license described within   this Agreement.
+”Term” has the meaning set forth in Section 16.
+2.	Ownership of Cognex Software.  The Cognex Software is licensed, not sold.  Cognex reserves all rights not expressly granted to Licensee in this Agreement.  Cognex, and/or its licensors, own and shall retain all right, title, and interest in and to: (i) the Cognex Software, including all intellectual property rights embodied therein; (ii) all of the service marks, trademarks, trade names, or any other designations associated with the Cognex Software; and (iii) all copyrights, patent rights, trade secret rights, and other proprietary rights relating to the Cognex Software. The Cognex Software is protected by copyright and other intellectual property laws and treaties.
+3.	License Grant. Subject to and conditional upon Licensee’s payment of the License Fees and compliance with all terms and conditions of this Agreement, Cognex grants to Licensee a world-wide, non-exclusive, personal, nontransferable limited license during the Term (the “License”) to use the Cognex Software in its object code form and in accordance with its documentation, as installed or in conjunction with (i) a single Cognex vision processor or Cognex hardware module, or (ii) a single PC, or (iii) any other single hardware module capable of operating the Cognex Software, for Licensee’s own internal purposes.  If Licensee is an authorized reseller (distributor, VAR or OEM) of Cognex products, then License shall be permitted to sub-license the Cognex Software to Licensee’s direct end user customers, and/or any intermediary customers selling to direct end user customers, as applicable. Such sub-licenses shall only be granted pursuant to the terms of this Agreement, and a copy of this Agreement shall be provided by Licensee to such customers prior to or contemporaneous with any such sub-license, with a reasonable opportunity for Licensee’s customers to review the terms hereof prior to use of or payment for the Cognex Software or the product containing or bundled together with the Cognex Software. Under any such sub-license, (i) Licensee’s customers shall be subject to any and all Licensee obligations hereunder, and shall constitute an additional Licensee for the purposes hereof, and (ii) Licensee shall include a notice that indicates to its customers that its product contains copyrighted software under license from Cognex. Licensee agrees that this Agreement also inures to the benefit of any third party holding any right, title, or interest in the Cognex Software licensed hereunder or any software from which such Cognex Software was derived. In the event that the Cognex Software delivery subject to this License is to be used in a processor, hardware module or PC that previously hosted Cognex Software, and the current Cognex Software deliverable is to replace the previous Cognex Software (whether as a functional upgrade or otherwise), then upon installation of the current replacement Cognex Software the license to use the previous Cognex Software shall expire in its entirety and all usage of the previous Cognex Software (whether in another processor, hardware module or PC, or otherwise) must cease. Once such expiration of the previous Cognex Software license takes effect, it cannot be revived.
+4.	Sample Source Code License.  The Cognex Software may contain sample source code that Licensee is permitted to include in Licensee’s applications subject to this Sample Source Code License.  Subject to Licensee’s compliance with all terms and conditions of this Agreement, Cognex grants to Licensee a world-wide, non-exclusive, personal, nontransferable, limited, royalty free license (the “Sample Source Code License”) to modify and copy the sample source code and to develop and distribute to Licensee’s end-user customers applications, in object code form, that run on or in conjunction with Cognex products.
+5.	Copies.  Licensee may make copy of the Cognex Software solely for archival purposes and one copy of the Cognex Software solely for backup purposes, provided that Licensee shall not, and shall not allow any person to, install or use any such copy other than if and for so long as the copy installed in accordance with the preceding sentence is inoperable and, provided, further, that Licensee uninstalls and otherwise deletes such inoperable copy(ies). All copies of the Cognex Software made by the Licensee: (i) will be the exclusive property of the Cognex; (ii) will be subject to the terms and conditions of this Agreement; and (iii) must include all trademark, copyright, patent, and other intellectual property rights notices contained in the original. Other than for archival and backup purposes, Licensee may not make any copies of the Cognex Software.
+6.	Restrictions on Use.  Without the prior written consent of Cognex, Licensee shall not, and shall not aid, abet, or permit any third party to: (i) use (including make any copies of) the Cognex Software beyond the scope of the License granted under Section 2); (ii) decompile, disassemble, or otherwise reverse engineer or attempt to reconstruct or discover any source code or underlying ideas, file formats, interoperability interfaces or algorithms of the Cognex Software by any means whatsoever, except as may be required by applicable third party licenses; (iii) remove, alter, delete or obscure any trademarks or any copyright, trademark, patent, or other intellectual property or proprietary rights notices provided on or with the Cognex Software or, including any copy thereof; (iv) lease, lend or use the Cognex Software for timesharing or service bureau purposes; (v) modify, translate, adapt, or otherwise create a derivative work of any part of the Cognex Software; (vi) develop methods to enable unauthorized parties to use the Cognex Software; (vii) publish or otherwise provide the results of any benchmark test run on the Cognex Software, in comparison with any third party software; (ix) rent, lease, lend, sell, sublicense (except as permitted by Section 2), publish, transfer, or otherwise make available the Cognex Software, or any features or functionality of the Cognex Software, to any third party for any reason, whether or not over a network or on a hosted basis, including in connection with the internet or any web hosting, wide area network (WAN), virtual private network (VPN), virtualization, time-sharing, service bureau, software as a service, cloud, or other technology or service; or (x) use the Cognex Software in violation of any law, regulation, or rule. Licensee is further prohibited from installing and/or running the Cognex Software on a host PC or hardware module, and then subsequently allowing a second PC or other hardware module or device to send data to or otherwise interface with the host PC or hardware module for the purpose of requesting that any vision processing be performed or any results returned, and shall not aid, abet, or permit any third party to do so.  Licensee shall not provide or otherwise make available the Cognex Software or any part or copies thereof in any form to any third party, except as provided herein and to the extent applicable, unless so authorized in writing by Cognex. Cognex Software may be subject and limited to usage with a Cognex hardware security device, license key access codes or other hardware or software security access measures, at the sole discretion of Cognex.   Licensee is expressly prohibited from using any portion or version of the Cognex Software with any other software or copyrighted work in such a way that any portion or version of the Cognex Software would be required by the license terms applicable to the other software or work to be (a) made available in source code form, (b) made available without charge or at minimal charge, (c) licensed for the creation of derivative works or (d) which would require Cognex or its licensors to grant any third party any rights or immunities under any intellectual property owned by or licensed to Cognex. Licenses granted for development purposes may not be used to support product deployments, whether for internal use or external sale, and such usage is expressly prohibited. 
+7.	Cognex Software is not authorized, licensed, designed, or intended for use in, and Licensee shall not permit the use of Cognex Software in, any (i) nuclear equipment, (ii) aviation or aerospace equipment, or air traffic control, navigation or communication equipment, (iii) weaponry, (iv) medical devices or systems intended for life support, intensive care or surgical implant into the human body, or (v) Life-Critical (as defined below) devices or systems (each a “Prohibited Use”), except with Cognex’s prior written consent. The prohibitions of the preceding sentence also apply to the design, manufacture, construction, operation and maintenance activities associated with any Prohibited Use. “Life-Critical” devices or systems are defined as those (a) whose failure or malfunction may result in death or serious injury to people or environmental harm posing a serious risk to human health and safety or (b) which are designed to lose less than one life per billion hours of operation. Cognex disclaims any liability in connection with any Prohibited Use by Licensee, intermediary customers or end users, and any such Prohibited Use engaged in by a party contrary to this provision shall be entirely at such party’s risk. 
+8.	Licensee is responsible and liable for all use of the Cognex Software through access thereto provided by Licensee, directly or indirectly. Specifically, and without limiting the generality of the foregoing, Licensee is responsible and liable for all actions and failures to take required actions with respect to the Cognex Software by its authorized users or by any other person or entity to whom Licensee or an authorized user may provide access to or use of the Cognex Software, whether such access or use is permitted by or in violation of this Agreement.
+9.	Updates/Supplements. This Agreement applies to updates, supplements, add-on components, or product support services for the Cognex Software that Licensee may obtain after the date Licensee obtain Licensee’s initial copy of the Cognex Software, unless Licensee accepted updated terms or another agreement applies.
+10.	Use of Data. “Licensee Data” means all Licensee data and images processed by the Cognex Software in connection with Licensee’s use of the Cognex Software. Licensee shall own all right, title and interest (including all intellectual property and other proprietary rights) in and to Licensee Data. Licensee hereby grants Cognex a worldwide, nonexclusive, royalty-free right and license to access, use, copy, process and store the Licensee Data for the purpose of (i) providing the Cognex Software, and (ii) analyzing, improving and supporting the Cognex Software.
+11.	Privacy and Data Protection. Licensee shall not provide any personally identifiable information relating to individual persons (“PII”) in connection with its use of the Cognex Software, unless Cognex expressly agrees to receive such information and then solely as necessary in connection with Licensee’s use of the Cognex Software. Licensee is responsible for any such PII that Licensee provides to Cognex. Licensee will have in place a privacy policy regarding its use of PII, where applicable shall obtain the necessary consents before transferring any personal data to Licensor and shall comply with all applicable laws relating to the collection and use of PII and personal data.
+12.	Warranty Disclaimers. ALL COGNEX SOFTWARE IS PROVIDED “AS IS” AND WITH ALL FAULTS.  COGNEX AND ITS LICENSORS MAKE NO WARRANTIES WITH RESPECT TO ANY COGNEX SOFTWARE AND DISCLAIM ALL EXPRESS, STATUTORY OR IMPLIED WARRANTIES, INCLUDING WITHOUT LIMITATION: WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, RELIABILITY, AVAILABILITY, ACCURACY, COMPLETENESS OR LACK OF VIRUSES; WARRANTIES ARISING FROM A COURSE OF DEALING OR USAGE OF TRADE; AND ANY WARRANTY OF NON-INFRINGEMENT. COGNEX DOES NOT WARRANT THAT THE COGNEX SOFTWARE WILL MEET ANY REQUIREMENTS OR THAT THE OPERATION OF COGNEX SOFTWARE WILL BE UNINTERRUPTED OR ERROR FREE.  
+13.	Exclusion of Incidental, Consequential and Certain Other Damages.  TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL COGNEX BE LIABLE UNDER ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY, PRODUCT LIABILITY OR OTHER LEGAL OR EQUITABLE THEORY FOR ANY INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES, HOWEVER CAUSED, AND WHETHER OR NOT ADVISED IN ADVANCE OF THE POSSIBILITY OF SUCH DAMAGES (INCLUDING, BUT NOT LIMITED TO, DAMAGES FOR LOST PROFITS OR LOST DATA, FOR BUSINESS INTERRUPTION, FOR PERSONAL INJURY, FOR LOSS OF PRIVACY, FOR FAILURE TO MEET ANY DUTY, INCLUDING ANY DUTY OF GOOD FAITH OR OF REASONABLE CARE, FOR NEGLIGENCE AND FOR ANY OTHER PECUNIARY OR OTHER LOSS WHATSOEVER), ARISING OUT OF THE USE OF THE COGNEX SOFTWARE, OR OTHERWISE IN CONNECTION WITH ANY PROVISION OF THIS AGREEMENT.
+14.	Limitation of Liability.  Notwithstanding any damages that may be incurred for any reason whatsoever, whether in contract, tort (including negligence) or otherwise, the entire liability of Cognex and any of its suppliers under any provision of this Agreement and your exclusive remedy hereunder shall be limited to the amount paid by Licensee for the Cognex Software.  The foregoing limitations, exclusions and disclaimers (including the paragraphs titled “Warranty Disclaimers” and “Exclusion of Incidental, Consequential and Certain Other Damages”) shall apply to the maximum extent permitted by applicable law, even if any remedy fails its essential purpose.
+15.	All License Fees are payable in advance in the manner set forth in the Order Form and are non-refundable. Any renewal of the license shall not be effective until the fees for such renewal have been paid in full. 
+16.	 Term and Termination. This Agreement and the Licenses hereunder shall remain in effect for the term set forth on the Order Form or until earlier terminated as set forth herein (the “Term”). This Agreement and the Licenses hereunder shall completely and automatically terminate upon Licensee’s failure to comply with the terms and conditions of this Agreement. Licensee may terminate this Agreement by ceasing to use and destroying all copies of the Cognex Software. Cognex may terminate this Agreement, effective immediately, if Licensee files, or has filed against it, a petition for voluntary or involuntary bankruptcy or pursuant to any other insolvency law, makes or seeks to make a general assignment for the benefit of its creditors or applies for, or consents to, the appointment of a trustee, receiver, or custodian for a substantial part of its property. Upon expiration or termination, Licensee shall cease all use of the Cognex Software and return to Cognex or destroy the Cognex Software and related materials in Licensee’s possession, and so certify to Cognex.  No expiration or termination shall affect Licensee’s obligation to pay all Licensee Fees that may have become due before such expiration or termination or entitle Licensee to any refund. Such termination shall not affect any sub-licenses previously granted by Licensee to its customers in accordance with terms of this Agreement, provided that such sub-licenses were valid at the time of their creation and such customer sub-licensee(s) are in full compliance with the terms and conditions of this Agreement. Except for the License granted herein, and as otherwise expressly provided herein, the terms of this Agreement shall survive termination. 
+17.	Open Source Software.  The Cognex Software may include one or more components that are derived from software subject to a General Public License (‘GPL”), Lesser General Public License (“LGPL”) or other open source license. Any such components are licensed exclusively under such GPL, LGPL or other open source license, as applicable, and not under this Agreement. It is Licensee’s responsibility to ensure (i) compliance with such open source licenses and (ii) that the requirements of such are adequately conveyed to any of its sub-licensees. 
+18.	U.S. Government End Users. Cognex Software is (i) a “Commercial Item” as defined in 48 CFR 2.101, (ii) provided only as "Commercial Computer Software" and/or "Commercial Computer Software Documentation” and (iii) subject to the provisions of 48 CFR 12.212 or 48 CFR 227.7202, as applicable, or successor provisions. Any Cognex Software which is acquired directly or indirectly for or on behalf of the United States of America, its agencies and/or instrumentalities ("U.S. Government"), is provided only with those rights granted to other end users herein and pursuant to the terms hereof, and use, duplication, or disclosure by the U.S. Government is further subject to subparagraphs (c)(1) and (c)(2) of the Commercial Computer Software - Restricted Rights clause at 48 CFR 52.227-19, as applicable, or successor provisions. Manufacturer is Cognex Corporation, One Vision Drive, Natick, MA 01760-2059. Cognex Software is licensed on the open market at market prices, and was developed entirely at private expense and without the use of any U.S. Government funds.
+19.	Export Restrictions.  Licensee agrees to comply with all applicable international and national laws that apply to the Cognex Software, including the U.S. Export Administration Regulations, as well as import, export, re-export, end use, end user and country destination restrictions issued by the U.S. and other governments with jurisdiction concerning the Cognex Software. 
+20.	Governing Law.  This Agreement shall be governed by the laws of the Commonwealth of Massachusetts, United States of America, without regard to the principles of conflict of laws or the United Nations Convention on Contracts for the International Sale of Goods.
+21.	Verification and Audit Rights. Licensee shall conduct an annual review of its use the Cognex Software and certify to Cognex in writing that it is in full compliance with this Agreement or, if Licensee discovers any noncompliance then Licensee shall immediately remedy such noncompliance and provide Cognex with written notice thereof. Licensee shall provide Cognex with all assistance as Cognex reasonably requests to further evaluate and remedy such noncompliance. Upon request of Cognex, Licensee shall also allow Cognex to conduct a reasonable onsite or remote audit of the applicable Licensee facilities, products and records to determine whether or not Licensee’s usage of such Cognex Software is in conformance with this Agreement. Licensee shall reasonably cooperate with and assist Cognex in any such audit, which shall be conducted during Licensee’s normal business hours and shall not unreasonably interfere with Licensee’s business activities. If the audit determines that the Licensee’s use of the Cognex Software exceeds or exceeded the use permitted by this Agreement then: (i)  Licensee shall, within ten (10) days following the date of Cognex’s written notification thereof, pay to Cognex the retroactive License Fees for such excess use and obtain and pay for a valid license to bring Licensee’s use into compliance with this Agreement. In determining the Licensee Fee payable pursuant to the foregoing, (x) unless Licensee can demonstrate otherwise by documentary evidence, all excess use of the Cognex Software shall be deemed to have commenced on the commencement date of this Agreement or, if later, the completion date of any audit previously conducted by Cognex hereunder, and continued uninterrupted thereafter, and (y) the rates for such licenses shall be determined without regard to any discount to which Licensee may have been entitled had such use been properly licensed prior to its commencement (or deemed commencement). If the use exceeds or exceeded the use permitted by this Agreement by more than twenty percent (20%), Cognex shall also have the right to terminate this Agreement and the license granted hereunder, effective immediately upon written notice to Licensee. Cognex’s remedies set forth in this Section 21 are cumulative and are in addition to, and not in lieu of, all other remedies Cognex may have at law or in equity, whether under this Agreement or otherwise. 
+22.	Assignment.  This Agreement may not be assigned or transferred by Licensee without the prior written consent of Cognex. Cognex may assign or otherwise transfer any or all of its rights and obligations under this Agreement without notice to Licensee.
+23.	Equitable Relief. The parties agree that a breach of this Agreement adversely affecting Cognex’s intellectual property rights in the Cognex Software will cause irreparable injury to Cognex for which monetary damages will not be an adequate remedy and Cognex shall be entitled to equitable relief in addition to any remedies it may have hereunder or at law.
+24.	No Waiver. Failure by Cognex to enforce any provision of this Agreement will not be deemed a waiver of future enforcement of that or any other provision, nor will any single or partial exercise of any right or power hereunder preclude further exercise of any other right hereunder.
+25.	Severability. If for any reason a court of competent jurisdiction finds any provision of this Agreement or portion thereof to be unenforceable, that provision of the Agreement will be enforced to the maximum extent permissible and the remainder of this Agreement will continue in full force and effect.
+26.	Entire Agreement. Together with the Order Form, this Agreement (including any addendum or amendment which is included with the Cognex Software) sets forth the entire understanding and agreement between the parties and may be amended only in a writing signed by authorized representatives of both parties.  No vendor, distributor, reseller, dealer, retailer, sales person or other person is authorized by Cognex to modify this Agreement or to make any warranty, representation, or promise which is different than, or in addition to, the warranties, representations, or promises made in this Agreement. Nothing contained in any purchase order shall in any way add to, modify, replace or supersede any terms or conditions of this Agreement. 
+
+VisionPro Deep Learning includes open source software components, which are subject to the following license terms: 
+
+Boost C++ Libraries
+Boost Software License - Version 1.0 - August 17th, 2003
+
+Permission is hereby granted, free of charge, to any person or organization obtaining a copy of the software and accompanying documentation covered by this license (the "Software") to use, reproduce, display, distribute, execute, and transmit the Software, and to prepare derivative works of the Software, and to permit third-parties to whom the Software is furnished to do so, all subject to the following:
+
+The copyright notices in the Software and this entire statement, including the above license grant, this restriction and the following disclaimer, must be included in all copies of the Software, in whole or in part, and all derivative works of the Software, unless such copies or derivative works are solely in the form of machine-executable object code generated by a source language processor.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Data Compression Library (zlib)
+Copyright (C) 1995-2013 Jean-loup Gailly and Mark Adler
+
+This software is provided 'as-is', without any express or implied warranty.  In no event will the authors be held liable for any damages arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
+2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
+3. This notice may not be removed or altered from any source distribution.
+
+Jean-loup Gailly        Mark Adler
+jloup@gzip.org          madler@alumni.caltech.edu
+
+
+PNG Reference Library (libpng)
+This copy of the libpng notices is provided for your convenience.  In case of any discrepancy between this copy and the notices in the file png.h that is included in the libpng distribution, the latter shall prevail.
+
+COPYRIGHT NOTICE, DISCLAIMER, and LICENSE:
+
+If you modify libpng you may insert additional notices immediately following this sentence.
+
+This code is released under the libpng license.
+
+libpng versions 1.2.6, August 15, 2004, through 1.6.7, November 14, 2013, are Copyright (c) 2004, 2006-2013 Glenn Randers-Pehrson, and are distributed according to the same disclaimer and license as libpng-1.2.5 with the following individual added to the list of Contributing Authors
+- Cosmin Truta
+
+libpng versions 1.0.7, July 1, 2000, through 1.2.5 - October 3, 2002, are Copyright (c) 2000-2002 Glenn Randers-Pehrson, and are distributed according to the same disclaimer and license as libpng-1.0.6 with the following individuals added to the list of Contributing Authors
+-  Simon-Pierre Cadieux
+-  Eric S. Raymond
+-  Gilles Vollant
+
+and with the following additions to the disclaimer:
+
+There is no warranty against interference with your enjoyment of the library or against infringement.  There is no warranty that our efforts or the library will fulfill any of your particular purposes or needs.  This library is provided with all faults, and the entire risk of satisfactory quality, performance, accuracy, and effort is with the user.
+
+libpng versions 0.97, January 1998, through 1.0.6, March 20, 2000, are Copyright (c) 1998, 1999 Glenn Randers-Pehrson, and are distributed according to the same disclaimer and license as libpng-0.96, with the following individuals added to the list of Contributing Authors:
+-  Tom Lane
+-  Glenn Randers-Pehrson
+-  Willem van Schaik
+
+libpng versions 0.89, June 1996, through 0.96, May 1997, are Copyright (c) 1996, 1997 Andreas Dilger Distributed according to the same disclaimer and license as libpng-0.88, with the following individuals added to the list of Contributing Authors:
+-  John Bowler
+-  Kevin Bracey
+-  Sam Bushell
+-  Magnus Holmgren
+-  Greg Roelofs
+-  Tom Tanner
+
+libpng versions 0.5, May 1995, through 0.88, January 1996, are Copyright (c) 1995, 1996 Guy Eric Schalnat, Group 42, Inc. 
+
+For the purposes of this copyright and license, "Contributing Authors" is defined as the following set of individuals:
+-  Andreas Dilger
+-  Dave Martindale
+-  Guy Eric Schalnat
+-  Paul Schmidt
+-  Tim Wegner
+
+The PNG Reference Library is supplied "AS IS".  The Contributing Authors and Group 42, Inc. disclaim all warranties, expressed or implied, including, without limitation, the warranties of merchantability and of fitness for any purpose.  The Contributing Authors and Group 42, Inc. assume no liability for direct, indirect, incidental, special, exemplary, or consequential damages, which may result from the use of the PNG Reference Library, even if advised of the possibility of such damage.
+
+Permission is hereby granted to use, copy, modify, and distribute this source code, or portions hereof, for any purpose, without fee, subject to the following restrictions:
+
+1. The origin of this source code must not be misrepresented.
+
+2. Altered versions must be plainly marked as such and must not be misrepresented as being the original source.
+
+3. This Copyright notice may not be removed or altered from any source or altered source distribution.
+
+The Contributing Authors and Group 42, Inc. specifically permit, without fee, and encourage the use of this source code as a component to supporting the PNG file format in commercial products.  If you use this source code in a product, acknowledgment is not required but would be appreciated.
+
+
+A "png_get_copyright" function is available, for convenient use in "about" boxes and the like:
+    printf("%s",png_get_copyright(NULL));
+
+Also, the PNG logo (in PNG format, of course) is supplied in the files "pngbar.png" and "pngbar.jpg (88x31) and "pngnow.png" (98x31).
+
+Libpng is OSI Certified Open Source Software.  OSI Certified Op en Source is a certification mark of the Open Source Initiative.
+
+Glenn Randers-Pehrson
+glennrp at users.sourceforge.net
+November 14, 2013
+
+
+SIMD-accelerated libjpeg-compatible JPEG codec library  (libjpeg-turbo)
+Most of libjpeg-turbo inherits the non-restrictive, BSD-style license used by
+libjpeg (see README.)  The TurboJPEG wrapper (both C and Java versions) and
+associated test programs bear a similar license, which is reproduced below:
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+- Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+- Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+- Neither the name of the libjpeg-turbo Project nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS",
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+
+The Independent JPEG Group's JPEG Software (libjpeg) 
+Independent JPEG Group License
+
+LEGAL ISSUES
+
+In plain English:
+
+1. We don't promise that this software works.  (But if you find any bugs, please let us know!)
+2. You can use this software for whatever you want.  You don't have to pay us.
+3. You may not pretend that you wrote this software.  If you use it in a program, you must acknowledge somewhere in your documentation that you've used the IJG code.
+
+In legalese:
+
+The authors make NO WARRANTY or representation, either express or implied, with respect to this software, its quality, accuracy, merchantability, or fitness for a particular purpose.  This software is provided "AS IS", and you, its user, assume the entire risk as to its quality and accuracy.
+
+This software is copyright (C) 1991-2010, Thomas G. Lane, Guido Vollbeding. All Rights Reserved except as specified below.
+
+Permission is hereby granted to use, copy, modify, and distribute this software (or portions thereof) for any purpose, without fee, subject to these conditions:
+(1) If any part of the source code for this software is distributed, then this README file must be included, with this copyright and no-warranty notice unaltered; and any additions, deletions, or changes to the original files must be clearly indicated in accompanying documentation.
+(2) If only executable code is distributed, then the accompanying documentation must state that "this software is based in part on the work of the Independent JPEG Group".
+(3) Permission for use of this software is granted only if the user accepts full responsibility for any undesirable consequences; the authors accept NO LIABILITY for damages of any kind.
+
+These conditions apply to any software derived from or based on the IJG code, not just to the unmodified library.  If you use our work, you ought to acknowledge us.
+
+Permission is NOT granted for the use of any IJG author's name or company name in advertising or publicity relating to this software or products derived from it.  This software may be referred to only as "the Independent JPEG Group's software".
+
+We specifically permit and encourage the use of this software as the basis of commercial products, provided that all warranty or liability claims are assumed by the product vendor.
+
+ansi2knr.c is included in this distribution by permission of L. Peter Deutsch, sole proprietor of its copyright holder, Aladdin Enterprises of Menlo Park, CA.
+ansi2knr.c is NOT covered by the above copyright and conditions, but instead by the usual distribution terms of the Free Software Foundation; principally, that you must include source code if you redistribute it.  (See the file ansi2knr.c for full details.)  However, since ansi2knr.c is not needed as part of any program generated from the IJG code, this does not limit you more than the foregoing paragraphs do.
+
+The Unix configuration script "configure" was produced with GNU Autoconf.
+It is copyright by the Free Software Foundation but is freely distributable.
+The same holds for its supporting scripts (config.guess, config.sub, ltmain.sh).  Another support script, install-sh, is copyright by X Consortium but is also freely distributable.
+
+The IJG distribution formerly included code to read and write GIF files.
+To avoid entanglement with the Unisys LZW patent, GIF reading support has been removed altogether, and the GIF writer has been simplified to produce "uncompressed GIFs".  This technique does not use the LZW algorithm; the resulting GIF files are larger than usual, but are readable by all standard GIF decoders.
+
+We are required to state that
+"The Graphics Interchange Format(c) is the Copyright property of CompuServe Incorporated.  GIF(sm) is a Service Mark property of CompuServe Incorporated."
+
+
+TIFF Software Distribution (libtiff)
+Copyright (c) 1988-1997 Sam Leffler
+Copyright (c) 1991-1997 Silicon Graphics, Inc.
+
+Permission to use, copy, modify, distribute, and sell this software and its documentation for any purpose is hereby granted without fee, provided that (i) the above copyright notices and this permission notice appear in all copies of the software and related documentation, and (ii) the names of Sam Leffler and Silicon Graphics may not be used in any advertising or publicity relating to the software without the specific, prior written permission of Sam Leffler and Silicon Graphics.
+
+THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
+
+IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
+OF THIS SOFTWARE.
+
+
+OpenSSL encryption toolkit
+  
+LICENSE ISSUES
+==============
+
+The OpenSSL toolkit stays under a dual license, i.e. both the conditions of the OpenSSL License and the original SSLeay license apply to the toolkit. See below for the actual license texts. Actually both licenses are BSD-style Open Source licenses. In case of any license issues related to OpenSSL please contact openssl-core@openssl.org.
+
+OpenSSL License
+---------------
+
+/* ====================================================================
+ * Copyright (c) 1998-2011 The OpenSSL Project.  All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. 
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ * 3. All advertising materials mentioning features or use of this software must display the following acknowledgment:
+ *    "This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit. (http://www.openssl.org/)" 
+ *
+ * 4. The names "OpenSSL Toolkit" and "OpenSSL Project" must not be used to endorse or promote products derived from this software without prior written permission. For written permission, please contact openssl-core@openssl.org.
+ *
+ * 5. Products derived from this software may not be called "OpenSSL" nor may "OpenSSL" appear in their names without prior written permission of the OpenSSL Project.
+ *
+ * 6. Redistributions of any form whatsoever must retain the following acknowledgment:
+ *    "This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/)"
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT “AS IS'' AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE OpenSSL PROJECT OR ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+====================================================================
+ *
+ * This product includes cryptographic software written by Eric Young (eay@cryptsoft.com).  This product includes software written by Tim Hudson (tjh@cryptsoft.com).
+ *
+ Original SSLeay License
+ -----------------------
+
+* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+ * All rights reserved.
+ *
+ * This package is an SSL implementation written by Eric Young (eay@cryptsoft.com).
+ * The implementation was written so as to conform with Netscapes SSL.
+ * 
+ * This library is free for commercial and non-commercial use as long as the following conditions are adhered to.  The following conditions apply to all code found in this distribution, be it the RC4, RSA, lhash, DES, etc., code; not just the SSL code.  The SSL documentation included with this distribution is covered by the same copyright terms except that the holder is Tim Hudson (tjh@cryptsoft.com).
+ * 
+ * Copyright remains Eric Young's, and as such any Copyright notices in the code are not to be removed.
+ * If this package is used in a product, Eric Young should be given attribution as the author of the parts of the library used. This can be in the form of a textual message at program startup or in documentation (online or textual) provided with the package.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+ * 1. Redistributions of source code must retain the copyright notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software must display the following acknowledgement:
+ *    "This product includes cryptographic software written by Eric Young (eay@cryptsoft.com)"
+ *    The word 'cryptographic' can be left out if the routines from the library being used are not cryptographic related :-).
+ * 4. If you include any Windows specific code (or a derivative thereof) from the apps directory (application code) you must include an acknowledgement:
+ *    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
+ * 
+ * THIS SOFTWARE IS PROVIDED BY ERIC YOUNG “AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * 
+ * The license and distribution terms for any publically available version or derivative of this code cannot be changed.  i.e. this code cannot simply be copied and put under another distribution license [including the GNU Public License.]
+ */
+
+
+Cairo 2D graphics library
+Cairo is free software and is available to be redistributed and/or modified under the terms of either the GNU Lesser General Public License (LGPL) version 2.1 or the Mozilla Public License (MPL) version 1.1.
+
+Libarchive
+The libarchive distribution as a whole is Copyright by Tim Kientzle and is subject to the copyright notice reproduced at the bottom of this file.
+
+Each individual file in this distribution should have a clear copyright/licensing statement at the beginning of the file.  If any do not, please let me know and I will rectify it.  The following is
+intended to summarize the copyright status of the individual files; the actual statements in the files are controlling.
+
+* Except as listed below, all C sources (including .c and .h files) and documentation files are subject to the copyright notice reproduced at the bottom of this file.
+
+* The following source files are also subject in whole or in part to a 3-clause UC Regents copyright; please read the individual source files for details:
+   libarchive/archive_entry.c
+   libarchive/archive_read_support_filter_compress.c
+   libarchive/archive_write_add_filter_compress.c
+   libarchive/mtree.5
+
+* The following source files are in the public domain:
+   libarchive/archive_getdate.c
+
+* The build files---including Makefiles, configure scripts, and auxiliary scripts used as part of the compile process---have widely varying licensing terms.  Please check individual files before distributing them to see if those restrictions apply to you.
+
+I intend for all new source code to use the license below and hope over time to replace code with other licenses with new implementations that do use the license below.  The varying licensing of the build scripts seems to be an unavoidable mess.
+
+
+Copyright (c) 2003-2009 <author(s)>
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer in this position and unchanged.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR(S) ``AS IS'' AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE AUTHOR(S) BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+
+Libsodium
+
+/*
+ * ISC License
+ *
+ * Copyright (c) 2013-2018
+ * Frank Denis <j at pureftpd dot org>
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ */
+
+//-------------------------------------------------------------------------------------------------
+Libsodium-net
+
+The MIT License (MIT)
+
+Copyright (c) 2013 - 2016 Adam Caudill & Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+//-------------------------------------------------------------------------------------------------
+rapidxml
+
+Use of this software is granted under one of the following two licenses,
+to be chosen freely by the user.
+
+1. Boost Software License - Version 1.0 - August 17th, 2003
+===============================================================================
+
+Copyright (c) 2006, 2007 Marcin Kalicinski
+
+Permission is hereby granted, free of charge, to any person or organization
+obtaining a copy of the software and accompanying documentation covered by
+this license (the "Software") to use, reproduce, display, distribute,
+execute, and transmit the Software, and to prepare derivative works of the
+Software, and to permit third-parties to whom the Software is furnished to
+do so, all subject to the following:
+
+The copyright notices in the Software and this entire statement, including
+the above license grant, this restriction and the following disclaimer,
+must be included in all copies of the Software, in whole or in part, and
+all derivative works of the Software, unless such copies or derivative
+works are solely in the form of machine-executable object code generated by
+a source language processor.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT
+SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
+FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+2. The MIT License
+===============================================================================
+
+Copyright (c) 2006, 2007 Marcin Kalicinski
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies 
+of the Software, and to permit persons to whom the Software is furnished to do so, 
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
+IN THE SOFTWARE.
+
+//-------------------------------------------------------------------------------------------------
+rapidjson
+
+Tencent is pleased to support the open source community by making RapidJSON available. 
+ 
+Copyright (C) 2015 THL A29 Limited, a Tencent company, and Milo Yip.  All rights reserved.
+
+If you have downloaded a copy of the RapidJSON binary from Tencent, please note that the RapidJSON binary is licensed under the MIT License.
+If you have downloaded a copy of the RapidJSON source code from Tencent, please note that RapidJSON source code is licensed under the MIT License, except for the third-party components listed below which are subject to different license terms.  Your integration of RapidJSON into your own projects may require compliance with the MIT License, as well as the other licenses applicable to the third-party components included within RapidJSON. To avoid the problematic JSON license in your own projects, it's sufficient to exclude the bin/jsonchecker/ directory, as it's the only code under the JSON license.
+A copy of the MIT License is included in this file.
+
+Other dependencies and licenses:
+
+Open Source Software Licensed Under the BSD License:
+--------------------------------------------------------------------
+
+The msinttypes r29 
+Copyright (c) 2006-2013 Alexander Chemeris 
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. 
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+* Neither the name of  copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS AND CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Open Source Software Licensed Under the JSON License:
+--------------------------------------------------------------------
+
+json.org 
+Copyright (c) 2002 JSON.org
+All Rights Reserved.
+
+JSON_checker
+Copyright (c) 2002 JSON.org
+All Rights Reserved.
+
+	
+Terms of the JSON License:
+---------------------------------------------------
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+The Software shall be used for Good, not Evil.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Terms of the MIT License:
+--------------------------------------------------------------------
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+//-------------------------------------------------------------------------------------------------
+xml2json
+
+The MIT License (MIT)
+
+Copyright (c) 2013 Cheedoong
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+//-------------------------------------------------------------------------------------------------
+NLog
+
+Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without 
+modification, are permitted provided that the following conditions 
+are met:
+
+* Redistributions of source code must retain the above copyright notice, 
+  this list of conditions and the following disclaimer. 
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution. 
+
+* Neither the name of Jaroslaw Kowalski nor the names of its 
+  contributors may be used to endorse or promote products derived from this
+  software without specific prior written permission. 
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+THE POSSIBILITY OF SUCH DAMAGE.
+
+//-------------------------------------------------------------------------------------------------
+LIBSVM
+
+Copyright (c) 2000-2019 Chih-Chung Chang and Chih-Jen Lin
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+
+1. Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.
+
+3. Neither name of copyright holders nor the names of its contributors
+may be used to endorse or promote products derived from this software
+without specific prior written permission.
+
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+//-------------------------------------------------------------------------------------------------

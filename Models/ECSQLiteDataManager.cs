@@ -28,31 +28,14 @@ namespace VPDLFramework.Models
             {
                 if (!File.Exists(path))
                 {
-                    if(!Directory.Exists(Path.GetDirectoryName(path))) Directory.CreateDirectory(Path.GetDirectoryName(path));
+                    Directory.CreateDirectory(Path.GetDirectoryName(path));
                     SQLiteConnection.CreateFile(path);
-                    string connectionString = "Data Source=" + path + ";Version=3;";
-                    SQLiteConnection conn = new SQLiteConnection(connectionString);
-                    conn.Open();
-
-                    string cmdText = "";
-                    if(type == DataType.ResultData) 
-                        cmdText = @"CREATE TABLE DATA (
-                                                        Time TEXT,
-                                                        TriggerIndex INT, 
-                                                        ResultForDisplay TEXT,
-                                                        ResultForSend TEXT,
-                                                        ResultStatus INT)";
-                    else
-                        cmdText = @"CREATE TABLE DATA (
-                                                        Time TEXT,
-                                                        LogType TEXT, 
-                                                        LogContent TEXT)";
-
-
-                    SQLiteCommand cmd = new SQLiteCommand(cmdText,conn);
-                    cmd.ExecuteNonQuery();
-
-                    conn.Close();
+                    using (SQLiteConnection conn = new SQLiteConnection($"Data Source={path};Version=3;"))
+                    {
+                        conn.Open();
+                        string cmdText = type == DataType.ResultData ? @"CREATE TABLE DATA (Time TEXT,TriggerIndex INT, ResultForDisplay TEXT,ResultForSend TEXT,ResultStatus INT)" : @"CREATE TABLE DATA (Time TEXT, LogType TEXT, LogContent TEXT)";
+                        new SQLiteCommand(cmdText, conn).ExecuteNonQuery();
+                    }
                 }
                 return true;
             }
@@ -72,26 +55,16 @@ namespace VPDLFramework.Models
         {
             try
             {
-                if(!File.Exists(path)) CreateFile(path,type);
-
-                if (File.Exists(path))
+                CreateFile(path, type);
+                using (SQLiteConnection conn = new SQLiteConnection($"Data Source={path};Version=3;"))
                 {
-                    string connectionString = "Data Source=" + path + ";Version=3;";
-                    SQLiteConnection conn = new SQLiteConnection(connectionString);
                     conn.Open();
+                    string cmdText = type == DataType.ResultData?$"INSERT INTO DATA VALUES('{(string)data[0]}', '{(int)data[1]}', '{(string)data[2]}', '{(string)data[3]}','{(int)data[4]}')":
+                        $"INSERT INTO DATA VALUES('{(string)data[0]}', '{(string)data[1]}', '{(string)data[2]}')";
+                    new SQLiteCommand(cmdText, conn).ExecuteNonQuery();
 
-                    string cmdText = "";
-                    if(type == DataType.ResultData)
-                        cmdText = $"INSERT INTO DATA VALUES('{(string)data[0]}', '{(int)data[1]}', '{(string)data[2]}', '{(string)data[3]}','{(int)data[4]}')";
-                    else
-                        cmdText = $"INSERT INTO DATA VALUES('{(string)data[0]}', '{(string)data[1]}', '{(string)data[2]}')";
-
-                    SQLiteCommand cmd = new SQLiteCommand(cmdText, conn);
-
-                    cmd.ExecuteNonQuery();
-
-                    conn.Close();
                 }
+                
                 return true;
             }
             catch(Exception ex) 
@@ -104,63 +77,51 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 查询工作流数据库文件中对应结果状态的数据
         /// </summary>
-        /// <param name="_path">文件路径</param>
+        /// <param name="path">文件路径</param>
         /// <returns></returns>
-        public static DataView QueryByResultStatus(string _path, DataType type=DataType.ResultData,int status=1)
+        public static DataView QueryByResultStatus(string path, DataType type=DataType.ResultData,int status=1)
         {
-            if (type != DataType.ResultData) return null;
-            DataView data = null;
-            if (File.Exists(_path))
+            if (File.Exists(path))
             {
-                string connectionString = "Data Source=" + _path + ";Version=3;";
-                SQLiteConnection conn = new SQLiteConnection(connectionString);
-                conn.Open();
-
-                string cmdText = $"SELECT * FROM DATA WHERE ResultStatus = {status}";
-
-                try
+                using (SQLiteConnection conn = new SQLiteConnection($"Data Source={path};Version=3;"))
                 {
-                    using (SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(cmdText, conn))
+                    using (SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter($"SELECT * FROM DATA WHERE ResultStatus = {status}", conn))
                     {
+                        conn.Open();
                         DataTable dataTable = new DataTable();
                         dataAdapter.Fill(dataTable);
-                        data = dataTable.AsDataView();
+                        return dataTable.AsDataView();
                     }
                 }
-                catch (Exception ex)
-                {
-                    ECLog.WriteToLog(ex.StackTrace+ex.Message, LogLevel.Error);
-                }
-                conn.Close();
             }
-            return data;
+            ECLog.WriteToLog($"Can not found:{path}", LogLevel.Error);
+            return null;
         }
 
         /// <summary>
         /// 查询数据库文件所有数据
         /// </summary>
-        /// <param name="_path">文件路径</param>
+        /// <param name="path">文件路径</param>
         /// <returns></returns>
-        public static DataView QueryAll(string _path)
+        public static DataView QueryAll(string path)
         {
-            DataView data=null;
-            if (File.Exists(_path))
+            if (!File.Exists(path)) return null;
+            try
             {
-                string connectionString= "Data Source=" + _path + ";Version=3;";
-                SQLiteConnection conn = new SQLiteConnection(connectionString);
-                conn.Open();
-
-                string cmdText = @"SELECT * FROM DATA";
-
-                using (SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(cmdText, conn))
+                using (SQLiteConnection conn = new SQLiteConnection($"Data Source={path};Version=3;"))
+                using (SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter("SELECT * FROM DATA", conn))
                 {
                     DataTable dataTable = new DataTable();
+                    conn.Open();
                     dataAdapter.Fill(dataTable);
-                    data = dataTable.AsDataView();
+                    return dataTable.AsDataView();
                 }
-                conn.Close();
             }
-            return data;
+            catch (Exception ex)
+            {
+                ECLog.WriteToLog($"查询数据时发生异常: {ex.Message}",LogLevel.Error);
+                return null;
+            }
         }
 
         /// <summary>
@@ -170,19 +131,23 @@ namespace VPDLFramework.Models
         /// <returns></returns>
         public static bool ClearAll(string path)
         {
-            if (File.Exists(path))
+            if (!File.Exists(path)) return false;
+
+            string connectionString = $"Data Source={path};Version=3;";
+            try
             {
-                string connectionString = "Data Source=" + path + ";Version=3;";
-                SQLiteConnection _conn = new SQLiteConnection(connectionString);
-                _conn.Open();
-
-                string cmdText = @"DElETE FROM DATA";
-
-                SQLiteCommand cmd = new SQLiteCommand(cmdText, _conn);
-                cmd.ExecuteNonQuery();
-                _conn.Close();
+                using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+                using (SQLiteCommand cmd = new SQLiteCommand("DELETE FROM DATA", conn))
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
             }
-            return true;
+            catch
+            {
+                return false;
+            }
         }
     }
 }

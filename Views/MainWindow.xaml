@@ -480,7 +480,7 @@
                                                             </ListView.ItemContainerStyle>
                                                         </ListView>
                                                     </Grid>
-                                                    <Grid MinWidth="200" Margin="1">
+                                                    <Grid Visibility="Hidden" MinWidth="200" Margin="1">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="40" />
                                                             <ColumnDefinition />
@@ -551,7 +551,7 @@
                             </Style>
                         </StatusBarItem.Style>
                     </StatusBarItem>
-                    <StatusBarItem DataContext="{Binding Source={StaticResource Locator}, Path=CommCard}">
+                    <StatusBarItem Visibility="Hidden"  DataContext="{Binding Source={StaticResource Locator}, Path=CommCard}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock VerticalAlignment="Center" Text="CC24:" />
                             <Border
@@ -581,7 +581,7 @@
                         </StackPanel>
                     </StatusBarItem>
                     <Separator />
-                    <StatusBarItem DataContext="{Binding WindowsSystemInfo}">
+                    <StatusBarItem Visibility="Hidden" DataContext="{Binding WindowsSystemInfo}">
                         <StatusBarItem.Style>
                             <Style TargetType="StatusBarItem">
                                 <Setter Property="Template">
@@ -660,7 +660,7 @@
                             </Style>
                         </StatusBarItem.Style>
                     </StatusBarItem>
-                    <StatusBarItem HorizontalAlignment="Right">
+                    <StatusBarItem  HorizontalAlignment="Right">
                         <StackPanel Margin="10,0" Orientation="Horizontal">
                             <TextBlock
                                 VerticalAlignment="Center"

@@ -24,15 +24,18 @@ namespace VPDLFramework.Views
     /// </summary>
     public partial class Control_RuntimeResultViewer :System.Windows.Controls.UserControl
     {
-       
+        static bool hasRegister = false;
         public Control_RuntimeResultViewer()
         {
             InitializeComponent();
-            _imageWriter=new CogBmpImageWriter();
             _display=new CogRecordDisplay();
             host.Child = _display;
-            Messenger.Default.Register<string>("", ECMessengerManager.WorkRuntimeViewModelMessengerKeys.Dispose,OnDispose);
-            Messenger.Default.Register<string>("", ECMessengerManager.ImageRecordMessagerKeys.RecordGraphic, OnSaveRecordGraphic);
+            if (!hasRegister)
+            {
+                Messenger.Default.Register<string>("", ECMessengerManager.WorkRuntimeViewModelMessengerKeys.Dispose, OnDispose);
+                Messenger.Default.Register<string>("", ECMessengerManager.ImageRecordMessagerKeys.RecordGraphic, OnSaveRecordGraphic);
+                hasRegister = true;
+            }
         }
 
         /// <summary>
@@ -42,26 +45,7 @@ namespace VPDLFramework.Views
         private void OnSaveRecordGraphic(string obj)
         {
             if (host.Visibility == Visibility.Hidden) return;
-            try
-            {
-                System.Drawing.Image image=null;
-                DispatcherHelper.UIDispatcher.Invoke(() =>
-                {
-                    if ((this.DataContext as ECWorkStreamOrGroupResult).StreamOrGroupName == obj.Split(',')[0])                                    
-                        image = _display?.CreateContentBitmap(Cognex.VisionPro.Display.CogDisplayContentBitmapConstants.Display);    
-                });
-                if(image != null)
-                {
-                    Task.Factory.StartNew(() =>
-                    {
-                        _imageWriter?.WriteBitmap(obj.Split(',')[1] + ".bmp",new System.Drawing.Bitmap(image));
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                ECLog.WriteToLog(ex.StackTrace + ex.Message, NLog.LogLevel.Error);
-            }
+            _showImage?.Save(obj.Split(',')[1] + ".png");
         }
 
         /// <summary>
@@ -72,7 +56,7 @@ namespace VPDLFramework.Views
         {
             DispatcherHelper.UIDispatcher.Invoke(() =>
             {
-                _imageWriter = null;
+
                 _display.Record = null;
                 host.Child = null;
                 host.Dispose();
@@ -95,11 +79,6 @@ namespace VPDLFramework.Views
         /// </summary>
         private CogRecordDisplay _display;
 
-        /// <summary>
-        /// 图片写入器
-        /// </summary>
-        private CogBmpImageWriter _imageWriter;
-
 
         /// <summary>
         /// 绑定的ICogRecord
@@ -109,6 +88,7 @@ namespace VPDLFramework.Views
             get { return (ICogRecord)GetValue(DisplayRecordProperty); }
             set { SetValue(DisplayRecordProperty, value); }
         }
+        private System.Drawing.Image _showImage;
 
         // Using a DependencyProperty as the backing store for DisplayRecord.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DisplayRecordProperty =
@@ -121,39 +101,22 @@ namespace VPDLFramework.Views
         /// <param name="e"></param>
         private static void OnRecordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            DispatcherHelper.CheckBeginInvokeOnUI(() =>
+
+            if (e.NewValue != null)
             {
-                if (e.NewValue != null)
+                try
                 {
-                    try
-                    {
-                        while (true)
-                        {
-                            if ((d as Control_RuntimeResultViewer)._display.Handle != IntPtr.Zero)
-                            {
-                                (d as Control_RuntimeResultViewer)._display.Invoke(new Action(() =>
-                                {
-                                    (d as Control_RuntimeResultViewer)._display.Record = e.NewValue as ICogRecord;
-                                    try
-                                    {
-                                        ECWorkStreamOrGroupResult vm = (d as Control_RuntimeResultViewer).DataContext as ECWorkStreamOrGroupResult;
-                                        if (vm != null && !vm.IsLiveMode)
-                                            (d as Control_RuntimeResultViewer)._display.Fit(true);
-                                    }
-                                    catch { }
-                                }));
-                                break;
-                            }
-                            else
-                                Thread.Sleep(10);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ECLog.WriteToLog(ex.StackTrace + ex.Message, NLog.LogLevel.Error);
-                    }
+                    var resultViewer = (Control_RuntimeResultViewer)d;
+                    var display= resultViewer._display;
+                    display.Record = (ICogRecord)e.NewValue;
+                    resultViewer._showImage = display.CreateContentBitmap(Cognex.VisionPro.Display.CogDisplayContentBitmapConstants.Image);
+                    display.Fit();
                 }
-            });
+                catch (Exception ex)
+                {
+                    ECLog.WriteToLog(ex.StackTrace + ex.Message, NLog.LogLevel.Error);
+                }
+            }
 
         }
 

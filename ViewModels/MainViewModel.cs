@@ -20,6 +20,7 @@ using static VPDLFramework.Models.ECNativeModeCommand;
 using Cognex.VisionPro.Comm;
 using Cognex.Vision;
 using System.IO.Compression;
+using ThirdParty.Json.LitJson;
 
 namespace VPDLFramework.ViewModels
 {
@@ -63,10 +64,6 @@ namespace VPDLFramework.ViewModels
         {
             try
             {
-                // 检查启动信息
-                InitialStartupInfo();
-
-                // 获取系统信息
                 GetStartupInfo();
 
                 ECLog.WriteToLog(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.SystemStartupSetupLoaded), LogLevel.Trace);
@@ -187,8 +184,8 @@ namespace VPDLFramework.ViewModels
             Messenger.Default.Register<string>(this, ECMessengerManager.CommCardMessengerKeys.FFPClearError, ClearError);
 
             // Nativemode消息
-            Messenger.Default.Register<bool>(this, ECMessengerManager.ECNativeModeCommandMessengerKeys.LoadRecipeAck, OnNativeModeAck);
-            Messenger.Default.Register<bool>(this, ECMessengerManager.ECNativeModeCommandMessengerKeys.SetUserDataAck, OnNativeModeAck);
+            //Messenger.Default.Register<bool>(this, ECMessengerManager.ECNativeModeCommandMessengerKeys.LoadRecipeAck, OnNativeModeAck);
+            //Messenger.Default.Register<bool>(this, ECMessengerManager.ECNativeModeCommandMessengerKeys.SetUserDataAck, OnNativeModeAck);
         }
 
         /// <summary>
@@ -204,11 +201,11 @@ namespace VPDLFramework.ViewModels
         /// 设置用户数据确认
         /// </summary>
         /// <param name="obj"></param>
-        private void OnNativeModeAck(bool obj)
-        {
-            int ack = obj ? 1 : 0;
-            _systemTCPServer?.Broadcast(ack.ToString());
-        }
+        //private void OnNativeModeAck(bool obj)
+        //{
+        //    int ack = obj ? 1 : 0;
+        //    //_systemTCPServer?.Broadcast(ack.ToString());
+        //}
 
         /// <summary>
         /// 工作加载完成
@@ -301,131 +298,69 @@ namespace VPDLFramework.ViewModels
         }
 
         /// <summary>
-        /// 初始化启动信息
-        /// </summary>
-        private void InitialStartupInfo()
-        {
-            try
-            {
-                string jsonPath = ECFileConstantsManager.ProgramStartupConifgFolder + @"\" + ECFileConstantsManager.StartupConfigName;
-                if (!File.Exists(jsonPath))
-                {
-                    if (!Directory.Exists(ECFileConstantsManager.ProgramStartupConifgFolder))
-                        Directory.CreateDirectory(ECFileConstantsManager.ProgramStartupConifgFolder);
-
-                    ECStartupSettings startupSettings = new ECStartupSettings();
-                    startupSettings.IsStatupOnline = false;
-                    startupSettings.AdminPassword = "";
-                    startupSettings.FrameworkMode = 0;
-                    startupSettings.WorksStartupInfo = new BindingList<ECWorkStartupInfo>();
-                    startupSettings.SelectedProjectDiskName = ECFileConstantsManager.Disks[0].Name;
-                    startupSettings.SelectedImageDiskName= ECFileConstantsManager.Disks[0].Name;
-                    ECSerializer.SaveObjectToJson(jsonPath, startupSettings);
-                }
-            }
-            catch (System.Exception ex)
-            {
-                ECLog.WriteToLog(ex.StackTrace+ex.Message + "Loading Startup Info Failed",LogLevel.Trace);
-            }
-        }
-
-        /// <summary>
         /// 获取启动信息并进行配置
         /// </summary>
         private void GetStartupInfo()
         {
             try
             {
-                string jsonPath = ECFileConstantsManager.ProgramStartupConifgFolder + @"\" + ECFileConstantsManager.StartupConfigName;
-                if (File.Exists(jsonPath))
+
+                _startupSettings = ECStartupSettings.Instance();
+
+                ECGeneric.CheckLanguage(_startupSettings.SelectedLanguage);
+
+                ECLog.WriteToLog(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.ProgramStart), LogLevel.Trace);
+
+                if (_startupSettings.FrameworkMode == 1)
                 {
-                    _startupSettings = ECSerializer.LoadObjectFromJson<ECStartupSettings>(jsonPath);
+                    ECDLEnvironment.IsEnable = true;
+                    ECLog.WriteToLog(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.DLEnabled), LogLevel.Trace);
+                }
 
-                    ECGeneric.CheckLanguage(_startupSettings.SelectedLanguage);
+                IsLogin = _startupSettings.IsDefaultLoginAdmin;
+                _adminPassword = _startupSettings.AdminPassword;
 
-                    ECLog.WriteToLog(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.ProgramStart), LogLevel.Trace);
+                if (_startupSettings.SystemTCPServerIP != null && _startupSettings.SystemTCPServerPort >= 0)
+                {
+                    _systemTCPServer = new SimpleTCP.SimpleTcpServer();
+                    _systemTCPServer.Start(System.Net.IPAddress.Parse(_startupSettings.SystemTCPServerIP), _startupSettings.SystemTCPServerPort);
+                    _systemTCPServer.DataReceived += SystemTCPServer_DataReceived;
+                    _systemTCPServer.ClientConnected += ClientConnected;
+                    IsSystemTCPOpened = true;
+                    ECLog.WriteToLog(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.SystemServerStart) + " " +
+                        _startupSettings.SystemTCPServerIP + ":" + _startupSettings.SystemTCPServerPort, LogLevel.Trace);
+                }
 
-                    // 设置DL是否启用
-                    if (_startupSettings.FrameworkMode == 1)
+                // 设置通讯卡
+                if (ECCommCard.Bank0 == null)
+                    ECLog.WriteToLog(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.NoCC24CommCard), LogLevel.Trace);
+                else if (_startupSettings.FfpType != null)
+                {
+                    CogFfpProtocolConstants type;
+                    bool result = Enum.TryParse(_startupSettings.FfpType, out type);
+
+                    if (result && type != CogFfpProtocolConstants.None)
                     {
-                        ECDLEnvironment.IsEnable = true;
-                        ECLog.WriteToLog(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.DLEnabled), LogLevel.Trace);
-                    }
-
-                    // 设置登录状态
-                    IsLogin = _startupSettings.IsDefaultLoginAdmin;
-
-                    // 管理员密码
-                    if (_startupSettings.AdminPassword != null)
-                        _adminPassword = _startupSettings.AdminPassword;
-                    else
-                        _adminPassword = "";
-
-                    IsSystemTCPOpened = false;
-
-                    // 开启系统TCP服务器
-                    if (_startupSettings.SystemTCPServerIP != null && _startupSettings.SystemTCPServerPort >= 0)
-                    {
-                        _systemTCPServer = new SimpleTCP.SimpleTcpServer();
-                        _systemTCPServer.Start(System.Net.IPAddress.Parse(_startupSettings.SystemTCPServerIP), _startupSettings.SystemTCPServerPort);
-                        _systemTCPServer.DataReceived += SystemTCPServer_DataReceived;
-                        IsSystemTCPOpened = true;
-                        ECLog.WriteToLog(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.SystemServerStart)+" "+
-                            _startupSettings.SystemTCPServerIP+":"+ _startupSettings.SystemTCPServerPort, LogLevel.Trace);
-                    }
-
-                    // 设置通讯卡
-                    if (ECCommCard.Bank0 == null)
-                        ECLog.WriteToLog(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.NoCC24CommCard), LogLevel.Trace);
-                    else if (_startupSettings.FfpType != null)
-                    {
-                        CogFfpProtocolConstants type;
-                        bool result = Enum.TryParse(_startupSettings.FfpType, out type);
-
-                        if (result && type != CogFfpProtocolConstants.None)
-                        {
-                            ECCommCard.SetFfpType(type);
-                            ECLog.WriteToLog($"{ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.FFPType)} {Enum.GetName(typeof(CogFfpProtocolConstants), type)}", LogLevel.Trace);
-                        }
-                    }
-
-                    // 设置默认工程磁盘,图片磁盘
-                    if (_startupSettings.SelectedProjectDiskName != null)
-                    {
-                        foreach (var d in ECFileConstantsManager.Disks)
-                        {
-                            if (d.Name == _startupSettings.SelectedProjectDiskName)
-                            {
-                                ECFileConstantsManager.RootDisk = d.Name;
-                                ECFileConstantsManager.RootFolder = ECFileConstantsManager.RootDisk + $"\\{ECFileConstantsManager.RootFolderName}\\";
-                            }
-                        }
-                    }
-
-                    if(_startupSettings.SelectedImageDiskName != null)
-                    {
-                        foreach (var d in ECFileConstantsManager.Disks)
-                        {
-                            if (d.Name == _startupSettings.SelectedImageDiskName)
-                            {
-                                ECFileConstantsManager.ImageRootFolder = d.Name + $"\\{ECFileConstantsManager.ImageRootFolderName}\\";
-                            }
-                        }
-                    }
-
-                    // 启动联机
-                    if (_startupSettings.IsStatupOnline)
-                    {
-                        foreach (var work in _startupSettings.WorksStartupInfo)
-                        {
-                            if (work.IsDefaultWork)
-                            {
-                                _defaultWorkName = work.WorkName;
-                                _isStartupOnline = true;
-                            }
-                        }
+                        ECCommCard.SetFfpType(type);
+                        ECLog.WriteToLog($"{ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.FFPType)} {Enum.GetName(typeof(CogFfpProtocolConstants), type)}", LogLevel.Trace);
                     }
                 }
+
+                ECFileConstantsManager.RootDisk = _startupSettings.SelectedImageDiskName;
+                ECFileConstantsManager.RootFolder = ECFileConstantsManager.RootDisk + $"\\{ECFileConstantsManager.RootFolderName}\\";
+                ECFileConstantsManager.ImageRootFolder = _startupSettings.SelectedImageDiskName + $"\\{ECFileConstantsManager.ImageRootFolderName}\\";
+
+                if (_startupSettings.IsStatupOnline)
+                {
+                    _defaultWorkName= _startupSettings.WorksStartupInfo.FirstOrDefault(work => work.IsDefaultWork)?.WorkName;
+                    if (string.IsNullOrEmpty(_defaultWorkName)&& _startupSettings.WorksStartupInfo.Count!=0)
+                    {
+                        _defaultWorkName = _startupSettings.WorksStartupInfo.FirstOrDefault()?.WorkName;
+                    }
+                    _isStartupOnline= true;
+                }
+            
+
             }
             catch (System.Exception ex)
             {
@@ -433,31 +368,36 @@ namespace VPDLFramework.ViewModels
             }
         }
 
+        private void ClientConnected(object sender, System.Net.Sockets.TcpClient e)
+        {
+            ECLog.WriteToLog($"Connected from  {e.Client.RemoteEndPoint}",LogLevel.Debug);
+        }
+
         /// <summary>
         /// 检查VisionPro授权
         /// </summary>
-        private bool CheckVisionProLicense()
-        {
-            try
-            {
-                int days = 0;
-                bool license = CogLicense.GetDaysRemaining(out days, true);
-                if (!license)
-                {
-                    ECDialogManager.ShowMsg(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.InvalidVProLicense));
-                    return false;
-                }
-                else
-                    return true;
-            }
-            catch (System.Exception ex)
-            {
-                ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Trace);  
-                ECDialogManager.ShowMsg(ex.Message);
-                return false;
-            }
+        //private bool CheckVisionProLicense()
+        //{
+        //    try
+        //    {
+        //        int days = 0;
+        //        bool license = CogLicense.GetDaysRemaining(out days, true);
+        //        if (!license)
+        //        {
+        //            ECDialogManager.ShowMsg(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.InvalidVProLicense));
+        //            return false;
+        //        }
+        //        else
+        //            return true;
+        //    }
+        //    catch (System.Exception ex)
+        //    {
+        //        ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Trace);  
+        //        ECDialogManager.ShowMsg(ex.Message);
+        //        return false;
+        //    }
 
-        }
+        //}
 
         /// <summary>
         /// 初始化ViDi环境
@@ -471,9 +411,7 @@ namespace VPDLFramework.ViewModels
                 ECDLEnvironment.Control = new ViDi2.Runtime.Local.Control(GpuMode.Default, gpuList);
                 ECLog.WriteToLog($"{ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.VPDLVersion)}：" + ECDLEnvironment.Control.DotNETWrapperVersion.ToString(), LogLevel.Trace);
                 ECDLEnvironment.Control.InitializeComputeDevices(GpuMode.SingleDevicePerTool, gpuList);
-                var computeDevices = ECDLEnvironment.Control.ComputeDevices;
-                ECDLEnvironment.GPUList = new BindingList<string>();
-                foreach (var d in computeDevices)
+                foreach (var d in ECDLEnvironment.Control.ComputeDevices)
                 {
                     ECDLEnvironment.GPUList.Add(d.Index.ToString() + ": " + d.Name);
                     ECLog.WriteToLog($"GPU{d.Index}: " + d.Name, LogLevel.Trace);
@@ -513,7 +451,7 @@ namespace VPDLFramework.ViewModels
         private void StartUITimer()
         {
             _timer = new System.Timers.Timer();
-            _timer.Interval = 50;
+            _timer.Interval = 2000;
             _timer.Elapsed += Timer_Elapsed;
             _timer.Start();
         }
@@ -712,7 +650,7 @@ namespace VPDLFramework.ViewModels
             bool verifyOpen = ECDialogManager.Verify($"{ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.LoadWork)} \"{workName}\"");
             if (verifyOpen)
             {
-                ECWorkInfo info = WorkList.Where(w => w.WorkInfo.WorkName == workName)?.First()?.WorkInfo;
+                ECWorkInfo info = WorkList.FirstOrDefault(w => w.WorkInfo.WorkName == workName)?.WorkInfo;
                 if (!CheckWorkDLEnable(info))
                 {
                         ECDialogManager.ShowMsg(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.IncompatibleMode));
@@ -731,7 +669,7 @@ namespace VPDLFramework.ViewModels
             if (!_isSystemStartComplete) return;
             try
             {
-                ECWorkInfo info = WorkList.Where(w => w.WorkInfo.WorkName == workName)?.First()?.WorkInfo;
+                ECWorkInfo info = WorkList.FirstOrDefault(w => w.WorkInfo.WorkName == workName)?.WorkInfo;
                 if (!CheckWorkDLEnable(info))
                 {
                     ECDialogManager.ShowMsg(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.IncompatibleMode));
@@ -742,21 +680,16 @@ namespace VPDLFramework.ViewModels
                 SelectedWorkName = workName;
                 Title = "VisionPro Framework" + " — " + workName;
                 IsWorkLoaded = true;
-                string jsonPath = ECFileConstantsManager.ProgramStartupConifgFolder + @"\" + ECFileConstantsManager.StartupConfigName;
-                if (File.Exists(jsonPath))
-                {
-                    ECStartupSettings startupSettings = ECSerializer.LoadObjectFromJson<ECStartupSettings>(jsonPath);
+                ECStartupSettings startupSettings = ECStartupSettings.Instance();
 
-                    foreach (ECWorkStartupInfo wi in startupSettings.WorksStartupInfo)
+                foreach (ECWorkStartupInfo wi in startupSettings.WorksStartupInfo)
+                {
+                    if (wi.WorkName == workName)
                     {
-                        if (wi.WorkName == workName)
-                        {
-                            WorkTitle = wi.Title;
-                            break;
-                        }
+                        WorkTitle = wi.Title;
+                        break;
                     }
                 }
-                // 加载运行界面
                 LoadContentView("WorkRuntimeView");
 
                 // 通知其他加载的模块
@@ -825,6 +758,7 @@ namespace VPDLFramework.ViewModels
         /// <param name="e"></param>
         private void SystemTCPServer_DataReceived(object sender, SimpleTCP.Message e)
         {
+            ECLog.WriteToLog($"Receive data --{e.MessageString}-- from {e.TcpClient.Client.RemoteEndPoint}", NLog.LogLevel.Info);
             try
             {
                 // 收到消息不为空
@@ -832,7 +766,7 @@ namespace VPDLFramework.ViewModels
                 {
                     // 检查命令类型
                     NativeModeCommandTypeConstants constant = ECNativeModeCommand.CheckCommandString(e.MessageString);
-
+                    
                     // 命令类型不为错误
                     if (constant != NativeModeCommandTypeConstants.ERR)
                     {
@@ -867,6 +801,7 @@ namespace VPDLFramework.ViewModels
                     case NativeModeCommandTypeConstants.TS:
                         if (IsOnlineMode)
                         {
+                            //Messenger.Default.Send<string>(commandStr[0], ECMessengerManager.MainViewModelMessengerKeys.NativeModeMsg);
                             Messenger.Default.Send<string>(content, ECMessengerManager.MainViewModelMessengerKeys.NativeModeMsg);
                             result = -2;
                         }
@@ -1122,7 +1057,7 @@ namespace VPDLFramework.ViewModels
         /// </summary>
         private void CheckStartupOnline()
         {
-            if (_isStartupOnline && _defaultWorkName != "")
+            if (_isStartupOnline && !string.IsNullOrEmpty(_defaultWorkName))
             {
                 ECLog.WriteToLog($"{ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.StartupWithOnlineMode)} \"{_defaultWorkName}\"", LogLevel.Trace);
                 LoadWork(_defaultWorkName);
@@ -1503,7 +1438,7 @@ namespace VPDLFramework.ViewModels
                 bool verifyOpen = ECDialogManager.Verify($"{ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.EditWork)} \"{workName}\"");
                 if (verifyOpen)
                 {
-                    ECWorkInfo info = WorkList.Where(w => w.WorkInfo.WorkName == workName)?.First()?.WorkInfo;
+                    ECWorkInfo info = WorkList.FirstOrDefault(w => w.WorkInfo.WorkName == workName)?.WorkInfo;
                     if (!CheckWorkDLEnable(info))
                     {
                         if (info.IsDLEnable)
@@ -1517,18 +1452,14 @@ namespace VPDLFramework.ViewModels
                     Title = "VisionPro Framework" + " — " + workName;
                     IsWorkSelected = true;
 
-                    string jsonPath = ECFileConstantsManager.ProgramStartupConifgFolder + @"\" + ECFileConstantsManager.StartupConfigName;
-                    if (File.Exists(jsonPath))
-                    {
-                        ECStartupSettings startupSettings = ECSerializer.LoadObjectFromJson<ECStartupSettings>(jsonPath);
+                    ECStartupSettings startupSettings = ECStartupSettings.Instance();
 
-                        foreach (ECWorkStartupInfo wi in startupSettings.WorksStartupInfo)
+                    foreach (ECWorkStartupInfo wi in startupSettings.WorksStartupInfo)
+                    {
+                        if (wi.WorkName == workName)
                         {
-                            if (wi.WorkName == workName)
-                            {
-                                WorkTitle = wi.Title;
-                                break;
-                            }
+                            WorkTitle = wi.Title;
+                            break;
                         }
                     }
                     foreach (WorkListItemViewModel workItemViewModel in WorkList)
@@ -1802,15 +1733,11 @@ namespace VPDLFramework.ViewModels
 
                     if (match)
                     {
-                        string jsonPath = ECFileConstantsManager.ProgramStartupConifgFolder + @"\" + ECFileConstantsManager.StartupConfigName;
-                        if (File.Exists(jsonPath))
-                        {
-                            ECStartupSettings startupSettings = ECSerializer.LoadObjectFromJson<ECStartupSettings>(jsonPath);
-                            startupSettings.AdminPassword = Password;
-                            ECSerializer.SaveObjectToJson(jsonPath, startupSettings);
-                            ECDialogManager.ShowMsg($"{ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.NewPassword)}: {Password}");
-                            _adminPassword = password;
-                        }
+                        ECStartupSettings startupSettings = ECStartupSettings.Instance();
+                        startupSettings.AdminPassword = Password;
+                        startupSettings.Save();
+                        ECDialogManager.ShowMsg($"{ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.NewPassword)}: {Password}");
+                        _adminPassword = password;
                     }
                     else
                     {
@@ -1830,20 +1757,9 @@ namespace VPDLFramework.ViewModels
         /// </summary>
         private void SaveLoginStatus(bool isLogin)
         {
-            try
-            {
-                string jsonPath = ECFileConstantsManager.ProgramStartupConifgFolder + @"\" + ECFileConstantsManager.StartupConfigName;
-                if (File.Exists(jsonPath))
-                {
-                    _startupSettings = ECSerializer.LoadObjectFromJson<ECStartupSettings>(jsonPath);
-                    _startupSettings.IsDefaultLoginAdmin = isLogin;
-                    ECSerializer.SaveObjectToJson(jsonPath,_startupSettings);
-                }
-            }
-            catch(System.Exception ex)
-            {
-                ECLog.WriteToLog(ex.StackTrace+ex.Message, LogLevel.Error);
-            }
+            _startupSettings = ECStartupSettings.Instance();
+            _startupSettings.IsDefaultLoginAdmin = isLogin;
+            _startupSettings.Save();
         }
         #endregion
 
@@ -1864,7 +1780,13 @@ namespace VPDLFramework.ViewModels
         /// <summary>
         /// 系统TCP服务器
         /// </summary>
-        private SimpleTCP.SimpleTcpServer _systemTCPServer;
+        private static SimpleTCP.SimpleTcpServer _systemTCPServer;
+
+  
+        public static SimpleTCP.SimpleTcpServer GetSystemServer()
+        {
+            return _systemTCPServer;
+        }
 
         /// <summary>
         /// 系统启动完成
@@ -2191,21 +2113,13 @@ namespace VPDLFramework.ViewModels
         /// Windows系统信息
         /// </summary>
 
-        private ECWMI _WindowsSystemInfo;
-        public ECWMI WindowsSystemInfo
-        {
-            get { return _WindowsSystemInfo; }
-            set
-            {
-                _WindowsSystemInfo = value;
-                RaisePropertyChanged();
-            }
-        }
+        //private ECWMI _WindowsSystemInfo;
+        public ECWMI WindowsSystemInfo { get; set; } = new ECWMI();
 
         /// <summary>
         /// 系统TCP服务器是否开启
         /// </summary>
-        private bool _isSystemTCPOpened;
+        private bool _isSystemTCPOpened=false;
 
         public bool IsSystemTCPOpened
         {

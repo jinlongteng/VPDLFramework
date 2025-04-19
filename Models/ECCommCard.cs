@@ -16,7 +16,6 @@ namespace VPDLFramework.Models
 {
     public class ECCommCard : ObservableObject
     {
-        
         static ECCommCard()
         {
             InitCommCard();

@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight;
 using Microsoft.International.Converters.PinYinConverter;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace VPDLFramework.Models
         /// GPU列表
         /// </summary>
 
-        public static BindingList<string> GPUList;
+        public static ObservableCollection<string> GPUList=new ObservableCollection<string> ();
 
         /// <summary>
         /// 清空工作区

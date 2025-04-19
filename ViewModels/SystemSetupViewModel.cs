@@ -97,13 +97,8 @@ namespace VPDLFramework.ViewModels
         // </summary>
         public void LoadStartupConfig()
         {
-            string jsonPath = ECFileConstantsManager.ProgramStartupConifgFolder + @"\" + ECFileConstantsManager.StartupConfigName;
-            StartupSettings = ECSerializer.LoadObjectFromJson<ECStartupSettings>(jsonPath);
-            if (StartupSettings == null)
-            {
-                StartupSettings = new ECStartupSettings();
-            }
-            if(ECCommCard.Bank0!=null&&ECCommCard.Bank0.FfpAccess!=null)
+            StartupSettings = ECStartupSettings.Instance();
+            if (ECCommCard.Bank0!=null&&ECCommCard.Bank0.FfpAccess!=null)
             {
                 StartupSettings.FfpType=ECCommCard.Bank0.FfpAccess.GetActiveNetworkDataModel()?.GetType().Name.Replace("CogNdm","");
             }
@@ -114,22 +109,13 @@ namespace VPDLFramework.ViewModels
         // </summary>
         public void SaveStartupConfig()
         {
-            try
-            {
-                string jsonPath = ECFileConstantsManager.ProgramStartupConifgFolder + @"\" + ECFileConstantsManager.StartupConfigName;
-                ECSerializer.SaveObjectToJson(jsonPath, StartupSettings);
-                if(CameraOrderViewModel.CamerasInfo.Count > 0) 
-                     CameraOrderViewModel.WriteIniFile();
-                ECGeneric.CheckLanguage(StartupSettings.SelectedLanguage);
-                SetCommCardFfp();
-                ECDialogManager.ShowMsg(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.SavingTipOfSystemSetup));
-            }
-            catch (Exception ex)
-            {
-                ECLog.WriteToLog(ex.StackTrace + ex.Message, NLog.LogLevel.Error);
-                ECDialogManager.ShowMsg(ex.StackTrace + ex.Message +ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.SaveFailed));
-            }
-            
+            StartupSettings.Save();
+            if (CameraOrderViewModel.CamerasInfo.Count > 0)
+                CameraOrderViewModel.WriteIniFile();
+            ECGeneric.CheckLanguage(StartupSettings.SelectedLanguage);
+            SetCommCardFfp();
+            ECDialogManager.ShowMsg(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.SavingTipOfSystemSetup));
+
         }
 
         /// <summary>

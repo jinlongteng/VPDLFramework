@@ -1,0 +1,297 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ViDi.NET.Local</name>
+    </assembly>
+    <members>
+        <member name="T:ViDi2.Local.LibraryAccess">
+            <exclude>
+            This class is accessed through the control class and shouldn't be used directly, so it's not included in the help text.
+            </exclude>
+        </member>
+        <member name="M:ViDi2.Local.LibraryImage.#ctor(ViDi2.ImageFormat)">
+            <summary>
+            
+            </summary>
+            <param name="serializationFormatHint">hint used when this image is beeing serialized</param>
+        </member>
+        <member name="P:ViDi2.Local.LibraryImage.Width">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Local.LibraryImage.Height">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Local.LibraryImage.Channels">
+            <inheritdoc/>
+        </member>
+        <member name="P:ViDi2.Local.LibraryImage.ChannelDepth">
+            <inheritdoc/>
+        </member>
+        <member name="M:ViDi2.Local.LibraryImage.NativeCopy(System.UInt32,System.IntPtr[])">
+            <summary>
+            Copies the memory of the image into an array of channels, aka a planar image
+            </summary>
+        </member>
+        <member name="T:ViDi2.Local.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.CannotInitBufferErrorCodeIs">
+            <summary>
+              Looks up a localized string similar to Cannot initialize the buffer. The error code is .
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.Error_AllChannelsMustHaveSameStep">
+            <summary>
+              Looks up a localized string similar to All channels should have the same steps..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.Error_EmptyString">
+            <summary>
+              Looks up a localized string similar to The use of an empty string is not permitted..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.Error_FailedToGetErrorMessage">
+            <summary>
+              Looks up a localized string similar to Failed to retrieve error message..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.Error_Initialization">
+            <summary>
+              Looks up a localized string similar to You are not allowed to instantiate more than one control. Please dispose the last control or reuse it..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.Error_License">
+            <summary>
+              Looks up a localized string similar to Failed to find a valid Cognex Deep Learning Studio License..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.Error_LicenseELAndDLCore">
+            <summary>
+              Looks up a localized string similar to An update to your license is required to run High-detail mode for VisionPro Deep Learning 3.x. If you need further assistance, please contact our sales or marketing department..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.Error_LicenseRuntime">
+            <summary>
+              Looks up a localized string similar to Wrong license type. Please use a training license..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.Error_UnsupportedNumberOfChannels">
+            <summary>
+              Looks up a localized string similar to Unsupported number of channels provided..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.Error_WorkspaceAlreadyExist">
+            <summary>
+              Looks up a localized string similar to A Workspace with name &apos;{0}&apos; already exists..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.Error_WorkspaceDoesNotExist">
+            <summary>
+              Looks up a localized string similar to Workspace &apos;{0}&apos; does not exist..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.FailedToFindPretrainedReadTool">
+            <summary>
+              Looks up a localized string similar to Failed to find pre-trained Read tool..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.FailedToLoadLibraryErrorCode0">
+            <summary>
+              Looks up a localized string similar to Failed to load library (ErrorCode: {0})..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.FailedToLoadNvmlDllErrorCode0">
+            <summary>
+              Looks up a localized string similar to Failed to load nvml.dll (ErrorCode: {0})..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.RequestGpuDriverUpdate">
+             <summary>
+               Looks up a localized string similar to The NVIDIA graphics driver version is lower than the minimum recommendation.
+            Please visit https://www.nvidia.com/Download/Find.aspx to upgrade the driver version and launch the program again (A higher version than the recommendation might be required by GPU model):
+            NVIDIA Driver Version: {0}
+            Minimum Recommended Version: {1}.
+             </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.SampleNameCannotBeNull">
+            <summary>
+              Looks up a localized string similar to The sample name cannot be null..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.UnableToLoadLibrary">
+            <summary>
+              Looks up a localized string similar to Unable to load the library..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.UTF8MarshalerMustBeUsedOnAString">
+            <summary>
+              Looks up a localized string similar to UTF8Marshaler must be used on a string..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.WorkspaceSharingIsOnlySupportedInCloudMode">
+            <summary>
+              Looks up a localized string similar to Workspace sharing is only supported in cloud mode..
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.Properties.Resources.YouAreNotAllowedToInstantiateMoreThanOneControl">
+            <summary>
+              Looks up a localized string similar to You are not allowed to instantiate more than one control. Please dispose the last control or reuse it..
+            </summary>
+        </member>
+        <member name="T:ViDi2.Local.WorkspaceDirectory">
+            <summary>
+            Represents a WorkspaceManager which organizes all workspaces
+            in a single path
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.WorkspaceDirectory.RootDefaultPath">
+            <summary>
+            default path used to store workspaces
+            </summary>
+        </member>
+        <member name="F:ViDi2.Local.WorkspaceDirectory.path">
+            <summary>
+            current workspaces path
+            </summary>
+        </member>
+        <member name="M:ViDi2.Local.WorkspaceDirectory.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="workspaceFolder"></param>
+        </member>
+        <member name="P:ViDi2.Local.WorkspaceDirectory.Path">
+            <summary>
+            Gets or sets the path
+            </summary>
+        </member>
+        <member name="P:ViDi2.Local.WorkspaceDirectory.Workspaces">
+            <inheritdoc />
+        </member>
+        <member name="M:ViDi2.Local.WorkspaceDirectory.CalculateSizeOfWorkspaceFolder(System.IO.DirectoryInfo)">
+            <summary>
+            Returns the sum of the size of each file in the workspace folder
+            (and subfolders) if <see cref="P:ViDi2.Local.WorkspaceDirectory.ShouldCalculateWorkspaceSize"/> is true.
+            Otherwise, performs no calculation and just returns -1.
+            </summary>
+            <param name="workspaceFolder"> The folder containing the workspace and its files. </param>
+            <returns> The calculated size (if it should be calculated), or -1 if it shouldn't. </returns>
+        </member>
+        <member name="M:ViDi2.Local.WorkspaceDirectory.GetWorkspaceSize(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ViDi2.Local.WorkspaceDirectory.NewWorkspacePath(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ViDi2.Local.WorkspaceDirectory.DeleteWorkspace(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:ViDi2.Runtime.Local.Control.Workspaces">
+            <inheritdoc/>
+        </member>
+        <member name="M:ViDi2.Runtime.Local.LibraryAccess.#ctor(System.Boolean)">
+            <summary>
+            instantiate a runtime LibraryAccess
+            if the library access as no workspaceManager, the runtime workspaces
+            loaded are only stored in memory. Next time the application will be loaded,
+            no workspaces will be available.
+            In the contrary, if there is a workspaceManager, all workspaces added
+            are stored to the location specified by the workspace manager. On
+            subsequent starts, runtime workspaces will still be available (ListWorkspaces will show them),
+            but won't be automatically loaded.
+            </summary>
+            <param name="useDefaultWorkspaceManager"></param>
+        </member>
+        <member name="M:ViDi2.Runtime.Local.LibraryAccess.#ctor(ViDi2.IWorkspaceManager)">
+            <summary>
+            intiatiate a runtime LibraryAccess
+            with a workspace manager that will handle where
+            the runtime workspace are stored/load from
+            </summary>
+            <param name="workspaceManager"></param>
+        </member>
+        <member name="T:ViDi2.Runtime.Local.WorkspaceDirectory">
+            <summary>
+            Represents a WorkspaceManager which organizes all workspaces
+            in a single path
+            </summary>
+            <remarks>default: %APPDATA%\vidi_suite_{version}\runtime_workspaces</remarks>
+        </member>
+        <member name="M:ViDi2.Runtime.Local.WorkspaceDirectory.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="P:ViDi2.Runtime.Local.WorkspaceDirectory.DefaultPath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ViDi2.Runtime.Local.WorkspaceDirectory.Workspaces">
+            <inheritdoc />
+        </member>
+        <member name="M:ViDi2.Runtime.Local.WorkspaceDirectory.NewWorkspacePath(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ViDi2.Training.Local.LibraryAccess.RenameWorkspace(ViDi2.WorkspaceName,System.String,ViDi2.ILibraryAccessContext)">
+             <summary>
+             Copies the workspace with the given name to the location given by the proposed
+             display name.
+             </summary>
+             <remarks>
+             This method is intended for workspaces who do not differentiate between unique ID
+             and display name. These workspaces typically use the workspace's filename as both display
+             name and ID.
+            
+             Therefore, renaming such a workspace involves copying it to the location represented by
+             the new display name, and deleting the workspace with the old name.
+             </remarks>
+             <param name="workspace"> The workspace to rename. </param>
+             <param name="newDisplayName"> The proposed name to give the workspace. </param>
+             <param name="context"></param>
+             <returns>
+             The unique identifier of the renamed workspace. This should be identical to the proposed name.
+             </returns>
+        </member>
+        <member name="T:ViDi2.Training.Local.WorkspaceDirectory">
+            <summary>
+            Represents a WorkspaceManager which organizes all workspaces
+            in a single path
+            </summary>
+            <remarks>default: %APPDATA%\vidi_suite_{version}\workspaces</remarks>
+        </member>
+        <member name="M:ViDi2.Training.Local.WorkspaceDirectory.#ctor">
+            <summary>
+            Creates an instance of this class
+            </summary>
+        </member>
+        <member name="P:ViDi2.Training.Local.WorkspaceDirectory.DefaultPath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ViDi2.Training.Local.WorkspaceDirectory.Workspaces">
+            <inheritdoc />
+        </member>
+        <member name="M:ViDi2.Training.Local.WorkspaceDirectory.NewWorkspacePath(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ViDi2.Training.Local.WorkspaceDirectory.DeleteWorkspace(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ViDi2.Training.Local.WorkspaceDirectory.HasAutoSave(System.String)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

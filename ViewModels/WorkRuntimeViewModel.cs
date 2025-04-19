@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Threading;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.DwayneNeed.Win32;
 using System.Diagnostics;
@@ -28,10 +29,6 @@ namespace VPDLFramework.ViewModels
     {
 		public WorkRuntimeViewModel() 
 		{
-            WorkStreamsRecipe = new BindingList<WorkStreamRecipesViewModel>();
-            Results = new BindingList<ECWorkStreamOrGroupResult>();
-            ResultsChart = new BindingList<ECWorkStreamOrGroupResultChart>();
-            _orignalList = new BindingList<ECWorkStreamOrGroupResult>();
             BindCmd();
             InitialParametersOptionList();
             RegisterMessenger();
@@ -58,11 +55,6 @@ namespace VPDLFramework.ViewModels
         /// 监控定时器
         /// </summary>
         private System.Timers.Timer _timer;
-
-        /// <summary>
-        /// 缩放结果显示时暂存的原始结果列表
-        /// </summary>
-        private BindingList<ECWorkStreamOrGroupResult> _orignalList;
 
         /// <summary>
         /// 暂时保存图像显示行数
@@ -103,11 +95,6 @@ namespace VPDLFramework.ViewModels
         private bool _isEnableInternalTriggerThread;
 
         /// <summary>
-        /// 数据库锁
-        /// </summary>
-        private Mutex _workLogMutex = new Mutex();
-
-        /// <summary>
         /// 第三方板卡
         /// </summary>
         private ECThirdCard _thirdCard;
@@ -118,19 +105,9 @@ namespace VPDLFramework.ViewModels
         private bool _enableThirdCard=false;
 
         /// <summary>
-        /// 内触发方法正在运行
-        /// </summary>
-        private bool _isInternalTriggerMethodRunning=false;
-
-        /// <summary>
         /// 图像源触发延迟
         /// </summary>
         private Dictionary<string,int> _imageSourcesTriggerDelay;
-
-        /// <summary>
-        /// 工作日志消息等待队列
-        /// </summary>
-        private List<object[]> _workLogWaitQueue = new List<object[]>();
 
         #endregion
 
@@ -246,10 +223,8 @@ namespace VPDLFramework.ViewModels
             {
                 DispatcherHelper.UIDispatcher.Invoke(() =>
                 {
-                    // 清空原始列表
-                    ZoomResults = new BindingList<ECWorkStreamOrGroupResult>();
-
                     // 将结果列表赋值给放大结果列表
+                    ZoomResults.Clear();
                     ZoomResults.Add(result);
                 });
                 
@@ -274,6 +249,8 @@ namespace VPDLFramework.ViewModels
             Messenger.Default.Register<string>(this, ECMessengerManager.MainViewModelMessengerKeys.UnLoadWork, OnUnLoadWork);
             Messenger.Default.Register<string>(this, ECMessengerManager.MainViewModelMessengerKeys.SystemOnline, OnSystemOnline);
             Messenger.Default.Register<string>(this, ECMessengerManager.MainViewModelMessengerKeys.SystemOffline, OnSystemOffline);
+            Messenger.Default.Register<string>(this, ECMessengerManager.MainViewModelMessengerKeys.NativeModeMsg, OnNativeModeTriggerStream);
+            //ECMessengerManager.MainViewModelMessengerKeys.NativeModeMsg//CMessengerManager.MainViewModelMessengerKeys.NativeModeMsg
         }
 
         /// <summary>
@@ -390,7 +367,7 @@ namespace VPDLFramework.ViewModels
                 StopLiveModeTimer();
                 _timer?.Stop();
                 _timer?.Dispose();
-                ECDialogManager.LoadWithAnimation(new Action(() =>
+                ECDialogManager.LoadWithAnimation(() =>
                 {
                     DispatcherHelper.CheckBeginInvokeOnUI(() =>
                     {
@@ -436,7 +413,7 @@ namespace VPDLFramework.ViewModels
                         GC.Collect();
                     });
 
-                }), ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.Unloading));
+                }, ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.Unloading));
             }
             catch(System.Exception ex)
             {
@@ -450,27 +427,19 @@ namespace VPDLFramework.ViewModels
         /// <param name="obj"></param>
         private void OnLoadWorkChanged(ECWorkInfo obj)
         {
-            if(obj == null) return; 
-            try
-            {
-                _isReady = false;
-                _workInfo= obj;
-                _workName = obj.WorkName;
+            if(obj == null) return;
+            _isReady = false;
+            _workInfo = obj;
+            _workName = obj.WorkName;
 
-                DispatcherHelper.UIDispatcher.Invoke(new Action(() =>
-                {
-                    WorkStreamsRecipe.Clear();
-                    Results.Clear();
-                    Results = new BindingList<ECWorkStreamOrGroupResult>();
-                    ResultsChart = new BindingList<ECWorkStreamOrGroupResultChart>();
-                }));
-                
-                LoadWorkSettings();
-            }
-            catch (System.Exception ex)
+            DispatcherHelper.UIDispatcher.Invoke(() =>
             {
-                ECLog.WriteToLog(ex.StackTrace + ex.Message, NLog.LogLevel.Error);
-            }
+                WorkStreamsRecipe.Clear();
+                Results.Clear();
+                ResultsChart = new BindingList<ECWorkStreamOrGroupResultChart>();
+            });
+
+            LoadWorkSettings();
         }
 
         /// <summary>
@@ -561,8 +530,6 @@ namespace VPDLFramework.ViewModels
         {
             try
             {
-                WorkImageSources = new BindingList<ECWorkImageSource>();
-                ImageSourceNames= new BindingList<string>();
                 Dictionary<string, bool> cameras = new Dictionary<string, bool>();
 
                 string folder = $"{ECFileConstantsManager.RootFolder}\\{_workName}\\{ECFileConstantsManager.ImageSourceFolderName}";
@@ -788,9 +755,6 @@ namespace VPDLFramework.ViewModels
         {
             try
             {
-                WorkStreams = new BindingList<ECWorkStream>();
-                WorkStreamNames = new BindingList<string>();
-
                 BindingList<ECWorkStream> tmpList=new BindingList<ECWorkStream>();
 
                 string folder = $"{ECFileConstantsManager.RootFolder}\\{_workName}\\{ECFileConstantsManager.StreamsFolderName}";
@@ -869,18 +833,14 @@ namespace VPDLFramework.ViewModels
         /// <returns></returns>
         private bool CheckThirdCardEnable()
         {
-            string jsonPath = ECFileConstantsManager.ProgramStartupConifgFolder + @"\" + ECFileConstantsManager.StartupConfigName;
-            if (File.Exists(jsonPath))
+            ECStartupSettings _startupSettings = ECStartupSettings.Instance();
+            if (_startupSettings != null)
             {
-                ECStartupSettings _startupSettings = ECSerializer.LoadObjectFromJson<ECStartupSettings>(jsonPath);
-                if (_startupSettings != null)
+                if (_startupSettings.EnableThirdCard)
                 {
-                    if (_startupSettings.EnableThirdCard)
-                    {
-                        _thirdCard=new ECThirdCard(_workName);
-                        _thirdCard.InputStateChanged += _thirdCard_InputStateChanged;
-                        return true;
-                    }
+                    _thirdCard = new ECThirdCard(_workName);
+                    _thirdCard.InputStateChanged += _thirdCard_InputStateChanged;
+                    return true;
                 }
             }
             return false;
@@ -953,55 +913,6 @@ namespace VPDLFramework.ViewModels
             WorkLogViewModel.QueryAll();
         }
 
-        /// <summary>
-        /// 插入日志数据
-        /// </summary>
-        /// <param name="logType">日志类型</param>
-        /// <param name="logContent">日志内容</param>
-        //private void InsertLogData(WorkLogType logType, string logContent)
-        //{
-        //    try
-        //    {
-        //        // 数据
-        //        string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff");
-        //        string type = Enum.GetName(typeof(WorkLogType), logType);
-        //        string content = logContent;
-
-        //        // 打包成object[]
-        //        object[] datas = new object[3];
-        //        datas[0] = time;
-        //        datas[1] = type;
-        //        datas[2] = content;
-
-        //        // 数据库文件
-        //        string folder = ECFileConstantsManager.RootFolder + @"\" + _workName + @"\" +
-        //             ECFileConstantsManager.DatabaseFolderName + @"\" + ECFileConstantsManager.WorkLogFolderName + @"\" + DateTime.Now.ToString("yyyy_MM_dd");
-        //        string filePath = folder + @"\" + ECFileConstantsManager.LogDatabaseFileName;
-
-        //        Task.Run(() =>
-        //        {
-        //            try
-        //            {
-        //                // 获取数据库锁
-        //                _workLogMutex.WaitOne();
-
-        //                // 添加数据到文件
-        //                ECSQLiteDataManager.AddData(filePath, ECSQLiteDataManager.DataType.WorkLog, datas);
-        //            }
-        //            catch (System.Exception ex)
-        //            {
-        //                ECLog.WriteToLog(ex.StackTrace + ex.Message + "Write Data To Work Log Failed", LogLevel.Error);
-        //            }
-        //            finally { _workLogMutex.ReleaseMutex(); }
-                
-        //        });
-        //    }
-        //    catch (System.Exception ex)
-        //    {
-        //        ECLog.WriteToLog(ex.StackTrace + ex.Message, LogLevel.Error);
-        //    }
-        //}
-
         private void InsertLogData(WorkLogType logType, string logContent)
         {
             try
@@ -1060,55 +971,57 @@ namespace VPDLFramework.ViewModels
         /// <summary>
         /// 本地指令触发多工作流
         /// </summary>
-        /// <param name="obj"></param>
-        private void OnNativeModeTriggerMultiStream(List<string> obj)
+        /// <param name="streamNames"></param>
+        private void OnNativeModeTriggerMultiStream(List<string> streamNames)
         {
-            try
+            if (!streamNames.All(p => WorkStreamNames.Contains(p)))
             {
-                bool canExecute = true;
-
-                // 判断是否所有工作流都存在
-                foreach (string s in obj)
-                {
-                    if (!WorkStreamNames.Contains(s))
-                    {
-                        canExecute = false;
-                        return;
-                    }
-                }
-
-                // 执行所有工作流
-                if (canExecute)
-                {
-                    foreach (string s in obj)
-                    {
-                        Task.Run(() =>
-                        {
-                            RunWorkStream(s);
-                        }); 
-                    }
-                }
+                return;
             }
-            catch (System.Exception ex)
+            foreach (string s in streamNames)
             {
-                ECLog.WriteToLog(ex.StackTrace + ex.Message, NLog.LogLevel.Error);
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        RunWorkStream(s);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        ECLog.WriteToLog(ex.StackTrace + ex.Message, NLog.LogLevel.Error); ;
+                    }
+                    
+                });
             }
         }
 
         /// <summary>
         /// 本地指令切换配置
         /// </summary>
-        /// <param name="obj"></param>
-        private void OnNativeModeLoadRecipe(KeyValuePair<string, string> obj)
+        /// <param name="recipe"></param>
+        private void OnNativeModeLoadRecipe(KeyValuePair<string, string> recipe)
         {
+            if (string.IsNullOrEmpty( recipe.Value) ||string.IsNullOrEmpty(recipe.Key))
+            {
+                ECLog.WriteToLog("Received null key or value in OnNativeModeLoadRecipe", NLog.LogLevel.Error);
+                return;
+            }
             try
             {
-                ECWorkStream mStream = WorkStreams.Where(t => t.WorkStreamInfo.StreamName == obj.Key)?.First();
-                if (mStream != null && mStream.Recipes.Where(r => r.RecipeName == obj.Value).First() != null)
+                
+                ECWorkStream mStream = WorkStreams.FirstOrDefault(t => t.WorkStreamInfo.StreamName == recipe.Key);
+                if (mStream == null)
                 {
-                    bool ack= mStream.LoadRecipe(obj.Value);
-                    Messenger.Default.Send<bool>(ack, ECMessengerManager.ECNativeModeCommandMessengerKeys.LoadRecipeAck);
+                    ECLog.WriteToLog($"Can not found recipe key:{recipe.Key}", NLog.LogLevel.Error);
+                    return;
                 }
+                if (mStream.Recipes.FirstOrDefault(r => r.RecipeName == recipe.Value) == null)
+                {
+                    ECLog.WriteToLog($"Can not found recipe value:{recipe.Value}", NLog.LogLevel.Error);
+                    return;
+                }
+                bool ack = mStream.LoadRecipe(recipe.Value);
+                Messenger.Default.Send(ack, ECMessengerManager.ECNativeModeCommandMessengerKeys.LoadRecipeAck);
             }
             catch(System.Exception ex)
             {
@@ -1124,11 +1037,11 @@ namespace VPDLFramework.ViewModels
         {
             try
             {
-                ECWorkStream mStream = WorkStreams.Where(t => t.WorkStreamInfo.StreamName == pair.Key)?.First();
+                ECWorkStream mStream = WorkStreams.FirstOrDefault(t => t.WorkStreamInfo.StreamName == pair.Key);
                 if (mStream != null)
                 {
                     bool ack = mStream.SetUserData(pair.Value);
-                    Messenger.Default.Send<bool>(ack, ECMessengerManager.ECNativeModeCommandMessengerKeys.SetUserDataAck);
+                    //Messenger.Default.Send<bool>(ack, ECMessengerManager.ECNativeModeCommandMessengerKeys.SetUserDataAck);
                 }
             }
             catch (System.Exception ex)
@@ -1167,13 +1080,14 @@ namespace VPDLFramework.ViewModels
             {
                 if (!WorkStreamNames.Contains(streamName)) return;
 
-                ECWorkStream mStream = WorkStreams.Where(t => t.WorkStreamInfo.StreamName == streamName)?.First();
+                ECWorkStream mStream = WorkStreams.FirstOrDefault(t => t.WorkStreamInfo.StreamName == streamName);
 
                 if (mStream != null && mStream.WorkStreamInfo.ImageSourceName != null && ImageSourceNames.Contains(mStream.WorkStreamInfo.ImageSourceName))
                 {
-                    ECWorkImageSource mImageSource = WorkImageSources.Where(t => t.ImageSourceInfo.ImageSourceName == mStream.WorkStreamInfo.ImageSourceName)?.First();
+                    ECWorkImageSource mImageSource = WorkImageSources.FirstOrDefault(t => t.ImageSourceInfo.ImageSourceName == mStream.WorkStreamInfo.ImageSourceName);
                     if (mImageSource != null)
                         mImageSource.SetExposure(exposureTime);
+                    
                 }
             }
             catch (System.Exception ex)
@@ -1589,7 +1503,7 @@ namespace VPDLFramework.ViewModels
         {
             try
             {
-                ECWorkStream stream = WorkStreams.Where(t => t.WorkStreamInfo.StreamName == workStreamName)?.First();
+                ECWorkStream stream = WorkStreams.FirstOrDefault(t => t.WorkStreamInfo.StreamName == workStreamName);
                 if (stream == null) return;
 
                 string path = ECFileConstantsManager.RootFolder + @"\" + _workName + @"\" + ECFileConstantsManager.StreamsFolderName + 
@@ -1614,7 +1528,7 @@ namespace VPDLFramework.ViewModels
         {
             try
             {
-                ECWorkStreamsGroup group = WorkGroups.Where(t => t.GroupInfo.GroupName == groupName)?.First();
+                ECWorkStreamsGroup group = WorkGroups.FirstOrDefault(t => t.GroupInfo.GroupName == groupName);
                 if (group == null) return;
 
                 string path = ECFileConstantsManager.RootFolder + @"\" + _workName + @"\" + ECFileConstantsManager.GroupsFolderName +
@@ -1639,7 +1553,7 @@ namespace VPDLFramework.ViewModels
         {
             try
             {
-                ECWorkImageSource imageSource = WorkImageSources.Where(t => t.ImageSourceInfo.ImageSourceName == imageSourceName)?.First();
+                ECWorkImageSource imageSource = WorkImageSources.FirstOrDefault(t => t.ImageSourceInfo.ImageSourceName == imageSourceName);
                 if (imageSource == null) return;
 
                 string path = ECFileConstantsManager.RootFolder + @"\" + _workName + @"\" + ECFileConstantsManager.ImageSourceFolderName +
@@ -1759,16 +1673,13 @@ namespace VPDLFramework.ViewModels
         {
             try
             {
-                ECWorkStream stream = WorkStreams.Where(t => t.WorkStreamInfo.StreamName == workStreamName)?.First();
-                if (stream == null) return;
-
-                string path = ECFileConstantsManager.RootFolder + @"\" + _workName + @"\" + ECFileConstantsManager.StreamsFolderName +
-                    @"\" + stream.WorkStreamInfo.StreamName + @"\" + ECFileConstantsManager.StreamConfigName;
-
-                if (!Directory.Exists(Directory.GetParent(path).FullName))
-                    Directory.CreateDirectory(path);
-                ECSerializer.SaveObjectToJson(path,stream.WorkStreamInfo);
-                
+                ECWorkStream stream = WorkStreams.FirstOrDefault(t => t.WorkStreamInfo.StreamName == workStreamName);
+                if (stream == null) 
+                    return;
+                string path =$@"{ECFileConstantsManager.RootFolder}\{_workName}\{ECFileConstantsManager.StreamsFolderName}\{stream.WorkStreamInfo.StreamName}" ;
+                Directory.CreateDirectory(path);
+                string fullName = Path.Combine(path, ECFileConstantsManager.StreamConfigName);
+                ECSerializer.SaveObjectToJson(fullName,stream.WorkStreamInfo);
                 ECDialogManager.ShowMsg(ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.SaveFinished));
             }
             catch (System.Exception ex)
@@ -1783,34 +1694,35 @@ namespace VPDLFramework.ViewModels
 
         private void RunLiveModeWorkStream(string workStreamName)
         {
-            if (!_isReady || !WorkStreamNames.Contains(workStreamName)) return;
+            if (!_isReady || !WorkStreamNames.Contains(workStreamName))
+            {
+                ECLog.WriteToLog($"Work Stream:{workStreamName} not exist",LogLevel.Error);
+                return;
+            } 
             try
             {
-                ECWorkStream stream = WorkStreams.Where(t => t.WorkStreamInfo.StreamName == workStreamName)?.First();
+                ECWorkStream stream = WorkStreams.FirstOrDefault(t => t.WorkStreamInfo.StreamName == workStreamName);
 
                 // 获取图像源名称
                 string imageSourceName = stream.WorkStreamInfo.ImageSourceName;
-                if (string.IsNullOrEmpty(imageSourceName)) return;
 
-                // 获取图像源对象
-                if (!ImageSourceNames.Contains(imageSourceName))
+                ECWorkImageSource imageSource = WorkImageSources.FirstOrDefault(t => t.ImageSourceInfo.ImageSourceName == imageSourceName);
+                if (imageSource is null)
+                {
+                    ECLog.WriteToLog("Image source not exist", LogLevel.Error);
                     return;
-
-                ECWorkImageSource imageSource = WorkImageSources.Where(t => t.ImageSourceInfo.ImageSourceName == imageSourceName)?.First();
+                }
 
                 // 工作流Ready状态置FALSE
                 if (StreamsLiveModeRunning != null && StreamsLiveModeRunning.ContainsKey(stream.WorkStreamInfo.StreamName))
                     StreamsLiveModeRunning[stream.WorkStreamInfo.StreamName] = true;
 
-                Task.Run(() =>
-                {
-                    // 采集图像
-                    ECWorkImageSourceOutput imageSourceResult = imageSource.GetImage();
+                // 采集图像
+                ECWorkImageSourceOutput imageSourceResult = imageSource.GetImage();
 
-                    // 判断图像是否为空
-                    if (imageSourceResult != null&&imageSourceResult.Image!=null)
-                        stream.RunLive(imageSourceResult.Image);
-                });
+                // 判断图像是否为空
+                if (imageSourceResult != null && imageSourceResult.Image != null)
+                    stream.RunLive(imageSourceResult.Image);
             }
             catch (System.Exception ex)
             {
@@ -1827,127 +1739,95 @@ namespace VPDLFramework.ViewModels
             if (!_isReady || !WorkStreamNames.Contains(workStreamName)) return;
             try
             {
-                ECWorkStream stream = WorkStreams.Where(t => t.WorkStreamInfo.StreamName == workStreamName)?.First();
-
-                if (stream.WorkStreamInfo.ImageSourceName == null&&!GetStreamIsRunning(stream.WorkStreamInfo.StreamName))
+                ECWorkStream stream = WorkStreams.FirstOrDefault(t => t.WorkStreamInfo.StreamName == workStreamName);
+                if (stream is null)
                 {
-                    InsertLogData(WorkLogType.Stream, $"\"{stream.WorkStreamInfo.StreamName}\" {ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.StartRunning)} " +
-                        $"{(stream.ResultViewModel.TriggerCount + 1)}");
-                    Task.Run(() =>
-                    {
-                        stream.Run();
-                    });
+                    ECLog.WriteToLog( $"Cannot found stream name:{workStreamName}",LogLevel.Error);
                     return;
                 }
 
                 // 获取图像源名称
                 string imageSourceName = stream.WorkStreamInfo.ImageSourceName;
-
+                ECWorkImageSource imageSource = WorkImageSources.FirstOrDefault(t => t.ImageSourceInfo.ImageSourceName == imageSourceName);
                 // 获取图像源对象
-                if (!ImageSourceNames.Contains(imageSourceName))
+                if (imageSource is null)
                 {
                     ECLog.WriteToLog($"{ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.CannotFind)} {imageSourceName}", LogLevel.Error);
                     return;
                 }
-
-                ECWorkImageSource imageSource = WorkImageSources.Where(t => t.ImageSourceInfo.ImageSourceName == imageSourceName)?.First();
-
-
-                // 判断工作流是否异步执行
-                if (!stream.WorkStreamInfo.IsAsyncMode)
+                if (imageSource.IsRunning)
                 {
-                    if ((imageSource.IsRunning || GetStreamIsRunning(workStreamName)))
+                    ECLog.WriteToLog($"{imageSourceName} is running ,please retry later!", LogLevel.Error);
+                    return;
+                }
+
+                if (GetStreamIsRunning(stream.WorkStreamInfo.StreamName))
+                {
+                    ECLog.WriteToLog( $"{stream.WorkStreamInfo.StreamName} is running ,please retry later!",LogLevel.Error);
+                    return;
+                }
+                SetStreamIsRunning(workStreamName);
+                
+                // 开始运行
+                InsertLogData(WorkLogType.Stream, $"\"{stream.WorkStreamInfo.StreamName}\" {ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.StartRunning)} " +
+                    $"{(stream.ResultViewModel.TriggerCount + 1)}");
+
+                // 工作流Ready状态置FALSE
+                if (StreamsReadyStatus != null && StreamsReadyStatus.ContainsKey(stream.WorkStreamInfo.StreamName))
+                    StreamsReadyStatus[stream.WorkStreamInfo.StreamName] = false;
+                Task.Run(() =>
+                {
+                    double defaultExposure = imageSource.GetExposure();
+                    List<double> needTryExposures = new List<double> { 
+                        defaultExposure,
+                        defaultExposure * 1.1,
+                        defaultExposure * 0.9,
+                        defaultExposure * 1.2, 
+                        defaultExposure * 0.8, 
+                        defaultExposure * 1.3, 
+                        defaultExposure * 0.7,
+                        defaultExposure * 1.4,
+                        defaultExposure * 0.6,
+                        defaultExposure * 1.5,
+                        defaultExposure * 0.5,
+                        defaultExposure * 1.6,
+                        defaultExposure * 0.4,
+                        defaultExposure * 1.7,
+                        defaultExposure * 0.3,
+                        defaultExposure * 1.8,
+                        defaultExposure * 0.2,
+                        defaultExposure * 1.9,
+                        defaultExposure * 0.1,
+                        defaultExposure };
+                    foreach (var exposureSet in needTryExposures)
                     {
-                        InsertLogData(WorkLogType.Stream, $"\"{stream.WorkStreamInfo.StreamName}\" {ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.TriggerOverflow)}");
-                        return;
-                    }
-
-                    // 检查是否包含于某个组
-                    if (stream.WorkStreamInfo.GroupName != null)
-                    {
-                        ECWorkStreamsGroup group = WorkGroups.Where(t => t.GroupInfo.GroupName == stream.WorkStreamInfo.GroupName).First();
-                        if (group != null)
-                        {
-                            group.GroupMutex.WaitOne();
-
-                            if (!group.IsWaiting)
-                            {
-                                group.Inputs.Clear();
-                                group.IsWaiting = true;
-                            }
-                            stream.GroupTriggerCount = group.TriggerCount;
-                            group.GroupMutex.ReleaseMutex();
-                        }
-                    }
-
-                    SetStreamIsRunning(workStreamName);
-
-                    // 开始运行
-                    InsertLogData(WorkLogType.Stream, $"\"{stream.WorkStreamInfo.StreamName}\" {ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.StartRunning)} " +
-                        $"{(stream.ResultViewModel.TriggerCount+1)}");
-
-                    // 工作流Ready状态置FALSE
-                    if (StreamsReadyStatus != null && StreamsReadyStatus.ContainsKey(stream.WorkStreamInfo.StreamName))
-                        StreamsReadyStatus[stream.WorkStreamInfo.StreamName] = false;
-
-                    Task.Run(() =>
-                    {
-                        // 采集图像
-                        ECWorkImageSourceOutput imageSourceResult = imageSource.GetImage();
-
+                        imageSource.SetExposure(exposureSet);
+                        var imageSourceResult = imageSource.GetImage();
                         // 判断图像是否为空
                         if (imageSourceResult != null && imageSourceResult.Image != null)
+                        {
                             stream.Run(imageSourceResult);
+                            if (!stream.ResultViewModel.ResultForSend.Contains("999,999,999"))
+                            {
+                                break;
+                            }
+                            Task.Delay(10).Wait();
+                        }
                         else
                         {
                             InsertLogData(WorkLogType.Stream, $"\"{stream.WorkStreamInfo.StreamName}\" {ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.ImageIsNull)}");
                             ECLog.WriteToLog($"\"{stream.WorkStreamInfo.StreamName}\" {ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.ImageIsNull)}", LogLevel.Error);
                         }
-                    });
-                   
-                }
-                else
-                {
-                    if (!imageSource.IsRunning)
-                    {
-                        // 开始运行
-                        if (stream.BufferQueue.BufferImages.Count < stream.BufferQueue.MaxBufferCount)
-                            InsertLogData(WorkLogType.Stream, $"\"{stream.WorkStreamInfo.StreamName}\" {ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.StartRunning)} ");
-                        else
-                            return;
-
-                        // 图像源Ready状态置FALSE
-                        if (ImageSourceReadyStatus != null && ImageSourceReadyStatus.ContainsKey(imageSource.ImageSourceInfo.ImageSourceName))
-                            ImageSourceReadyStatus[imageSource.ImageSourceInfo.ImageSourceName] = false;
-
-                        Task.Run(() =>
-                        {
-                            // 采集图像
-                            ECWorkImageSourceOutput imageSourceResult = imageSource.GetImage();
-
-                            // 判断图像是否为空
-                            if (imageSourceResult == null || imageSourceResult.Image == null)
-                            {
-                                InsertLogData(WorkLogType.Stream, $"\"{stream.WorkStreamInfo.StreamName}\" {ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.ImageIsNull)}");
-                                ECLog.WriteToLog($"\"{stream.WorkStreamInfo.StreamName}\" {ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.ImageIsNull)}", LogLevel.Error);
-                            }
-                            else
-                            {
-                                if (stream.WorkStreamInfo.IsEnableMultiThread)
-                                {
-                                    if(stream.MultiThreadManager.BufferQueue.MaxBufferCount > stream.BufferQueue.BufferImages.Count)
-                                        stream.RunOnMultiThreadMode(imageSourceResult);
-                                    else
-                                        ECLog.WriteToLog($"\"{stream.WorkStreamInfo.StreamName}\" {ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.BufferQueueOverflow)}", LogLevel.Error);
-                                }
-                                else if (!stream.RunAsync(imageSourceResult))
-                                    ECLog.WriteToLog($"\"{stream.WorkStreamInfo.StreamName}\" {ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.BufferQueueOverflow)}", LogLevel.Error);
-                            }
-                        });
                     }
-                    else
-                        InsertLogData(WorkLogType.Stream, $" \"{stream.WorkStreamInfo.StreamName}\" {ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.TriggerOverflow)}");
-                }
+
+                    SetStreamNotRunning(workStreamName);
+                    // 未联机则不发送结果
+                    if (!IsSystemOnline) return;
+                    string resultStr = stream.WorkStreamInfo.StreamName + "," + stream.ResultViewModel.ResultForSend?.ToString();
+                    // 结果发送
+                    Enum.TryParse(stream.WorkStreamInfo.ResultSenderType, out ECWorkOptionManager.ResultSendTypeConstants senderType);
+                    TCPSendMessage(stream.WorkStreamInfo.TCPSenderName, resultStr);
+                });
             }
             catch (System.Exception ex)
             {
@@ -1961,7 +1841,7 @@ namespace VPDLFramework.ViewModels
         /// <param name="streamName"></param>
         private void SetStreamIsRunning(string streamName)
         {
-            ECWorkStream stream = WorkStreams.Where(t => t.WorkStreamInfo.StreamName == streamName).First();
+            ECWorkStream stream = WorkStreams.FirstOrDefault(t => t.WorkStreamInfo.StreamName == streamName);
             if (stream != null)
             {
                 stream.StreamMutex.WaitOne();
@@ -1973,15 +1853,30 @@ namespace VPDLFramework.ViewModels
                 stream.StreamMutex.ReleaseMutex();
             }
         }
+        private void SetStreamNotRunning(string streamName)
+        {
+            ECWorkStream stream = WorkStreams.FirstOrDefault(t => t.WorkStreamInfo.StreamName == streamName);
+            if (stream != null)
+            {
+                stream.StreamMutex.WaitOne();
+
+                if (!stream.IsRunning)
+                {
+                    stream.IsRunning = false;
+                }
+                stream.StreamMutex.ReleaseMutex();
+            }
+        }
 
         /// <summary>
-        /// 获取工作流是否为正在运行状态
+        /// /Get stream run state 
         /// </summary>
         /// <param name="streamName"></param>
+        /// <returns>true:not in running state,false:in running state </returns>
         private bool GetStreamIsRunning(string streamName)
         {
             bool isRunning = true;
-            ECWorkStream stream = WorkStreams.Where(t => t.WorkStreamInfo.StreamName == streamName).First();
+            ECWorkStream stream = WorkStreams.FirstOrDefault(t => t.WorkStreamInfo.StreamName == streamName);
             if (stream != null)
             {
                 stream.StreamMutex.WaitOne();
@@ -2132,6 +2027,7 @@ namespace VPDLFramework.ViewModels
         /// <param name="e"></param>
         private void Stream_Compeleted(object sender, ECWorkStreamOrGroupResult e)
         {
+
             try
             {
                 if (StreamsReadyStatus != null && StreamsReadyStatus.ContainsKey(e.StreamOrGroupName))
@@ -2142,7 +2038,7 @@ namespace VPDLFramework.ViewModels
 
                 if (e.IsLiveMode) return;
 
-                ECWorkStream stream = WorkStreams.Where(t => t.WorkStreamInfo.StreamName == e.StreamOrGroupName).First();
+                ECWorkStream stream = WorkStreams.FirstOrDefault(t => t.WorkStreamInfo.StreamName == e.StreamOrGroupName);
 
                 double tbTime = stream.DLOutputTB.RunStatus.TotalTime;
 
@@ -2152,51 +2048,10 @@ namespace VPDLFramework.ViewModels
                 // 如果工作流属于某个组,传递结果给组
                 if (stream.WorkStreamInfo.GroupName != null)
                 {
-                    ECWorkStreamsGroup group = WorkGroups.Where(t => t.GroupInfo.GroupName == stream.WorkStreamInfo.GroupName).First();
+                    ECWorkStreamsGroup group = WorkGroups.FirstOrDefault(t => t.GroupInfo.GroupName == stream.WorkStreamInfo.GroupName);
                     if (group.TriggerCount == stream.GroupTriggerCount)
                         TransferStreamResultToGroup(stream.WorkStreamInfo.GroupName, e);
                 }
-
-                string resultStr = stream.WorkStreamInfo.StreamName + "," + e.ResultForSend?.ToString();
-
-                // 未联机则不发送结果
-                if (!IsSystemOnline) return;
-
-                // 结果发送
-                if (stream.WorkStreamInfo.ResultSenderType != null)
-                {
-                    // 判断结果发送类型,TCP或IO
-                    ECWorkOptionManager.ResultSendTypeConstants senderType;
-                    Enum.TryParse(stream.WorkStreamInfo.ResultSenderType, out senderType);
-
-                    // TCP发送
-                    if (senderType == ECWorkOptionManager.ResultSendTypeConstants.TCP)
-                        TCPSendMessage(stream.WorkStreamInfo.TCPSenderName, resultStr);
-
-                    // IO发送
-                    else if (senderType == ECWorkOptionManager.ResultSendTypeConstants.IO)
-                    {
-                        ECWorkOptionManager.IOOutputConstants outputConstant;
-                        Enum.TryParse(stream.WorkStreamInfo.IOOutputConstant, out outputConstant);
-                        IOOutputExecute(outputConstant);
-                    }
-
-                    // FFP发送
-                    else if (senderType == ECWorkOptionManager.ResultSendTypeConstants.FFP)
-                        SendResultToFFP(resultStr);
-
-                    // 脚本发送
-                    else if (senderType == ECWorkOptionManager.ResultSendTypeConstants.Script)
-                    {
-                        // 启用第三方板卡
-                        if (_enableThirdCard)
-                        {
-                            _thirdCard?.SetOutputStatus(resultStr);
-                        }
-                    }
-                }
-                else
-                    Messenger.Default.Send<string>(resultStr, ECMessengerManager.WorkRuntimeViewModelMessengerKeys.TCPMsgToSystemServer);
             }
             catch(System.Exception ex)
             {
@@ -2369,14 +2224,23 @@ namespace VPDLFramework.ViewModels
                 NativeModeCommandTypeConstants constant = ECNativeModeCommand.CheckCommandString(msg);
 
                 string[] command = msg.Split(',');
-                string streamName = command[1];
+                string streamName = command[0];
 
                 switch (constant)
                 {
                     //触发工作流
                     case NativeModeCommandTypeConstants.TS:
-                        if(command.Length==2)
-                        OnNativeModeTriggerStream(command[1]);
+                        {
+                            string userdata = msg.Substring(command[0].Length + 1, msg.Length - command[0].Length - 1);
+                            //userdata = userdata.Substring(command[1].Length + 1, userdata.Length - command[1].Length - 1);
+                            if (!string.IsNullOrEmpty(userdata))
+                            {
+                                KeyValuePair<string, string> streamUserData = new KeyValuePair<string, string>(command[0], userdata);
+                                OnNativeModeSetUserData(streamUserData);
+                            }
+                            OnNativeModeTriggerStream(command[0]);
+                        }
+
                         break;
 
                     //触发工作流
@@ -2539,10 +2403,16 @@ namespace VPDLFramework.ViewModels
         {
             try
             {
-                List<string> tcpNames= WorkTCPDevices.Select(p => p.TCPDeviceInfo.TCPDeviceName).ToList();
-                ECTCPDevice tcpDevice = WorkTCPDevices.Where(t => t.TCPDeviceInfo.TCPDeviceName == tcpName).First();
-                
-                tcpDevice.SendMessage(message);
+                List<string> tcpNames = WorkTCPDevices.Select(p => p.TCPDeviceInfo.TCPDeviceName).ToList();
+                ECTCPDevice tcpDevice = WorkTCPDevices.FirstOrDefault(t => t.TCPDeviceInfo.TCPDeviceName == tcpName);
+                if (tcpDevice is null)
+                {
+                    MainViewModel.GetSystemServer()?.Broadcast(message);
+                }
+                else
+                {
+                    tcpDevice.SendMessage(message);
+                }
                 InsertLogData(WorkLogType.TCP, $"{ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.TCPIP)} \"{tcpName}\" " +
                             $"{ECDescriptionLabel.FindLabel(ECDescriptionLabel.LabelConstants.SendMessage)}：{message}");
             }
@@ -2650,15 +2520,8 @@ namespace VPDLFramework.ViewModels
         /// <summary>
         /// 图像源集合
         /// </summary>
-        private BindingList<ECWorkImageSource> _workImageSources;
 
-        public BindingList<ECWorkImageSource> WorkImageSources
-        {
-            get { return _workImageSources; }
-            set { _workImageSources = value;
-                RaisePropertyChanged();
-            }
-        }
+        public ObservableCollection<ECWorkImageSource> WorkImageSources { get; set; } = new ObservableCollection<ECWorkImageSource>();
 
         /// <summary>
         /// TCP设备集合
@@ -2676,30 +2539,14 @@ namespace VPDLFramework.ViewModels
         /// <summary>
         /// 工作流集合
         /// </summary>
-        private BindingList<ECWorkStream> _workStreams;
 
-		public BindingList<ECWorkStream> WorkStreams
-        {
-			get { return _workStreams; }
-			set { _workStreams = value;
-				RaisePropertyChanged();
-			}
-		}
+        public BindingList<ECWorkStream> WorkStreams { get; set; } = new BindingList<ECWorkStream>();
+
 
         /// <summary>
         /// 工作流配方集合
         /// </summary>
-        private BindingList<WorkStreamRecipesViewModel> _workStreamsRecipe;
-
-        public BindingList<WorkStreamRecipesViewModel> WorkStreamsRecipe
-        {
-            get { return _workStreamsRecipe; }
-            set
-            {
-                _workStreamsRecipe = value;
-                RaisePropertyChanged();
-            }
-        }
+        public BindingList<WorkStreamRecipesViewModel> WorkStreamsRecipe { get; set; } = new BindingList<WorkStreamRecipesViewModel>();
 
         /// <summary>
         /// 工作流组集合
@@ -2719,42 +2566,22 @@ namespace VPDLFramework.ViewModels
 		/// </summary>
 		private BindingList<ECWorkStreamOrGroupResult> _results;
 
-		public BindingList<ECWorkStreamOrGroupResult> Results
-		{
-			get { return _results; }
-			set { _results = value;
-				RaisePropertyChanged();
-			}
-		}
+        public ObservableCollection<ECWorkStreamOrGroupResult> Results { get; set; } = new ObservableCollection<ECWorkStreamOrGroupResult>();
+
 
         /// <summary>
         /// 放大的结果
         /// </summary>
-        private BindingList<ECWorkStreamOrGroupResult> _zoomResults;
-
-        public BindingList<ECWorkStreamOrGroupResult> ZoomResults
-        {
-            get { return _zoomResults; }
-            set { _zoomResults = value;
-                RaisePropertyChanged();
-            }
-        }
+        public BindingList<ECWorkStreamOrGroupResult> ZoomResults { get; set; } = new BindingList<ECWorkStreamOrGroupResult>();
 
 
         /// <summary>
         /// 显示的图表集合
         /// </summary>
-        private BindingList<ECWorkStreamOrGroupResultChart> _resultsChart;
 
-        public BindingList<ECWorkStreamOrGroupResultChart> ResultsChart
-        {
-            get { return _resultsChart; }
-            set
-            {
-                _resultsChart = value;
-                RaisePropertyChanged();
-            }
-        }
+        public BindingList<ECWorkStreamOrGroupResultChart> ResultsChart { get; set; }= new BindingList<ECWorkStreamOrGroupResultChart>();
+
+        
 
         /// <summary>
         /// 生产数据视图模型
@@ -2850,28 +2677,14 @@ namespace VPDLFramework.ViewModels
         /// <summary>
         /// 工作流名称列表
         /// </summary>
-        private BindingList<string> _workStreamNames;
 
-        public BindingList<string> WorkStreamNames
-        {
-            get { return _workStreamNames; }
-            set { _workStreamNames = value;
-                RaisePropertyChanged();
-            }
-        }
+        public BindingList<string> WorkStreamNames { get; set; } = new BindingList<string>();
 
         /// <summary>
         /// 图像源名称列表
         /// </summary>
-        private BindingList<string> _imageSourceNames;
+        public ObservableCollection<string> ImageSourceNames { get; set; } = new ObservableCollection<string>();
 
-        public BindingList<string> ImageSourceNames
-        {
-            get { return _imageSourceNames; }
-            set { _imageSourceNames = value;
-                RaisePropertyChanged();
-            }
-        }
 
         /// <summary>
         /// 工作流Ready状态

@@ -64,7 +64,7 @@ namespace VPDLFramework.Models
         /// <summary>
         /// 软件程序目录
         /// </summary>
-        public static string ProjectFolder = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+        public static string ProjectFolder = Directory.GetCurrentDirectory();
 
         /// <summary>
         /// 图片根目录
